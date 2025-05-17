@@ -6,25 +6,26 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getBlogPosts, getBlogCategories, BlogPost, BlogCategory } from "@/lib/supabase/blog-client";
+import { ClientImage } from "@/components/ClientImage";
 
 // Default image to use when a blog post image is not found
 const DEFAULT_BLOG_IMAGE = "/images/blog/default-blog.svg";
 
 export const metadata: Metadata = {
-  title: "Trading Blog & Expert Guides | BrokerAnalysis",
-  description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more.",
+  title: "Trading Blog & Expert Guides 2025 | BrokerAnalysis | May 2025 Update",
+  description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more. Updated May 2025.",
   openGraph: {
-    title: "Trading Blog & Expert Guides | BrokerAnalysis",
-    description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more.",
+    title: "Trading Blog & Expert Guides 2025 | BrokerAnalysis | May 2025 Update",
+    description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more. Updated May 2025.",
     type: "website",
     url: "/blog",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trading Blog & Expert Guides | BrokerAnalysis",
-    description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more.",
+    title: "Trading Blog & Expert Guides 2025 | BrokerAnalysis | May 2025 Update",
+    description: "Expert trading guides, market analysis, and broker reviews for forex, stocks, crypto, commodities, CFDs, options, futures, and more. Updated May 2025.",
   },
-  keywords: ["trading blog", "forex", "stocks", "crypto", "commodities", "CFDs", "options", "futures", "broker reviews", "market analysis", "trading strategies"],
+  keywords: ["trading blog", "forex", "stocks", "crypto", "commodities", "CFDs", "options", "futures", "broker reviews", "market analysis", "trading strategies", "May 2025 update"],
   alternates: {
     canonical: "/blog",
   },
@@ -78,7 +79,7 @@ export default async function BlogPage() {
   return (
     <div className="container max-w-6xl mx-auto px-4 py-10">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Blog & Trading Guides</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">Blog & Trading Guides 2025</h1>
         <p className="text-xl text-muted-foreground">
           Expert insights, market analysis, and trading guides to help you make informed decisions.
         </p>
@@ -99,6 +100,19 @@ export default async function BlogPage() {
           </Link>
         ))}
       </div>
+      
+      {/* May 2025 Update Notice */}
+      <div className="mb-10 p-4 border border-primary/20 bg-primary/5 rounded-lg">
+        <div className="flex items-center gap-3">
+          <Badge className="bg-primary text-primary-foreground px-3 py-1">New</Badge>
+          <h2 className="text-xl font-semibold">May 2025 Update</h2>
+        </div>
+        <p className="mt-2">
+          We've updated all our broker reviews and comparisons with the latest information for May 2025. 
+          Our expert analysis now includes new regulatory changes, updated fee structures, 
+          and the latest trading technologies adopted by brokers in 2025.
+        </p>
+      </div>
 
       {/* Featured Post */}
       {posts && posts.length > 0 && (
@@ -106,15 +120,11 @@ export default async function BlogPage() {
           <Card className="overflow-hidden border-none shadow-lg">
             <div className="grid md:grid-cols-2">
               <div className="relative h-[300px] md:h-full">
-                <img
+                <ClientImage
                   src={posts[0].image_url || DEFAULT_BLOG_IMAGE}
                   alt={posts[0].title}
                   className="object-cover w-full h-full"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = DEFAULT_BLOG_IMAGE;
-                  }}
+                  fallbackSrc={DEFAULT_BLOG_IMAGE}
                 />
               </div>
               <div className="p-6 md:p-8 flex flex-col justify-between">
@@ -143,15 +153,11 @@ export default async function BlogPage() {
         {posts?.slice(1).map((post: BlogPost) => (
           <Card key={post.id} className="overflow-hidden flex flex-col h-full">
             <div className="relative h-48">
-              <img
+              <ClientImage
                 src={post.image_url || DEFAULT_BLOG_IMAGE}
                 alt={post.title}
                 className="object-cover w-full h-full"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.src = DEFAULT_BLOG_IMAGE;
-                }}
+                fallbackSrc={DEFAULT_BLOG_IMAGE}
               />
             </div>
             <CardHeader className="pb-0">

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
-  title: "FAQ - Frequently Asked Questions",
-  description: "Find answers to common questions about forex trading, choosing brokers, and using our platform.",
+  title: "FAQ - Frequently Asked Questions | May 2025 Update",
+  description: "Find answers to common questions about forex trading, choosing brokers, and using our platform. Updated May 2025.",
 };
 
 export default function FAQPage() {

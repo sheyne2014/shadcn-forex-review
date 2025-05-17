@@ -90,13 +90,13 @@ const mainNavItems: NavItem[] = [
         ]
       },
       {
-        heading: 'Review Categories',
+        heading: 'Review Categories 2025',
         items: [
-          { label: 'Forex Broker Reviews', href: '/reviews/categories/forex' },
-          { label: 'CFD Broker Reviews', href: '/reviews/categories/cfd' },
-          { label: 'Stock Broker Reviews', href: '/reviews/categories/stocks' },
-          { label: 'Crypto Broker Reviews', href: '/reviews/categories/crypto' },
-          { label: 'Options Broker Reviews', href: '/reviews/categories/options' },
+          { label: 'Forex Broker Reviews 2025', href: '/reviews/categories/forex' },
+          { label: 'CFD Broker Reviews 2025', href: '/reviews/categories/cfd' },
+          { label: 'Stock Broker Reviews 2025', href: '/reviews/categories/stocks' },
+          { label: 'Crypto Broker Reviews 2025', href: '/reviews/categories/crypto' },
+          { label: 'Options Broker Reviews 2025', href: '/reviews/categories/options' },
         ]
       },
     ]
@@ -122,24 +122,24 @@ const mainNavItems: NavItem[] = [
     href: '/blog',
     children: [
       {
-        heading: 'Latest Topics',
+        heading: 'Latest Topics 2025',
         items: [
-          { label: 'Mental Health in Trading', href: '/blog/mental-health-forex-trading-stress-management-mindfulness-2025' },
-          { label: 'Carbon-Neutral Brokers', href: '/blog/carbon-neutral-forex-brokers-eco-friendly-green-trading-2025' },
-          { label: 'Space Economy & Forex', href: '/blog/space-economy-forex-trading-lunar-asteroid-mining-2025' },
-          { label: 'Biometric Security', href: '/blog/biometric-security-forex-trading-fingerprint-facial-authentication-2025' },
-          { label: 'VR/AR in Forex', href: '/blog/vr-ar-forex-trading-virtual-reality-immersive-platforms-2025' },
+          { label: 'Mental Health in Trading 2025', href: '/blog/mental-health-forex-trading-stress-management-mindfulness-2025' },
+          { label: 'Carbon-Neutral Brokers 2025', href: '/blog/carbon-neutral-forex-brokers-eco-friendly-green-trading-2025' },
+          { label: 'Space Economy & Forex 2025', href: '/blog/space-economy-forex-trading-lunar-asteroid-mining-2025' },
+          { label: 'Biometric Security 2025', href: '/blog/biometric-security-forex-trading-fingerprint-facial-authentication-2025' },
+          { label: 'VR/AR in Forex 2025', href: '/blog/vr-ar-forex-trading-virtual-reality-immersive-platforms-2025' },
           { label: 'View All Articles', href: '/blog' },
         ]
       },
       {
-        heading: 'Blog Categories',
+        heading: 'Blog Categories 2025',
         items: [
-          { label: 'Market Analysis', href: '/blog/category/market-analysis' },
-          { label: 'Trading Strategies', href: '/blog/category/trading-strategies' },
-          { label: 'Trading Technology', href: '/blog/category/trading-technology' },
-          { label: 'Regulation Updates', href: '/blog/category/regulation-updates' },
-          { label: 'Educational Guides', href: '/blog/category/educational-guides' },
+          { label: 'Market Analysis 2025', href: '/blog/category/market-analysis' },
+          { label: 'Trading Strategies 2025', href: '/blog/category/trading-strategies' },
+          { label: 'Trading Technology 2025', href: '/blog/category/trading-technology' },
+          { label: 'Regulation Updates 2025', href: '/blog/category/regulation-updates' },
+          { label: 'Educational Guides 2025', href: '/blog/category/educational-guides' },
         ]
       }
     ]

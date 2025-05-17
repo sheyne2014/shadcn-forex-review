@@ -28,18 +28,18 @@ export async function generateMetadata({ params }: BrokerPageProps): Promise<Met
   }
   
   return {
-    title: `${broker.name} Review & Analysis | BrokerAnalysis`,
-    description: `Detailed review of ${broker.name} forex broker. Check regulations, fees, minimum deposit, trading platforms and user reviews.`,
+    title: `${broker.name} Review & Analysis 2025 | BrokerAnalysis | Updated May 2025`,
+    description: `Detailed review of ${broker.name} forex broker for 2025. Updated May 2025 with latest regulations, fees, minimum deposit, trading platforms and user reviews.`,
     openGraph: {
-      title: `${broker.name} Broker Review & Rating (${broker.rating || "N/A"}/5)`,
-      description: broker.description || `${broker.name} broker review and analysis`,
+      title: `${broker.name} Broker Review & Rating 2025 (${broker.rating || "N/A"}/5) | May 2025 Update`,
+      description: broker.description || `${broker.name} broker review and analysis for 2025. Updated May 2025.`,
       type: "website",
       url: `/broker/${broker.id}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${broker.name} Broker Review | BrokerAnalysis`,
-      description: broker.description || `${broker.name} broker review and analysis`,
+      title: `${broker.name} Broker Review 2025 | BrokerAnalysis | Updated May 2025`,
+      description: broker.description || `${broker.name} broker review and analysis for 2025. Updated May 2025.`,
     },
     keywords: [
       `${broker.name}`, 
@@ -47,7 +47,9 @@ export async function generateMetadata({ params }: BrokerPageProps): Promise<Met
       "broker review", 
       `${broker.name} review`, 
       `${broker.name} trading`, 
-      `${broker.name} regulation`
+      `${broker.name} regulation`,
+      "May 2025 update",
+      "2025 broker review"
     ],
     alternates: {
       canonical: `/broker/${broker.id}`,
@@ -66,7 +68,7 @@ function formatDate(dateString: string) {
 }
 
 // Helper function to format supported assets
-function formatSupportedAssets(supportedAssets: string | string[] | null | undefined) {
+function formatSupportedAssets(supportedAssets: string | string[] | null | undefined): string[] {
   if (!supportedAssets) return [];
   if (typeof supportedAssets === 'string') {
     try {
@@ -239,7 +241,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {formatSupportedAssets(broker.supported_assets).length > 0 ? (
-                      formatSupportedAssets(broker.supported_assets).map((asset, index) => (
+                      formatSupportedAssets(broker.supported_assets).map((asset: string, index: number) => (
                         <Badge key={index} variant="secondary">
                           {asset}
                         </Badge>
@@ -358,7 +360,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
                 </CardContent>
               </Card>
               
-              <ScamBrokerCheckWidget brokerName={broker.name} />
+              <ScamBrokerCheckWidget brokerName={broker.name || ''} />
             </div>
           </div>
         </TabsContent>
@@ -373,7 +375,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                {Object.entries(features).map(([feature, value], index) => (
+                {Object.entries(features).map(([feature, value]: [string, string], index: number) => (
                   <div key={index} className="border-b pb-4">
                     <h3 className="font-medium mb-2">{feature}</h3>
                     <p className="text-muted-foreground">{value}</p>
@@ -397,7 +399,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
                 <CardContent>
                   {broker.reviews && broker.reviews.length > 0 ? (
                     <div className="space-y-6">
-                      {broker.reviews.map((review) => (
+                      {broker.reviews.map((review: any) => (
                         <div key={review.id} className="border-b pb-5">
                           <div className="flex justify-between items-center mb-2">
                             <div className="font-medium">{review.user_name || "Anonymous User"}</div>
@@ -458,7 +460,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
                       { label: "Trading Tools", value: 4.5 },
                       { label: "Fees", value: 4.1 },
                       { label: "Mobile App", value: 4.3 }
-                    ].map((item, index) => (
+                    ].map((item: { label: string; value: number }, index: number) => (
                       <div key={index}>
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-sm">{item.label}</span>
@@ -515,7 +517,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
         <TabsContent value="verify" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2">
-              <ScamBrokerCheckWidget brokerName={broker.name} />
+              <ScamBrokerCheckWidget brokerName={broker.name || ''} />
             </div>
             <div className="space-y-6">
               <Card>
@@ -540,7 +542,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
                     <div className="mt-4">
                       <h3 className="text-sm font-semibold text-red-600 mb-2">Warning Flags:</h3>
                       <ul className="space-y-1 text-sm">
-                        {legitimacyData.warningFlags.map((flag, index) => (
+                        {legitimacyData.warningFlags.map((flag: string, index: number) => (
                           <li key={index} className="flex items-start">
                             <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 mr-2 flex-shrink-0" />
                             <span>{flag}</span>

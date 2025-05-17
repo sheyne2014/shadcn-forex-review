@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, ShieldCheck, AlertTriangle, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,8 +14,12 @@ type VerificationResult = {
   warningFlags: string[];
 };
 
-export function ScamBrokerCheckWidget() {
-  const [brokerName, setBrokerName] = useState('');
+interface ScamBrokerCheckWidgetProps {
+  brokerName?: string;
+}
+
+export function ScamBrokerCheckWidget({ brokerName: initialBrokerName = '' }: ScamBrokerCheckWidgetProps) {
+  const [brokerName, setBrokerName] = useState(initialBrokerName);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<VerificationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +56,14 @@ export function ScamBrokerCheckWidget() {
       setLoading(false);
     }
   };
+
+  // Auto-verify if brokerName is provided initially
+  useEffect(() => {
+    if (initialBrokerName) {
+      handleVerifyBroker();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialBrokerName]);
 
   return (
     <div className="w-full max-w-md mx-auto">

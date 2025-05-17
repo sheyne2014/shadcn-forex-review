@@ -67,8 +67,8 @@ interface ExtendedBroker {
 }
 
 export const metadata: Metadata = {
-  title: "Trading Broker Reviews & Analysis | Forex, Stocks, Crypto & More",
-  description: "Find the perfect trading broker for stocks, forex, crypto, options, CFDs and ETFs. Compare features, read expert reviews, and discover personalized broker recommendations.",
+  title: "Trading Broker Reviews & Analysis 2025 | Forex, Stocks, Crypto & More | May 2025 Update",
+  description: "Find the perfect trading broker for stocks, forex, crypto, options, CFDs and ETFs. Compare features, read expert reviews, and discover personalized broker recommendations. Updated May 2025.",
 };
 
 // Feature definitions for broker comparison

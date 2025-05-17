@@ -7,6 +7,7 @@ import { getBlogPostBySlug } from "@/lib/supabase/blog-client";
 import styles from "../blog-content.module.css";
 import { marked } from "marked";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ClientImage } from "@/components/ClientImage";
 
 // Default image to use when a blog post image is not found
 const DEFAULT_BLOG_IMAGE = "/images/blog/default-blog.svg";
@@ -30,7 +31,7 @@ export async function generateMetadata(
   { params }: BlogPostPageProps
 ): Promise<Metadata> {
   // Properly handle Next.js async context
-  const { slug } = params;
+  const slug = await params.slug;
   
   const { data: post } = await getBlogPostBySlug(slug);
 
@@ -127,7 +128,7 @@ export default async function BlogPostPage(
   { params }: BlogPostPageProps
 ) {
   // Properly handle Next.js async context
-  const { slug } = params;
+  const slug = await params.slug;
   
   const { data: post, error } = await getBlogPostBySlug(slug);
 
@@ -163,15 +164,11 @@ export default async function BlogPostPage(
       <article>
         <header className="mb-8">
           <div className="w-full h-[400px] overflow-hidden rounded-lg mb-8">
-            <img 
+            <ClientImage 
               src={post.image_url || DEFAULT_BLOG_IMAGE} 
               alt={post.title}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null;
-                target.src = DEFAULT_BLOG_IMAGE;
-              }}
+              fallbackSrc={DEFAULT_BLOG_IMAGE}
             />
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">{post.title}</h1>

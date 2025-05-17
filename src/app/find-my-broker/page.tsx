@@ -4,15 +4,15 @@ import { ArrowLeft } from "lucide-react";
 import { BrokerFinderQuiz } from "@/components/quiz/BrokerFinderQuiz";
 
 export const metadata: Metadata = {
-  title: "Find My Broker | BrokerAnalysis",
-  description: "Answer a few questions to get personalized broker recommendations based on your trading style and preferences.",
+  title: "Find My Broker 2025 | BrokerAnalysis | May 2025 Update",
+  description: "Answer a few questions to get personalized broker recommendations based on your trading style and preferences. Updated May 2025.",
   openGraph: {
-    title: "Find My Broker | BrokerAnalysis",
-    description: "Answer a few questions to get personalized broker recommendations based on your trading style and preferences.",
+    title: "Find My Broker 2025 | BrokerAnalysis | May 2025 Update",
+    description: "Answer a few questions to get personalized broker recommendations based on your trading style and preferences. Updated May 2025.",
     type: "website",
     url: "/find-my-broker",
   },
-  keywords: ["find my broker", "broker finder", "forex broker quiz", "broker recommendation tool", "trading quiz"],
+  keywords: ["find my broker", "broker finder", "forex broker quiz", "broker recommendation tool", "trading quiz", "2025 brokers", "May 2025"],
 };
 
 export default function FindMyBrokerPage() {
