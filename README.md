@@ -96,8 +96,8 @@ Using browser automation to:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/broker-analysis.git
-cd broker-analysis
+git clone https://github.com/sheyne2014/shadcn-forex-review.git
+cd shadcn-forex-review
 ```
 
 2. Install dependencies:
