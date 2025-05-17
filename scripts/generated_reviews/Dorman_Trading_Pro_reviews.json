@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "cc1f94d2-bfe6-486d-83f7-16f287b5de76",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: Dorman Trading Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-05-27T09:41:49.148Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "cc1f94d2-bfe6-486d-83f7-16f287b5de76",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Robert Martinez: I highly recommend Dorman Trading Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-08-02T00:55:01.261Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "cc1f94d2-bfe6-486d-83f7-16f287b5de76",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emma Thompson: My experience with Dorman Trading Pro has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-12-21T20:26:16.413Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "cc1f94d2-bfe6-486d-83f7-16f287b5de76",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Jennifer Davis: Dorman Trading Pro is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2024-03-27T07:58:23.912Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "cc1f94d2-bfe6-486d-83f7-16f287b5de76",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: My experience with Dorman Trading Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-11-28T11:13:55.327Z",
+    "reviewer_name": "Sophia Lee"
+  }
+]

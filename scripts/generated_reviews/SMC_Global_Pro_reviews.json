@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "2440b045-0785-4eed-8a13-b6113a117993",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: SMC Global Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-09-21T10:28:36.686Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "2440b045-0785-4eed-8a13-b6113a117993",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: My experience with SMC Global Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-04-28T08:47:20.878Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "2440b045-0785-4eed-8a13-b6113a117993",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Emma Thompson: I've experienced too many technical issues with SMC Global Pro and am looking for alternatives.",
+    "created_at": "2023-10-07T22:38:08.491Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "2440b045-0785-4eed-8a13-b6113a117993",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emma Thompson: SMC Global Pro is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2024-04-01T10:49:09.764Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "2440b045-0785-4eed-8a13-b6113a117993",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: SMC Global Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-02-22T18:41:08.279Z",
+    "reviewer_name": "James Wilson"
+  }
+]

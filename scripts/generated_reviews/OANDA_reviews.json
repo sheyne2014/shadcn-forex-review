@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "89d5e325-6efe-477f-97f8-b1ad63db09c0",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: I've been using OANDA for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-08-26T22:03:57.533Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "89d5e325-6efe-477f-97f8-b1ad63db09c0",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: My experience with OANDA has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-04-10T00:50:20.742Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "89d5e325-6efe-477f-97f8-b1ad63db09c0",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: OANDA offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-10-12T10:25:53.953Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "89d5e325-6efe-477f-97f8-b1ad63db09c0",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: I highly recommend OANDA for their reliable platform and responsive support team.",
+    "created_at": "2024-07-16T23:14:10.380Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "89d5e325-6efe-477f-97f8-b1ad63db09c0",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: OANDA has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-11-08T21:57:58.528Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

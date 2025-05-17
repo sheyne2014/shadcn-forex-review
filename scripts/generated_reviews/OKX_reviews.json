@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "6b98871f-c0d4-4174-975b-98304958d710",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: OKX offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-04-24T20:13:54.452Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "6b98871f-c0d4-4174-975b-98304958d710",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: My experience with OKX has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-01-21T08:01:18.099Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "6b98871f-c0d4-4174-975b-98304958d710",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: OKX offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-05-02T02:33:34.071Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "6b98871f-c0d4-4174-975b-98304958d710",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: OKX offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-02-03T18:44:59.524Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "6b98871f-c0d4-4174-975b-98304958d710",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: I've been using OKX for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-06-15T05:18:18.057Z",
+    "reviewer_name": "Sophia Lee"
+  }
+]

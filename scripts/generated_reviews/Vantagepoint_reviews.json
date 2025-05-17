@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "3390bb14-2da8-4bbf-8031-d4fe0a9aa5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: Vantagepoint offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-12-27T03:51:26.073Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "3390bb14-2da8-4bbf-8031-d4fe0a9aa5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Jennifer Davis: Vantagepoint is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2024-12-05T19:01:26.466Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "3390bb14-2da8-4bbf-8031-d4fe0a9aa5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: I highly recommend Vantagepoint for their reliable platform and responsive support team.",
+    "created_at": "2024-08-22T09:39:52.542Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "3390bb14-2da8-4bbf-8031-d4fe0a9aa5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: My experience with Vantagepoint has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-11T21:56:22.585Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "3390bb14-2da8-4bbf-8031-d4fe0a9aa5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Robert Martinez: Vantagepoint offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-10-18T20:09:00.980Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

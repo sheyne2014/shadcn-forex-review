@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "e3da39a2-4d2d-4fa2-a3bd-de560fb5322e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: My experience with ICICI Direct has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-09-02T01:00:21.931Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "e3da39a2-4d2d-4fa2-a3bd-de560fb5322e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I highly recommend ICICI Direct for their reliable platform and responsive support team.",
+    "created_at": "2025-05-07T05:50:24.483Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "e3da39a2-4d2d-4fa2-a3bd-de560fb5322e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I highly recommend ICICI Direct for their reliable platform and responsive support team.",
+    "created_at": "2025-02-18T14:40:58.214Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "e3da39a2-4d2d-4fa2-a3bd-de560fb5322e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: My experience with ICICI Direct has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-10-14T22:07:12.512Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "e3da39a2-4d2d-4fa2-a3bd-de560fb5322e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: My experience with ICICI Direct has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-05T15:39:37.352Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

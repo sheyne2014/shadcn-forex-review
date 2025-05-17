@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "8382247e-450f-4ead-a5be-1b895ea6f61e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: I highly recommend Webull for their reliable platform and responsive support team.",
+    "created_at": "2023-12-05T16:07:19.187Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "8382247e-450f-4ead-a5be-1b895ea6f61e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: Webull offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-04-14T02:23:13.726Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "8382247e-450f-4ead-a5be-1b895ea6f61e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: Webull offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-08-25T18:01:44.785Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "8382247e-450f-4ead-a5be-1b895ea6f61e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: Webull has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-05-01T03:45:12.900Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "8382247e-450f-4ead-a5be-1b895ea6f61e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: I've been using Webull for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-10-15T01:02:06.814Z",
+    "reviewer_name": "Abigail Jackson"
+  }
+]

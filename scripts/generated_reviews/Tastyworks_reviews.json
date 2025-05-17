@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "16aa0ed7-18a7-4255-a8c0-fc58978acb0c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: Tastyworks has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-06-20T16:03:53.666Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "16aa0ed7-18a7-4255-a8c0-fc58978acb0c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: I highly recommend Tastyworks for their reliable platform and responsive support team.",
+    "created_at": "2025-04-16T17:50:06.297Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "16aa0ed7-18a7-4255-a8c0-fc58978acb0c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: My experience with Tastyworks has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-02-26T07:41:04.112Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "16aa0ed7-18a7-4255-a8c0-fc58978acb0c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: Tastyworks has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-05-21T21:38:55.073Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "16aa0ed7-18a7-4255-a8c0-fc58978acb0c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: I've been using Tastyworks for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-03-19T16:57:10.010Z",
+    "reviewer_name": "Sophia Lee"
+  }
+]

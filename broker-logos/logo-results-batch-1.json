@@ -1,0 +1,37 @@
+[
+  {
+    "broker": "50K Global",
+    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/50kglobal.broker.com"
+  },
+  {
+    "broker": "ActivTrades",
+    "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/activtrades.broker.com"
+  },
+  {
+    "broker": "Admirals",
+    "brokerId": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/admirals.broker.com"
+  },
+  {
+    "broker": "Ally Invest",
+    "brokerId": "08a33f40-5ec0-45ce-bb37-eb1b9b8bb4e5",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/allyinvest.broker.com"
+  },
+  {
+    "broker": "Alpha Trading",
+    "brokerId": "b2000000-0000-0000-0000-000000000002",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://placehold.co/150x60?text=Alpha"
+  }
+]

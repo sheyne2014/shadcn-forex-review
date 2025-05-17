@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Michael Brown: My experience with AMarkets ECN has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2024-12-26T21:18:31.396Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: My experience with AMarkets ECN has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-21T04:50:31.036Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with AMarkets ECN has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-06-02T14:40:03.243Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: AMarkets ECN has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-09-15T10:41:07.632Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: AMarkets ECN offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-07-11T04:59:29.628Z",
+    "reviewer_name": "Michael Brown"
+  }
+]

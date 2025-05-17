@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "ed0d323c-7d6b-441c-91ca-915d3b34a1ae",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Robert Martinez: Pepperstone Pro is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2024-06-06T00:23:20.119Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "ed0d323c-7d6b-441c-91ca-915d3b34a1ae",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: Pepperstone Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-12-03T15:09:33.926Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "ed0d323c-7d6b-441c-91ca-915d3b34a1ae",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: I highly recommend Pepperstone Pro for their reliable platform and responsive support team.",
+    "created_at": "2023-05-25T17:27:05.260Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "ed0d323c-7d6b-441c-91ca-915d3b34a1ae",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: I highly recommend Pepperstone Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-08-25T01:13:34.488Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "ed0d323c-7d6b-441c-91ca-915d3b34a1ae",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: Pepperstone Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-03-01T10:25:46.395Z",
+    "reviewer_name": "Sofia Hernandez"
+  }
+]

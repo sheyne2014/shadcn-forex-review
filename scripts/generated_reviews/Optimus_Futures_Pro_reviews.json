@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "2c95c42e-e55f-4f42-ab9b-c39046e7dedc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: Optimus Futures Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-04-19T03:02:02.718Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "2c95c42e-e55f-4f42-ab9b-c39046e7dedc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: I highly recommend Optimus Futures Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-12-18T05:26:14.274Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "2c95c42e-e55f-4f42-ab9b-c39046e7dedc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: My experience with Optimus Futures Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-02-16T19:17:27.336Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "2c95c42e-e55f-4f42-ab9b-c39046e7dedc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I highly recommend Optimus Futures Pro for their reliable platform and responsive support team.",
+    "created_at": "2023-07-09T15:37:53.308Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "2c95c42e-e55f-4f42-ab9b-c39046e7dedc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "John Smith: My experience with Optimus Futures Pro has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-08-13T16:34:08.201Z",
+    "reviewer_name": "John Smith"
+  }
+]

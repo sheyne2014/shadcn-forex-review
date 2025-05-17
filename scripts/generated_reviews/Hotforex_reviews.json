@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "ae745890-9119-4a84-9f65-78aecf85f2a8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: Hotforex has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-07-08T09:45:31.125Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "ae745890-9119-4a84-9f65-78aecf85f2a8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: My experience with Hotforex has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-11T08:44:21.074Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "ae745890-9119-4a84-9f65-78aecf85f2a8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: I've been using Hotforex for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-11-05T03:56:42.205Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "ae745890-9119-4a84-9f65-78aecf85f2a8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: I highly recommend Hotforex for their reliable platform and responsive support team.",
+    "created_at": "2024-09-28T03:14:33.709Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "ae745890-9119-4a84-9f65-78aecf85f2a8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: My experience with Hotforex has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-07T20:43:46.174Z",
+    "reviewer_name": "Abigail Jackson"
+  }
+]

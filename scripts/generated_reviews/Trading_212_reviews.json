@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "27f1a232-f730-4b0b-a80b-142f3fff0352",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: I highly recommend Trading 212 for their reliable platform and responsive support team.",
+    "created_at": "2025-03-30T07:32:49.321Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "27f1a232-f730-4b0b-a80b-142f3fff0352",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: I've been using Trading 212 for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-11-19T20:25:00.159Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "27f1a232-f730-4b0b-a80b-142f3fff0352",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Michael Brown: I've had a mixed experience with Trading 212. Some features are good, others need work.",
+    "created_at": "2024-12-21T08:39:06.376Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "27f1a232-f730-4b0b-a80b-142f3fff0352",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Matthew Wilson: Trading 212 gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2023-12-02T04:04:39.988Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "27f1a232-f730-4b0b-a80b-142f3fff0352",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "James Wilson: I've had issues with Trading 212's platform reliability. Too many outages during important market events.",
+    "created_at": "2024-07-07T14:36:05.959Z",
+    "reviewer_name": "James Wilson"
+  }
+]

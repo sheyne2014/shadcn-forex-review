@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "5082cbb1-4817-4a91-acf7-a91994ed801a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: Rakuten Securities has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-07-02T19:51:46.716Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "5082cbb1-4817-4a91-acf7-a91994ed801a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: My experience with Rakuten Securities has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-23T08:44:47.975Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "5082cbb1-4817-4a91-acf7-a91994ed801a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: My experience with Rakuten Securities has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-01-15T19:31:47.084Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "5082cbb1-4817-4a91-acf7-a91994ed801a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: I highly recommend Rakuten Securities for their reliable platform and responsive support team.",
+    "created_at": "2024-05-28T03:49:06.147Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "5082cbb1-4817-4a91-acf7-a91994ed801a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: I highly recommend Rakuten Securities for their reliable platform and responsive support team.",
+    "created_at": "2024-03-21T22:29:27.696Z",
+    "reviewer_name": "Daniel White"
+  }
+]

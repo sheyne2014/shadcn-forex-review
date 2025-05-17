@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Isabella Taylor: BitMEX offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-06-28T08:34:29.400Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I highly recommend BitMEX for their reliable platform and responsive support team.",
+    "created_at": "2024-11-20T01:03:24.592Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using BitMEX for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-23T22:04:24.747Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: My experience with BitMEX has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-10-26T19:22:09.599Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: BitMEX offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-08-02T19:16:05.574Z",
+    "reviewer_name": "Emily Martinez"
+  }
+]

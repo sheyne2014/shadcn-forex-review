@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "adb9a873-2a71-48d6-a780-0d1d2abe11ff",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: My experience with Dukascopy has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-10-14T15:33:51.137Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "adb9a873-2a71-48d6-a780-0d1d2abe11ff",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: I've been using Dukascopy for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-12-02T14:14:17.477Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "adb9a873-2a71-48d6-a780-0d1d2abe11ff",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "William Anderson: I highly recommend Dukascopy for their reliable platform and responsive support team.",
+    "created_at": "2025-02-17T15:59:35.799Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "adb9a873-2a71-48d6-a780-0d1d2abe11ff",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "William Anderson: Dukascopy offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-12-24T05:40:28.281Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "adb9a873-2a71-48d6-a780-0d1d2abe11ff",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: Dukascopy offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-12-05T01:58:51.136Z",
+    "reviewer_name": "David Johnson"
+  }
+]

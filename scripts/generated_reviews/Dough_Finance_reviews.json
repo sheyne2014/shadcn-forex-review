@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "910aa006-64f3-47ec-8735-99aff99f6ac5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Jennifer Davis: My experience with Dough Finance has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-10-14T02:39:13.786Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "910aa006-64f3-47ec-8735-99aff99f6ac5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: My experience with Dough Finance has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-04-03T14:32:54.668Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "910aa006-64f3-47ec-8735-99aff99f6ac5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: Dough Finance has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-05-10T09:06:27.602Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "910aa006-64f3-47ec-8735-99aff99f6ac5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Christopher Rodriguez: I've experienced too many technical issues with Dough Finance and am looking for alternatives.",
+    "created_at": "2024-05-28T00:19:01.096Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "910aa006-64f3-47ec-8735-99aff99f6ac5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: My experience with Dough Finance has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-06T00:04:46.671Z",
+    "reviewer_name": "Daniel White"
+  }
+]

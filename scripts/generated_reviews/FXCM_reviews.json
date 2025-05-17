@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "8e47d57c-1e7c-48ef-9f51-568a57343ae9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: I highly recommend FXCM for their reliable platform and responsive support team.",
+    "created_at": "2024-06-29T11:12:42.560Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "8e47d57c-1e7c-48ef-9f51-568a57343ae9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Olivia Garcia: FXCM needs to improve their withdrawal process and platform stability. Not recommended.",
+    "created_at": "2023-08-31T21:57:10.964Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "8e47d57c-1e7c-48ef-9f51-568a57343ae9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: FXCM offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-05-30T21:20:32.261Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "8e47d57c-1e7c-48ef-9f51-568a57343ae9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: I've been using FXCM for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-05-20T14:38:12.329Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "8e47d57c-1e7c-48ef-9f51-568a57343ae9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: FXCM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-27T23:02:43.760Z",
+    "reviewer_name": "Michael Brown"
+  }
+]

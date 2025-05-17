@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: My experience with ATFX Connect has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-10T10:16:17.560Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Sofia Hernandez: ATFX Connect gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2024-12-05T01:12:14.293Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: My experience with ATFX Connect has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-11T19:16:55.698Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: I've been using ATFX Connect for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-09-21T19:27:51.200Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Abigail Jackson: I've had issues with ATFX Connect's platform reliability. Too many outages during important market events.",
+    "created_at": "2024-04-29T12:09:03.479Z",
+    "reviewer_name": "Abigail Jackson"
+  }
+]

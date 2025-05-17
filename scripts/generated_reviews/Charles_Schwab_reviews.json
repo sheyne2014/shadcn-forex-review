@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: Charles Schwab offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-06-14T13:28:48.057Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: I've been using Charles Schwab for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-09-21T22:22:18.451Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Daniel White: Charles Schwab gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2024-06-14T22:42:54.806Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using Charles Schwab for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-08-13T13:14:16.518Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Isabella Taylor: My experience with Charles Schwab has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-02T16:02:38.626Z",
+    "reviewer_name": "Isabella Taylor"
+  }
+]

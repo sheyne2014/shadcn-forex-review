@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "yfinance-trader": {
+      "command": "py",
+      "args": ["-3", "src/python/yfinance_mcp.py"]
+    },
+    "yfmcp": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "narumi/yfinance-mcp"]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+    }
+  }
+} 

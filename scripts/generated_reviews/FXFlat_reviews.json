@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "f61d5ace-5547-41e6-a7a7-8b0c87d9b71e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: FXFlat has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-10T19:51:16.373Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "f61d5ace-5547-41e6-a7a7-8b0c87d9b71e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "John Smith: FXFlat offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-03-23T11:13:57.633Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "f61d5ace-5547-41e6-a7a7-8b0c87d9b71e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: I've been using FXFlat for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-10-19T16:40:16.203Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "f61d5ace-5547-41e6-a7a7-8b0c87d9b71e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: FXFlat offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-05-20T13:48:59.693Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "f61d5ace-5547-41e6-a7a7-8b0c87d9b71e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: I highly recommend FXFlat for their reliable platform and responsive support team.",
+    "created_at": "2024-06-20T08:45:44.586Z",
+    "reviewer_name": "John Smith"
+  }
+]

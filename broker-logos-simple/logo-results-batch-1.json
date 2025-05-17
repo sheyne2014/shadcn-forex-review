@@ -1,0 +1,23 @@
+[
+  {
+    "broker": "50K Global",
+    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://ui-avatars.com/api/?name=50K%20Global&background=random&color=fff&size=128&bold=true&format=png"
+  },
+  {
+    "broker": "ActivTrades",
+    "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://logo.clearbit.com/activtrades.com"
+  },
+  {
+    "broker": "Admirals",
+    "brokerId": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://logo.clearbit.com/admirals.com"
+  }
+]

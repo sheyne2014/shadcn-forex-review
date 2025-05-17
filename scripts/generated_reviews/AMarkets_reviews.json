@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Jennifer Davis: My experience with AMarkets has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2024-09-28T19:40:18.099Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: AMarkets offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-04-10T08:06:35.960Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Sofia Hernandez: I've had a mixed experience with AMarkets. Some features are good, others need work.",
+    "created_at": "2024-01-03T02:38:43.214Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Isabella Taylor: AMarkets offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-07-22T22:23:51.543Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: AMarkets has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-01-28T19:56:42.242Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]

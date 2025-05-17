@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "2b0f13cf-5469-40d6-a96b-75585dc43222",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: FxPro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-11-18T13:05:12.708Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "2b0f13cf-5469-40d6-a96b-75585dc43222",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with FxPro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-10-27T15:58:44.350Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "2b0f13cf-5469-40d6-a96b-75585dc43222",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: I've been using FxPro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-14T16:07:32.308Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "2b0f13cf-5469-40d6-a96b-75585dc43222",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: I've been using FxPro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-12-31T22:54:13.308Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "2b0f13cf-5469-40d6-a96b-75585dc43222",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: I've been using FxPro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-07-08T14:54:04.862Z",
+    "reviewer_name": "Emma Thompson"
+  }
+]

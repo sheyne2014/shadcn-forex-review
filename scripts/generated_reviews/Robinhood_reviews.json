@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "559405d0-d8c0-462a-b09c-519952672dd9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Daniel White: Robinhood's fees are higher than advertised and their platform lacks important features.",
+    "created_at": "2025-01-23T02:04:49.333Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "559405d0-d8c0-462a-b09c-519952672dd9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: Robinhood offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-09-30T16:13:30.694Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "559405d0-d8c0-462a-b09c-519952672dd9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Mia Miller: My experience with Robinhood has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2024-02-02T07:17:29.640Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "559405d0-d8c0-462a-b09c-519952672dd9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: Robinhood offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-03-15T19:09:52.845Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "559405d0-d8c0-462a-b09c-519952672dd9",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Andrew Thomas: I've had a mixed experience with Robinhood. Some features are good, others need work.",
+    "created_at": "2023-07-14T02:15:50.033Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

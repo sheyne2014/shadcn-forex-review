@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "d9e11333-f08d-49d3-8ebe-f73f319cc7fb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: eToro USA has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-08-04T17:59:10.278Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "d9e11333-f08d-49d3-8ebe-f73f319cc7fb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "David Johnson: eToro USA is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2023-07-25T23:36:58.441Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "d9e11333-f08d-49d3-8ebe-f73f319cc7fb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: My experience with eToro USA has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-06-08T17:54:48.892Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "d9e11333-f08d-49d3-8ebe-f73f319cc7fb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Mia Miller: I've had a mixed experience with eToro USA. Some features are good, others need work.",
+    "created_at": "2023-10-23T05:35:51.589Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "d9e11333-f08d-49d3-8ebe-f73f319cc7fb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "John Smith: My experience with eToro USA has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-08-07T23:38:22.372Z",
+    "reviewer_name": "John Smith"
+  }
+]

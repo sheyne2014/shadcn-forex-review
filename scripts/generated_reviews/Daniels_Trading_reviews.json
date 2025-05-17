@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "f4e27432-ef9f-427c-a89a-00c431e1b394",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Olivia Garcia: Daniels Trading is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2023-11-30T22:43:58.303Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "f4e27432-ef9f-427c-a89a-00c431e1b394",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: My experience with Daniels Trading has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-29T16:55:55.395Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "f4e27432-ef9f-427c-a89a-00c431e1b394",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with Daniels Trading has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-04-06T06:43:56.618Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "f4e27432-ef9f-427c-a89a-00c431e1b394",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: I highly recommend Daniels Trading for their reliable platform and responsive support team.",
+    "created_at": "2024-07-08T13:31:45.888Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "f4e27432-ef9f-427c-a89a-00c431e1b394",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: I've been using Daniels Trading for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-07-26T02:50:07.880Z",
+    "reviewer_name": "Abigail Jackson"
+  }
+]

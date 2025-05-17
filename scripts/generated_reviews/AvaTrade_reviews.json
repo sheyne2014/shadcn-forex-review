@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: My experience with AvaTrade has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-11-05T12:52:23.583Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: I highly recommend AvaTrade for their reliable platform and responsive support team.",
+    "created_at": "2025-03-06T19:22:16.588Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: I highly recommend AvaTrade for their reliable platform and responsive support team.",
+    "created_at": "2023-08-31T15:02:36.926Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Isabella Taylor: My experience with AvaTrade has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-25T14:26:35.708Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: My experience with AvaTrade has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-01-04T16:23:49.551Z",
+    "reviewer_name": "Sophia Lee"
+  }
+]

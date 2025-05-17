@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "44e0e806-50a1-4dd1-9c6b-06d3891757cd",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: LCG Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-07-04T22:53:28.694Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "44e0e806-50a1-4dd1-9c6b-06d3891757cd",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Sophia Lee: LCG Pro is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2025-03-31T12:25:10.717Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "44e0e806-50a1-4dd1-9c6b-06d3891757cd",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: My experience with LCG Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-01-07T22:33:54.596Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "44e0e806-50a1-4dd1-9c6b-06d3891757cd",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: I highly recommend LCG Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-11-04T04:02:19.536Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "44e0e806-50a1-4dd1-9c6b-06d3891757cd",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "John Smith: I've had issues with LCG Pro's platform reliability. Too many outages during important market events.",
+    "created_at": "2024-10-18T13:47:20.349Z",
+    "reviewer_name": "John Smith"
+  }
+]

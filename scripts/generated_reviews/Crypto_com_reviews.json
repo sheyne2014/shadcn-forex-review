@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: Crypto.com has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-12-17T21:58:25.643Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "James Wilson: Crypto.com gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2024-10-07T06:25:18.433Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Robert Martinez: Crypto.com has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-05-20T04:42:38.369Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Charlotte Lewis: Crypto.com has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-03-16T00:51:31.178Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Michael Brown: Crypto.com offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-03-17T23:16:05.007Z",
+    "reviewer_name": "Michael Brown"
+  }
+]

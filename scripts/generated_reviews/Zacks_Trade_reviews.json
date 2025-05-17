@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "33b6f30f-ac3c-4d5b-b43b-a354d4d64061",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: I've been using Zacks Trade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-09-19T18:33:35.061Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "33b6f30f-ac3c-4d5b-b43b-a354d4d64061",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: Zacks Trade offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-03-10T12:00:27.294Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "33b6f30f-ac3c-4d5b-b43b-a354d4d64061",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: Zacks Trade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-22T03:04:18.144Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "33b6f30f-ac3c-4d5b-b43b-a354d4d64061",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: Zacks Trade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-05-29T03:37:45.101Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "33b6f30f-ac3c-4d5b-b43b-a354d4d64061",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: My experience with Zacks Trade has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-01T21:24:42.612Z",
+    "reviewer_name": "Matthew Wilson"
+  }
+]

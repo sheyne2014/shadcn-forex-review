@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "5af424da-b645-4df1-ac1b-d635a4c6be8f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: My experience with Degiro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-11-11T07:35:15.020Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "5af424da-b645-4df1-ac1b-d635a4c6be8f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: Degiro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-11-30T14:31:44.535Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "5af424da-b645-4df1-ac1b-d635a4c6be8f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using Degiro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-05-17T22:10:09.958Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "5af424da-b645-4df1-ac1b-d635a4c6be8f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: Degiro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-01-12T03:38:20.635Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "5af424da-b645-4df1-ac1b-d635a4c6be8f",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: I've been using Degiro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-04-10T02:08:09.220Z",
+    "reviewer_name": "Sophia Lee"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "76d94b9d-a7af-4fb2-ac69-735a43cfa585",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "William Anderson: Moneta Markets is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2025-04-24T01:47:04.496Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "76d94b9d-a7af-4fb2-ac69-735a43cfa585",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: I've been using Moneta Markets for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-04-09T06:07:56.451Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "76d94b9d-a7af-4fb2-ac69-735a43cfa585",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: Moneta Markets has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-03-26T04:57:41.241Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "76d94b9d-a7af-4fb2-ac69-735a43cfa585",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: Moneta Markets has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-05-05T07:05:30.275Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "76d94b9d-a7af-4fb2-ac69-735a43cfa585",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: Moneta Markets has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-02-14T02:43:18.511Z",
+    "reviewer_name": "James Wilson"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "03f26d43-10b6-4170-b0ca-71bb380bdec5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: My experience with SaxoInvestor has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-02-16T02:26:59.992Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "03f26d43-10b6-4170-b0ca-71bb380bdec5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emma Thompson: SaxoInvestor offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-01-07T02:54:02.110Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "03f26d43-10b6-4170-b0ca-71bb380bdec5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: My experience with SaxoInvestor has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-01-05T03:07:17.862Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "03f26d43-10b6-4170-b0ca-71bb380bdec5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: My experience with SaxoInvestor has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-17T21:11:20.356Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "03f26d43-10b6-4170-b0ca-71bb380bdec5",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: My experience with SaxoInvestor has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-22T01:37:13.475Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]

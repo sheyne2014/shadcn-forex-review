@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "fc045eb3-73e9-4fbb-b751-2cc048f91bb7",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: XM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-01-21T18:12:11.689Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "fc045eb3-73e9-4fbb-b751-2cc048f91bb7",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: I've been using XM for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-06-15T20:23:57.669Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "fc045eb3-73e9-4fbb-b751-2cc048f91bb7",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: XM offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-09-07T16:51:24.724Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "fc045eb3-73e9-4fbb-b751-2cc048f91bb7",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: I've been using XM for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-10-30T18:23:25.134Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "fc045eb3-73e9-4fbb-b751-2cc048f91bb7",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: XM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-12-30T15:12:50.660Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

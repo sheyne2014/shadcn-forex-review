@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: My experience with JustForex has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-03-09T23:04:54.853Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: I highly recommend JustForex for their reliable platform and responsive support team.",
+    "created_at": "2023-11-12T21:47:19.201Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: I've been using JustForex for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-12-20T04:29:50.094Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: I've been using JustForex for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-02-28T16:59:02.225Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: JustForex has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-05-03T12:50:28.448Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]

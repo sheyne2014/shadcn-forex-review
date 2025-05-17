@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "6311df7a-2dfc-4faf-a9c0-b5a8f4f62788",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I highly recommend FBS for their reliable platform and responsive support team.",
+    "created_at": "2024-08-24T08:29:18.145Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "6311df7a-2dfc-4faf-a9c0-b5a8f4f62788",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: I highly recommend FBS for their reliable platform and responsive support team.",
+    "created_at": "2023-07-04T02:56:26.015Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "6311df7a-2dfc-4faf-a9c0-b5a8f4f62788",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: My experience with FBS has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-02-01T16:24:41.267Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "6311df7a-2dfc-4faf-a9c0-b5a8f4f62788",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Isabella Taylor: My experience with FBS has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-20T22:37:15.629Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "6311df7a-2dfc-4faf-a9c0-b5a8f4f62788",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: FBS offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-02-10T15:24:20.960Z",
+    "reviewer_name": "Olivia Garcia"
+  }
+]

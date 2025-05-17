@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "2169b5f9-b9e9-48e3-928f-e4c586e7d88e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: I highly recommend thinkorswim for their reliable platform and responsive support team.",
+    "created_at": "2024-02-24T07:02:24.397Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "2169b5f9-b9e9-48e3-928f-e4c586e7d88e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: My experience with thinkorswim has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-09T08:49:46.180Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "2169b5f9-b9e9-48e3-928f-e4c586e7d88e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: thinkorswim offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-10-26T20:22:14.221Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "2169b5f9-b9e9-48e3-928f-e4c586e7d88e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Isabella Taylor: My experience with thinkorswim has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-26T16:31:52.158Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "2169b5f9-b9e9-48e3-928f-e4c586e7d88e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: I highly recommend thinkorswim for their reliable platform and responsive support team.",
+    "created_at": "2024-02-19T17:20:08.120Z",
+    "reviewer_name": "Matthew Wilson"
+  }
+]

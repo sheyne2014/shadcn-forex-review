@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "d4d57f43-b125-4d41-9af0-4b38ded58a1b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: Thinkorswim Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-27T23:57:07.621Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "d4d57f43-b125-4d41-9af0-4b38ded58a1b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: Thinkorswim Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-07-05T22:05:09.169Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "d4d57f43-b125-4d41-9af0-4b38ded58a1b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: I've been using Thinkorswim Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-04-10T01:45:52.168Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "d4d57f43-b125-4d41-9af0-4b38ded58a1b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: I've been using Thinkorswim Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-19T09:08:38.424Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "d4d57f43-b125-4d41-9af0-4b38ded58a1b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: My experience with Thinkorswim Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-08-20T22:28:17.849Z",
+    "reviewer_name": "David Johnson"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "2090ec66-acfb-415b-a0c9-63880e6309ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emma Thompson: My experience with TradeZero has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2025-01-12T18:13:32.906Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "2090ec66-acfb-415b-a0c9-63880e6309ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Michael Brown: TradeZero gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2024-07-12T17:48:04.118Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "2090ec66-acfb-415b-a0c9-63880e6309ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: TradeZero has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-10-31T20:42:19.953Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "2090ec66-acfb-415b-a0c9-63880e6309ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: TradeZero has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-27T18:07:18.238Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "2090ec66-acfb-415b-a0c9-63880e6309ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I've been using TradeZero for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-05-05T23:45:06.845Z",
+    "reviewer_name": "Sofia Hernandez"
+  }
+]

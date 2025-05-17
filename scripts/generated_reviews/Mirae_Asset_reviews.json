@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "544af8bf-6b5c-489e-bae3-65e8c882315c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: My experience with Mirae Asset has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-17T09:41:03.368Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "544af8bf-6b5c-489e-bae3-65e8c882315c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with Mirae Asset has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-22T08:47:22.834Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "544af8bf-6b5c-489e-bae3-65e8c882315c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: My experience with Mirae Asset has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-10T00:49:02.202Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "544af8bf-6b5c-489e-bae3-65e8c882315c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: Mirae Asset has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-08-26T16:39:18.005Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "544af8bf-6b5c-489e-bae3-65e8c882315c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: I highly recommend Mirae Asset for their reliable platform and responsive support team.",
+    "created_at": "2025-02-07T13:26:45.811Z",
+    "reviewer_name": "Mia Miller"
+  }
+]

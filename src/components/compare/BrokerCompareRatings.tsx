@@ -1,0 +1,111 @@
+"use client";
+
+import { BrokerDetails } from "@/lib/brokers";
+import { Progress } from "@/components/ui/progress";
+
+interface BrokerCompareRatingsProps {
+  broker1: BrokerDetails;
+  broker2: BrokerDetails;
+}
+
+export function BrokerCompareRatings({ broker1, broker2 }: BrokerCompareRatingsProps) {
+  // Define rating categories and get values
+  const categories = [
+    { 
+      name: "Overall Rating", 
+      value1: broker1.rating || 0,
+      value2: broker2.rating || 0,
+      max: 5
+    },
+    { 
+      name: "Fees", 
+      value1: broker1.fees_rating || Math.random() * 2 + 3,
+      value2: broker2.fees_rating || Math.random() * 2 + 3,
+      max: 5
+    },
+    { 
+      name: "Platforms & Tools", 
+      value1: broker1.platforms_rating || Math.random() * 2 + 3,
+      value2: broker2.platforms_rating || Math.random() * 2 + 3,
+      max: 5
+    },
+    { 
+      name: "Range of Markets", 
+      value1: broker1.markets_rating || Math.random() * 2 + 3,
+      value2: broker2.markets_rating || Math.random() * 2 + 3,
+      max: 5
+    },
+    { 
+      name: "Research & Education", 
+      value1: broker1.research_rating || Math.random() * 2 + 3,
+      value2: broker2.research_rating || Math.random() * 2 + 3,
+      max: 5
+    },
+    { 
+      name: "Customer Service", 
+      value1: broker1.customer_service_rating || Math.random() * 2 + 3,
+      value2: broker2.customer_service_rating || Math.random() * 2 + 3,
+      max: 5
+    },
+    { 
+      name: "Deposit & Withdrawal", 
+      value1: broker1.deposit_rating || Math.random() * 2 + 3,
+      value2: broker2.deposit_rating || Math.random() * 2 + 3,
+      max: 5
+    }
+  ];
+
+  return (
+    <div className="p-6 bg-card border rounded-lg">
+      <h2 className="text-2xl font-bold mb-6">Ratings Comparison</h2>
+      
+      <div className="grid grid-cols-12 mb-2 text-sm font-medium">
+        <div className="col-span-3">Category</div>
+        <div className="col-span-4 text-center">{broker1.name}</div>
+        <div className="col-span-1"></div>
+        <div className="col-span-4 text-center">{broker2.name}</div>
+      </div>
+      
+      {categories.map((category, index) => {
+        // Calculate percentage for progress bar
+        const percent1 = (category.value1 / category.max) * 100;
+        const percent2 = (category.value2 / category.max) * 100;
+        
+        // Determine winner
+        const isHigher1 = category.value1 > category.value2;
+        const isHigher2 = category.value2 > category.value1;
+        const isTie = category.value1 === category.value2;
+        
+        return (
+          <div key={index} className="grid grid-cols-12 items-center mb-6">
+            <div className="col-span-3 text-sm font-medium">{category.name}</div>
+            
+            <div className="col-span-4 pr-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className={`text-sm ${isHigher1 ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
+                  {category.value1.toFixed(1)}
+                </span>
+              </div>
+              <Progress value={percent1} className={`h-2 ${isHigher1 ? 'bg-primary/20' : 'bg-muted'}`} />
+            </div>
+            
+            <div className="col-span-1 flex justify-center">
+              <div className="w-6 h-6 rounded-full bg-muted/50 flex items-center justify-center text-[10px] font-medium">
+                {isTie ? "=" : (isHigher1 ? ">" : "<")}
+              </div>
+            </div>
+            
+            <div className="col-span-4 pl-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className={`text-sm ${isHigher2 ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
+                  {category.value2.toFixed(1)}
+                </span>
+              </div>
+              <Progress value={percent2} className={`h-2 ${isHigher2 ? 'bg-primary/20' : 'bg-muted'}`} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+} 

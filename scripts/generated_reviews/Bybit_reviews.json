@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: Bybit has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-10-05T14:48:03.414Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I highly recommend Bybit for their reliable platform and responsive support team.",
+    "created_at": "2024-06-18T17:41:34.669Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with Bybit has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-02-07T15:47:08.997Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: My experience with Bybit has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-11-30T21:20:32.437Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: I highly recommend Bybit for their reliable platform and responsive support team.",
+    "created_at": "2025-01-11T12:15:31.429Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

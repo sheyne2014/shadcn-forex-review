@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "c42628ea-bbf9-4d80-be65-b217a423b6cb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: OCTA offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-08-06T14:47:24.945Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "c42628ea-bbf9-4d80-be65-b217a423b6cb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Mia Miller: Customer service at OCTA has been disappointing. Long wait times and unhelpful responses.",
+    "created_at": "2024-05-13T13:10:12.012Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "c42628ea-bbf9-4d80-be65-b217a423b6cb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: OCTA has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-06-28T20:46:34.687Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "c42628ea-bbf9-4d80-be65-b217a423b6cb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Andrew Thomas: I've experienced too many technical issues with OCTA and am looking for alternatives.",
+    "created_at": "2025-01-13T04:21:38.244Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "c42628ea-bbf9-4d80-be65-b217a423b6cb",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: OCTA has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-10T07:45:51.439Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

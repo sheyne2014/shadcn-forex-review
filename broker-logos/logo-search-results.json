@@ -1,0 +1,38 @@
+[
+  {
+    "broker": "50K Global",
+    "status": "not_found",
+    "error": "No logos found"
+  },
+  {
+    "broker": "ActivTrades",
+    "status": "not_found",
+    "error": "No logos found"
+  },
+  {
+    "broker": "Admirals",
+    "status": "not_found",
+    "error": "No logos found"
+  },
+  {
+    "broker": "Ally Invest",
+    "status": "not_found",
+    "error": "No logos found"
+  },
+  {
+    "broker": "Alpha Trading",
+    "status": "success",
+    "foundLogos": [
+      {
+        "source": "database",
+        "url": "https://placehold.co/150x60?text=Alpha",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\broker-logos\\alpha_trading.png"
+      }
+    ],
+    "bestLogo": {
+      "source": "database",
+      "url": "https://placehold.co/150x60?text=Alpha",
+      "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\broker-logos\\alpha_trading.png"
+    }
+  }
+]

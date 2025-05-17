@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "77b7dcae-3545-410f-8368-3d686c995454",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: Avenue Securities has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-02-26T13:55:35.217Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "77b7dcae-3545-410f-8368-3d686c995454",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emma Thompson: I've been using Avenue Securities for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-11-21T16:40:44.462Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "77b7dcae-3545-410f-8368-3d686c995454",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Olivia Garcia: Avenue Securities is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2024-06-24T09:49:25.660Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "77b7dcae-3545-410f-8368-3d686c995454",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: I've been using Avenue Securities for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-29T13:13:26.448Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "77b7dcae-3545-410f-8368-3d686c995454",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: Avenue Securities offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-04-28T00:28:15.498Z",
+    "reviewer_name": "Mia Miller"
+  }
+]

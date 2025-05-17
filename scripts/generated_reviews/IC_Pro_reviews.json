@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "a7a141ba-5700-44ad-b495-9faad83a6431",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: IC Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-11-23T18:22:54.786Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "a7a141ba-5700-44ad-b495-9faad83a6431",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: IC Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-02-10T21:48:25.477Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "a7a141ba-5700-44ad-b495-9faad83a6431",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: I've been using IC Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-02-27T08:14:30.568Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "a7a141ba-5700-44ad-b495-9faad83a6431",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: I've been using IC Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-07-11T07:40:52.706Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "a7a141ba-5700-44ad-b495-9faad83a6431",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: I've been using IC Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-07-27T16:35:29.973Z",
+    "reviewer_name": "Emma Thompson"
+  }
+]

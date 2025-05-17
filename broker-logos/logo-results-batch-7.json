@@ -1,0 +1,247 @@
+[
+  {
+    "broker": "50K Global",
+    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/50kglobal.broker.com"
+  },
+  {
+    "broker": "ActivTrades",
+    "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/activtrades.broker.com"
+  },
+  {
+    "broker": "Admirals",
+    "brokerId": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/admirals.broker.com"
+  },
+  {
+    "broker": "Ally Invest",
+    "brokerId": "08a33f40-5ec0-45ce-bb37-eb1b9b8bb4e5",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/allyinvest.broker.com"
+  },
+  {
+    "broker": "Alpha Trading",
+    "brokerId": "b2000000-0000-0000-0000-000000000002",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://placehold.co/150x60?text=Alpha"
+  },
+  {
+    "broker": "AMarkets",
+    "brokerId": "ef4b14a6-d6f8-48b7-976a-12080838b6e1",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/amarkets.broker.com"
+  },
+  {
+    "broker": "AMarkets ECN",
+    "brokerId": "4d0141e7-eae7-4716-a3bc-d79e32691617",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/amarketsecn.broker.com"
+  },
+  {
+    "broker": "AMP Futures",
+    "brokerId": "dbcdf520-51d1-4509-a3f8-e1c685e66ae7",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/ampfutures.broker.com"
+  },
+  {
+    "broker": "AMP Global",
+    "brokerId": "55393c87-ea3f-43ed-9cb2-a911a0ec3750",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/ampglobal.broker.com"
+  },
+  {
+    "broker": "Angel Broking",
+    "brokerId": "91a26401-cc44-434b-8d42-4178ecf305a6",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/angelbroking.broker.com"
+  },
+  {
+    "broker": "Angel One",
+    "brokerId": "60739d65-2c16-49df-a22a-e43d1eb29543",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/angelone.broker.com"
+  },
+  {
+    "broker": "ATFX",
+    "brokerId": "f3156cef-68f7-4f04-997d-53afe3e7c803",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/atfx.broker.com"
+  },
+  {
+    "broker": "ATFX Connect",
+    "brokerId": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/atfxconnect.broker.com"
+  },
+  {
+    "broker": "AvaTrade",
+    "brokerId": "8cdc832e-62b0-4734-9f5d-af308277f40f",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/avatrade.broker.com"
+  },
+  {
+    "broker": "Avenue Securities",
+    "brokerId": "77b7dcae-3545-410f-8368-3d686c995454",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/avenuesecurities.broker.com"
+  },
+  {
+    "broker": "Avenue Securities Pro",
+    "brokerId": "d1adcd3b-2add-442a-935d-04a6d61fff72",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/avenuesecuritiespro.broker.com"
+  },
+  {
+    "broker": "Axi",
+    "brokerId": "33a879ae-3243-46d9-93c2-5c6dadd70d33",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/axi.broker.com"
+  },
+  {
+    "broker": "Binance",
+    "brokerId": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/binance.broker.com"
+  },
+  {
+    "broker": "Bitfinex",
+    "brokerId": "26db2f77-f722-4ced-8828-9dd6bcbb2484",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bitfinex.broker.com"
+  },
+  {
+    "broker": "BitMax",
+    "brokerId": "d3fd240d-ac1b-45b4-95ea-77257c93a5e5",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bitmax.broker.com"
+  },
+  {
+    "broker": "BitMEX",
+    "brokerId": "afc02d60-97eb-4e4f-b85e-8e0b86ab3801",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bitmex.broker.com"
+  },
+  {
+    "broker": "Bitstamp",
+    "brokerId": "12a89b41-cc7e-4b1a-874c-5d3f3abc5fe2",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bitstamp.broker.com"
+  },
+  {
+    "broker": "Bittrex",
+    "brokerId": "74a233e1-5106-4090-9791-66068b83973c",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bittrex.broker.com"
+  },
+  {
+    "broker": "BlackBull Markets",
+    "brokerId": "50caffd3-e9b9-492c-af84-53944111fb0b",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/blackbullmarkets.broker.com"
+  },
+  {
+    "broker": "Bybit",
+    "brokerId": "5addede5-29a8-432d-9c92-ce31ecc101df",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/bybit.broker.com"
+  },
+  {
+    "broker": "Cannon Futures",
+    "brokerId": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/cannonfutures.broker.com"
+  },
+  {
+    "broker": "Cannon Trading",
+    "brokerId": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/cannontrading.broker.com"
+  },
+  {
+    "broker": "Capital.com",
+    "brokerId": "728300eb-9d09-4ee6-9efd-0fe64f3956d1",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/capital.com.broker.com"
+  },
+  {
+    "broker": "CFD Master",
+    "brokerId": "b8000000-0000-0000-0000-000000000008",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://placehold.co/150x60?text=CFDMaster"
+  },
+  {
+    "broker": "Charles Schwab",
+    "brokerId": "51bb85cd-9879-43df-967f-0e0616b7184b",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/charlesschwab.broker.com"
+  },
+  {
+    "broker": "CMC Markets",
+    "brokerId": "fbbf00fc-8cb0-4f71-9274-7f9b9393d30f",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/cmcmarkets.broker.com"
+  },
+  {
+    "broker": "Coinbase",
+    "brokerId": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/coinbase.broker.com"
+  },
+  {
+    "broker": "Coincheck",
+    "brokerId": "17c26977-2196-4d16-a90a-3db6f72634ab",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/coincheck.broker.com"
+  },
+  {
+    "broker": "Commodity Hub",
+    "brokerId": "b7000000-0000-0000-0000-000000000007",
+    "status": "success",
+    "message": "Used existing logo",
+    "logoUrl": "https://placehold.co/150x60?text=CommodityHub"
+  },
+  {
+    "broker": "Crypto.com",
+    "brokerId": "f1a2d3a8-62ce-432c-bc98-a1a43baad832",
+    "status": "success",
+    "message": "Found and downloaded logo",
+    "logoUrl": "https://logo.clearbit.com/crypto.com.broker.com"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "79ecf6cf-4268-4fee-a7a0-e9adca8bad16",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: Upstox has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-04-18T06:47:37.066Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "79ecf6cf-4268-4fee-a7a0-e9adca8bad16",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I've been using Upstox for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-05-18T04:41:08.674Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "79ecf6cf-4268-4fee-a7a0-e9adca8bad16",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: Upstox offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-08-25T17:27:21.046Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "79ecf6cf-4268-4fee-a7a0-e9adca8bad16",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: My experience with Upstox has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-06-23T12:24:12.486Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "79ecf6cf-4268-4fee-a7a0-e9adca8bad16",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using Upstox for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-12-25T21:59:50.328Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

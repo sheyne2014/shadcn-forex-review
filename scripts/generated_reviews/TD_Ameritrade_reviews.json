@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "16ee95ec-8de2-4ee4-809f-5c140196e89c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: I've been using TD Ameritrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-17T00:09:45.841Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "16ee95ec-8de2-4ee4-809f-5c140196e89c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: I've been using TD Ameritrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-10-24T18:15:10.947Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "16ee95ec-8de2-4ee4-809f-5c140196e89c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "William Anderson: I've had a mixed experience with TD Ameritrade. Some features are good, others need work.",
+    "created_at": "2024-07-23T20:47:53.992Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "16ee95ec-8de2-4ee4-809f-5c140196e89c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: I've been using TD Ameritrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-04-13T04:56:34.709Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "16ee95ec-8de2-4ee4-809f-5c140196e89c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Charlotte Lewis: TD Ameritrade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-07-02T09:14:35.243Z",
+    "reviewer_name": "Charlotte Lewis"
+  }
+]

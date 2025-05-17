@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "b11ec06b-e383-4f9f-b5e2-766bff91cbca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Michael Brown: I've had a mixed experience with Public.com. Some features are good, others need work.",
+    "created_at": "2024-11-16T21:22:42.982Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "b11ec06b-e383-4f9f-b5e2-766bff91cbca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: Public.com offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-11-26T02:53:00.921Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "b11ec06b-e383-4f9f-b5e2-766bff91cbca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "John Smith: I've been using Public.com for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-09T14:41:51.867Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "b11ec06b-e383-4f9f-b5e2-766bff91cbca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: I highly recommend Public.com for their reliable platform and responsive support team.",
+    "created_at": "2024-01-30T20:06:38.044Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "b11ec06b-e383-4f9f-b5e2-766bff91cbca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emily Martinez: I've had a mixed experience with Public.com. Some features are good, others need work.",
+    "created_at": "2024-10-06T01:50:10.673Z",
+    "reviewer_name": "Emily Martinez"
+  }
+]

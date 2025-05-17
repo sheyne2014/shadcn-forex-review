@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "252fba25-f422-4a80-9548-e5e23b408b62",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Charlotte Lewis: FxPrimus is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2023-11-27T12:32:31.372Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "252fba25-f422-4a80-9548-e5e23b408b62",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: FxPrimus offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-11-22T10:54:07.959Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "252fba25-f422-4a80-9548-e5e23b408b62",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Charlotte Lewis: My experience with FxPrimus has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-02-15T07:00:48.229Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "252fba25-f422-4a80-9548-e5e23b408b62",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emma Thompson: I've been using FxPrimus for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-05-22T06:11:18.584Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "252fba25-f422-4a80-9548-e5e23b408b62",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Charlotte Lewis: FxPrimus is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2024-08-18T06:01:55.644Z",
+    "reviewer_name": "Charlotte Lewis"
+  }
+]

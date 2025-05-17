@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "b91e98a0-0652-4082-8e7d-47912292d988",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: My experience with Skilling has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-02-19T16:52:23.485Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "b91e98a0-0652-4082-8e7d-47912292d988",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: I highly recommend Skilling for their reliable platform and responsive support team.",
+    "created_at": "2024-04-18T19:54:51.844Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "b91e98a0-0652-4082-8e7d-47912292d988",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: My experience with Skilling has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-02-16T00:17:27.022Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "b91e98a0-0652-4082-8e7d-47912292d988",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Isabella Taylor: I've been using Skilling for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-12T21:40:49.565Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "b91e98a0-0652-4082-8e7d-47912292d988",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: Skilling offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-01-18T19:06:30.256Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]

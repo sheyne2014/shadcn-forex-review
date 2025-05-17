@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: I've been using Cannon Futures for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-27T15:32:31.362Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: Cannon Futures has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-09-11T11:49:05.323Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: My experience with Cannon Futures has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-05-21T11:02:18.744Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: Cannon Futures offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-11-19T07:44:38.375Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "3a756584-4281-4a55-b57a-eae0f4920445",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I highly recommend Cannon Futures for their reliable platform and responsive support team.",
+    "created_at": "2025-01-29T20:04:21.067Z",
+    "reviewer_name": "Sofia Hernandez"
+  }
+]

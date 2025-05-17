@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "30c9b3f9-65ca-44dd-aeaf-6ce0a57e0609",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: Nubank has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-01-11T08:20:53.506Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "30c9b3f9-65ca-44dd-aeaf-6ce0a57e0609",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: Nubank has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-04-13T01:10:36.074Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "30c9b3f9-65ca-44dd-aeaf-6ce0a57e0609",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: I've been using Nubank for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-09-11T19:46:15.750Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "30c9b3f9-65ca-44dd-aeaf-6ce0a57e0609",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: I highly recommend Nubank for their reliable platform and responsive support team.",
+    "created_at": "2025-02-23T10:36:16.797Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "30c9b3f9-65ca-44dd-aeaf-6ce0a57e0609",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Michael Brown: I've been using Nubank for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-03T07:39:37.647Z",
+    "reviewer_name": "Michael Brown"
+  }
+]

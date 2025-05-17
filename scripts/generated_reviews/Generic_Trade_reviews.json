@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: Generic Trade offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-07-12T15:42:55.032Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Charlotte Lewis: Generic Trade offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-11-19T22:54:31.049Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: Generic Trade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-11-04T17:18:33.345Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: Generic Trade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-11-26T10:37:46.940Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Matthew Wilson: My experience with Generic Trade has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-09-18T11:28:50.153Z",
+    "reviewer_name": "Matthew Wilson"
+  }
+]

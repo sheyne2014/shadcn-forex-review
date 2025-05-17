@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: I've been using Admirals for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-06-07T15:36:02.514Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: I highly recommend Admirals for their reliable platform and responsive support team.",
+    "created_at": "2024-02-18T20:21:12.016Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: I've been using Admirals for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-06-24T00:59:38.110Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: Admirals offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-02-28T19:57:06.375Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "19b55d5d-00d6-4d44-a024-66b4a21fb6b4",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: Admirals has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-01-07T00:10:14.421Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "074dfcda-0c5f-42a6-934e-7bef1f146a5a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Robert Martinez: I highly recommend FXOpen for their reliable platform and responsive support team.",
+    "created_at": "2023-08-11T04:32:57.875Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "074dfcda-0c5f-42a6-934e-7bef1f146a5a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: I highly recommend FXOpen for their reliable platform and responsive support team.",
+    "created_at": "2025-03-15T13:26:49.832Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "074dfcda-0c5f-42a6-934e-7bef1f146a5a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: My experience with FXOpen has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-01-12T07:01:37.172Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "074dfcda-0c5f-42a6-934e-7bef1f146a5a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: FXOpen offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-10-06T07:55:16.635Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "074dfcda-0c5f-42a6-934e-7bef1f146a5a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: FXOpen offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-01-05T13:51:18.730Z",
+    "reviewer_name": "James Wilson"
+  }
+]

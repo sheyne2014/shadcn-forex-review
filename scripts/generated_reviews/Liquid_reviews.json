@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "f8279a8a-868b-4a58-946d-ed0e3346e5ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: Liquid offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-09-23T17:40:33.063Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "f8279a8a-868b-4a58-946d-ed0e3346e5ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I highly recommend Liquid for their reliable platform and responsive support team.",
+    "created_at": "2025-04-18T14:59:30.041Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "f8279a8a-868b-4a58-946d-ed0e3346e5ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: I've been using Liquid for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-01-23T01:06:11.098Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "f8279a8a-868b-4a58-946d-ed0e3346e5ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Charlotte Lewis: My experience with Liquid has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-06-11T03:01:07.080Z",
+    "reviewer_name": "Charlotte Lewis"
+  },
+  {
+    "broker_id": "f8279a8a-868b-4a58-946d-ed0e3346e5ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emma Thompson: Liquid offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-09-05T11:52:28.776Z",
+    "reviewer_name": "Emma Thompson"
+  }
+]

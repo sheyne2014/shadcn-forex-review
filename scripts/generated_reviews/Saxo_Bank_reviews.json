@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "65af8a9a-4607-4fa7-88c6-f8bf4f9a0826",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: I highly recommend Saxo Bank for their reliable platform and responsive support team.",
+    "created_at": "2024-07-02T07:52:30.922Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "65af8a9a-4607-4fa7-88c6-f8bf4f9a0826",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: Saxo Bank has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-03-03T22:36:32.941Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "65af8a9a-4607-4fa7-88c6-f8bf4f9a0826",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: My experience with Saxo Bank has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-23T08:42:41.955Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "65af8a9a-4607-4fa7-88c6-f8bf4f9a0826",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: Saxo Bank offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-07-12T11:41:18.417Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "65af8a9a-4607-4fa7-88c6-f8bf4f9a0826",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: I highly recommend Saxo Bank for their reliable platform and responsive support team.",
+    "created_at": "2024-09-02T12:06:34.066Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

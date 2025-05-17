@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "38666507-167b-47e8-a9bf-1b66ab29f42c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emma Thompson: I've been using FreeTrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-08-28T18:48:24.849Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "38666507-167b-47e8-a9bf-1b66ab29f42c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: FreeTrade has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-03-21T05:42:22.821Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "38666507-167b-47e8-a9bf-1b66ab29f42c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: I've been using FreeTrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-11-11T02:19:05.161Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "38666507-167b-47e8-a9bf-1b66ab29f42c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Olivia Garcia: I've had issues with FreeTrade's platform reliability. Too many outages during important market events.",
+    "created_at": "2024-08-03T07:06:05.783Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "38666507-167b-47e8-a9bf-1b66ab29f42c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I've been using FreeTrade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-13T08:23:53.932Z",
+    "reviewer_name": "Matthew Wilson"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "4f45792f-70ba-4312-b402-1f3b7ff81a26",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: My experience with Vanguard has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-09-08T09:11:39.286Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "4f45792f-70ba-4312-b402-1f3b7ff81a26",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: I've been using Vanguard for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-08-12T21:29:28.855Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "4f45792f-70ba-4312-b402-1f3b7ff81a26",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: I've been using Vanguard for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-03-24T06:36:28.543Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "4f45792f-70ba-4312-b402-1f3b7ff81a26",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: Vanguard offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-05-23T14:27:05.341Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "4f45792f-70ba-4312-b402-1f3b7ff81a26",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: Vanguard has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-02-26T11:23:31.544Z",
+    "reviewer_name": "Abigail Jackson"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "eaa73f23-5cfa-4df4-a0a4-34fb3e075103",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: I highly recommend FXFlat Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-01-31T15:16:24.742Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "eaa73f23-5cfa-4df4-a0a4-34fb3e075103",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "John Smith: FXFlat Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-08-13T18:24:51.563Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "eaa73f23-5cfa-4df4-a0a4-34fb3e075103",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: FXFlat Pro has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-11-07T05:19:11.352Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "eaa73f23-5cfa-4df4-a0a4-34fb3e075103",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: FXFlat Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-05-06T19:47:51.575Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "eaa73f23-5cfa-4df4-a0a4-34fb3e075103",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: I've been using FXFlat Pro for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-05-29T15:59:23.431Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

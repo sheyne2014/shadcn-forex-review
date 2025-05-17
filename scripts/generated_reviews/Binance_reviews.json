@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: Binance offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-07-11T13:28:42.643Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: Binance offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-07-10T06:31:23.155Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Daniel White: I highly recommend Binance for their reliable platform and responsive support team.",
+    "created_at": "2024-06-30T17:34:38.904Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: I've been using Binance for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-04-23T02:36:47.954Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "3e072316-afa4-4e74-9a27-d10a3fcbb5ad",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Andrew Thomas: I've had a mixed experience with Binance. Some features are good, others need work.",
+    "created_at": "2025-02-01T07:32:15.188Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

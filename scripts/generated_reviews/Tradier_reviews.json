@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "64f6287b-8314-4067-8e0f-a4b26804cc1a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: I highly recommend Tradier for their reliable platform and responsive support team.",
+    "created_at": "2025-01-03T04:02:20.281Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "64f6287b-8314-4067-8e0f-a4b26804cc1a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: Tradier offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-03-16T19:09:00.019Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "64f6287b-8314-4067-8e0f-a4b26804cc1a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: I've been using Tradier for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-01-29T09:33:19.881Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "64f6287b-8314-4067-8e0f-a4b26804cc1a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: Tradier has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-03-03T03:47:29.122Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "64f6287b-8314-4067-8e0f-a4b26804cc1a",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: Tradier has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-10-27T11:44:33.665Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

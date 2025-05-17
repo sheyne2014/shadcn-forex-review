@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "4ca597b5-e8ef-442e-82e8-828cc11cb1ed",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: My experience with Interactive Brokers has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-07-31T09:26:22.581Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "4ca597b5-e8ef-442e-82e8-828cc11cb1ed",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: My experience with Interactive Brokers has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-08-06T05:31:04.687Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "4ca597b5-e8ef-442e-82e8-828cc11cb1ed",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: Interactive Brokers offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-04-16T09:30:54.116Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "4ca597b5-e8ef-442e-82e8-828cc11cb1ed",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: Interactive Brokers offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-03-12T22:02:19.702Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "4ca597b5-e8ef-442e-82e8-828cc11cb1ed",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: I've been using Interactive Brokers for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-04-25T03:57:24.637Z",
+    "reviewer_name": "James Wilson"
+  }
+]

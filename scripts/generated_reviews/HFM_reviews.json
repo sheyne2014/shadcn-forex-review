@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "20a2d1de-65e1-4473-b863-7cfbe117f557",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: HFM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-03-17T04:00:47.169Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "20a2d1de-65e1-4473-b863-7cfbe117f557",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sofia Hernandez: HFM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-08-18T01:53:56.979Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "20a2d1de-65e1-4473-b863-7cfbe117f557",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: HFM offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-12-17T08:15:45.973Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "20a2d1de-65e1-4473-b863-7cfbe117f557",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Andrew Thomas: HFM is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2024-12-21T08:06:17.632Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "20a2d1de-65e1-4473-b863-7cfbe117f557",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Robert Martinez: I've had a mixed experience with HFM. Some features are good, others need work.",
+    "created_at": "2024-10-12T01:58:08.428Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

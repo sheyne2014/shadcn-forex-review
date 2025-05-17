@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: Cannon Trading has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-03-05T19:52:45.086Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emily Martinez: Cannon Trading is decent overall. The platform works well most of the time, but their customer service could be improved.",
+    "created_at": "2024-07-28T17:42:09.730Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Emily Martinez: My experience with Cannon Trading has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-06-16T09:10:41.193Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: I highly recommend Cannon Trading for their reliable platform and responsive support team.",
+    "created_at": "2024-05-27T23:28:24.403Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "a1aa9cf5-8e01-4cec-84cb-94dd71e01e7c",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: Cannon Trading offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-05-01T12:20:54.941Z",
+    "reviewer_name": "Andrew Thomas"
+  }
+]

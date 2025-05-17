@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "960419e3-5605-4ae2-8874-1b5b866151b8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: I've been using FXTM for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-08-26T14:08:24.457Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "960419e3-5605-4ae2-8874-1b5b866151b8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: My experience with FXTM has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-06-22T02:09:59.933Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "960419e3-5605-4ae2-8874-1b5b866151b8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: FXTM has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-03-18T00:47:25.294Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "960419e3-5605-4ae2-8874-1b5b866151b8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: My experience with FXTM has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-23T09:28:17.477Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "960419e3-5605-4ae2-8874-1b5b866151b8",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Charlotte Lewis: My experience with FXTM has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2023-09-14T02:04:49.313Z",
+    "reviewer_name": "Charlotte Lewis"
+  }
+]

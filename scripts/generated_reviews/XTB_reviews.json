@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "7494e634-4840-4e4d-a464-6033e14735ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "David Johnson: I highly recommend XTB for their reliable platform and responsive support team.",
+    "created_at": "2023-06-03T20:28:02.511Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "7494e634-4840-4e4d-a464-6033e14735ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Olivia Garcia: XTB offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-01-26T05:14:14.047Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "7494e634-4840-4e4d-a464-6033e14735ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: I've been using XTB for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-24T05:55:39.163Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "7494e634-4840-4e4d-a464-6033e14735ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: My experience with XTB has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-03-31T00:31:58.472Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "7494e634-4840-4e4d-a464-6033e14735ca",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: XTB has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-09-23T09:44:15.613Z",
+    "reviewer_name": "James Wilson"
+  }
+]

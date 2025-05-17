@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "a015f1b2-3ebc-46a6-8903-72e53e4b3b31",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Christopher Rodriguez: FXDD gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2024-09-21T15:24:16.369Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "a015f1b2-3ebc-46a6-8903-72e53e4b3b31",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: I've been using FXDD for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-06-25T18:44:04.280Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "a015f1b2-3ebc-46a6-8903-72e53e4b3b31",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Michael Brown: FXDD has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-12-31T02:09:58.959Z",
+    "reviewer_name": "Michael Brown"
+  },
+  {
+    "broker_id": "a015f1b2-3ebc-46a6-8903-72e53e4b3b31",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: FXDD offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-09-18T07:41:22.710Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "a015f1b2-3ebc-46a6-8903-72e53e4b3b31",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: FXDD offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-11-08T05:41:34.889Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

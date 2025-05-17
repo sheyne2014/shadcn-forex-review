@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "53ba8a35-7302-4a2e-b69c-d760000a9af6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Mia Miller: NAGA is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2024-03-20T00:55:22.383Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "53ba8a35-7302-4a2e-b69c-d760000a9af6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Jennifer Davis: NAGA gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2023-07-26T22:53:08.826Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "53ba8a35-7302-4a2e-b69c-d760000a9af6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "James Wilson: NAGA offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-09-11T16:19:37.618Z",
+    "reviewer_name": "James Wilson"
+  },
+  {
+    "broker_id": "53ba8a35-7302-4a2e-b69c-d760000a9af6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: I highly recommend NAGA for their reliable platform and responsive support team.",
+    "created_at": "2023-11-30T04:57:13.265Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "53ba8a35-7302-4a2e-b69c-d760000a9af6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Robert Martinez: NAGA offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-01-11T23:18:21.142Z",
+    "reviewer_name": "Robert Martinez"
+  }
+]

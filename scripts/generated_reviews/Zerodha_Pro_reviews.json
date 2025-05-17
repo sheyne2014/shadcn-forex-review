@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "deb15df0-2d7f-4226-8c6b-83ddd11bf6d6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: My experience with Zerodha Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-01-25T23:13:37.921Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "deb15df0-2d7f-4226-8c6b-83ddd11bf6d6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: Zerodha Pro offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-03-31T17:47:05.839Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "deb15df0-2d7f-4226-8c6b-83ddd11bf6d6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Olivia Garcia: I highly recommend Zerodha Pro for their reliable platform and responsive support team.",
+    "created_at": "2024-03-06T18:42:46.047Z",
+    "reviewer_name": "Olivia Garcia"
+  },
+  {
+    "broker_id": "deb15df0-2d7f-4226-8c6b-83ddd11bf6d6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: My experience with Zerodha Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-09-17T13:49:01.173Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "deb15df0-2d7f-4226-8c6b-83ddd11bf6d6",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "John Smith: My experience with Zerodha Pro has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-15T08:09:25.973Z",
+    "reviewer_name": "John Smith"
+  }
+]

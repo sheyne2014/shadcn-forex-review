@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "22237edd-c78f-4bcb-8724-1b5edcb0e33d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Isabella Taylor: LMAX has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-04-12T21:54:10.207Z",
+    "reviewer_name": "Isabella Taylor"
+  },
+  {
+    "broker_id": "22237edd-c78f-4bcb-8724-1b5edcb0e33d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using LMAX for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-09-07T10:52:36.338Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "22237edd-c78f-4bcb-8724-1b5edcb0e33d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: I've been using LMAX for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-10-16T01:58:51.040Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "22237edd-c78f-4bcb-8724-1b5edcb0e33d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: I've been using LMAX for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-06-20T14:31:55.571Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "22237edd-c78f-4bcb-8724-1b5edcb0e33d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: I highly recommend LMAX for their reliable platform and responsive support team.",
+    "created_at": "2024-08-04T09:43:32.515Z",
+    "reviewer_name": "Mia Miller"
+  }
+]

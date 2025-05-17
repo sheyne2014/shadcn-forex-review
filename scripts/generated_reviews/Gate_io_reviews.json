@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "5e2a98fd-3f5f-41ef-9c5d-6aba35e02776",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: My experience with Gate.io has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2025-01-02T05:33:33.861Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "5e2a98fd-3f5f-41ef-9c5d-6aba35e02776",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "William Anderson: My experience with Gate.io has been average. They offer standard features but nothing exceptional.",
+    "created_at": "2024-11-02T08:33:51.513Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "5e2a98fd-3f5f-41ef-9c5d-6aba35e02776",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: Gate.io offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-03-07T16:27:17.889Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "5e2a98fd-3f5f-41ef-9c5d-6aba35e02776",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "Abigail Jackson: Gate.io gets the job done, but there are some areas where they could improve, particularly with their mobile app.",
+    "created_at": "2025-02-14T09:36:53.743Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "5e2a98fd-3f5f-41ef-9c5d-6aba35e02776",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: Gate.io has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-02-09T22:24:28.883Z",
+    "reviewer_name": "David Johnson"
+  }
+]

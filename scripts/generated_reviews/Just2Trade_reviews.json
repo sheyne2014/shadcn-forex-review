@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "b6d65d72-fd9f-4dc0-947e-d3ee42f0138b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: I highly recommend Just2Trade for their reliable platform and responsive support team.",
+    "created_at": "2024-09-13T11:13:26.804Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "b6d65d72-fd9f-4dc0-947e-d3ee42f0138b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "John Smith: I've been using Just2Trade for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-12-01T07:07:11.670Z",
+    "reviewer_name": "John Smith"
+  },
+  {
+    "broker_id": "b6d65d72-fd9f-4dc0-947e-d3ee42f0138b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Andrew Thomas: Just2Trade's fees are higher than advertised and their platform lacks important features.",
+    "created_at": "2024-11-18T18:56:08.864Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "b6d65d72-fd9f-4dc0-947e-d3ee42f0138b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: My experience with Just2Trade has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-09-08T11:49:33.456Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "b6d65d72-fd9f-4dc0-947e-d3ee42f0138b",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Jennifer Davis: I highly recommend Just2Trade for their reliable platform and responsive support team.",
+    "created_at": "2024-07-06T20:55:53.474Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]

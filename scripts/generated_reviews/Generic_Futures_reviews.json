@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: I've been using Generic Futures for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-12-26T16:05:47.707Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Mia Miller: Generic Futures has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-11-13T04:21:21.320Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: Generic Futures offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-05-03T02:16:26.692Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: I've been using Generic Futures for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-05-08T13:41:14.608Z",
+    "reviewer_name": "Christopher Rodriguez"
+  },
+  {
+    "broker_id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: I've been using Generic Futures for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-09T11:39:43.468Z",
+    "reviewer_name": "Mia Miller"
+  }
+]

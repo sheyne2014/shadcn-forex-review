@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "3d7a4bce-d618-4f8d-aede-85070192adfc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Andrew Thomas: Tradovate offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-03-07T12:26:26.116Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "3d7a4bce-d618-4f8d-aede-85070192adfc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Abigail Jackson: Tradovate offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2023-09-08T12:43:34.370Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "3d7a4bce-d618-4f8d-aede-85070192adfc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sophia Lee: Tradovate offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2025-04-10T06:35:10.696Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "3d7a4bce-d618-4f8d-aede-85070192adfc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "William Anderson: Tradovate offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-05-27T12:59:34.511Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "3d7a4bce-d618-4f8d-aede-85070192adfc",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Christopher Rodriguez: My experience with Tradovate has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-07T15:15:06.967Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

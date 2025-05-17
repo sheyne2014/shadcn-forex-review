@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "7c475e08-e12c-4c3e-91a7-291ac7784ac2",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: I've been using HotForex ECN for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-10-24T13:01:32.903Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "7c475e08-e12c-4c3e-91a7-291ac7784ac2",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: HotForex ECN offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-08-14T01:37:02.998Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "7c475e08-e12c-4c3e-91a7-291ac7784ac2",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "William Anderson: HotForex ECN has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-10-19T12:42:46.616Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "7c475e08-e12c-4c3e-91a7-291ac7784ac2",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Sofia Hernandez: HotForex ECN offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-07-08T13:40:48.369Z",
+    "reviewer_name": "Sofia Hernandez"
+  },
+  {
+    "broker_id": "7c475e08-e12c-4c3e-91a7-291ac7784ac2",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "James Wilson: I've been using HotForex ECN for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-06-25T04:54:52.093Z",
+    "reviewer_name": "James Wilson"
+  }
+]

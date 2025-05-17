@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "5ba6f388-721a-4d33-b356-5f845838f72d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Abigail Jackson: Kotak Securities has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2024-06-30T07:35:08.967Z",
+    "reviewer_name": "Abigail Jackson"
+  },
+  {
+    "broker_id": "5ba6f388-721a-4d33-b356-5f845838f72d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "David Johnson: I've been using Kotak Securities for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-07-27T17:03:38.285Z",
+    "reviewer_name": "David Johnson"
+  },
+  {
+    "broker_id": "5ba6f388-721a-4d33-b356-5f845838f72d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: My experience with Kotak Securities has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-06-22T01:20:18.868Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "5ba6f388-721a-4d33-b356-5f845838f72d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Mia Miller: I highly recommend Kotak Securities for their reliable platform and responsive support team.",
+    "created_at": "2023-05-22T14:15:35.388Z",
+    "reviewer_name": "Mia Miller"
+  },
+  {
+    "broker_id": "5ba6f388-721a-4d33-b356-5f845838f72d",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Emily Martinez: Kotak Securities has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2025-05-02T20:32:43.492Z",
+    "reviewer_name": "Emily Martinez"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emma Thompson: Coinbase has consistently provided a top-notch trading experience. Fast executions and great customer service.",
+    "created_at": "2023-10-10T04:03:04.389Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: Coinbase offers a great trading experience with low spreads and fast execution. Very satisfied!",
+    "created_at": "2024-04-04T07:48:44.391Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Matthew Wilson: I've been using Coinbase for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-02-13T14:39:44.666Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Matthew Wilson: I've been using Coinbase for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-09-22T19:32:01.264Z",
+    "reviewer_name": "Matthew Wilson"
+  },
+  {
+    "broker_id": "c7109c6a-7622-439c-be3f-198e6030b339",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: My experience with Coinbase has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2023-05-17T01:55:17.972Z",
+    "reviewer_name": "Daniel White"
+  }
+]

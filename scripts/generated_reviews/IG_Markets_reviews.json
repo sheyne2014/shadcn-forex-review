@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "ee5083e7-c41d-4b0f-97c7-f77c6de57789",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Daniel White: I highly recommend IG Markets for their reliable platform and responsive support team.",
+    "created_at": "2023-09-04T15:05:23.253Z",
+    "reviewer_name": "Daniel White"
+  },
+  {
+    "broker_id": "ee5083e7-c41d-4b0f-97c7-f77c6de57789",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Emily Martinez: I highly recommend IG Markets for their reliable platform and responsive support team.",
+    "created_at": "2024-03-26T20:20:29.893Z",
+    "reviewer_name": "Emily Martinez"
+  },
+  {
+    "broker_id": "ee5083e7-c41d-4b0f-97c7-f77c6de57789",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Robert Martinez: I've been using IG Markets for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-01-28T19:51:03.343Z",
+    "reviewer_name": "Robert Martinez"
+  },
+  {
+    "broker_id": "ee5083e7-c41d-4b0f-97c7-f77c6de57789",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: I've been using IG Markets for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2024-04-23T06:28:00.971Z",
+    "reviewer_name": "Jennifer Davis"
+  },
+  {
+    "broker_id": "ee5083e7-c41d-4b0f-97c7-f77c6de57789",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Christopher Rodriguez: I've been using IG Markets for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-10-20T00:59:38.510Z",
+    "reviewer_name": "Christopher Rodriguez"
+  }
+]

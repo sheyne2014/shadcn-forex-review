@@ -1,0 +1,42 @@
+[
+  {
+    "broker_id": "867003ba-a324-4d5f-a75b-22fd4e03d174",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Andrew Thomas: My experience with Revolut has been excellent. Their platform is user-friendly and their fees are competitive.",
+    "created_at": "2024-05-29T06:05:21.208Z",
+    "reviewer_name": "Andrew Thomas"
+  },
+  {
+    "broker_id": "867003ba-a324-4d5f-a75b-22fd4e03d174",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 4,
+    "comment": "Sophia Lee: I've been using Revolut for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2025-05-06T15:06:37.325Z",
+    "reviewer_name": "Sophia Lee"
+  },
+  {
+    "broker_id": "867003ba-a324-4d5f-a75b-22fd4e03d174",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 3,
+    "comment": "William Anderson: Revolut is okay. Not the best, not the worst. Their platform is reliable but fees are average.",
+    "created_at": "2023-08-11T18:21:46.379Z",
+    "reviewer_name": "William Anderson"
+  },
+  {
+    "broker_id": "867003ba-a324-4d5f-a75b-22fd4e03d174",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 2,
+    "comment": "Emma Thompson: I've experienced too many technical issues with Revolut and am looking for alternatives.",
+    "created_at": "2024-06-25T17:42:08.466Z",
+    "reviewer_name": "Emma Thompson"
+  },
+  {
+    "broker_id": "867003ba-a324-4d5f-a75b-22fd4e03d174",
+    "user_id": "086a7323-29de-4a15-bed6-940ad01b471f",
+    "rating": 5,
+    "comment": "Jennifer Davis: I've been using Revolut for over a year and have been very pleased with their service. The trading platform is reliable and customer support is excellent.",
+    "created_at": "2023-07-15T12:29:55.063Z",
+    "reviewer_name": "Jennifer Davis"
+  }
+]
