@@ -74,7 +74,11 @@ export function BrokerCard({
   const displayMatchScore = matchScore ?? broker.match_score;
 
   return (
-    <Card className={cn("overflow-hidden shadow-md hover:shadow-lg transition-shadow", className)}>
+    <Card
+      className={cn(
+        "overflow-hidden h-full transition-shadow duration-200 hover:shadow-lg bg-card",
+        className
+      )}>
       {showRanking && ranking !== undefined && (
         <div className="absolute top-0 left-0 bg-primary text-primary-foreground font-bold py-1 px-3 rounded-br-md">
           #{ranking}

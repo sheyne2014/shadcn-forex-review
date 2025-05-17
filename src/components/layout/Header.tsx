@@ -173,8 +173,8 @@ export function Header() {
   };
 
   return (
-    <header className="border-b sticky top-0 z-40 w-full site-header bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
+    <header className="site-header sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-md shadow-sm">
+      <div className="container flex h-16 items-center justify-between">
         {/* Desktop Layout */}
         <div className="hidden md:flex items-center justify-between w-full">
           <div className="flex-1 flex justify-start">

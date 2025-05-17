@@ -135,6 +135,36 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Improve text contrast in dark mode */
+.dark .text-muted-foreground {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Ensure all badge text is visible in dark mode */
+.dark .bg-primary\/10 {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Fix for the "Trusted by traders worldwide" text and similar badges */
+.dark [class*="bg-primary/10"],
+.dark [class*="bg-primary/5"] {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+/* Improve visibility of text on muted backgrounds in dark mode */
+.dark .bg-muted\/20,
+.dark .bg-muted\/30,
+.dark .bg-muted\/50 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .bg-muted\/20 *,
+.dark .bg-muted\/30 *,
+.dark .bg-muted\/50 * {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 /* Fix for submenu visibility in light mode */
 [data-radix-popper-content-wrapper] {
   z-index: 50 !important;
@@ -407,4 +437,45 @@
 
 .dark .card-hover:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhance buttons in dark mode */
+.dark .bg-primary {
+  background-color: hsl(221.2, 83.2%, 53.3%) !important;
+}
+
+.dark .bg-primary:hover {
+  background-color: hsl(221.2, 83.2%, 59.3%) !important;
+}
+
+/* Enhance card visibility in dark mode */
+.dark .card {
+  background-color: rgba(30, 30, 30, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Improve heading visibility */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Enhance badges in dark mode */
+.dark .badge {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Improve contrast for links in dark mode */
+.dark a:not(.button):not(.btn):not([role="button"]) {
+  color: hsl(221.2, 83.2%, 70%) !important;
+}
+
+.dark a:hover:not(.button):not(.btn):not([role="button"]) {
+  color: hsl(221.2, 83.2%, 80%) !important;
+}
+
+/* Enhance stats cards in dark mode */
+.dark .StatsCounter .card {
+  background-color: rgba(40, 40, 40, 0.5) !important;
+  backdrop-filter: blur(10px);
 }
