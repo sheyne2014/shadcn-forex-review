@@ -36,7 +36,7 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
     >
       <Card className="hover:shadow-md transition-all text-center border-2 h-full hover:border-primary/30">
         <CardHeader className="pb-2">
-          <Badge className="mb-2 mx-auto">{category}</Badge>
+          <Badge variant="secondary" className="mb-2 mx-auto">{category}</Badge>
           <div className="flex items-center justify-center gap-2 mb-2">
             <div className="relative w-10 h-10 overflow-hidden rounded-full bg-muted/20 border">
               <Image
@@ -78,7 +78,7 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
           </Badge>
         </CardHeader>
         <CardFooter className="pt-2 pb-4">
-          <div className="w-full text-center flex justify-between items-center text-sm font-medium text-primary">
+          <div className="w-full text-center flex justify-between items-center text-sm font-medium text-muted-foreground">
             <span>Compare Side by Side</span>
             <ArrowRightLeft className="h-4 w-4" />
           </div>
