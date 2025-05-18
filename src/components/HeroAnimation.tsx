@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 interface HeroAnimationProps {
   className?: string;
@@ -10,6 +11,8 @@ interface HeroAnimationProps {
 export function HeroAnimation({ className }: HeroAnimationProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === 'dark';
 
   // Generate consistent floating element properties
   const floatingElements = useMemo(() => {
@@ -50,8 +53,6 @@ export function HeroAnimation({ className }: HeroAnimationProps) {
     );
   }
 
-  // We're now using the same styles for both modes
-
   return (
     <div
       className={cn(
@@ -59,7 +60,13 @@ export function HeroAnimation({ className }: HeroAnimationProps) {
         className
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/5 to-transparent z-10" />
+      {/* Gradient overlay with theme awareness */}
+      <div className={cn(
+        "absolute inset-0 bg-gradient-to-r z-10",
+        isDarkMode 
+          ? "from-blue-500/20 via-blue-500/5 to-transparent" 
+          : "from-primary/20 via-primary/5 to-transparent"
+      )} />
 
       {/* Floating elements */}
       <div className="absolute inset-0 z-0">
@@ -68,7 +75,7 @@ export function HeroAnimation({ className }: HeroAnimationProps) {
             key={i}
             className={cn(
               "absolute rounded-full backdrop-blur-md",
-              "bg-primary/30", // Use same opacity for both modes
+              isDarkMode ? "bg-blue-400/30" : "bg-primary/30",
               "opacity-0 transition-opacity duration-1000",
               isVisible ? "opacity-100 hero-float-element" : "opacity-0"
             )}
@@ -93,7 +100,7 @@ export function HeroAnimation({ className }: HeroAnimationProps) {
         <path
           d="M0 450 L100 400 L200 420 L300 380 L400 320 L500 340 L600 280 L700 220 L800 260"
           fill="none"
-          stroke="hsl(var(--primary))"
+          stroke={isDarkMode ? "#60a5fa" : "hsl(var(--primary))"}
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"

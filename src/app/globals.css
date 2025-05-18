@@ -338,7 +338,6 @@
 
 /* Consistent hero animation styles for both modes */
 .HeroAnimation path {
-  stroke: hsl(var(--primary));
   stroke-opacity: 1;
 }
 
@@ -357,6 +356,23 @@
 
 .HeroAnimation .via-primary\/5 {
   --tw-gradient-stops: var(--tw-gradient-from), hsl(var(--primary) / 0.05), var(--tw-gradient-to);
+}
+
+/* Dark mode specific overrides for HeroAnimation */
+.dark .HeroAnimation .hero-float-element {
+  background-color: rgba(96, 165, 250, 0.3);
+}
+
+.dark .HeroAnimation .from-blue-500\/20 {
+  --tw-gradient-from: rgba(59, 130, 246, 0.2);
+}
+
+.dark .HeroAnimation .via-blue-500\/5 {
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(59, 130, 246, 0.05), var(--tw-gradient-to);
+}
+
+.dark .HeroAnimation path {
+  stroke: #60a5fa;
 }
 
 /* Modern hover animations */
