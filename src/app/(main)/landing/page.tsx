@@ -877,77 +877,97 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+          <div className="flex overflow-x-auto pb-4 gap-4 hide-scrollbar max-w-7xl mx-auto">
             {/* Use the new BrokerComparisonCard component with different broker combinations */}
-            <BrokerComparisonCard
-              broker1={{ id: "interactive-brokers", name: "Interactive Brokers" }}
-              broker2={{ id: "saxo-bank", name: "Saxo Bank" }}
-              category="Stocks"
-              views="4.8K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "interactive-brokers", name: "Interactive Brokers" }}
+                broker2={{ id: "saxo-bank", name: "Saxo Bank" }}
+                category="Stocks"
+                views="4.8K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "oanda", name: "OANDA" }}
-              broker2={{ id: "pepperstone", name: "Pepperstone" }}
-              category="Forex"
-              views="3.5K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "oanda", name: "OANDA" }}
+                broker2={{ id: "pepperstone", name: "Pepperstone" }}
+                category="Forex"
+                views="3.5K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "xm", name: "XM" }}
-              broker2={{ id: "ic-markets", name: "IC Markets" }}
-              category="Crypto"
-              views="3.2K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "xm", name: "XM" }}
+                broker2={{ id: "ic-markets", name: "IC Markets" }}
+                category="Crypto"
+                views="3.2K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "xtb", name: "XTB" }}
-              broker2={{ id: "interactive-brokers", name: "Interactive Brokers" }}
-              category="Options"
-              views="2.7K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "xtb", name: "XTB" }}
+                broker2={{ id: "interactive-brokers", name: "Interactive Brokers" }}
+                category="Options"
+                views="2.7K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "pepperstone", name: "Pepperstone" }}
-              broker2={{ id: "axi", name: "AXI" }}
-              category="CFDs"
-              views="2.5K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "pepperstone", name: "Pepperstone" }}
+                broker2={{ id: "axi", name: "AXI" }}
+                category="CFDs"
+                views="2.5K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "saxo-bank", name: "Saxo Bank" }}
-              broker2={{ id: "swissquote", name: "Swissquote" }}
-              category="ETFs"
-              views="2.3K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "saxo-bank", name: "Saxo Bank" }}
+                broker2={{ id: "swissquote", name: "Swissquote" }}
+                category="ETFs"
+                views="2.3K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "ic-markets", name: "IC Markets" }}
-              broker2={{ id: "startrader", name: "StarTrader" }}
-              category="Indices"
-              views="2.1K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "ic-markets", name: "IC Markets" }}
+                broker2={{ id: "startrader", name: "StarTrader" }}
+                category="Indices"
+                views="2.1K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "interactive-brokers", name: "Interactive Brokers" }}
-              broker2={{ id: "oanda", name: "OANDA" }}
-              category="Futures"
-              views="1.9K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "interactive-brokers", name: "Interactive Brokers" }}
+                broker2={{ id: "oanda", name: "OANDA" }}
+                category="Futures"
+                views="1.9K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "xm", name: "XM" }}
-              broker2={{ id: "xtb", name: "XTB" }}
-              category="Commodities"
-              views="1.7K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "xm", name: "XM" }}
+                broker2={{ id: "xtb", name: "XTB" }}
+                category="Commodities"
+                views="1.7K"
+              />
+            </div>
 
-            <BrokerComparisonCard
-              broker1={{ id: "swissquote", name: "Swissquote" }}
-              broker2={{ id: "startrader", name: "StarTrader" }}
-              category="Bonds"
-              views="1.5K"
-            />
+            <div className="flex-shrink-0 w-72">
+              <BrokerComparisonCard
+                broker1={{ id: "swissquote", name: "Swissquote" }}
+                broker2={{ id: "startrader", name: "StarTrader" }}
+                category="Bonds"
+                views="1.5K"
+              />
+            </div>
           </div>
 
           <div className="mt-10 text-center">

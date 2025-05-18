@@ -479,3 +479,13 @@
   background-color: rgba(40, 40, 40, 0.5) !important;
   backdrop-filter: blur(10px);
 }
+
+/* Hide scrollbars while preserving scrolling functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
+}
