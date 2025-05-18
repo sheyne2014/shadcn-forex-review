@@ -4,6 +4,18 @@ import { BrokerCompareSelector } from "@/components/compare/BrokerCompareSelecto
 import { BrokerCompareDetails } from "@/components/compare/BrokerCompareDetails";
 import { Suspense } from "react";
 import { db } from "@/lib/database";
+import { siteConfig } from "@/config/site";
+import { getBrokerComparisonPairs } from "@/lib/route-generation";
+import { supabaseBrokerClient } from "@/lib/supabase/broker-client";
+
+// Generate static params for all comparison pages
+export async function generateStaticParams() {
+  const comparisonPairs = await getBrokerComparisonPairs();
+  
+  return comparisonPairs.map(pair => ({
+    brokers: [pair],
+  }));
+}
 
 export async function generateMetadata({ 
   params 
@@ -14,41 +26,142 @@ export async function generateMetadata({
   const brokers = params?.brokers || [];
   if (brokers.length !== 1) {
     return {
-      title: "Compare Brokers | Invalid URL Format",
-      description: "Compare trading brokers side by side with our detailed comparison tool."
+      title: `Compare Trading Brokers | ${siteConfig.name}`,
+      description: "Compare trading brokers side by side to find the best platform for your needs. Features detailed metrics on fees, platforms, regulation and more."
     };
   }
-
-  const parts = brokers[0].split('-vs-');
-  if (parts.length !== 2) {
+  
+  // Parse the broker comparison string (broker1-vs-broker2)
+  const comparisonString = brokers[0];
+  const brokerNames = comparisonString.split('-vs-').map(part => 
+    part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  );
+  
+  if (brokerNames.length !== 2) {
     return {
-      title: "Compare Brokers | Invalid URL Format",
-      description: "Compare trading brokers side by side with our detailed comparison tool."
+      title: `Compare Trading Brokers | ${siteConfig.name}`,
+      description: "Compare trading brokers side by side to find the best platform for your needs. Features detailed metrics on fees, platforms, regulation and more."
     };
   }
-
-  // Get broker names for the title
-  const broker1Id = parts[0];
-  const broker2Id = parts[1];
   
-  // Try to get broker names from database
-  let broker1Name = broker1Id.replace(/-/g, ' ');
-  let broker2Name = broker2Id.replace(/-/g, ' ');
+  const year = new Date().getFullYear();
+  const month = new Date().toLocaleString('default', { month: 'long' });
   
-  try {
-    const brokers = await db.brokers.getAll();
-    const broker1 = brokers.find(b => b.id === broker1Id);
-    const broker2 = brokers.find(b => b.id === broker2Id);
-    
-    if (broker1) broker1Name = broker1.name;
-    if (broker2) broker2Name = broker2.name;
-  } catch (error) {
-    console.error('Error fetching broker names for metadata:', error);
-  }
+  // Create SEO-friendly title and description
+  const title = `${brokerNames[0]} vs ${brokerNames[1]} | Detailed ${year} Comparison | ${siteConfig.name}`;
+  const description = `Compare ${brokerNames[0]} vs ${brokerNames[1]} side by side. Updated ${month} ${year} with latest fees, trading features, platforms, and expert analysis to help you choose the best broker.`;
   
   return {
-    title: `${broker1Name} vs ${broker2Name} | Detailed Broker Comparison`,
-    description: `Compare ${broker1Name} and ${broker2Name} side by side. See which broker offers better fees, platforms, markets, and customer service for your trading needs.`,
+    title,
+    description,
+    openGraph: {
+      title: `${brokerNames[0]} vs ${brokerNames[1]} | Which Broker Is Better in ${year}?`,
+      description,
+      type: "website",
+      url: `${siteConfig.url}/compare/${comparisonString}`,
+      images: [
+        {
+          url: `${siteConfig.url}/images/comparisons/${comparisonString}.png`,
+          width: 1200,
+          height: 630,
+          alt: `${brokerNames[0]} vs ${brokerNames[1]} Comparison`
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${brokerNames[0]} vs ${brokerNames[1]} | ${year} Comparison`,
+      description,
+      images: [`${siteConfig.url}/images/comparisons/${comparisonString}.png`],
+    },
+    keywords: [
+      `${brokerNames[0]} vs ${brokerNames[1]}`, 
+      `compare ${brokerNames[0]} and ${brokerNames[1]}`, 
+      `${brokerNames[0]} ${brokerNames[1]} comparison`,
+      `best between ${brokerNames[0]} and ${brokerNames[1]}`,
+      `${brokerNames[0]} or ${brokerNames[1]}`,
+      `${brokerNames[0]} review`,
+      `${brokerNames[1]} review`
+    ],
+    alternates: {
+      canonical: `${siteConfig.url}/compare/${comparisonString}`,
+    },
+  };
+}
+
+// Function to generate JSON-LD structured data for comparison
+async function generateComparisonJsonLd(comparisonString: string, broker1Name: string, broker2Name: string) {
+  // Try to fetch actual broker data if available
+  try {
+    const brokerSlugs = comparisonString.split('-vs-');
+    const { data: brokers } = await supabaseBrokerClient
+      .from('brokers')
+      .select('*')
+      .or(`name.ilike.%${brokerSlugs[0].replace(/-/g, '%')}%,name.ilike.%${brokerSlugs[1].replace(/-/g, '%')}%`)
+      .limit(2);
+    
+    if (brokers && brokers.length === 2) {
+      const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: `${broker1Name} vs ${broker2Name} Comparison`,
+        description: `Detailed comparison between ${broker1Name} and ${broker2Name} trading platforms, analyzing fees, features, regulation, and more.`,
+        review: {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '4.8',
+            bestRating: '5',
+            worstRating: '1'
+          },
+          author: {
+            '@type': 'Organization',
+            name: siteConfig.name
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: siteConfig.name
+          }
+        },
+        offers: {
+          '@type': 'AggregateOffer',
+          highPrice: Math.max(brokers[0].min_deposit || 0, brokers[1].min_deposit || 0),
+          lowPrice: Math.min(
+            brokers[0].min_deposit > 0 ? brokers[0].min_deposit : 1000, 
+            brokers[1].min_deposit > 0 ? brokers[1].min_deposit : 1000
+          ),
+          priceCurrency: 'USD',
+          offerCount: 2
+        }
+      };
+      
+      return jsonLd;
+    }
+  } catch (error) {
+    console.error('Error generating comparison JSON-LD:', error);
+  }
+  
+  // Fallback generic JSON-LD if broker data couldn't be fetched
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${broker1Name} vs ${broker2Name} Broker Comparison`,
+    description: `Comprehensive comparison between ${broker1Name} and ${broker2Name} trading brokers, analyzing trading fees, platforms, regulation status, and customer service.`,
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.name
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/logo.png`
+      }
+    },
+    image: `${siteConfig.url}/images/comparisons/${comparisonString}.png`,
+    datePublished: new Date().toISOString(),
+    dateModified: new Date().toISOString()
   };
 }
 
@@ -57,58 +170,78 @@ export default async function CompareBrokersPage({
 }: { 
   params: { brokers: string[] } 
 }) {
-  // Format should be /compare/broker1-vs-broker2
   const brokers = params?.brokers || [];
+  
+  // Handle invalid paths
   if (brokers.length !== 1) {
+    // Show broker selection UI
+    return (
+      <div className="container py-10">
+        <h1 className="text-3xl font-bold mb-8">Compare Brokers</h1>
+        <p className="text-muted-foreground mb-8">
+          Select two brokers to compare them side by side.
+        </p>
+        <Suspense fallback={<div>Loading broker selection...</div>}>
+          <BrokerCompareSelector 
+            brokers={[
+              // Provide default brokers for selection
+              { id: "broker1", name: "Broker 1" },
+              { id: "broker2", name: "Broker 2" },
+              { id: "broker3", name: "Broker 3" },
+              { id: "broker4", name: "Broker 4" },
+              { id: "broker5", name: "Broker 5" },
+            ]} 
+            initialBroker1="broker1" 
+            initialBroker2="broker2" 
+          />
+        </Suspense>
+      </div>
+    );
+  }
+  
+  // Parse the broker comparison string (broker1-vs-broker2)
+  const comparisonString = brokers[0];
+  const brokerParts = comparisonString.split('-vs-');
+  
+  if (brokerParts.length !== 2) {
     notFound();
   }
-
-  const parts = brokers[0].split('-vs-');
-  if (parts.length !== 2) {
-    notFound();
-  }
-
-  const broker1Id = parts[0];
-  const broker2Id = parts[1];
   
-  // Get list of all available brokers for selection
-  const brokersData = await db.brokers.getAll();
+  // Parse broker IDs from the comparison string
+  const broker1Id = brokerParts[0];
+  const broker2Id = brokerParts[1];
   
-  // If we don't have at least 2 brokers from the database, use a fallback list
-  const fallbackBrokers = [
-    { id: "interactive-brokers", name: "Interactive Brokers" },
-    { id: "xtb", name: "XTB" },
-    { id: "oanda", name: "OANDA" },
-    { id: "ic-markets", name: "IC Markets" },
-    { id: "pepperstone", name: "Pepperstone" },
-    { id: "xm", name: "XM" },
-    { id: "saxo-bank", name: "Saxo Bank" },
-    { id: "axi", name: "AXI" },
-    { id: "swissquote", name: "Swissquote" },
-    { id: "startrader", name: "StarTrader" },
-  ];
+  // Format for display
+  const brokerNames = brokerParts.map(part => 
+    part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  );
   
-  const availableBrokers = brokersData.length >= 2 ? 
-    brokersData.map(b => ({ id: b.id, name: b.name })) : 
-    fallbackBrokers;
-
+  // Generate the JSON-LD structured data
+  const jsonLd = await generateComparisonJsonLd(comparisonString, brokerNames[0], brokerNames[1]);
+  
   return (
-    <main className="max-w-7xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 text-center">Compare Brokers Side by Side</h1>
-      
-      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-10">
-        Compare features, fees, platforms, and more to find the perfect trading platform for your investment needs.
-      </p>
-      
-      <BrokerCompareSelector 
-        brokers={availableBrokers}
-        initialBroker1={broker1Id}
-        initialBroker2={broker2Id}
+    <>
+      {/* Add the JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <Suspense fallback={<div className="my-12 text-center">Loading comparison data...</div>}>
-        <BrokerCompareDetails broker1Id={broker1Id} broker2Id={broker2Id} />
-      </Suspense>
-    </main>
+      <div className="container py-10">
+        <h1 className="text-3xl font-bold mb-2">
+          {brokerNames[0]} vs {brokerNames[1]}
+        </h1>
+        <p className="text-xl text-muted-foreground mb-8">
+          Detailed comparison of features, fees, platforms and more
+        </p>
+        
+        <Suspense fallback={<div>Loading comparison data...</div>}>
+          <BrokerCompareDetails 
+            broker1Id={broker1Id} 
+            broker2Id={broker2Id} 
+          />
+        </Suspense>
+      </div>
+    </>
   );
 } 

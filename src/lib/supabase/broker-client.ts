@@ -195,34 +195,56 @@ export async function getTopRatedBrokers(limit = 5) {
 }
 
 // Get brokers by category
-export async function getBrokersByCategory(categoryId: string, limit = 10) {
+export async function getBrokersByCategory(categoryIdOrSlug: string, limit = 10) {
   try {
-    // First get broker_ids in the category
-    const { data: brokerCategories, error: categoryError } = await supabaseBrokerClient
-      .from('broker_categories')
-      .select('broker_id')
-      .eq('category_id', categoryId);
-
-    if (categoryError) {
-      console.error("Error fetching broker categories:", categoryError);
-      return { data: [], error: categoryError };
-    }
-
-    // Extract broker_ids and get broker details
-    const brokerIds = brokerCategories?.map(bc => bc.broker_id) || [];
+    // Check if the parameter is a UUID (category ID) or a slug
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(categoryIdOrSlug);
     
-    if (brokerIds.length === 0) {
-      return { data: [], error: null };
+    if (isUuid) {
+      // First get broker_ids in the category by ID
+      const { data: brokerCategories, error: categoryError } = await supabaseBrokerClient
+        .from('broker_categories')
+        .select('broker_id')
+        .eq('category_id', categoryIdOrSlug);
+
+      if (categoryError) {
+        console.error("Error fetching broker categories:", categoryError);
+        return { data: [], error: categoryError };
+      }
+
+      // Extract broker_ids and get broker details
+      const brokerIds = brokerCategories?.map(bc => bc.broker_id) || [];
+      
+      if (brokerIds.length === 0) {
+        return { data: [], error: null };
+      }
+
+      const { data, error } = await supabaseBrokerClient
+        .from('brokers')
+        .select('*')
+        .in('id', brokerIds)
+        .order('rating', { ascending: false })
+        .limit(limit);
+
+      return { data, error };
+    } else {
+      // Handle category as a slug/string - search in categories or tags fields
+      let query = supabaseBrokerClient
+        .from('brokers')
+        .select('*')
+        .order('rating', { ascending: false });
+      
+      // Filter by category slug in categories or tags arrays
+      query = query.or(`categories.cs.{${categoryIdOrSlug}},tags.cs.{${categoryIdOrSlug}}`);
+      
+      if (limit > 0) {
+        query = query.limit(limit);
+      }
+      
+      const { data, error } = await query;
+      
+      return { data, error };
     }
-
-    const { data, error } = await supabaseBrokerClient
-      .from('brokers')
-      .select('*')
-      .in('id', brokerIds)
-      .order('rating', { ascending: false })
-      .limit(limit);
-
-    return { data, error };
   } catch (error) {
     console.error("Error getting brokers by category:", error);
     return { data: [], error };

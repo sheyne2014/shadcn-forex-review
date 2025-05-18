@@ -190,7 +190,7 @@ export function RokuAI() {
                 {...props}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-gray-300 hover:text-white underline decoration-dotted"
               >
                 {props.children}
               </a>
@@ -226,7 +226,7 @@ export function RokuAI() {
               <Button
                 onClick={() => setIsOpen(true)}
                 size="icon"
-                className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90"
+                className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all bg-gray-700 hover:bg-gray-600"
               >
                 <MessagesSquare className="h-6 w-6" />
                 <span className="absolute top-0 right-0 h-3 w-3 rounded-full bg-green-500" />
@@ -241,18 +241,18 @@ export function RokuAI() {
         <div className="flex flex-col items-end">
           {isMinimized ? (
             <Card className="w-[350px] shadow-xl mb-2 overflow-hidden">
-              <div className="p-3 flex items-center justify-between bg-primary text-primary-foreground">
+              <div className="p-3 flex items-center justify-between bg-gray-700 text-gray-50">
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-6 w-6 bg-primary-foreground">
-                    <Bot className="h-3 w-3 text-primary" />
+                  <Avatar className="h-6 w-6 bg-gray-200">
+                    <Bot className="h-3 w-3 text-gray-700" />
                   </Avatar>
                   <span className="text-sm font-medium">ROKU AI</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-primary-foreground hover:bg-primary/90">
+                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-gray-50 hover:bg-gray-600">
                     <Maximize2 className="h-3 w-3" />
                   </Button>
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-primary-foreground hover:bg-primary/90">
+                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-gray-50 hover:bg-gray-600">
                     <X className="h-3 w-3" />
                   </Button>
                 </div>
@@ -260,21 +260,21 @@ export function RokuAI() {
             </Card>
           ) : (
             <Card className="w-[400px] h-[550px] shadow-xl flex flex-col">
-              <CardHeader className="p-3 flex flex-row items-center justify-between space-y-0 border-b bg-primary text-primary-foreground">
+              <CardHeader className="p-3 flex flex-row items-center justify-between space-y-0 border-b bg-gray-700 text-gray-50">
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8 bg-primary-foreground">
-                    <Bot className="h-4 w-4 text-primary" />
+                  <Avatar className="h-8 w-8 bg-gray-200">
+                    <Bot className="h-4 w-4 text-gray-700" />
                   </Avatar>
                   <div>
                     <CardTitle className="text-base">ROKU AI Assistant</CardTitle>
-                    <CardDescription className="text-primary-foreground/80 text-xs">Your forex trading knowledge companion</CardDescription>
+                    <CardDescription className="text-gray-300/80 text-xs">Your forex trading knowledge companion</CardDescription>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={resetChat} className="h-8 w-8 text-primary-foreground hover:bg-primary/90">
+                        <Button variant="ghost" size="icon" onClick={resetChat} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
                           <Sparkles className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -287,7 +287,7 @@ export function RokuAI() {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-8 w-8 text-primary-foreground hover:bg-primary/90">
+                        <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
                           <Minimize2 className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -300,7 +300,7 @@ export function RokuAI() {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 text-primary-foreground hover:bg-primary/90">
+                        <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
                           <X className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -321,7 +321,7 @@ export function RokuAI() {
                         className={cn(
                           "flex flex-col gap-2 rounded-lg px-3 py-2 text-sm",
                           message.role === "user"
-                            ? "ml-auto bg-primary text-primary-foreground w-max max-w-[80%]"
+                            ? "ml-auto bg-gray-700 text-gray-50 w-max max-w-[80%]"
                             : message.role === "system"
                             ? "bg-muted/50 w-full"
                             : "bg-muted w-max max-w-[80%]"
@@ -391,7 +391,7 @@ export function RokuAI() {
                           type="submit"
                           size="icon"
                           disabled={isLoading || !inputValue.trim()}
-                          className="bg-primary hover:bg-primary/90"
+                          className="bg-gray-700 hover:bg-gray-600"
                         >
                           <Send className="h-4 w-4" />
                         </Button>

@@ -8,11 +8,19 @@
     "start": "next start",
     "lint": "next lint",
     "add-blog-post": "node --experimental-json-modules src/scripts/add-blog-post.js",
+    "check-blog-post": "node --experimental-json-modules src/scripts/check-blog-post.js",
+    "check-blog-content": "node --experimental-json-modules src/scripts/check-blog-content.js",
+    "validate-blog-post": "node --experimental-json-modules src/scripts/validate-blog-post.js",
+    "update-blog-post-fields": "node --experimental-json-modules src/scripts/update-blog-post-fields.js",
+    "fix-blog-content": "node --experimental-json-modules src/scripts/fix-blog-content.js",
+    "fix-blog-post-slug": "node --experimental-json-modules src/scripts/fix-blog-post-slug.js",
+    "download-blog-images": "node --experimental-json-modules src/scripts/download-blog-images.js",
     "update-blog-frontmatter": "node scripts/update-mdx-frontmatter.js",
     "create-blog-categories": "node scripts/create-blog-categories.js",
     "import-blog-posts": "node scripts/import-blog-posts.js",
     "blog-import-all": "npm run create-blog-categories && npm run update-blog-frontmatter && npm run import-blog-posts",
-    "add-missing-brokers": "node src/scripts/add-missing-brokers.js"
+    "add-missing-brokers": "node src/scripts/add-missing-brokers.js",
+    "add-regulated-brokers-blog": "node src/scripts/add-regulated-brokers-blog.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

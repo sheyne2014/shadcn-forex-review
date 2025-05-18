@@ -79,33 +79,6 @@ const brokerFeatures = [
   { name: "Trading Platforms", tooltip: "Available trading platforms" }
 ];
 
-// Sample educational articles
-const educationalArticles = [
-  {
-    title: "Understanding Forex Spread and How It Affects Your Trading",
-    excerpt: "Learn about the impact of spreads on your forex trading profitability and how to choose brokers with competitive pricing.",
-    category: "Trading Basics",
-    date: "2 days ago",
-    slug: "understanding-forex-spread"
-  },
-  {
-    title: "Top 5 Risk Management Strategies for Forex Traders",
-    excerpt: "Discover effective risk management techniques used by professional traders to protect your capital and maximize returns.",
-    category: "Risk Management",
-    date: "1 week ago",
-    slug: "risk-management-strategies-forex"
-  },
-  {
-    title: "How to Analyze Economic Indicators for Forex Trading",
-    excerpt: "A comprehensive guide to interpreting economic data releases and their impact on currency markets.",
-    category: "Fundamental Analysis",
-    date: "2 weeks ago",
-    slug: "economic-indicators-forex-trading"
-  }
-];
-
-// Sample educational articles data is defined above
-
 // Get broker categories with actual brokers
 async function getBrokerCategories() {
   // Get all categories
@@ -981,57 +954,6 @@ export default async function LandingPage() {
             <Button asChild variant="outline" size="lg">
               <Link href="/compare">
                 View All Broker Comparisons
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Educational Content Section */}
-      <section className="py-14">
-        <div className="container mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">Latest Educational Content</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Expert insights and guides to improve your forex trading skills
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {educationalArticles.map((article, index) => (
-              <Link key={index} href={`/education/${article.slug}`} className="block h-full">
-                <Card className="hover:shadow-md transition-all overflow-hidden group border-2 h-full hover:border-primary/30">
-                  <div className="h-48 bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-primary/20 group-hover:opacity-80 transition-opacity" />
-                    <Badge className="absolute top-4 left-4">{article.category}</Badge>
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center text-xs text-muted-foreground mb-2">
-                      <ClientSideIcon name="Clock" className="h-3 w-3 mr-1" /> {article.date}
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {article.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground text-sm line-clamp-3">
-                      {article.excerpt}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <div className="w-full flex justify-between items-center text-sm font-medium text-primary">
-                      Read Article <ClientSideIcon name="ChevronRight" className="h-4 w-4" />
-                    </div>
-                  </CardFooter>
-                </Card>
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg">
-              <Link href="/education">
-                View All Educational Content
               </Link>
             </Button>
           </div>

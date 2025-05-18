@@ -291,6 +291,22 @@ export async function POST(request: Request) {
       aiResponse = `Here are some resources that might help answer your question:
 ${linkSections}
 Would you like more specific information about any of these topics? You can ask me to explain more about a particular item.`;
+    } else {
+      // Provide a more helpful response when no content is found
+      aiResponse = `I don't have specific information about "${message}" in our database. 
+
+Here are some topics I can help you with:
+- Information about specific forex brokers (e.g., "Tell me about eToro")
+- Comparison between brokers (e.g., "Compare XM and IG")
+- Trading strategies and analysis (e.g., "What is scalping in forex?")
+- Beginner trading guides (e.g., "How to start forex trading")
+- Broker selection advice (e.g., "Best brokers for beginners")
+- Trading tools and calculators (e.g., "How to use the risk calculator")
+
+You might also want to check:
+- Broker Finder Quiz: Find your ideal broker based on your preferences
+- Comparison Tool: Side-by-side broker feature comparison
+- Latest Reviews: Up-to-date broker reviews and ratings`;
     }
 
     return NextResponse.json({ response: aiResponse });
