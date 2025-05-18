@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ClientSideIcon } from "@/components/ClientSideIcon";
+import { useState } from "react";
 
 interface BrokerCardClientProps {
   broker: {
@@ -13,10 +15,18 @@ interface BrokerCardClientProps {
 }
 
 export function BrokerCardClient({ broker, idx = 1 }: BrokerCardClientProps) {
+  const [logoError, setLogoError] = useState(false);
+  
   // Format broker name for URL
   const brokerPath = `/broker/${broker.name.toLowerCase().replace(/\s+/g, '-')}`;
   
-  // Calculate initials
+  // Format broker ID for logo
+  const brokerId = broker.name.toLowerCase().replace(/\s+/g, '-');
+  
+  // Logo URL using clearbit
+  const logoUrl = `https://logo.clearbit.com/${brokerId.replace(/-/g, '')}.com`;
+  
+  // Calculate initials for fallback
   const initials = broker.name
     .split(' ')
     .map(word => word[0])
@@ -43,14 +53,39 @@ export function BrokerCardClient({ broker, idx = 1 }: BrokerCardClientProps) {
     stars.push(className);
   }
 
+  // Fallback logo with user initials if the broker doesn't have a standard domain
+  const getFallbackLogo = () => {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=64&bold=true&format=png`;
+  };
+
   return (
     <Link href={brokerPath} className="block">
       <div
         className="flex flex-col p-2 rounded-md bg-card/50 border border-border/40 hover:bg-primary/5 hover:border-primary/20 transition-all relative z-10 cursor-pointer"
       >
         <div className="flex items-center">
-          <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 text-primary font-semibold">
-            {initials}
+          <div className="relative h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 text-primary font-semibold overflow-hidden border">
+            {logoError ? (
+              initials
+            ) : (
+              <Image
+                src={logoUrl}
+                alt={broker.name}
+                fill
+                sizes="40px"
+                className="object-contain p-1"
+                onError={(e) => {
+                  // First try the fallback API
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = getFallbackLogo();
+                  // If that also fails, show initials
+                  target.onerror = () => {
+                    setLogoError(true);
+                  };
+                }}
+              />
+            )}
           </div>
           <div className="flex-1">
             <span className="font-medium hover:underline">{broker.name}</span>
