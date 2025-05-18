@@ -21,7 +21,8 @@ import {
   BadgeCheck,
   Lightbulb,
   Rocket,
-  DollarSign
+  DollarSign,
+  ChevronLeft
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,7 @@ import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { BrokerComparisonCard } from "@/components/BrokerComparisonCard";
 import { ClientSideIcon } from "@/components/ClientSideIcon";
 import { BrokerCardClient } from "@/components/BrokerCardClient";
+import { ScrollableComparisonSection } from "@/components/ScrollableComparisonSection";
 
 // Extended broker type that includes all the fields we need
 interface ExtendedBroker {
@@ -877,8 +879,7 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          <div className="flex overflow-x-auto pb-4 gap-4 hide-scrollbar max-w-7xl mx-auto">
-            {/* Use the new BrokerComparisonCard component with different broker combinations */}
+          <ScrollableComparisonSection>
             <div className="flex-shrink-0 w-72">
               <BrokerComparisonCard
                 broker1={{ id: "interactive-brokers", name: "Interactive Brokers" }}
@@ -968,7 +969,7 @@ export default async function LandingPage() {
                 views="1.5K"
               />
             </div>
-          </div>
+          </ScrollableComparisonSection>
 
           <div className="mt-10 text-center">
             <Button asChild variant="outline" size="lg">
