@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/lib/providers/theme-provider";
 import { AuthProvider } from "@/lib/providers/AuthProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SkipToContent } from "@/components/SkipToContent";
 
 import { Toaster } from "@/components/ui/sonner";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
@@ -18,6 +19,11 @@ const figtree = Figtree({
   subsets: ["latin"],
   variable: "--font-figtree",
 });
+
+// Get environment variables or use fallback values
+const googleVerificationToken = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'G-VERIFICATION123';
+const yandexVerificationToken = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || 'YANDEX-VERIFICATION123';
+const bingVerificationToken = process.env.NEXT_PUBLIC_BING_VERIFICATION || 'BING-VERIFICATION123';
 
 export const metadata: Metadata = {
   title: {
@@ -39,12 +45,17 @@ export const metadata: Metadata = {
     "forex broker comparison",
     "forex market analysis",
     "forex trading tools",
-    "forex education"
+    "forex education",
+    "crypto brokers",
+    "stock trading",
+    "CFD trading",
+    "day trading",
+    "trading accounts"
   ],
   authors: [
     {
       name: "BrokerAnalysis",
-      url: "https://broker-analysis.com",
+      url: siteConfig.url,
     },
   ],
   creator: "BrokerAnalysis",
@@ -58,7 +69,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
         alt: siteConfig.name
@@ -70,7 +81,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     creator: "@brokeranalysis",
-    images: ['/og-image.jpg'],
+    images: ['/images/og-image.jpg'],
   },
   icons: {
     icon: "/favicon.ico",
@@ -96,8 +107,15 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'verification_token',
-    yandex: 'verification_token',
+    google: googleVerificationToken,
+    yandex: yandexVerificationToken,
+  },
+  other: {
+    'google-site-verification': googleVerificationToken,
+    'msvalidate.01': bingVerificationToken,
+    'yandex-verification': yandexVerificationToken,
+    'author': 'BrokerAnalysis Team',
+    'format-detection': 'telephone=no',
   },
 };
 
@@ -121,6 +139,11 @@ export default function Layout({
           href="https://ui-avatars.com"
           crossOrigin="anonymous"
         />
+        <link 
+          rel="preconnect" 
+          href="https://fonts.googleapis.com" 
+          crossOrigin="anonymous" 
+        />
       </head>
       <body className={`${figtree.className} antialiased`}>
         <ThemeProvider
@@ -131,9 +154,10 @@ export default function Layout({
           storageKey="theme-preference"
         >
           <AuthProvider>
+            <SkipToContent />
             <NextTopLoader showSpinner={false} />
             <Header />
-            <main className="min-h-[calc(100vh-4rem)]">
+            <main id="main-content" className="min-h-[calc(100vh-4rem)]">
               {children}
             </main>
             <Footer />

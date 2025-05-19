@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 // International broker data
-export const topBrokers = [
+const topBrokers = [
   {
     id: 1,
     name: "Interactive Brokers",

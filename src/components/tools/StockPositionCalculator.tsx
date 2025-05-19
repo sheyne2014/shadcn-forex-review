@@ -72,10 +72,10 @@ export function StockPositionCalculator() {
           <div className="space-y-2">
             <Label htmlFor="stock-symbol">Stock Symbol</Label>
             <Select value={stockSymbol} onValueChange={setStockSymbol}>
-              <SelectTrigger id="stock-symbol">
+              <SelectTrigger id="stock-symbol" className="bg-background">
                 <SelectValue placeholder="Select stock" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-[400px]">
                 {stocks.map((stock) => (
                   <SelectItem key={stock.value} value={stock.value}>
                     {stock.label}

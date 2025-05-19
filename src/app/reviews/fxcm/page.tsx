@@ -92,6 +92,7 @@ export default function FXCMReviewPage() {
       { name: "MetaTrader 4", isAvailable: true, details: "Desktop, web, and mobile versions" },
       { name: "ZuluTrade", isAvailable: true, details: "Social and copy trading platform" },
       { name: "WebTrader", isAvailable: true, details: "Browser-based version of Trading Station" },
+      { name: "TradingView", isAvailable: true, details: "Integration with advanced charting platform" },
       { name: "Mobile Apps", isAvailable: true, details: "iOS and Android apps for all platforms" },
       { name: "API Trading", isAvailable: true, details: "FIX API available for algorithmic traders" },
     ],

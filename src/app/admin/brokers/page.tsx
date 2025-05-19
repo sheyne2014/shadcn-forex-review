@@ -71,7 +71,7 @@ export default async function BrokersAdminPage() {
         <CardHeader>
           <CardTitle>Broker Listings</CardTitle>
           <CardDescription>
-            Showing {brokers.length} brokers
+            Showing {brokers?.length || 0} brokers
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -87,7 +87,7 @@ export default async function BrokersAdminPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {brokers.length > 0 ? (
+              {brokers && brokers.length > 0 ? (
                 brokers.map(broker => (
                   <TableRow key={broker.id}>
                     <TableCell className="font-medium">

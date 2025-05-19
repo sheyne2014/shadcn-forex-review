@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f1f5f9"/>
+  <path d="M400 200L480 320H320L400 200Z" fill="#94a3b8"/>
+  <path d="M352 360H448V440H352V360Z" fill="#94a3b8"/>
+  <path d="M400 480C413.255 480 424 469.255 424 456C424 442.745 413.255 432 400 432C386.745 432 376 442.745 376 456C376 469.255 386.745 480 400 480Z" fill="#94a3b8"/>
+  <text x="400" y="520" font-family="system-ui, sans-serif" font-size="24" fill="#64748b" text-anchor="middle">Image not available</text>
+</svg> 

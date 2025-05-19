@@ -22,17 +22,17 @@ const footerLinks = [
       { label: 'Forex Brokers', href: '/best-brokers/forex' },
       { label: 'Stock Brokers', href: '/best-brokers/stocks' },
       { label: 'Crypto Brokers', href: '/best-brokers/crypto' },
-      { label: 'Compare Brokers', href: '/tools/compare' },
+      { label: 'Compare Brokers', href: '/compare' },
     ],
   },
   {
     title: 'Tools',
     links: [
-      { label: 'Broker Comparison', href: '/tools/compare' },
+      { label: 'Broker Comparison', href: '/compare' },
       { label: 'Trading Calculator', href: '/tools/calculator' },
-      { label: 'Broker Finder Quiz', href: '/tools/quiz' },
+      { label: 'Broker Finder Quiz', href: '/find-my-broker' },
       { label: 'Forex Converter', href: '/tools/converter' },
-      { label: 'Scam Broker Check', href: '/tools/scam-check' },
+      { label: 'Scam Broker Check', href: '/verify' },
     ],
   },
   {

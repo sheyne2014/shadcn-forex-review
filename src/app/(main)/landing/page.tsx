@@ -224,7 +224,7 @@ async function getSpecifiedBrokers() {
       min_deposit: 0,
       trading_fee: 0.005,
       supported_assets: ["Stocks", "ETFs", "Forex", "Futures", "Options", "Bonds", "Crypto"],
-      trading_platforms: "IBKR Trader Workstation, IBKR Mobile",
+      trading_platforms: "IBKR Trader Workstation, IBKR Mobile, IBKR WebTrader, IBKR API",
       rating: 4.8,
       regulations: "FCA, SEC, FINRA, IIROC, ASIC",
       country: "United States"
@@ -233,10 +233,10 @@ async function getSpecifiedBrokers() {
       id: "xtb",
       name: "XTB",
       logo_url: "https://placehold.co/200x200?text=XTB",
-      min_deposit: 250,
+      min_deposit: 100,
       trading_fee: 0,
       supported_assets: ["Forex", "Stocks", "ETFs", "Indices", "Commodities", "Crypto"],
-      trading_platforms: "xStation 5, MT4, Mobile Apps",
+      trading_platforms: "xStation 5, MT4, MT5, Mobile Apps, xStation WebTrader",
       rating: 4.7,
       regulations: "FCA, KNF, CNMV, IFSC",
       country: "Poland"
@@ -248,7 +248,7 @@ async function getSpecifiedBrokers() {
       min_deposit: 0,
       trading_fee: 0,
       supported_assets: ["Forex", "Indices", "Commodities", "Crypto"],
-      trading_platforms: "OANDA Trade, MT4, MT5, TradingView",
+      trading_platforms: "OANDA Trade, MT4, MT5, TradingView, Advanced Charting, Mobile Apps",
       rating: 4.7,
       regulations: "FCA, ASIC, CFTC, MAS",
       country: "United States"
@@ -272,7 +272,7 @@ async function getSpecifiedBrokers() {
       min_deposit: 1000,
       trading_fee: 0.1,
       supported_assets: ["Forex", "Stocks", "Options", "ETFs", "Funds", "Bonds"],
-      trading_platforms: "Advanced Trader, MT4, MT5",
+      trading_platforms: "Advanced Trader, MT4, MT5, Mobile Apps, SwissquoteGO",
       rating: 4.5,
       regulations: "FINMA, FCA, DFSA, MAS",
       country: "Switzerland"
@@ -281,10 +281,10 @@ async function getSpecifiedBrokers() {
       id: "startrader",
       name: "StarTrader",
       logo_url: "https://placehold.co/200x200?text=Star",
-      min_deposit: 200,
+      min_deposit: 100,
       trading_fee: 0,
       supported_assets: ["Forex", "Indices", "Commodities", "Stocks", "Crypto"],
-      trading_platforms: "StarTrader Pro, MT4, MT5, Mobile App",
+      trading_platforms: "StarTrader Pro, MT4, MT5, WebTrader, TradingView, Mobile Apps",
       rating: 4.6,
       regulations: "ASIC, FCA, CySEC",
       country: "Australia"
@@ -296,7 +296,7 @@ async function getSpecifiedBrokers() {
       min_deposit: 50,
       trading_fee: 0,
       supported_assets: ["Forex", "Indices", "Commodities", "Crypto"],
-      trading_platforms: "MT4, WebTrader, Mobile App",
+      trading_platforms: "MT4, MT5, WebTrader, Mobile Apps, TradingView",
       rating: 4.4,
       regulations: "ASIC, FCA, DFSA",
       country: "Australia"
@@ -322,7 +322,7 @@ async function getSpecifiedBrokers() {
     }
 
     // Format supported assets
-    let supportedAssetsDisplay = 'N/A';
+    let supportedAssetsDisplay = 'Multiple asset classes';
     if (broker.supported_assets) {
       if (Array.isArray(broker.supported_assets)) {
         supportedAssetsDisplay = broker.supported_assets.slice(0, 3).join(', ');
@@ -343,11 +343,11 @@ async function getSpecifiedBrokers() {
       badge: broker.badge || getBrokerBadge(broker),
       link: broker.website_url || `#${broker.id}`,
       features: {
-        min_deposit: broker.min_deposit ? `$${broker.min_deposit}` : 'N/A',
+        min_deposit: broker.min_deposit ? `$${broker.min_deposit}` : 'Varies by account',
         trading_fee: broker.trading_fee !== undefined && broker.trading_fee !== null ?
-          broker.trading_fee === 0 ? 'Commission-free' : `${broker.trading_fee}%` : 'N/A',
+          broker.trading_fee === 0 ? 'Commission-free' : `${broker.trading_fee}%` : 'Variable fees',
         supported_assets: supportedAssetsDisplay,
-        trading_platforms: broker.trading_platforms || 'N/A'
+        trading_platforms: broker.trading_platforms || 'Multiple platforms'
       },
     });
   }

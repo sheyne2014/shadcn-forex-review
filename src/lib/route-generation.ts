@@ -9,7 +9,7 @@ export async function getAllBrokerIds() {
     const { data, error } = await supabaseBrokerClient
       .from('brokers')
       .select('id')
-      .order('updated_at', { ascending: false });
+      .order('created_at', { ascending: false });
     
     if (error) {
       console.error('Error fetching broker IDs:', error);

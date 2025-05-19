@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 // Options broker data
-export const topBrokers = [
+const topBrokers = [
   {
     id: 1,
     name: "TD Ameritrade",

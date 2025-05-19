@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import * as LucideIcons from 'lucide-react';
+import { ComponentType } from 'react';
 
 interface ClientSideIconProps {
   name: string;
@@ -19,8 +20,17 @@ export function ClientSideIcon({ name, className }: ClientSideIconProps) {
     return null;
   }
 
-  // Get the icon component by name from the Lucide icons
-  const IconComponent = (LucideIcons as Record<string, React.ComponentType<any>>)[name];
+  // Filter out non-component exports from LucideIcons
+  const iconComponents = Object.entries(LucideIcons).reduce((acc, [key, value]) => {
+    // Check if it's a valid component (function or object with render method)
+    if (typeof value === 'function' && key !== 'createLucideIcon') {
+      acc[key] = value as ComponentType<any>;
+    }
+    return acc;
+  }, {} as Record<string, ComponentType<any>>);
+
+  // Get the icon component by name
+  const IconComponent = iconComponents[name];
 
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found in Lucide icons`);

@@ -36,9 +36,32 @@ export function SwapCalculator() {
     { value: "EURJPY", label: "EUR/JPY", buy: -2.1, sell: 0.3, category: "Minor Forex" },
     { value: "GBPJPY", label: "GBP/JPY", buy: -3.6, sell: 0.1, category: "Minor Forex" },
     { value: "EURCHF", label: "EUR/CHF", buy: -3.0, sell: -0.9, category: "Minor Forex" },
+    { value: "AUDCAD", label: "AUD/CAD", buy: -2.2, sell: -0.3, category: "Minor Forex" },
+    { value: "AUDNZD", label: "AUD/NZD", buy: -3.3, sell: -0.8, category: "Minor Forex" },
+    { value: "CADCHF", label: "CAD/CHF", buy: -2.0, sell: -0.5, category: "Minor Forex" },
+    { value: "AUDCHF", label: "AUD/CHF", buy: -2.3, sell: -0.4, category: "Minor Forex" },
+    { value: "NZDCAD", label: "NZD/CAD", buy: -2.7, sell: -0.6, category: "Minor Forex" },
+    { value: "USDSGD", label: "USD/SGD", buy: -2.4, sell: -0.5, category: "Exotic Forex" },
+    { value: "USDZAR", label: "USD/ZAR", buy: -4.5, sell: 0.2, category: "Exotic Forex" },
+    { value: "USDMXN", label: "USD/MXN", buy: -5.3, sell: 0.4, category: "Exotic Forex" },
+    { value: "EURTRY", label: "EUR/TRY", buy: -6.2, sell: 0.1, category: "Exotic Forex" },
+    { value: "USDTRY", label: "USD/TRY", buy: -6.8, sell: 0.3, category: "Exotic Forex" },
+    { value: "USDHKD", label: "USD/HKD", buy: -1.4, sell: -0.8, category: "Exotic Forex" },
+    { value: "USDNOK", label: "USD/NOK", buy: -2.8, sell: -0.4, category: "Exotic Forex" },
+    { value: "USDSEK", label: "USD/SEK", buy: -2.6, sell: -0.3, category: "Exotic Forex" },
+    { value: "USDPLN", label: "USD/PLN", buy: -3.7, sell: -0.2, category: "Exotic Forex" },
     { value: "XAUUSD", label: "Gold (XAU/USD)", buy: -5.2, sell: -1.5, category: "Metal" },
     { value: "XAGUSD", label: "Silver (XAG/USD)", buy: -4.3, sell: -1.2, category: "Metal" },
     { value: "USCRUDE", label: "US Crude Oil", buy: -4.8, sell: -2.1, category: "Energy" },
+    { value: "UKCRUDE", label: "UK Crude Oil", buy: -4.6, sell: -2.0, category: "Energy" },
+    { value: "US30", label: "Dow Jones 30", buy: -5.5, sell: -2.8, category: "Index" },
+    { value: "SPX500", label: "S&P 500", buy: -5.3, sell: -2.7, category: "Index" },
+    { value: "NASDAQ", label: "NASDAQ", buy: -5.7, sell: -2.9, category: "Index" },
+    { value: "UK100", label: "FTSE 100", buy: -4.8, sell: -2.4, category: "Index" },
+    { value: "GER40", label: "DAX 40", buy: -5.1, sell: -2.6, category: "Index" },
+    { value: "FRA40", label: "CAC 40", buy: -4.7, sell: -2.3, category: "Index" },
+    { value: "JPN225", label: "Nikkei 225", buy: -4.9, sell: -2.5, category: "Index" },
+    { value: "AUS200", label: "ASX 200", buy: -4.4, sell: -2.2, category: "Index" },
   ];
   
   // Update swap rate when instrument or position type changes
@@ -88,7 +111,7 @@ export function SwapCalculator() {
           <div className="space-y-2">
             <Label htmlFor="instrument-swap">Instrument</Label>
             <Select value={instrument} onValueChange={handleInstrumentChange}>
-              <SelectTrigger id="instrument-swap">
+              <SelectTrigger id="instrument-swap" className="bg-background">
                 <SelectValue placeholder="Select instrument" />
               </SelectTrigger>
               <SelectContent className="max-h-[400px]">
@@ -117,7 +140,7 @@ export function SwapCalculator() {
           <div className="space-y-2">
             <Label htmlFor="position-type-swap">Position Type</Label>
             <Select value={positionType} onValueChange={handlePositionTypeChange}>
-              <SelectTrigger id="position-type-swap">
+              <SelectTrigger id="position-type-swap" className="bg-background">
                 <SelectValue placeholder="Select position type" />
               </SelectTrigger>
               <SelectContent>
@@ -168,18 +191,23 @@ export function SwapCalculator() {
           <div className="space-y-2">
             <Label htmlFor="account-currency-swap">Account Currency</Label>
             <Select value={accountCurrency} onValueChange={setAccountCurrency}>
-              <SelectTrigger id="account-currency-swap">
+              <SelectTrigger id="account-currency-swap" className="bg-background">
                 <SelectValue placeholder="Select currency" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="USD">USD</SelectItem>
-                <SelectItem value="EUR">EUR</SelectItem>
-                <SelectItem value="GBP">GBP</SelectItem>
-                <SelectItem value="JPY">JPY</SelectItem>
-                <SelectItem value="AUD">AUD</SelectItem>
-                <SelectItem value="CAD">CAD</SelectItem>
-                <SelectItem value="CHF">CHF</SelectItem>
-                <SelectItem value="NZD">NZD</SelectItem>
+                <SelectItem value="USD">USD (US Dollar)</SelectItem>
+                <SelectItem value="EUR">EUR (Euro)</SelectItem>
+                <SelectItem value="GBP">GBP (British Pound)</SelectItem>
+                <SelectItem value="JPY">JPY (Japanese Yen)</SelectItem>
+                <SelectItem value="AUD">AUD (Australian Dollar)</SelectItem>
+                <SelectItem value="CAD">CAD (Canadian Dollar)</SelectItem>
+                <SelectItem value="CHF">CHF (Swiss Franc)</SelectItem>
+                <SelectItem value="NZD">NZD (New Zealand Dollar)</SelectItem>
+                <SelectItem value="SGD">SGD (Singapore Dollar)</SelectItem>
+                <SelectItem value="HKD">HKD (Hong Kong Dollar)</SelectItem>
+                <SelectItem value="SEK">SEK (Swedish Krona)</SelectItem>
+                <SelectItem value="NOK">NOK (Norwegian Krone)</SelectItem>
+                <SelectItem value="DKK">DKK (Danish Krone)</SelectItem>
               </SelectContent>
             </Select>
           </div>

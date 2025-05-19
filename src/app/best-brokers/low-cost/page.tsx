@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 // Low-cost broker data
-export const topBrokers = [
+const topBrokers = [
   {
     id: 1,
     name: "Interactive Brokers",

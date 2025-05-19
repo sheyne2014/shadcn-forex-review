@@ -21,7 +21,7 @@ interface QuizBrokerResult extends SupabaseBrokerRow {
 }
 
 export async function POST(request: Request) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 
   try {
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing quiz answers' }, { status: 400 });
     }
 
-    let query = supabase.from('brokers').select('* (id, name, logo_url, min_deposit, trading_fee, regulations, supported_assets, country, rating, description, url, created_at)');
+    let query = supabase.from('brokers').select('*');
 
     // Apply filters based on answers - This is a simplified example
     if (answers.deposit) {
@@ -78,21 +78,28 @@ export async function POST(request: Request) {
 
     // Simple scoring mechanism (example)
     const results: QuizBrokerResult[] = (brokers || []).map(broker => {
+      const typedBroker = broker as SupabaseBrokerRow;
       let score = 70; // Base score
+      
       if (answers.deposit) {
-        if (answers.deposit === 'small' && (broker.min_deposit || 0) < 100) score += 10;
-        if (answers.deposit === 'medium' && (broker.min_deposit || 0) >= 100 && (broker.min_deposit || 0) <= 500) score += 10;
+        const minDeposit = typedBroker.min_deposit ?? 0;
+        if (answers.deposit === 'small' && minDeposit < 100) score += 10;
+        if (answers.deposit === 'medium' && minDeposit >= 100 && minDeposit <= 500) score += 10;
       }
-      if (answers.priority === 'lowfees' && (broker.trading_fee || 100) < 1) score += 15;
-      if (answers.priority === 'regulation' && broker.regulations && broker.regulations.toLowerCase().includes('fca')) score +=10;
+      
+      if (answers.priority === 'lowfees' && (typedBroker.trading_fee ?? 100) < 1) score += 15;
+      
+      if (answers.priority === 'regulation' && typedBroker.regulations) {
+        if (typedBroker.regulations.toLowerCase().includes('fca')) score += 10;
+      }
 
       // Ensure score is capped at 100 or a desired max
       score = Math.min(score, 99); 
 
       return {
-        ...(broker as SupabaseBrokerRow), // Cast to ensure all fields from DB are there
-        logo_url: broker.logo_url || null,
-        supported_assets: broker.supported_assets || null,
+        ...typedBroker,
+        logo_url: typedBroker.logo_url || null,
+        supported_assets: typedBroker.supported_assets || null,
         match_score: score,
       };
     }).sort((a, b) => (b.match_score || 0) - (a.match_score || 0)); // Sort by score desc

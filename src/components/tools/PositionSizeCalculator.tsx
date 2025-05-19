@@ -9,7 +9,9 @@ import { Calculator, Percent } from "lucide-react";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -112,14 +114,29 @@ export function PositionSizeCalculator() {
         <div className="space-y-2">
           <Label htmlFor="account-currency-ps">Account Currency</Label>
           <Select value={accountCurrency} onValueChange={setAccountCurrency}>
-            <SelectTrigger id="account-currency-ps">
+            <SelectTrigger id="account-currency-ps" className="bg-background">
               <SelectValue placeholder="Select currency" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="USD">USD</SelectItem>
-              <SelectItem value="EUR">EUR</SelectItem>
-              <SelectItem value="GBP">GBP</SelectItem>
-              <SelectItem value="JPY">JPY</SelectItem>
+              <SelectGroup>
+                <SelectLabel>Main Currencies</SelectLabel>
+                <SelectItem value="USD">USD (US Dollar)</SelectItem>
+                <SelectItem value="EUR">EUR (Euro)</SelectItem>
+                <SelectItem value="GBP">GBP (British Pound)</SelectItem>
+                <SelectItem value="JPY">JPY (Japanese Yen)</SelectItem>
+                <SelectItem value="CHF">CHF (Swiss Franc)</SelectItem>
+                <SelectItem value="AUD">AUD (Australian Dollar)</SelectItem>
+                <SelectItem value="CAD">CAD (Canadian Dollar)</SelectItem>
+                <SelectItem value="NZD">NZD (New Zealand Dollar)</SelectItem>
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>Additional Currencies</SelectLabel>
+                <SelectItem value="SGD">SGD (Singapore Dollar)</SelectItem>
+                <SelectItem value="HKD">HKD (Hong Kong Dollar)</SelectItem>
+                <SelectItem value="SEK">SEK (Swedish Krona)</SelectItem>
+                <SelectItem value="NOK">NOK (Norwegian Krone)</SelectItem>
+                <SelectItem value="DKK">DKK (Danish Krone)</SelectItem>
+              </SelectGroup>
             </SelectContent>
           </Select>
         </div>

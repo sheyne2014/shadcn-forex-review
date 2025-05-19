@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function UnauthorizedPage({
-  searchParams,
-}: {
-  searchParams: { from?: string };
-}) {
+export default async function UnauthorizedPage(
+  props: {
+    searchParams: Promise<{ from?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const previousPath = searchParams.from || "/";
 
   return (

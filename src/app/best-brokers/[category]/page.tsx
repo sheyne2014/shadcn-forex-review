@@ -26,11 +26,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params
 }: {
-  params: {
+  params: Promise<{
     category: string;
-  }
+  }>
 }): Promise<Metadata> {
-  const { category } = params;
+  const { category } = await params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
 
@@ -218,11 +218,11 @@ const defaultCategoryContent = {
 export default async function BestCategoryBrokersPage({
   params
 }: {
-  params: {
+  params: Promise<{
     category: string;
-  }
+  }>
 }) {
-  const { category } = params;
+  const { category } = await params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
 

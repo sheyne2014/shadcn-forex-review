@@ -1,156 +1,179 @@
-import { MetadataRoute } from 'next';
-import { siteConfig } from '@/config/site';
-import { supabaseBrokerClient } from '@/lib/supabase/broker-client';
+import { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+/**
+ * Generate the sitemap for the website
+ * This improves SEO by providing search engines with a structured map of all pages
+ * 
+ * @returns Sitemap MetadataRoute object
+ */
+export default function sitemap(): MetadataRoute.Sitemap {
+  // Base URL from site config
   const baseUrl = siteConfig.url;
   
+  // Current date for lastModified
+  const currentDate = new Date();
+  
   // Main static pages
-  const staticRoutes = [
+  const staticPages = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1
-    },
-    {
-      url: `${baseUrl}/brokers`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     },
     {
-      url: `${baseUrl}/best-brokers`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8
+      url: `${baseUrl}/compare`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}/methodology`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6
+      url: `${baseUrl}/verify`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/find-my-broker`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/methodology`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3
+      lastModified: currentDate,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3
-    }
-  ];
-  
-  // Get all broker data for dynamic routes
-  const { data: brokers } = await supabaseBrokerClient
-    .from('brokers')
-    .select('id, created_at, updated_at')
-    .order('updated_at', { ascending: false });
-    
-  // Get all categories for dynamic routes
-  const { data: categories } = await supabaseBrokerClient
-    .from('categories')
-    .select('id');
-  
-  // Create dynamic broker routes
-  const brokerRoutes = brokers?.map(broker => ({
-    url: `${baseUrl}/broker/${broker.id}`,
-    lastModified: new Date(broker.updated_at || broker.created_at),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8
-  })) || [];
-  
-  // Create dynamic category routes
-  const categoryPaths = [
-    'forex', 'stocks', 'crypto', 'cfd', 'options', 'futures', 
-    'etf', 'commodities', 'beginners', 'advanced', 'professional', 
-    'low-spread', 'high-leverage', 'mobile', 'copy-trading'
+      lastModified: currentDate,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/disclaimer`,
+      lastModified: currentDate,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/forum`,
+      lastModified: currentDate,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/careers`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/press`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
   ];
 
-  const categoryRoutes = categoryPaths.map(category => ({
-    url: `${baseUrl}/best-brokers/${category}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8
-  }));
-  
-  // Create dynamic country routes
-  const countryPaths = [
-    'uk', 'us', 'australia', 'canada', 'singapore', 
-    'india', 'europe', 'asia'
+  // Tool pages
+  const toolPages = [
+    {
+      url: `${baseUrl}/tools/calculator`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/converter`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
   ];
-  
-  const countryRoutes = countryPaths.map(country => ({
-    url: `${baseUrl}/best-brokers/${country}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7
-  }));
-  
-  // Create comparison routes for top brokers (combinations of top 5 brokers)
-  const comparisonRoutes = [];
-  if (brokers && brokers.length > 1) {
-    const topBrokers = brokers.slice(0, 10); // Use top 10 brokers for combinations
-    
-    for (let i = 0; i < topBrokers.length; i++) {
-      for (let j = i + 1; j < topBrokers.length; j++) {
-        comparisonRoutes.push({
-          url: `${baseUrl}/compare/${topBrokers[i].id}-vs-${topBrokers[j].id}`,
-          lastModified: new Date(),
-          changeFrequency: 'weekly' as const,
-          priority: 0.7
-        });
-      }
-    }
-  }
-  
-  // Get blog posts if they exist
-  let blogRoutes: MetadataRoute.Sitemap = [];
-  try {
-    const { data: blogPosts } = await supabaseBrokerClient
-      .from('blog_posts')
-      .select('slug, created_at, updated_at')
-      .order('updated_at', { ascending: false });
-      
-    blogRoutes = blogPosts?.map(post => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.updated_at || post.created_at),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6
-    })) || [];
-  } catch (error) {
-    console.error('Error fetching blog posts for sitemap:', error);
-  }
-  
-  // Combine all routes
-  return [
-    ...staticRoutes,
-    ...brokerRoutes,
-    ...categoryRoutes,
-    ...countryRoutes,
-    ...comparisonRoutes,
-    ...blogRoutes
+
+  // Best broker pages
+  const brokerPages = [
+    {
+      url: `${baseUrl}/best-brokers`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best-brokers/forex`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/best-brokers/stocks`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/best-brokers/crypto`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/best-brokers/beginners`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
   ];
+
+  // Blog related pages
+  const blogPages = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/guides`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/news`,
+      lastModified: currentDate, 
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    },
+  ];
+
+  // Combine all pages to generate the full sitemap
+  return [...staticPages, ...toolPages, ...brokerPages, ...blogPages];
 }

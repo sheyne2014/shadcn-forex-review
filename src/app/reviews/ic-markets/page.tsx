@@ -92,6 +92,7 @@ export default function ICMarketsReviewPage() {
       { name: "MetaTrader 5", isAvailable: true, details: "Latest version with advanced features and improved charts" },
       { name: "cTrader", isAvailable: true, details: "Advanced platform with level 2 pricing and enhanced execution" },
       { name: "WebTrader", isAvailable: true, details: "Browser-based trading without downloads" },
+      { name: "TradingView", isAvailable: true, details: "Integration with advanced charting platform" },
       { name: "Mobile Apps", isAvailable: true, details: "iOS and Android apps for all platforms" },
       { name: "API Trading", isAvailable: true, details: "FIX API available for algorithmic traders" },
     ],

@@ -6,14 +6,15 @@ import { Button } from "@/components/ui/button";
 import { getBlogPosts } from "@/lib/supabase/blog-client";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
+  const params = await props.params;
   const slug = params.slug;
-  
+
   // Format the category name from the slug
   const categoryName = slug
     .split('-')
@@ -48,9 +49,10 @@ function formatDate(dateString?: string) {
   });
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage(props: CategoryPageProps) {
+  const params = await props.params;
   const slug = params.slug;
-  
+
   // Format the category name from the slug
   const categoryName = slug
     .split('-')
@@ -60,7 +62,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   // In a real implementation, you would:
   // 1. Get the category ID from the slug
   // 2. Use that ID to filter blog posts
-  
+
   // For now, we'll just filter by matching the category slug with potential category_id values
   // or just use the slug as our filter criteria
   const { data: blogPosts = [], error } = await getBlogPosts({ 
@@ -97,7 +99,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogPosts.length > 0 ? (
+        {blogPosts && blogPosts.length > 0 ? (
           blogPosts.map((post) => (
             <Link href={post.slug ? `/blog/${post.slug}` : `/blog/${post.id}`} key={post.id} className="group">
               <Card className="h-full hover:shadow-md transition-all">

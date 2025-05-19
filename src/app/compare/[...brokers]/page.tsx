@@ -17,11 +17,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { brokers: string[] } 
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: { 
+    params: Promise<{ brokers: string[] }> 
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   // Format should be /compare/broker1-vs-broker2
   const brokers = params?.brokers || [];
   if (brokers.length !== 1) {
@@ -30,27 +31,27 @@ export async function generateMetadata({
       description: "Compare trading brokers side by side to find the best platform for your needs. Features detailed metrics on fees, platforms, regulation and more."
     };
   }
-  
+
   // Parse the broker comparison string (broker1-vs-broker2)
   const comparisonString = brokers[0];
   const brokerNames = comparisonString.split('-vs-').map(part => 
     part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   );
-  
+
   if (brokerNames.length !== 2) {
     return {
       title: `Compare Trading Brokers | ${siteConfig.name}`,
       description: "Compare trading brokers side by side to find the best platform for your needs. Features detailed metrics on fees, platforms, regulation and more."
     };
   }
-  
+
   const year = new Date().getFullYear();
   const month = new Date().toLocaleString('default', { month: 'long' });
-  
+
   // Create SEO-friendly title and description
   const title = `${brokerNames[0]} vs ${brokerNames[1]} | Detailed ${year} Comparison | ${siteConfig.name}`;
   const description = `Compare ${brokerNames[0]} vs ${brokerNames[1]} side by side. Updated ${month} ${year} with latest fees, trading features, platforms, and expert analysis to help you choose the best broker.`;
-  
+
   return {
     title,
     description,
@@ -165,13 +166,14 @@ async function generateComparisonJsonLd(comparisonString: string, broker1Name: s
   };
 }
 
-export default async function CompareBrokersPage({ 
-  params 
-}: { 
-  params: { brokers: string[] } 
-}) {
+export default async function CompareBrokersPage(
+  props: { 
+    params: Promise<{ brokers: string[] }> 
+  }
+) {
+  const params = await props.params;
   const brokers = params?.brokers || [];
-  
+
   // Handle invalid paths
   if (brokers.length !== 1) {
     // Show broker selection UI
@@ -198,27 +200,27 @@ export default async function CompareBrokersPage({
       </div>
     );
   }
-  
+
   // Parse the broker comparison string (broker1-vs-broker2)
   const comparisonString = brokers[0];
   const brokerParts = comparisonString.split('-vs-');
-  
+
   if (brokerParts.length !== 2) {
     notFound();
   }
-  
+
   // Parse broker IDs from the comparison string
   const broker1Id = brokerParts[0];
   const broker2Id = brokerParts[1];
-  
+
   // Format for display
   const brokerNames = brokerParts.map(part => 
     part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   );
-  
+
   // Generate the JSON-LD structured data
   const jsonLd = await generateComparisonJsonLd(comparisonString, brokerNames[0], brokerNames[1]);
-  
+
   return (
     <>
       {/* Add the JSON-LD structured data */}
@@ -237,8 +239,11 @@ export default async function CompareBrokersPage({
         
         <Suspense fallback={<div>Loading comparison data...</div>}>
           <BrokerCompareDetails 
-            broker1Id={broker1Id} 
-            broker2Id={broker2Id} 
+            brokerIds={[broker1Id, broker2Id]}
+            lastUpdated={{
+              month: new Date().toLocaleString('default', { month: 'long' }),
+              year: new Date().getFullYear().toString()
+            }}
           />
         </Suspense>
       </div>

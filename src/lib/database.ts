@@ -3,7 +3,6 @@ import {
   Broker, BrokerInsert, BrokerUpdate,
   Category, CategoryInsert, 
   Review, ReviewInsert,
-  Tool, ToolInsert,
   BlogPost, BlogPostInsert
 } from './database-types';
 
@@ -301,49 +300,6 @@ export const db = {
         .eq('id', id);
       
       if (error) throw error;
-    }
-  },
-
-  /**
-   * Tools
-   */
-  tools: {
-    // Get all tools
-    getAll: async (): Promise<Tool[]> => {
-      const client = createClient();
-      const { data, error } = await client
-        .from('tools')
-        .select('*')
-        .order('name');
-      
-      if (error) throw error;
-      return data || [];
-    },
-
-    // Get tool by ID
-    getById: async (id: string): Promise<Tool | null> => {
-      const client = createClient();
-      const { data, error } = await client
-        .from('tools')
-        .select('*')
-        .eq('id', id)
-        .single();
-      
-      if (error && error.code !== 'PGRST116') throw error;
-      return data;
-    },
-
-    // Create a tool
-    create: async (tool: ToolInsert): Promise<Tool> => {
-      const client = createClient();
-      const { data, error } = await client
-        .from('tools')
-        .insert(tool)
-        .select()
-        .single();
-      
-      if (error) throw error;
-      return data;
     }
   },
 

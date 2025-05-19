@@ -28,9 +28,9 @@ export default async function AdminPage() {
   const userCount = 124;
   
   // Calculate stats
-  const brokerCount = brokers.length;
-  const blogPostCount = blogPosts.length;
-  const reviewCount = brokers.reduce((count, broker) => count + (broker.reviews?.length || 0), 0);
+  const brokerCount = brokers?.length || 0;
+  const blogPostCount = blogPosts?.length || 0;
+  const reviewCount = brokers?.reduce((count, broker) => count + (broker.reviews?.length || 0), 0) || 0;
   
   return (
     <div className="container max-w-7xl mx-auto px-4 py-10">
@@ -94,7 +94,7 @@ export default async function AdminPage() {
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Recent Brokers</h3>
               <ul className="space-y-2">
-                {brokers.slice(0, 3).map((broker) => (
+                {brokers && brokers.slice(0, 3).map((broker) => (
                   <li key={broker.id} className="flex justify-between items-center">
                     <span className="truncate">{broker.name}</span>
                     <Button size="sm" variant="ghost" asChild>
@@ -127,7 +127,7 @@ export default async function AdminPage() {
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Recent Posts</h3>
               <ul className="space-y-2">
-                {blogPosts.slice(0, 3).map((post) => (
+                {blogPosts && blogPosts.slice(0, 3).map((post) => (
                   <li key={post.id} className="flex justify-between items-center">
                     <span className="truncate">{post.title}</span>
                     <Button size="sm" variant="ghost" asChild>

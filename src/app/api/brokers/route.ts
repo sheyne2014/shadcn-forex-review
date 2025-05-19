@@ -27,7 +27,7 @@ export async function GET() {
         
         // Create a features object based on broker's attributes
         const features = {
-          platforms: broker.trading_platforms || '',
+          platforms: (broker as any).trading_platforms || '',
           complexity: broker.rating ? 
             broker.rating >= 4.5 ? 'high' : 
             broker.rating >= 3.5 ? 'medium' : 'low' 

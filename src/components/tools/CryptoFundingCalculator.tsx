@@ -72,10 +72,10 @@ export function CryptoFundingCalculator() {
           <div className="space-y-2">
             <Label htmlFor="crypto-funding">Cryptocurrency</Label>
             <Select value={crypto} onValueChange={handleCryptoChange}>
-              <SelectTrigger id="crypto-funding">
+              <SelectTrigger id="crypto-funding" className="bg-background">
                 <SelectValue placeholder="Select cryptocurrency" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-[400px]">
                 {cryptocurrencies.map((crypto) => (
                   <SelectItem key={crypto.value} value={crypto.value}>
                     {crypto.label}
@@ -88,7 +88,7 @@ export function CryptoFundingCalculator() {
           <div className="space-y-2">
             <Label htmlFor="position-funding">Position</Label>
             <Select value={position} onValueChange={setPosition}>
-              <SelectTrigger id="position-funding">
+              <SelectTrigger id="position-funding" className="bg-background">
                 <SelectValue placeholder="Select position" />
               </SelectTrigger>
               <SelectContent>

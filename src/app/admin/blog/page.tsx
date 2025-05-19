@@ -74,7 +74,7 @@ export default async function BlogAdminPage() {
         <CardHeader>
           <CardTitle>Blog Posts</CardTitle>
           <CardDescription>
-            Showing {blogPosts.length} posts
+            Showing {blogPosts?.length || 0} posts
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -88,7 +88,7 @@ export default async function BlogAdminPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {blogPosts.length > 0 ? (
+              {blogPosts && blogPosts.length > 0 ? (
                 blogPosts.map(post => (
                   <TableRow key={post.id}>
                     <TableCell className="font-medium">{post.title}</TableCell>

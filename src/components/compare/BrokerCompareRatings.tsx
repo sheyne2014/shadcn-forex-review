@@ -2,6 +2,7 @@
 
 import { BrokerDetails } from "@/lib/brokers";
 import { Progress } from "@/components/ui/progress";
+import { ChartBar } from "lucide-react";
 
 interface BrokerCompareRatingsProps {
   broker1: BrokerDetails;
@@ -56,11 +57,15 @@ export function BrokerCompareRatings({ broker1, broker2 }: BrokerCompareRatingsP
   ];
 
   return (
-    <div className="p-6 bg-card border rounded-lg">
-      <h2 className="text-2xl font-bold mb-6">Ratings Comparison</h2>
+    <div className="p-6 bg-card border rounded-lg shadow-sm max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold mb-6 flex items-center justify-center">
+        <span className="inline-block w-1.5 h-6 bg-primary mr-2 rounded-sm"></span>
+        Ratings Comparison
+        <ChartBar className="ml-2 h-5 w-5 text-primary/70" />
+      </h2>
       
-      <div className="grid grid-cols-12 mb-2 text-sm font-medium">
-        <div className="col-span-3">Category</div>
+      <div className="grid grid-cols-12 mb-3 pb-2 border-b text-sm font-semibold">
+        <div className="col-span-3 text-center">Category</div>
         <div className="col-span-4 text-center">{broker1.name}</div>
         <div className="col-span-1"></div>
         <div className="col-span-4 text-center">{broker2.name}</div>
@@ -77,35 +82,47 @@ export function BrokerCompareRatings({ broker1, broker2 }: BrokerCompareRatingsP
         const isTie = category.value1 === category.value2;
         
         return (
-          <div key={index} className="grid grid-cols-12 items-center mb-6">
-            <div className="col-span-3 text-sm font-medium">{category.name}</div>
+          <div key={index} className={`grid grid-cols-12 items-center py-3 ${index !== categories.length - 1 ? 'border-b border-border/30' : ''}`}>
+            <div className="col-span-3 text-sm font-medium text-center">{category.name}</div>
             
             <div className="col-span-4 pr-3">
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center justify-between mb-1.5">
                 <span className={`text-sm ${isHigher1 ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
                   {category.value1.toFixed(1)}
                 </span>
+                <span className="text-xs text-muted-foreground">/ {category.max.toFixed(1)}</span>
               </div>
-              <Progress value={percent1} className={`h-2 ${isHigher1 ? 'bg-primary/20' : 'bg-muted'}`} />
+              <Progress 
+                value={percent1} 
+                className={`h-2.5 ${isHigher1 ? 'bg-primary/20' : 'bg-muted'}`} 
+              />
             </div>
             
             <div className="col-span-1 flex justify-center">
-              <div className="w-6 h-6 rounded-full bg-muted/50 flex items-center justify-center text-[10px] font-medium">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium ${isTie ? 'bg-muted/50' : (isHigher1 ? 'bg-primary/20 text-primary' : (isHigher2 ? 'bg-primary/20 text-primary' : 'bg-muted/50'))}`}>
                 {isTie ? "=" : (isHigher1 ? ">" : "<")}
               </div>
             </div>
             
             <div className="col-span-4 pl-3">
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center justify-between mb-1.5">
                 <span className={`text-sm ${isHigher2 ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
                   {category.value2.toFixed(1)}
                 </span>
+                <span className="text-xs text-muted-foreground">/ {category.max.toFixed(1)}</span>
               </div>
-              <Progress value={percent2} className={`h-2 ${isHigher2 ? 'bg-primary/20' : 'bg-muted'}`} />
+              <Progress 
+                value={percent2} 
+                className={`h-2.5 ${isHigher2 ? 'bg-primary/20' : 'bg-muted'}`} 
+              />
             </div>
           </div>
         );
       })}
+      
+      <div className="text-xs text-muted-foreground mt-4 italic text-center">
+        * All ratings based on our comprehensive analysis as of May 2025
+      </div>
     </div>
   );
 } 

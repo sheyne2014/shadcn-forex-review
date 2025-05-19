@@ -69,10 +69,10 @@ export function CryptoPositionCalculator() {
           <div className="space-y-2">
             <Label htmlFor="crypto">Cryptocurrency</Label>
             <Select value={crypto} onValueChange={setCrypto}>
-              <SelectTrigger id="crypto">
+              <SelectTrigger id="crypto" className="bg-background">
                 <SelectValue placeholder="Select cryptocurrency" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-[400px]">
                 {cryptocurrencies.map((crypto) => (
                   <SelectItem key={crypto.value} value={crypto.value}>
                     {crypto.label}

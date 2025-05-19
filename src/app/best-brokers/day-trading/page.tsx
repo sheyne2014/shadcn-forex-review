@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 // Day trading broker data
-export const topBrokers = [
+const topBrokers = [
   {
     id: 1,
     name: "Interactive Brokers",

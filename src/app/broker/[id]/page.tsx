@@ -13,9 +13,9 @@ import { siteConfig } from "@/config/site";
 import { getAllBrokerIds } from "@/lib/route-generation";
 
 interface BrokerPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // Generate static params for all broker pages
@@ -27,30 +27,31 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: BrokerPageProps): Promise<Metadata> {
+export async function generateMetadata(props: BrokerPageProps): Promise<Metadata> {
+  const params = await props.params;
   const id = params.id;
   const { data: broker, error } = await getBrokerById(id);
-  
+
   if (error || !broker) {
     return {
       title: "Broker Not Found | BrokerAnalysis",
       description: "The requested broker information could not be found."
     };
   }
-  
+
   // Format current date for the review
   const currentDate = new Date();
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const month = monthNames[currentDate.getMonth()];
   const year = currentDate.getFullYear();
-  
+
   // Generate primary and secondary keywords
   const primaryKeyword = `${broker.name} Review`;
   const secondaryKeyword = `Best ${broker.categories?.[0]?.name || 'Trading'} Platform`;
 
   // Create a more descriptive meta description
   const metaDescription = `${broker.description?.slice(0, 120) || `${broker.name} is a ${broker.categories?.[0]?.name || 'trading'} broker offering various financial instruments`} with ${broker.min_deposit ? `$${broker.min_deposit} min deposit` : 'competitive fees'} and ${broker.rating ? `${broker.rating}/5 rating` : 'professional service'}.`;
-  
+
   return {
     title: `${primaryKeyword} | ${secondaryKeyword} | ${siteConfig.name}`,
     description: metaDescription.length > 160 ? metaDescription.slice(0, 157) + '...' : metaDescription,
@@ -149,15 +150,16 @@ function generateBrokerJsonLd(broker: any) {
   return `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
 }
 
-export default async function BrokerDetailPage({ params }: BrokerPageProps) {
+export default async function BrokerDetailPage(props: BrokerPageProps) {
+  const params = await props.params;
   const id = params.id;
   const { data: broker, error } = await getBrokerById(id);
-  
+
   if (error || !broker) {
     console.error("Error fetching broker:", error);
     notFound();
   }
-  
+
   // In a real app, this would make an API call to get real-time verification
   // Simulating the verification using FireCrawl scraper
   const legitimacyData = {
@@ -165,7 +167,7 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
     regulatoryStatus: `${broker.name} appears to be properly regulated by ${broker.regulations || "N/A"}`,
     warningFlags: []
   };
-  
+
   // In a real app, this would make an API call to get latest news
   // Simulating news data using FireCrawl scraper
   const newsData = [
@@ -189,13 +191,13 @@ export default async function BrokerDetailPage({ params }: BrokerPageProps) {
     "Wide range of trading instruments",
     "Advanced trading platform"
   ];
-  
+
   const cons = [
     "Limited educational resources",
     "Customer support can be slow",
     "Higher fees for some instruments"
   ];
-  
+
   // Sample features (could be stored in database in the future)
   const features = {
     "Trading Platforms": "MT4, MT5, WebTrader",

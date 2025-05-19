@@ -102,10 +102,10 @@ export function CryptoConverter() {
           <div className="space-y-2">
             <Label htmlFor="from-crypto">From</Label>
             <Select value={fromCrypto} onValueChange={setFromCrypto}>
-              <SelectTrigger id="from-crypto">
-                <SelectValue placeholder="Select currency" />
+              <SelectTrigger id="from-crypto" className="bg-background">
+                <SelectValue placeholder="Select cryptocurrency" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-[400px]">
                 {cryptocurrencies.map((crypto) => (
                   <SelectItem key={`from-${crypto.value}`} value={crypto.value}>
                     {crypto.label}
@@ -118,10 +118,10 @@ export function CryptoConverter() {
           <div className="space-y-2">
             <Label htmlFor="to-crypto">To</Label>
             <Select value={toCrypto} onValueChange={setToCrypto}>
-              <SelectTrigger id="to-crypto">
-                <SelectValue placeholder="Select currency" />
+              <SelectTrigger id="to-crypto" className="bg-background">
+                <SelectValue placeholder="Select cryptocurrency or currency" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-[400px]">
                 {cryptocurrencies.map((crypto) => (
                   <SelectItem key={`to-${crypto.value}`} value={crypto.value}>
                     {crypto.label}

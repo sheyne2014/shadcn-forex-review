@@ -79,7 +79,7 @@ export function MarginCalculator() {
           <div className="space-y-2">
             <Label htmlFor="instrument">Instrument</Label>
             <Select value={instrument} onValueChange={setInstrument}>
-              <SelectTrigger id="instrument">
+              <SelectTrigger id="instrument" className="bg-background">
                 <SelectValue placeholder="Select instrument" />
               </SelectTrigger>
               <SelectContent className="max-h-[400px]">
@@ -152,18 +152,23 @@ export function MarginCalculator() {
         <div className="space-y-2">
           <Label htmlFor="account-currency-margin">Account Currency</Label>
           <Select value={accountCurrency} onValueChange={setAccountCurrency}>
-            <SelectTrigger id="account-currency-margin">
+            <SelectTrigger id="account-currency-margin" className="bg-background">
               <SelectValue placeholder="Select currency" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="USD">USD</SelectItem>
-              <SelectItem value="EUR">EUR</SelectItem>
-              <SelectItem value="GBP">GBP</SelectItem>
-              <SelectItem value="JPY">JPY</SelectItem>
-              <SelectItem value="AUD">AUD</SelectItem>
-              <SelectItem value="CAD">CAD</SelectItem>
-              <SelectItem value="CHF">CHF</SelectItem>
-              <SelectItem value="NZD">NZD</SelectItem>
+              <SelectItem value="USD">USD (US Dollar)</SelectItem>
+              <SelectItem value="EUR">EUR (Euro)</SelectItem>
+              <SelectItem value="GBP">GBP (British Pound)</SelectItem>
+              <SelectItem value="JPY">JPY (Japanese Yen)</SelectItem>
+              <SelectItem value="AUD">AUD (Australian Dollar)</SelectItem>
+              <SelectItem value="CAD">CAD (Canadian Dollar)</SelectItem>
+              <SelectItem value="CHF">CHF (Swiss Franc)</SelectItem>
+              <SelectItem value="NZD">NZD (New Zealand Dollar)</SelectItem>
+              <SelectItem value="SGD">SGD (Singapore Dollar)</SelectItem>
+              <SelectItem value="HKD">HKD (Hong Kong Dollar)</SelectItem>
+              <SelectItem value="SEK">SEK (Swedish Krona)</SelectItem>
+              <SelectItem value="NOK">NOK (Norwegian Krone)</SelectItem>
+              <SelectItem value="DKK">DKK (Danish Krone)</SelectItem>
             </SelectContent>
           </Select>
         </div>

@@ -1,17 +1,38 @@
-// Import MCP SDK for client-side integration
-import { MCP } from "@modelcontextprotocol/sdk";
+// Mock implementation of MCP client
 import { env } from "@/env";
-
-// Create an instance of MCP client with our API key
-export const mcpClient = new MCP({
-  apiKey: env.MCP_API_KEY || "",
-});
 
 // Type for chat history
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
 }
+
+// Mock MCP client class
+export class MCP {
+  private apiKey: string;
+
+  constructor(config: { apiKey: string }) {
+    this.apiKey = config.apiKey;
+  }
+
+  async run(model: string, options: any) {
+    console.log(`Mock MCP client running ${model} with options:`, options);
+    return {
+      choices: [
+        {
+          message: {
+            content: "This is a mock response from the MCP client. The actual integration is disabled in production builds."
+          }
+        }
+      ]
+    };
+  }
+}
+
+// Create an instance of MCP client with our API key
+export const mcpClient = new MCP({
+  apiKey: env.MCP_API_KEY || "",
+});
 
 // Function to get answers from MCP based on context and user query
 export async function getContextualAnswer(query: string, history: ChatMessage[], context: string) {

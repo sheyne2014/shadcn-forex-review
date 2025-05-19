@@ -138,7 +138,7 @@ export function FuturesMarginCalculator() {
         <div className="space-y-2">
           <Label htmlFor="futures-contract">Futures Contract</Label>
           <Select value={contract} onValueChange={setContract}>
-            <SelectTrigger id="futures-contract">
+            <SelectTrigger id="futures-contract" className="bg-background">
               <SelectValue placeholder="Select futures contract" />
             </SelectTrigger>
             <SelectContent className="max-h-[400px]">

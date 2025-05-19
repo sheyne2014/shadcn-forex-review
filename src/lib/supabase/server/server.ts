@@ -6,7 +6,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { env } from "@/env";
 
 export async function createClient() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return createServerClient(
     env.NEXT_PUBLIC_SUPABASE_URL,

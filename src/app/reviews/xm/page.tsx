@@ -92,6 +92,7 @@ export default function XMReviewPage() {
       { name: "MetaTrader 5", isAvailable: true, details: "Desktop, web, and mobile versions" },
       { name: "WebTrader", isAvailable: true, details: "Browser-based trading" },
       { name: "Mobile Apps", isAvailable: true, details: "iOS and Android apps available" },
+      { name: "XM Trading Terminal", isAvailable: true, details: "Enhanced proprietary platform integration" },
       { name: "API Trading", isAvailable: false, details: "Not available" },
       { name: "Proprietary Platform", isAvailable: false, details: "Not available" },
     ],

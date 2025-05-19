@@ -91,6 +91,7 @@ export default function PepperstoneReviewPage() {
       { name: "MetaTrader 4", isAvailable: true, details: "Full-featured desktop, web, and mobile versions" },
       { name: "MetaTrader 5", isAvailable: true, details: "Advanced platform with additional features and timeframes" },
       { name: "cTrader", isAvailable: true, details: "Advanced platform with depth of market and cAlgo" },
+      { name: "TradingView", isAvailable: true, details: "Integration with advanced charting platform" },
       { name: "WebTrader", isAvailable: true, details: "Browser-based trading for MT4/MT5" },
       { name: "Mobile Apps", isAvailable: true, details: "iOS and Android apps for all platforms" },
       { name: "API Trading", isAvailable: true, details: "FIX API available for institutional clients" },

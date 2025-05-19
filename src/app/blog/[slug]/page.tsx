@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function SimpleTestPage({ params }: { params: { slug: string } }) {
+export default async function SimpleTestPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   return (
     <div className="container max-w-4xl mx-auto px-4 py-10">
       <div className="mb-8">
