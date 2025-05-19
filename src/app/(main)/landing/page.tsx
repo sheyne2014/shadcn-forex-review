@@ -481,69 +481,147 @@ export default async function LandingPage() {
 
   return (
     <div className="space-y-16 py-12">
-      {/* Hero section - Enhanced with modern design elements */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6 relative">
-            {/* Decorative elements */}
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-20 -right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
+      {/* Hero section - Redesigned to match OKX.com style with dark background and mobile mockups */}
+      <section className="w-full bg-black py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-6 relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-20 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-20 -right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
 
-            <Badge className="px-3 py-1 text-sm bg-primary/10 hover:bg-primary/20 transition-colors">
-              <ClientSideIcon name="Sparkles" className="h-3.5 w-3.5 mr-1.5" /> Trusted by traders worldwide
-            </Badge>
+              <Badge className="px-3 py-1 text-sm bg-primary/10 hover:bg-primary/20 transition-colors">
+                <ClientSideIcon name="Sparkles" className="h-3.5 w-3.5 mr-1.5" /> Trusted by traders worldwide
+              </Badge>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight relative">
-              Find the <span className="text-primary relative">
-                Perfect Broker
-                <span className="absolute bottom-1 left-0 w-full h-2 bg-primary/20 -z-10 rounded-full"></span>
-              </span> for Your Trading Journey
-            </h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-white">
+                Find the <span className="text-primary relative">
+                  Perfect Broker
+                  <span className="absolute bottom-1 left-0 w-full h-2 bg-primary/20 -z-10 rounded-full"></span>
+                </span> for Your Trading Journey
+              </h1>
 
-            <p className="text-xl text-muted-foreground">
-              Expert reviews, side-by-side comparisons, and personalized recommendations to help you make the right choice.
-            </p>
+              <p className="text-xl text-gray-400">
+                Expert reviews, side-by-side comparisons, and personalized recommendations to help you make the right choice.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Button size="lg" className="pulse-on-hover bg-primary hover:bg-primary/90 shadow-lg" asChild>
-                <Link href="/tools/quiz">
-                  <span className="flex items-center">
-                    <ClientSideIcon name="Search" className="mr-2 h-4 w-4" /> Find My Broker <ClientSideIcon name="ArrowRight" className="ml-2 h-4 w-4" />
-                  </span>
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="hover-glow" asChild>
-                <Link href="/tools/compare">
-                  <span className="flex items-center">
-                    <ClientSideIcon name="ArrowLeftRight" className="mr-2 h-4 w-4" /> Compare Brokers
-                  </span>
-                </Link>
-              </Button>
-            </div>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <Button size="lg" className="pulse-on-hover bg-primary hover:bg-primary/90 shadow-lg" asChild>
+                  <Link href="/tools/quiz">
+                    <span className="flex items-center">
+                      <ClientSideIcon name="Search" className="mr-2 h-4 w-4" /> Find My Broker <ClientSideIcon name="ArrowRight" className="ml-2 h-4 w-4" />
+                    </span>
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="hover-glow border-gray-700 text-white" asChild>
+                  <Link href="/tools/compare">
+                    <span className="flex items-center">
+                      <ClientSideIcon name="ArrowLeftRight" className="mr-2 h-4 w-4" /> Compare Brokers
+                    </span>
+                  </Link>
+                </Button>
+              </div>
 
-            <div className="flex flex-wrap gap-6 pt-6">
-              {[
-                { icon: 'ShieldCheck', text: 'Only Regulated Brokers', color: 'text-green-500' },
-                { icon: 'Star', text: 'Expert Reviews', color: 'text-amber-500' },
-                { icon: 'Zap', text: 'Fast Comparison', color: 'text-blue-500' }
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-2 bg-muted/30 px-3 py-2 rounded-full">
-                  <div className={`h-8 w-8 rounded-full flex items-center justify-center ${item.color} bg-white/90 dark:bg-black/30 shadow-sm`}>
-                    <ClientSideIcon name={item.icon} className="h-4 w-4" />
+              <div className="flex flex-wrap gap-6 pt-6">
+                {[
+                  { icon: 'ShieldCheck', text: 'Only Regulated Brokers', color: 'text-green-500' },
+                  { icon: 'Star', text: 'Expert Reviews', color: 'text-amber-500' },
+                  { icon: 'Zap', text: 'Fast Comparison', color: 'text-blue-500' }
+                ].map((item) => (
+                  <div key={item.text} className="flex items-center gap-2 bg-gray-900 px-3 py-2 rounded-full">
+                    <div className={`h-8 w-8 rounded-full flex items-center justify-center ${item.color} bg-gray-800 shadow-sm`}>
+                      <ClientSideIcon name={item.icon} className="h-4 w-4" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-300">{item.text}</span>
                   </div>
-                  <span className="text-sm font-medium">{item.text}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="relative h-[450px] rounded-xl overflow-hidden shadow-xl hidden lg:block hover-lift">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent z-10"></div>
-            <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/50 backdrop-blur-md rounded-full px-4 py-2 shadow-lg z-20 flex items-center">
-              <ClientSideIcon name="BarChart3" className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm font-medium">Live Market Data</span>
+            <div className="relative h-[500px] hidden lg:flex items-center justify-center">
+              {/* Device mockup */}
+              <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
+                <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                <div className="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-900">
+                  {/* Mobile screen content - broker comparison */}
+                  <div className="w-full h-full overflow-hidden bg-gray-50 dark:bg-gray-900">
+                    {/* Mobile app header */}
+                    <div className="bg-primary p-4">
+                      <div className="flex justify-between items-center">
+                        <div className="text-white font-bold">ForX</div>
+                        <div className="flex gap-2">
+                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
+                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Mobile comparison screen */}
+                    <div className="p-3">
+                      <div className="text-xs font-bold mb-2 dark:text-gray-300">Side-by-Side Comparison</div>
+                      
+                      {/* Broker comparison cards */}
+                      <div className="flex gap-2 mb-4">
+                        <div className="bg-white dark:bg-gray-800 p-2 rounded-lg flex-1 shadow-sm">
+                          <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                          <div className="space-y-1">
+                            <div className="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
+                            <div className="h-3 w-2/3 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                            <div className="h-3 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                          </div>
+                        </div>
+                        <div className="bg-white dark:bg-gray-800 p-2 rounded-lg flex-1 shadow-sm">
+                          <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                          <div className="space-y-1">
+                            <div className="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
+                            <div className="h-3 w-2/3 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                            <div className="h-3 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Comparison table */}
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
+                        <div className="text-xs font-medium dark:text-white mb-2">Feature Comparison</div>
+                        <div className="space-y-2">
+                          {[1, 2, 3, 4].map((i) => (
+                            <div key={i} className="flex justify-between items-center">
+                              <div className="h-3 w-20 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                              <div className="flex gap-2">
+                                <div className="h-3 w-10 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                                <div className="h-3 w-10 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Broker review preview */}
+                      <div className="mt-4 bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
+                        <div className="text-xs font-medium dark:text-white mb-2">Broker Review</div>
+                        <div className="h-6 w-24 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                        <div className="flex items-center gap-1 mb-2">
+                          {[1, 2, 3, 4, 5].map((i) => (
+                            <div key={i} className="h-3 w-3 bg-yellow-400 rounded-full"></div>
+                          ))}
+                        </div>
+                        <div className="space-y-1">
+                          <div className="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
+                          <div className="h-2 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                          <div className="h-2 w-4/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-blue-500/5 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
             </div>
-            <HeroAnimation className="h-full w-full" />
           </div>
         </div>
       </section>

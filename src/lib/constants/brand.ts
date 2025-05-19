@@ -4,10 +4,10 @@ import { Computer } from "lucide-react";
  * You can edit this object to change the brand information across the app.
  */
 export const brand = {
-  lucideIcon: Computer,
-  name: "Next Supa Shad Template",
-  description: "A starter template with Next.js, Supabase, and ShadCN UI.",
-  email: "email@example.com",
+  // Icon is now handled in the Logo component directly
+  name: "ForX",
+  description: "Trade smarter with ForX - The ultimate broker comparison platform",
+  email: "support@forx.com",
   social: {
     github: "https://github.com/example",
     twitter: "https://twitter.com/example",
