@@ -25,7 +25,11 @@ export async function generateStaticParams() {
 // Generate metadata for the category page
 export async function generateMetadata({
   params
-}: PageProps): Promise<Metadata> {
+}: {
+  params: {
+    category: string;
+  }
+}): Promise<Metadata> {
   const { category } = params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
@@ -211,17 +215,13 @@ const defaultCategoryContent = {
   ]
 };
 
-// Define the correct type for the page props
-type PageProps = {
-  params: {
-    category: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-};
-
 export default async function BestCategoryBrokersPage({
   params
-}: PageProps) {
+}: {
+  params: {
+    category: string;
+  }
+}) {
   const { category } = params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
