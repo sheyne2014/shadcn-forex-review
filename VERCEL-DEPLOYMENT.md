@@ -62,6 +62,20 @@ NEXT_PUBLIC_YANDEX_VERIFICATION=your_yandex_verification_code
 
 ## Troubleshooting
 
+### Region Configuration for Free Hobby Plan
+
+The project is configured to use a single region (`iad1` - US East) for deployment, which is compatible with Vercel's free Hobby plan. If you need to change the region:
+
+1. Edit the `vercel.json` file
+2. Update the `regions` array to use a different region code (e.g., `sfo1` for US West)
+3. Make sure to use the same region in both the main `regions` setting and in the `functions` section
+
+Available regions for the Hobby plan include:
+- `iad1` (Washington, D.C., USA - US East)
+- `sfo1` (San Francisco, USA - US West)
+- `sin1` (Singapore)
+- `fra1` (Frankfurt, Germany)
+
 ### Build Failures
 
 If your build fails, check the following:
@@ -69,6 +83,7 @@ If your build fails, check the following:
 1. Ensure all dependencies are correctly listed in package.json
 2. Check that all required environment variables are set
 3. Review the build logs for specific errors
+4. If you see errors about regions, ensure you're using a single region as described above
 
 ### Runtime Errors
 
