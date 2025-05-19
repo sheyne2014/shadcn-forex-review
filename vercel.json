@@ -8,9 +8,7 @@
     "NEXT_PUBLIC_SITE_URL": "https://shadcn-forex-review.vercel.app"
   },
   "functions": {
-    "api/**/*.js": {
-      "regions": ["iad1"]
-    }
+    "api/**/*.js": {}
   },
   "headers": [
     {

@@ -68,7 +68,7 @@ The project is configured to use a single region (`iad1` - US East) for deployme
 
 1. Edit the `vercel.json` file
 2. Update the `regions` array to use a different region code (e.g., `sfo1` for US West)
-3. Make sure to use the same region in both the main `regions` setting and in the `functions` section
+3. The global `regions` setting will apply to all functions and static assets
 
 Available regions for the Hobby plan include:
 - `iad1` (Washington, D.C., USA - US East)
