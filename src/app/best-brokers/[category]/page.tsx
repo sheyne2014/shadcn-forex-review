@@ -16,27 +16,25 @@ import Image from "next/image";
 // Generate static params for all category pages
 export async function generateStaticParams() {
   const categorySlugs = await getAllCategorySlugs();
-  
+
   return categorySlugs.map(slug => ({
     category: slug,
   }));
 }
 
 // Generate metadata for the category page
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { category: string } 
-}): Promise<Metadata> {
+export async function generateMetadata({
+  params
+}: PageProps): Promise<Metadata> {
   const { category } = params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
-  
+
   // Prepare SEO-friendly title and description
   const currentYear = new Date().getFullYear();
   const title = `Best ${capitalizedCategory} Brokers ${currentYear} | Top-Rated ${capitalizedCategory} Trading Platforms | ${siteConfig.name}`;
   const description = `Compare the best ${categoryName} brokers with competitive fees, reliable platforms, and top-tier service. Expert-reviewed and ranked for all types of ${categoryName} traders.`;
-  
+
   return {
     title,
     description,
@@ -61,8 +59,8 @@ export async function generateMetadata({
       images: [`${siteConfig.url}/images/categories/${category}-brokers.png`],
     },
     keywords: [
-      `best ${categoryName} brokers`, 
-      `top ${categoryName} trading platforms`, 
+      `best ${categoryName} brokers`,
+      `top ${categoryName} trading platforms`,
       `${categoryName} broker comparison`,
       `regulated ${categoryName} brokers`,
       `${categoryName} trading`,
@@ -213,36 +211,42 @@ const defaultCategoryContent = {
   ]
 };
 
-export default async function BestCategoryBrokersPage({ 
-  params 
-}: { 
-  params: { category: string } 
-}) {
+// Define the correct type for the page props
+type PageProps = {
+  params: {
+    category: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default async function BestCategoryBrokersPage({
+  params
+}: PageProps) {
   const { category } = params;
   const categoryName = category.replace(/-/g, ' ');
   const capitalizedCategory = capitalize(categoryName);
-  
+
   // Get the content for this category, or use default if not found
   const content = categoryContent[category] || {
     ...defaultCategoryContent,
     title: capitalizedCategory
   };
-  
+
   // Get brokers for this category
   const { data: brokers, error } = await getBrokersByCategory(category);
-  
+
   if (error || !brokers || brokers.length === 0) {
     console.error(`Error fetching ${category} brokers:`, error);
     notFound();
   }
-  
+
   const topBrokers = brokers.slice(0, 10); // Limit to top 10 brokers
-  
+
   return (
     <>
       {/* Add JSON-LD structured data */}
       <div dangerouslySetInnerHTML={{ __html: generateListingJsonLd(topBrokers, capitalizedCategory) }} />
-      
+
       <div className="container py-12 max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -254,7 +258,7 @@ export default async function BestCategoryBrokersPage({
             {content.description}
           </p>
         </div>
-        
+
         {/* Quick Navigation */}
         <div className="bg-muted/30 p-6 rounded-lg mb-12">
           <h2 className="text-xl font-semibold mb-4">Quick Navigation</h2>
@@ -285,11 +289,11 @@ export default async function BestCategoryBrokersPage({
             </Link>
           </div>
         </div>
-        
+
         {/* Top Brokers */}
         <section className="mb-16" id="comparison">
           <h2 className="text-3xl font-bold mb-8">Top {topBrokers.length} {content.title} Brokers</h2>
-          
+
           <div className="space-y-6">
             {topBrokers.map((broker, index) => (
               <Card key={broker.id} className="overflow-hidden">
@@ -297,7 +301,7 @@ export default async function BestCategoryBrokersPage({
                   <div className="md:w-1/4 bg-muted/30 flex flex-col items-center justify-center p-6 border-r">
                     <Badge className="mb-2">{`#${index + 1}`}</Badge>
                     <div className="w-[120px] h-[60px] bg-white flex items-center justify-center rounded mb-4">
-                      <Image 
+                      <Image
                         src={broker.logo_url || `https://placehold.co/120x60/png?text=${encodeURIComponent(broker.name)}`}
                         alt={`${broker.name} logo`}
                         width={120}
@@ -319,14 +323,14 @@ export default async function BestCategoryBrokersPage({
                       </Button>
                     </div>
                   </div>
-                  
+
                   <div className="md:w-3/4 p-6">
                     <Tabs defaultValue="overview">
                       <TabsList className="mb-4">
                         <TabsTrigger value="overview">Overview</TabsTrigger>
                         <TabsTrigger value="features">Features</TabsTrigger>
                       </TabsList>
-                      
+
                       <TabsContent value="overview">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           <div>
@@ -347,7 +351,7 @@ export default async function BestCategoryBrokersPage({
                           </div>
                         </div>
                       </TabsContent>
-                      
+
                       <TabsContent value="features">
                         <div className="space-y-2">
                           <p className="text-sm">{broker.description || `${broker.name} is a leading ${content.title.toLowerCase()} broker offering competitive pricing, advanced trading platforms, and excellent customer service.`}</p>
@@ -365,7 +369,7 @@ export default async function BestCategoryBrokersPage({
             ))}
           </div>
         </section>
-        
+
         {/* Pros & Cons */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Pros & Cons of {content.title} Trading</h2>
@@ -398,7 +402,7 @@ export default async function BestCategoryBrokersPage({
             </CardContent>
           </Card>
         </section>
-        
+
         {/* FAQs */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -415,7 +419,7 @@ export default async function BestCategoryBrokersPage({
             ))}
           </div>
         </section>
-        
+
         {/* Call to Action */}
         <section className="bg-muted/30 rounded-xl p-8 md:p-12 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -440,4 +444,4 @@ export default async function BestCategoryBrokersPage({
       </div>
     </>
   );
-} 
+}
