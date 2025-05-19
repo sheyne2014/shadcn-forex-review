@@ -184,114 +184,116 @@ export function BrokerComparisonTable({
   };
 
   return (
-    <div ref={tableRef} className={cn("overflow-x-auto", className)}>
+    <div ref={tableRef} className={cn("overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0", className)}>
       <TooltipProvider>
-        <Table className="border-collapse w-full">
-          <caption className="sr-only">Broker Comparison Table - Compare features across different brokers</caption>
-          <TableHeader>
-            <TableRow className="bg-muted/50 hover:bg-muted/50">
-              <TableHead className="w-[240px] font-semibold sticky left-0 bg-muted/50 z-10" scope="col">Broker</TableHead>
-              {features.map((feature) => (
-                <TableHead
-                  key={feature.name}
-                  className={cn(
-                    "text-center font-semibold",
-                    feature.highlight && "bg-primary/5"
-                  )}
-                  scope="col"
-                >
-                  <div className="flex items-center justify-center gap-1">
-                    {feature.name}
-                    {feature.tooltip && (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Info className="h-4 w-4 text-muted-foreground cursor-help" aria-label={`Info about ${feature.name}`} />
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-xs">
-                          {feature.tooltip}
-                        </TooltipContent>
-                      </Tooltip>
+        <div className="min-w-[800px]"> {/* Force minimum width to ensure scrollability on mobile */}
+          <Table className="border-collapse w-full">
+            <caption className="sr-only">Broker Comparison Table - Compare features across different brokers</caption>
+            <TableHeader>
+              <TableRow className="bg-muted/50 hover:bg-muted/50">
+                <TableHead className="w-[240px] font-semibold sticky left-0 bg-muted/50 z-10" scope="col">Broker</TableHead>
+                {features.map((feature) => (
+                  <TableHead
+                    key={feature.name}
+                    className={cn(
+                      "text-center font-semibold",
+                      feature.highlight && "bg-primary/5"
                     )}
-                  </div>
-                </TableHead>
-              ))}
-              <TableHead className="text-center font-semibold sticky right-0 bg-muted/50 z-10" scope="col">Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {visibleBrokers.map((broker) => (
-              <TableRow key={broker.id} className="hover:bg-muted/30 group">
-                <TableCell className="font-medium py-5 sticky left-0 bg-background group-hover:bg-muted/30 z-10">
-                  <div className="flex items-center gap-4">
-                    {broker.logo && (
-                      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-card shadow-sm rounded-md border relative">
-                        {isVisible && (
-                          <Image
-                            src={broker.logo}
-                            alt={`${broker.name} logo`}
-                            width={32}
-                            height={32}
-                            className="object-contain"
-                            loading="lazy"
-                            priority={false}
-                            onError={(e) => {
-                              // Fallback for image loading errors
-                              const target = e.target as HTMLImageElement;
-                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=32&bold=true`;
-                            }}
-                          />
-                        )}
-                      </div>
-                    )}
-                    <div className="min-w-0 flex-grow">
-                      <div className="flex flex-col mb-1">
-                        <span className="text-base font-semibold text-foreground">{broker.name}</span>
-                        {broker.badge && (
-                          <Badge variant="outline" className="text-xs py-0 mt-1 w-fit">
-                            {broker.badge}
-                          </Badge>
-                        )}
-                      </div>
-                      <div className="mt-1.5">
-                        {renderRating(broker.rating)}
+                    scope="col"
+                  >
+                    <div className="flex items-center justify-center gap-1">
+                      {feature.name}
+                      {feature.tooltip && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="h-4 w-4 text-muted-foreground cursor-help" aria-label={`Info about ${feature.name}`} />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            {feature.tooltip}
+                          </TooltipContent>
+                        </Tooltip>
+                      )}
+                    </div>
+                  </TableHead>
+                ))}
+                <TableHead className="text-center font-semibold sticky right-0 bg-muted/50 z-10" scope="col">Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {visibleBrokers.map((broker) => (
+                <TableRow key={broker.id} className="hover:bg-muted/30 group">
+                  <TableCell className="font-medium py-5 sticky left-0 bg-background group-hover:bg-muted/30 z-10">
+                    <div className="flex items-center gap-4">
+                      {broker.logo && (
+                        <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-card shadow-sm rounded-md border relative">
+                          {isVisible && (
+                            <Image
+                              src={broker.logo}
+                              alt={`${broker.name} logo`}
+                              width={32}
+                              height={32}
+                              className="object-contain"
+                              loading="lazy"
+                              priority={false}
+                              onError={(e) => {
+                                // Fallback for image loading errors
+                                const target = e.target as HTMLImageElement;
+                                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=32&bold=true`;
+                              }}
+                            />
+                          )}
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-grow">
+                        <div className="flex flex-col mb-1">
+                          <span className="text-base font-semibold text-foreground">{broker.name}</span>
+                          {broker.badge && (
+                            <Badge variant="outline" className="text-xs py-0 mt-1 w-fit">
+                              {broker.badge}
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="mt-1.5">
+                          {renderRating(broker.rating)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </TableCell>
-
-                {features.map((feature) => (
-                  <TableCell
-                    key={`${broker.id}-${feature.name}`}
-                    className={cn(
-                      "text-center",
-                      feature.highlight && "bg-primary/5 group-hover:bg-muted/50"
-                    )}
-                  >
-                    {renderEnhancedValue(broker.features[feature.name.toLowerCase().replace(/ /g, '_')], feature)}
                   </TableCell>
-                ))}
 
-                <TableCell className="text-center sticky right-0 bg-background group-hover:bg-muted/30 z-10">
-                  {broker.link ? (
-                    <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
-                      <a
-                        href={broker.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                  {features.map((feature) => (
+                    <TableCell
+                      key={`${broker.id}-${feature.name}`}
+                      className={cn(
+                        "text-center",
+                        feature.highlight && "bg-primary/5 group-hover:bg-muted/50"
+                      )}
+                    >
+                      {renderEnhancedValue(broker.features[feature.name.toLowerCase().replace(/ /g, '_')], feature)}
+                    </TableCell>
+                  ))}
+
+                  <TableCell className="text-center sticky right-0 bg-background group-hover:bg-muted/30 z-10">
+                    {broker.link ? (
+                      <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
+                        <a
+                          href={broker.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Site
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button size="sm" className="bg-primary hover:bg-primary/90">
                         Visit Site
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button size="sm" className="bg-primary hover:bg-primary/90">
-                      Visit Site
-                    </Button>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                      </Button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </TooltipProvider>
 
       {/* Feature group legend */}
