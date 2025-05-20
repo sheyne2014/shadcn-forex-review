@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import NextTopLoader from "nextjs-toploader";
 
@@ -164,6 +165,7 @@ export default function Layout({
             <Footer />
             <Toaster position="bottom-right" />
             <RokuAIWrapper />
+            <SpeedInsights />
           </AuthProvider>
         </ThemeProvider>
       </body>
