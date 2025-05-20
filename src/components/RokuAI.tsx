@@ -15,6 +15,7 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import ReactMarkdown from 'react-markdown';
@@ -43,6 +44,7 @@ const SUGGESTED_QUERIES = [
 export function RokuAI() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(1);
   const [messages, setMessages] = useState<MessageWithTimestamp[]>([
     {
       role: "assistant",
@@ -60,6 +62,7 @@ export function RokuAI() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const { theme } = useTheme();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -76,6 +79,13 @@ export function RokuAI() {
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
+    }
+  }, [isOpen]);
+
+  // Clear notification when opening the chat
+  useEffect(() => {
+    if (isOpen) {
+      setNotificationCount(0);
     }
   }, [isOpen]);
 
@@ -190,7 +200,7 @@ export function RokuAI() {
                 {...props}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white underline decoration-dotted"
+                className="text-primary underline decoration-dotted"
               >
                 {props.children}
               </a>
@@ -220,61 +230,66 @@ export function RokuAI() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {!isOpen ? (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={() => setIsOpen(true)}
-                size="icon"
-                className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all bg-gray-700 hover:bg-gray-600"
-              >
-                <MessagesSquare className="h-6 w-6" />
-                <span className="absolute top-0 right-0 h-3 w-3 rounded-full bg-green-500" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="left">
-              <p>Ask ROKU AI for help</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <div className="relative">
+          <Button
+            onClick={() => setIsOpen(true)}
+            size="icon"
+            className="h-[72px] w-[72px] rounded-lg shadow-lg hover:shadow-xl transition-all bg-primary/10 dark:bg-primary/20 border border-primary/20 backdrop-blur-sm flex flex-col items-center justify-center"
+          >
+            <span className="text-2xl font-bold text-primary">AI</span>
+            <span className="text-xs text-muted-foreground mt-1">Roku</span>
+            {notificationCount > 0 && (
+              <span className="absolute -top-1 -right-1 h-6 w-6 flex items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold animate-bounce-in animate-pulse-notification">
+                {notificationCount}
+              </span>
+            )}
+          </Button>
+          
+          {notificationCount > 0 && (
+            <div className="absolute right-full mr-3 bottom-1/2 transform translate-y-1/2 bg-card border border-border rounded-lg shadow-lg p-3 max-w-[200px] text-sm animate-fade-in">
+              <p>Hey there! Not sure where to start? I can help you find the best broker, compare options, or answer any questions.</p>
+              <div className="absolute right-[-6px] top-1/2 transform -translate-y-1/2 w-3 h-3 bg-card border-t border-r border-border rotate-45"></div>
+            </div>
+          )}
+        </div>
       ) : (
         <div className="flex flex-col items-end">
           {isMinimized ? (
             <Card className="w-[350px] shadow-xl mb-2 overflow-hidden">
-              <div className="p-3 flex items-center justify-between bg-gray-700 text-gray-50">
+              <div className="p-3 flex items-center justify-between bg-primary text-primary-foreground">
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-6 w-6 bg-gray-200">
-                    <Bot className="h-3 w-3 text-gray-700" />
+                  <Avatar className="h-6 w-6 bg-background">
+                    <Bot className="h-3 w-3 text-primary" />
                   </Avatar>
                   <span className="text-sm font-medium">ROKU AI</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-gray-50 hover:bg-gray-600">
+                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-primary-foreground hover:bg-primary/80">
                     <Maximize2 className="h-3 w-3" />
                   </Button>
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-gray-50 hover:bg-gray-600">
+                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-primary-foreground hover:bg-primary/80">
                     <X className="h-3 w-3" />
                   </Button>
                 </div>
               </div>
             </Card>
           ) : (
-            <Card className="w-[400px] h-[550px] shadow-xl flex flex-col">
-              <CardHeader className="p-3 flex flex-row items-center justify-between space-y-0 border-b bg-gray-700 text-gray-50">
+            <Card className="w-full md:w-[400px] h-[550px] shadow-xl flex flex-col animate-fade-in">
+              <CardHeader className="p-3 flex flex-row items-center justify-between space-y-0 border-b bg-primary text-primary-foreground">
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8 bg-gray-200">
-                    <Bot className="h-4 w-4 text-gray-700" />
+                  <Avatar className="h-8 w-8 bg-background">
+                    <Bot className="h-4 w-4 text-primary" />
                   </Avatar>
                   <div>
                     <CardTitle className="text-base">ROKU AI Assistant</CardTitle>
-                    <CardDescription className="text-gray-300/80 text-xs">Your forex trading knowledge companion</CardDescription>
+                    <CardDescription className="text-primary-foreground/80 text-xs">Your forex trading knowledge companion</CardDescription>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={resetChat} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
+                        <Button variant="ghost" size="icon" onClick={resetChat} className="h-8 w-8 text-primary-foreground hover:bg-primary/80">
                           <Sparkles className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -287,7 +302,7 @@ export function RokuAI() {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
+                        <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-8 w-8 text-primary-foreground hover:bg-primary/80">
                           <Minimize2 className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -300,7 +315,7 @@ export function RokuAI() {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 text-gray-50 hover:bg-gray-600">
+                        <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 text-primary-foreground hover:bg-primary/80">
                           <X className="h-4 w-4" />
                         </Button>
                       </TooltipTrigger>
@@ -319,12 +334,12 @@ export function RokuAI() {
                       <div
                         key={index}
                         className={cn(
-                          "flex flex-col gap-2 rounded-lg px-3 py-2 text-sm",
+                          "flex flex-col gap-2 rounded-lg px-3 py-2 text-sm animate-fade-in",
                           message.role === "user"
-                            ? "ml-auto bg-gray-700 text-gray-50 w-max max-w-[80%]"
+                            ? "ml-auto bg-primary text-primary-foreground w-max max-w-[80%]"
                             : message.role === "system"
                             ? "bg-muted/50 w-full"
-                            : "bg-muted w-max max-w-[80%]"
+                            : "bg-card text-card-foreground w-max max-w-[80%] border"
                         )}
                       >
                         {message.isMarkdown ? (
@@ -354,11 +369,11 @@ export function RokuAI() {
                       </div>
                     ))}
                     {isLoading && (
-                      <div className="flex w-max max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
+                      <div className="flex w-max max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-card text-card-foreground border animate-fade-in">
                         <div className="flex space-x-1">
-                          <div className="h-2 w-2 rounded-full bg-slate-300 animate-bounce"></div>
-                          <div className="h-2 w-2 rounded-full bg-slate-300 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                          <div className="h-2 w-2 rounded-full bg-slate-300 animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                          <div className="h-2 w-2 rounded-full bg-muted-foreground animate-bounce"></div>
+                          <div className="h-2 w-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                          <div className="h-2 w-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "0.4s" }}></div>
                         </div>
                       </div>
                     )}
@@ -391,7 +406,7 @@ export function RokuAI() {
                           type="submit"
                           size="icon"
                           disabled={isLoading || !inputValue.trim()}
-                          className="bg-gray-700 hover:bg-gray-600"
+                          className="bg-primary text-primary-foreground hover:bg-primary/90"
                         >
                           <Send className="h-4 w-4" />
                         </Button>
