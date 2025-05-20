@@ -12,8 +12,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
     setMounted(true)
   }, [])
 
-  // Use a default theme for server-side rendering
-  const currentTheme = mounted ? theme : "system"
+  // Always use dark theme
+  const currentTheme = "dark"
 
   return (
     <Sonner

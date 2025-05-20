@@ -52,7 +52,7 @@ export const db = {
       if (!brokerJunction || brokerJunction.length === 0) return [];
       
       // Then get the actual broker data
-      const brokerIds = brokerJunction.map(item => item.broker_id);
+      const brokerIds = brokerJunction.map((item: { broker_id: string }) => item.broker_id);
       const { data, error } = await client
         .from('brokers')
         .select('*')
@@ -218,7 +218,7 @@ export const db = {
       if (!categoryJunction || categoryJunction.length === 0) return [];
       
       // Then get the actual category data
-      const categoryIds = categoryJunction.map(item => item.category_id);
+      const categoryIds = categoryJunction.map((item: { category_id: string }) => item.category_id);
       const { data, error } = await client
         .from('categories')
         .select('*')

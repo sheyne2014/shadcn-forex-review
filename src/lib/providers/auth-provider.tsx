@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { User as AuthUser } from "@supabase/supabase-js";
+import { User as AuthUser, AuthChangeEvent, Session } from "@supabase/supabase-js";
 
 import { createClient } from "@/lib/supabase/client";
 
@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const supabase = createClient();
 
     const { data: subscription } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (_event: AuthChangeEvent, session: Session | null) => {
         setAuthUser(session?.user || undefined);
       }
     );

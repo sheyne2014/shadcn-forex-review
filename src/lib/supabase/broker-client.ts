@@ -1,10 +1,16 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { env } from "@/env";
 
-export const supabaseBrokerClient = createSupabaseClient(
-  env.NEXT_PUBLIC_SUPABASE_URL,
-  env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+// Check if we're in a build/SSG context where env vars might be missing
+const hasSupabaseConfig = Boolean(env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
+// Create a safer client initialization that checks for environment variables
+export const supabaseBrokerClient = hasSupabaseConfig
+  ? createSupabaseClient(
+      env.NEXT_PUBLIC_SUPABASE_URL,
+      env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    )
+  : null;
 
 export interface Broker {
   id: string;
@@ -55,6 +61,12 @@ export async function getBrokers({
   sort_order?: "asc" | "desc";
 } = {}) {
   try {
+    // Check if client is available
+    if (!supabaseBrokerClient) {
+      console.error("Supabase client not initialized. Missing environment variables.");
+      return { data: [], error: new Error("Database client not available") };
+    }
+
     let query = supabaseBrokerClient
       .from('brokers')
       .select('*')
@@ -105,6 +117,11 @@ export async function getBrokers({
 // Get a single broker by ID with reviews
 export async function getBrokerById(id: string) {
   try {
+    if (!supabaseBrokerClient) {
+      console.error("Supabase client not initialized. Missing environment variables.");
+      return { data: null, error: new Error("Database client not available") };
+    }
+
     // Get the broker details
     const { data: broker, error: brokerError } = await supabaseBrokerClient
       .from('brokers')
@@ -166,6 +183,11 @@ export async function getBrokerById(id: string) {
 // Get all broker categories
 export async function getBrokerCategories() {
   try {
+    if (!supabaseBrokerClient) {
+      console.error("Supabase client not initialized. Missing environment variables.");
+      return { data: [], error: new Error("Database client not available") };
+    }
+
     const { data, error } = await supabaseBrokerClient
       .from('categories')
       .select('*')
@@ -181,6 +203,11 @@ export async function getBrokerCategories() {
 // Get top rated brokers
 export async function getTopRatedBrokers(limit = 5) {
   try {
+    if (!supabaseBrokerClient) {
+      console.error("Supabase client not initialized. Missing environment variables.");
+      return { data: [], error: new Error("Database client not available") };
+    }
+
     const { data, error } = await supabaseBrokerClient
       .from('brokers')
       .select('*')
@@ -197,6 +224,11 @@ export async function getTopRatedBrokers(limit = 5) {
 // Get brokers by category
 export async function getBrokersByCategory(categoryIdOrSlug: string, limit = 10) {
   try {
+    if (!supabaseBrokerClient) {
+      console.error("Supabase client not initialized. Missing environment variables.");
+      return { data: [], error: new Error("Database client not available") };
+    }
+
     // Check if the parameter is a UUID (category ID) or a slug
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(categoryIdOrSlug);
     

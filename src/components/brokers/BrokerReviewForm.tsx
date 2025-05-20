@@ -39,6 +39,11 @@ export function BrokerReviewForm({ brokerId, brokerName, onSuccess, onCancel }: 
     setError("");
     
     try {
+      // Check if Supabase client is available
+      if (!supabaseBrokerClient) {
+        throw new Error("Database connection is not available. Please try again later.");
+      }
+
       // Create a new review in Supabase
       const { data, error } = await supabaseBrokerClient
         .from('reviews')

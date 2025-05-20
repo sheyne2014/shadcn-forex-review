@@ -7,7 +7,6 @@ import { Menu, X, User, LogOut, Check, Search, Percent, BarChart3, Globe, BookOp
 
 import { useAuth } from '@/lib/providers/AuthProvider';
 import { cn } from '@/lib/utils';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { BrokerAnalysisWordLogo } from '@/components/BrokerAnalysisWordLogo';
 
 import { Button } from '@/components/ui/button';
@@ -253,7 +252,6 @@ export function Header() {
                 Find My Broker
               </Link>
             </Button>
-            <ThemeToggle />
             <Button variant="destructive" size="sm" asChild className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
               <Link href="/verify" className="flex items-center gap-1">
                 <Check className="h-4 w-4" />
@@ -302,7 +300,6 @@ export function Header() {
           </Link>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"

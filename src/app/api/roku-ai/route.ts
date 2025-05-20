@@ -17,6 +17,9 @@ interface ChatMessage {
 interface RequestBody {
   message: string;
   history: ChatMessage[];
+  searchWeb?: boolean;
+  restrictToSite?: boolean;
+  siteUrl?: string;
 }
 
 // Content types
@@ -33,6 +36,13 @@ interface PageContent {
   rating?: number;
   pros?: string[];
   cons?: string[];
+}
+
+// Web search result type
+interface WebSearchResult {
+  title: string;
+  url: string;
+  snippet: string;
 }
 
 // Database item types
@@ -81,11 +91,62 @@ interface FAQ {
   category?: string;
 }
 
+// Simple web search mock function - in production, replace with real API
+async function performWebSearch(query: string, restrictToSite: boolean = false, siteUrl: string = ''): Promise<WebSearchResult[]> {
+  // This is a placeholder for a real search API integration
+  // In a production environment, integrate with Google Custom Search, Bing API, etc.
+  
+  // Simulated website pages - in production, these would come from a real search API
+  const simulatedPages = [
+    {
+      title: "Best Forex Brokers for Beginners",
+      url: "/guides/best-forex-brokers-for-beginners",
+      content: "Comprehensive guide to the top forex brokers suitable for beginners with low minimum deposits and educational resources."
+    },
+    {
+      title: "Forex Trading Strategies Guide",
+      url: "/guides/forex-trading-strategies",
+      content: "Learn about different forex trading strategies including day trading, swing trading, and position trading approaches."
+    },
+    {
+      title: "How to Choose a Reliable Forex Broker",
+      url: "/guides/how-to-choose-forex-broker",
+      content: "Factors to consider when selecting a forex broker including regulation, fees, platforms, and customer support."
+    },
+    {
+      title: "Forex Risk Management Calculator",
+      url: "/tools/risk-calculator",
+      content: "Use our risk management calculator to determine appropriate position sizes and stop-loss levels for your forex trades."
+    },
+    {
+      title: "Forex Broker Comparison Tool",
+      url: "/tools/broker-comparison",
+      content: "Compare features, fees, and offerings of popular forex brokers side by side."
+    }
+  ];
+  
+  // Filter results based on query terms
+  const queryTerms = query.toLowerCase().split(/\s+/);
+  let results = simulatedPages.filter(page => {
+    return queryTerms.some(term => 
+      page.title.toLowerCase().includes(term) || 
+      page.content.toLowerCase().includes(term)
+    );
+  });
+  
+  // Convert to search result format
+  return results.map(page => ({
+    title: page.title,
+    url: page.url,
+    snippet: page.content
+  }));
+}
+
 export async function POST(request: Request) {
   try {
     // Parse request body
     const body: RequestBody = await request.json();
-    const { message } = body;
+    const { message, searchWeb, restrictToSite, siteUrl } = body;
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json({
@@ -108,15 +169,38 @@ export async function POST(request: Request) {
 
     // Search for relevant content in parallel
     let relevantContent: PageContent[] = [];
+    let webSearchResults: WebSearchResult[] = [];
 
     try {
-      const [blogData, pageData, brokerData, toolData, faqData] = await Promise.all([
-        searchBlogPosts(searchTerms),
-        searchPages(searchTerms),
-        searchBrokers(searchTerms),
-        searchTools(searchTerms),
-        searchFAQs(searchTerms)
-      ]);
+      // Create an array to hold all search promises
+      const searchPromises: Promise<any>[] = [];
+      
+      // Add database search promises
+      const blogPromise = searchBlogPosts(searchTerms);
+      const pagePromise = searchPages(searchTerms);
+      const brokerPromise = searchBrokers(searchTerms);
+      const toolPromise = searchTools(searchTerms);
+      const faqPromise = searchFAQs(searchTerms);
+      
+      searchPromises.push(blogPromise, pagePromise, brokerPromise, toolPromise, faqPromise);
+      
+      // Add web search if enabled
+      let webSearchPromise: Promise<WebSearchResult[]> | null = null;
+      if (searchWeb) {
+        webSearchPromise = performWebSearch(message, restrictToSite || false, siteUrl || '');
+        searchPromises.push(webSearchPromise);
+      }
+
+      // Wait for all promises to resolve
+      const results = await Promise.all(searchPromises);
+      
+      const [blogData, pageData, brokerData, toolData, faqData] = results;
+      
+      // If web search was performed, get the results
+      if (searchWeb && webSearchPromise) {
+        const webResults = await webSearchPromise;
+        webSearchResults = webResults;
+      }
 
       // Format and combine blog posts
       if (blogData && blogData.length > 0) {
@@ -203,7 +287,7 @@ export async function POST(request: Request) {
     // Generate response based on available content
     let aiResponse = "I don't have specific information about that. Try asking about forex brokers, trading strategies, or market analysis.";
 
-    if (relevantContent.length > 0) {
+    if (relevantContent.length > 0 || webSearchResults.length > 0) {
       // Sort content by relevance (improved implementation)
       relevantContent.sort((a, b) => {
         // Count how many search terms appear in each content
@@ -287,6 +371,15 @@ export async function POST(request: Request) {
           linkSections += '\n';
         }
       });
+
+      // Add web search results if available
+      if (webSearchResults.length > 0) {
+        linkSections += `\n### Web Search Results\n\n`;
+        webSearchResults.slice(0, 3).forEach(result => {
+          linkSections += `- [${result.title}](${result.url})\n  ${result.snippet.substring(0, 100)}...\n`;
+        });
+        linkSections += '\n';
+      }
 
       aiResponse = `Here are some resources that might help answer your question:
 ${linkSections}

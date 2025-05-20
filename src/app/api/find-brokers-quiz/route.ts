@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     }
 
     // Simple scoring mechanism (example)
-    const results: QuizBrokerResult[] = (brokers || []).map(broker => {
+    const results: QuizBrokerResult[] = (brokers || []).map((broker: any) => {
       const typedBroker = broker as SupabaseBrokerRow;
       let score = 70; // Base score
       
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
         supported_assets: typedBroker.supported_assets || null,
         match_score: score,
       };
-    }).sort((a, b) => (b.match_score || 0) - (a.match_score || 0)); // Sort by score desc
+    }).sort((a: QuizBrokerResult, b: QuizBrokerResult) => (b.match_score || 0) - (a.match_score || 0)); // Sort by score desc
 
     return NextResponse.json(results.slice(0, 5)); // Return top 5 matches
 

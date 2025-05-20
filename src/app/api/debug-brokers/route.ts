@@ -1,8 +1,18 @@
 import { NextResponse } from "next/server";
 import { getBrokers } from "@/lib/supabase/broker-client";
+import { env } from "@/env";
 
 export async function GET() {
   try {
+    // Check if Supabase environment variables are available
+    if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      return NextResponse.json({
+        success: false,
+        error: "Missing Supabase configuration. Please check environment variables.",
+        message: "API not available in current environment"
+      }, { status: 503 });
+    }
+
     console.log("Debug API: Fetching brokers data");
     
     // Try to fetch brokers with the same parameters as the page

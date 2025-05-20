@@ -16,7 +16,6 @@ import {
 import { brand } from "@/lib/constants/brand";
 
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const sections = [
   {
@@ -74,7 +73,6 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Logo />
-            <ThemeToggle />
           </div>
 
           {sections.map((section) => (

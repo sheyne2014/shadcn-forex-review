@@ -94,6 +94,11 @@ export async function generateMetadata(
 async function generateComparisonJsonLd(comparisonString: string, broker1Name: string, broker2Name: string) {
   // Try to fetch actual broker data if available
   try {
+    if (!supabaseBrokerClient) {
+      // If the client is not available, return the fallback JSON-LD
+      return createFallbackJsonLd(broker1Name, broker2Name, comparisonString);
+    }
+
     const brokerSlugs = comparisonString.split('-vs-');
     const { data: brokers } = await supabaseBrokerClient
       .from('brokers')
@@ -143,6 +148,11 @@ async function generateComparisonJsonLd(comparisonString: string, broker1Name: s
   }
   
   // Fallback generic JSON-LD if broker data couldn't be fetched
+  return createFallbackJsonLd(broker1Name, broker2Name, comparisonString);
+}
+
+// Helper function to create fallback JSON-LD
+function createFallbackJsonLd(broker1Name: string, broker2Name: string, comparisonString: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
