@@ -658,14 +658,14 @@ export default async function LandingPage() {
                   suffix: '+'
                 },
                 {
-                  value: 10000,
-                  label: 'Broker Comparisons',
+                  value: 200,
+                  label: 'Countries Served',
                   suffix: '+'
                 },
                 {
-                  value: 99,
-                  label: 'Customer Satisfaction',
-                  suffix: '%'
+                  value: 7,
+                  label: 'Years of Excellence',
+                  suffix: '+'
                 }
               ]}
             />
