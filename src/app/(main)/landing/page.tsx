@@ -481,7 +481,7 @@ export default async function LandingPage() {
 
   return (
     <div className="space-y-16 py-12">
-      {/* Hero section - Redesigned to match OKX.com style with dark background and mobile mockups */}
+      {/* Hero section - With trader using smartphone on dark background */}
       <section className="w-full bg-black py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -539,88 +539,19 @@ export default async function LandingPage() {
             </div>
 
             <div className="relative h-[500px] hidden lg:flex items-center justify-center">
-              {/* Device mockup */}
-              <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
-                <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
-                <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
-                <div className="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-900">
-                  {/* Mobile screen content - broker comparison */}
-                  <div className="w-full h-full overflow-hidden bg-gray-50 dark:bg-gray-900">
-                    {/* Mobile app header */}
-                    <div className="bg-primary p-4">
-                      <div className="flex justify-between items-center">
-                        <div className="text-white font-bold">ForX</div>
-                        <div className="flex gap-2">
-                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
-                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Mobile comparison screen */}
-                    <div className="p-3">
-                      <div className="text-xs font-bold mb-2 dark:text-gray-300">Side-by-Side Comparison</div>
-                      
-                      {/* Broker comparison cards */}
-                      <div className="flex gap-2 mb-4">
-                        <div className="bg-white dark:bg-gray-800 p-2 rounded-lg flex-1 shadow-sm">
-                          <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-                          <div className="space-y-1">
-                            <div className="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
-                            <div className="h-3 w-2/3 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                            <div className="h-3 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                          </div>
-                        </div>
-                        <div className="bg-white dark:bg-gray-800 p-2 rounded-lg flex-1 shadow-sm">
-                          <div className="h-6 w-16 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-                          <div className="space-y-1">
-                            <div className="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
-                            <div className="h-3 w-2/3 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                            <div className="h-3 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Comparison table */}
-                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
-                        <div className="text-xs font-medium dark:text-white mb-2">Feature Comparison</div>
-                        <div className="space-y-2">
-                          {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="flex justify-between items-center">
-                              <div className="h-3 w-20 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                              <div className="flex gap-2">
-                                <div className="h-3 w-10 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                                <div className="h-3 w-10 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Broker review preview */}
-                      <div className="mt-4 bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
-                        <div className="text-xs font-medium dark:text-white mb-2">Broker Review</div>
-                        <div className="h-6 w-24 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-                        <div className="flex items-center gap-1 mb-2">
-                          {[1, 2, 3, 4, 5].map((i) => (
-                            <div key={i} className="h-3 w-3 bg-yellow-400 rounded-full"></div>
-                          ))}
-                        </div>
-                        <div className="space-y-1">
-                          <div className="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
-                          <div className="h-2 w-5/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                          <div className="h-2 w-4/6 bg-gray-100 dark:bg-gray-700 rounded"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              {/* Trader image */}
+              <div className="relative w-full h-full overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent z-10"></div>
+                <img 
+                  src="/trader-smartphone/trader-image.jpg" 
+                  alt="Trader analyzing stock charts on smartphone" 
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: "center 20%" }}
+                />
+                {/* Floating highlight elements */}
+                <div className="absolute top-1/4 left-1/4 bg-primary/30 w-16 h-16 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 bg-blue-500/20 w-20 h-20 rounded-full blur-xl animate-pulse" style={{ animationDelay: "1s" }}></div>
               </div>
-              
-              {/* Background glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-blue-500/5 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
             </div>
           </div>
         </div>

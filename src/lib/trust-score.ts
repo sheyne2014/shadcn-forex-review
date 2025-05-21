@@ -38,11 +38,11 @@ export const TIER_2_REGULATORS = [
 ];
 
 /**
- * Calculate trust score for a broker
+ * Calculate trust score for a broker - detailed method
  * @param broker Broker details object
  * @returns Trust score (0-100)
  */
-export function calculateTrustScore(broker: BrokerDetails): number {
+export function calculateBrokerTrustScore(broker: BrokerDetails): number {
   if (!broker) return 0;
   
   let score = 0;
@@ -207,6 +207,68 @@ function calculateTransparencyScore(broker: BrokerDetails): number {
 }
 
 /**
+ * Calculate a trust score (0-100) based on various broker metrics - simplified method
+ */
+export function calculateTrustScore(input: BrokerDetails | {
+  rating?: number;
+  yearsInBusiness?: number;
+  isRegulated?: boolean;
+  hasInsurance?: boolean;
+  isPlatformSecure?: boolean;
+  hasGoodReputation?: boolean;
+  hasTransparentFees?: boolean;
+  hasFastWithdrawals?: boolean;
+}): number {
+  // If it's a BrokerDetails object, use the detailed calculation
+  if ('name' in input && typeof input.name === 'string') {
+    return calculateBrokerTrustScore(input as BrokerDetails);
+  }
+  
+  // Otherwise use the simplified calculation
+  const {
+    rating = 0,                   // User rating (0-5)
+    yearsInBusiness = 0,          // Years of operation 
+    isRegulated = false,          // Whether the broker is regulated
+    hasInsurance = false,         // Whether client funds are insured
+    isPlatformSecure = false,     // Whether platform has 2FA or other security
+    hasGoodReputation = false,    // Whether the broker has good online reputation
+    hasTransparentFees = false,   // Whether fees and costs are transparent
+    hasFastWithdrawals = false    // Whether withdrawals are processed quickly
+  } = input;
+  
+  // Convert rating to a 0-25 scale
+  const ratingScore = Math.min(5, Math.max(0, rating)) * 5;
+  
+  // Years in business (max 15 points)
+  const yearsScore = Math.min(15, yearsInBusiness);
+  
+  // Regulatory status (max 20 points)
+  const regulationScore = isRegulated ? 20 : 0;
+  
+  // Other factors (max 40 points total)
+  const insuranceScore = hasInsurance ? 10 : 0;
+  const securityScore = isPlatformSecure ? 10 : 0;
+  const reputationScore = hasGoodReputation ? 10 : 0;
+  const transparencyScore = hasTransparentFees ? 5 : 0;
+  const withdrawalScore = hasFastWithdrawals ? 5 : 0;
+  
+  // Sum all scores
+  const totalScore = Math.round(
+    ratingScore + 
+    yearsScore + 
+    regulationScore + 
+    insuranceScore + 
+    securityScore + 
+    reputationScore + 
+    transparencyScore + 
+    withdrawalScore
+  );
+  
+  // Return score bounded to 0-100
+  return Math.min(100, Math.max(0, totalScore));
+}
+
+/**
  * Get verbal description of trust score
  * @param score Trust score (0-100)
  * @returns Descriptive text for the trust score
@@ -223,7 +285,21 @@ export function getTrustScoreDescription(score: number): string {
 }
 
 /**
- * Get color scheme for trust score
+ * Get a descriptive label for a trust score
+ */
+export function getTrustScoreLabel(score: number): string {
+  if (score >= 90) return 'Excellent';
+  if (score >= 80) return 'Very Good';
+  if (score >= 70) return 'Good';
+  if (score >= 60) return 'Above Average';
+  if (score >= 50) return 'Average';
+  if (score >= 40) return 'Below Average';
+  if (score >= 30) return 'Poor';
+  return 'Very Poor';
+}
+
+/**
+ * Get color scheme for trust score (CSS color value)
  * @param score Trust score (0-100)
  * @returns CSS color value
  */
@@ -236,4 +312,25 @@ export function getTrustScoreColor(score: number): string {
   if (score >= 40) return "#ffc107";
   if (score >= 30) return "#ff9800";
   return "#f44336";
+}
+
+/**
+ * Get a color class for a trust score (tailwind color class)
+ */
+export function getTrustScoreTailwindClass(score: number): string {
+  if (score >= 90) return 'bg-green-500';
+  if (score >= 80) return 'bg-green-400';
+  if (score >= 70) return 'bg-green-300';
+  if (score >= 60) return 'bg-yellow-400';
+  if (score >= 50) return 'bg-yellow-300';
+  if (score >= 40) return 'bg-orange-400';
+  if (score >= 30) return 'bg-red-400';
+  return 'bg-red-500';
+}
+
+/**
+ * Convert a 5-star rating to a trust score (0-100)
+ */
+export function convertRatingToTrustScore(rating: number): number {
+  return Math.round(rating * 20); // Simple 5-star to percentage conversion
 } 

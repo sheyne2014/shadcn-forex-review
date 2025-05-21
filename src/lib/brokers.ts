@@ -16,7 +16,7 @@ export interface BrokerDetails {
   max_leverage?: string | null;
   spread_from?: string | null;
   trading_platforms?: string | null;
-  year_founded?: string | null;
+  year_founded?: number | string | null;
   website_url?: string | null;
   badge?: string | null;
   demo_account?: boolean | null;
@@ -26,6 +26,11 @@ export interface BrokerDetails {
   video_tutorials?: boolean | null;
   trading_courses?: boolean | null;
   webinars?: boolean | null;
+  publicly_traded?: boolean | string | null;
+  parent_company?: string | null;
+  segregated_accounts?: boolean | string | null;
+  investor_compensation?: boolean | string | null;
+  negative_balance_protection?: boolean | string | null;
   [key: string]: any; // Allow any additional properties
 }
 

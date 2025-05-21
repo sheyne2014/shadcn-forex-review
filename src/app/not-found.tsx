@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <>
       <StructuredData
@@ -24,33 +24,24 @@ export default function NotFound() {
           description: "The page you're looking for doesn't exist or has been moved."
         }}
       />
-      <div className="container flex flex-col items-center justify-center min-h-[80vh] text-center py-20">
-        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-6">
-          <Search className="h-8 w-8 text-muted-foreground" aria-hidden="true" />
+      <div className="container flex flex-col items-center justify-center min-h-[70vh] py-16 text-center">
+        <div className="space-y-6 max-w-md mx-auto">
+          <h1 className="text-6xl font-bold">404</h1>
+          <h2 className="text-2xl font-semibold">Page Not Found</h2>
+          <p className="text-muted-foreground">
+            Sorry, we couldn't find the page you're looking for. It might have been moved,
+            deleted, or never existed in the first place.
+          </p>
+          <div className="flex gap-4 justify-center mt-6">
+            <Button asChild>
+              <Link href="/">Go Home</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/reviews">Browse Broker Reviews</Link>
+            </Button>
+          </div>
         </div>
-
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">404 - Page Not Found</h1>
-
-        <p className="text-xl text-muted-foreground mb-8 max-w-md">
-          Sorry, we couldn't find the page you're looking for. The page may have been moved or deleted.
-        </p>
-
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Button asChild>
-          <Link href="/">
-            <Home className="mr-2 h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
-
-        <Button asChild variant="outline">
-          <Link href="/brokers">
-            <ChevronLeft className="mr-2 h-4 w-4" />
-            Browse Brokers
-          </Link>
-        </Button>
       </div>
-    </div>
     </>
   );
 }

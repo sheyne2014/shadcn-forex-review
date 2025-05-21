@@ -12,171 +12,87 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { ImageProps } from "next/image";
+import Image, { ImageProps } from "next/image";
 import { cn } from "@/lib/utils";
 
-type ObjectFitType = "fill" | "contain" | "cover" | "none" | "scale-down";
-
-interface OptimizedImageProps extends Omit<ImageProps, "onError"> {
+interface OptimizedImageProps extends Omit<ImageProps, 'onError' | 'alt'> {
+  src: string;
   fallbackSrc?: string;
-  aspectRatio?: "auto" | "square" | "video" | "portrait" | "wide" | number;
-  backgroundEffect?: "blur" | "pulse" | "none";
-  rounded?: boolean | "sm" | "md" | "lg" | "full";
-  withBorder?: boolean | "light" | "dark";
+  alt: string;
+  className?: string;
   containerClassName?: string;
-  fade?: boolean;
-  objectFit?: ObjectFitType;
+  showPlaceholder?: boolean;
 }
 
 /**
- * Generates a simple color-based data URL for image placeholders
+ * OptimizedImage component with fallback and loading state
+ * 
+ * This component provides a standardized way to use images with proper optimization,
+ * loading placeholders, and fallback options if the main image fails to load.
  */
-function generatePlaceholderDataUrl(width = 100, height = 100): string {
-  // Light gray placeholder that's easy on the eyes
-  return `data:image/svg+xml;base64,${Buffer.from(
-    `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-       <rect width="${width}" height="${height}" fill="#f1f1f1" />
-     </svg>`
-  ).toString('base64')}`;
-}
-
 export function OptimizedImage({
   src,
+  fallbackSrc,
   alt,
   width,
   height,
-  fallbackSrc = "/images/fallback-image.jpg",
-  aspectRatio = "auto",
-  backgroundEffect = "blur",
-  rounded = false,
-  withBorder = false,
-  containerClassName,
-  fade = true,
   className,
-  placeholder = "blur",
-  objectFit: customObjectFit,
+  containerClassName,
+  showPlaceholder = true,
   ...props
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const maxRetries = 2;
+  const [error, setError] = useState(false);
   
-  // Set a proper blurDataURL if not provided
-  const imageProps = props.blurDataURL
-    ? props
-    : { ...props, blurDataURL: generatePlaceholderDataUrl() };
-
-  // Create object-fit class based on aspectRatio
-  const getAspectRatioClass = () => {
-    if (typeof aspectRatio === "number") {
-      // Custom aspect ratio
-      return {
-        aspectRatio: aspectRatio.toString(),
-        objectFit: (customObjectFit || "cover") as ObjectFitType,
-      };
-    }
-
-    switch (aspectRatio) {
-      case "square":
-        return {
-          aspectRatio: "1/1",
-          objectFit: (customObjectFit || "cover") as ObjectFitType,
-        };
-      case "video":
-        return {
-          aspectRatio: "16/9",
-          objectFit: (customObjectFit || "cover") as ObjectFitType,
-        };
-      case "portrait":
-        return {
-          aspectRatio: "3/4",
-          objectFit: (customObjectFit || "cover") as ObjectFitType,
-        };
-      case "wide":
-        return {
-          aspectRatio: "21/9",
-          objectFit: (customObjectFit || "cover") as ObjectFitType,
-        };
-      default:
-        return {
-          aspectRatio: "auto",
-          objectFit: (customObjectFit || "cover") as ObjectFitType,
-        };
-    }
-  };
+  // Determine the final source to use
+  const finalSrc = error && fallbackSrc ? fallbackSrc : src;
   
-  // Get rounded corner classes
-  const getRoundedClass = () => {
-    if (!rounded) return "";
-    if (rounded === true || rounded === "md") return "rounded-md";
-    return `rounded-${rounded}`;
-  };
-  
-  // Get border classes
-  const getBorderClass = () => {
-    if (!withBorder) return "";
-    if (withBorder === "light") return "border border-gray-100";
-    if (withBorder === "dark") return "border border-gray-800";
-    return "border border-gray-200";
-  };
-  
-  // Get background class
-  const getBackgroundClass = () => {
-    if (backgroundEffect === "none") return "";
-    if (backgroundEffect === "pulse") return isLoading ? "animate-pulse bg-muted/50" : "";
-    return isLoading ? "bg-muted/50" : "";
-  };
-
-  // Handle image loading complete
+  // Handle image load completion
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
-
-  // Handle image error with retry logic
+  
+  // Handle image error
   const handleError = () => {
-    if (retryCount < maxRetries) {
-      // Retry loading the original image
-      setRetryCount(prevCount => prevCount + 1);
-    } else {
-      // After max retries, use the fallback
-      setHasError(true);
+    setError(true);
+    
+    // If no fallback is provided, keep the loading state visible
+    if (!fallbackSrc) {
+      setIsLoading(true);
     }
   };
-
-  // Combine all style properties
-  const aspectRatioStyles = getAspectRatioClass();
   
   return (
     <div 
       className={cn(
-        "overflow-hidden", 
-        getRoundedClass(),
-        getBorderClass(),
-        getBackgroundClass(),
+        'relative overflow-hidden',
         containerClassName
       )}
-      style={{ aspectRatio: aspectRatioStyles.aspectRatio }}
+      style={width && height ? { width, height } : undefined}
     >
+      {/* Main image */}
       <Image
-        src={hasError ? fallbackSrc : src}
+        src={finalSrc}
         alt={alt}
-        width={width}
-        height={height}
+        width={typeof width === 'number' ? width : undefined}
+        height={typeof height === 'number' ? height : undefined}
         className={cn(
-          "transition-opacity duration-300",
-          fade && isLoading ? "opacity-0" : "opacity-100",
+          'transition-opacity duration-300',
+          isLoading ? 'opacity-0' : 'opacity-100',
           className
         )}
-        style={{
-          objectFit: aspectRatioStyles.objectFit,
-        }}
         onLoadingComplete={handleLoadingComplete}
         onError={handleError}
-        placeholder={placeholder}
-        {...imageProps}
+        {...props}
       />
+      
+      {/* Loading placeholder */}
+      {isLoading && showPlaceholder && (
+        <div 
+          className="absolute inset-0 bg-muted animate-pulse rounded-md"
+          aria-hidden="true"
+        ></div>
+      )}
     </div>
   );
 } 

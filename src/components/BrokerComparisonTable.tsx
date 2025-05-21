@@ -3,7 +3,7 @@
 import { useMemo, useEffect, useState } from "react";
 import { Check, X, Info } from 'lucide-react';
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 import { useInView } from "react-intersection-observer";
 import {
   Table,
@@ -224,26 +224,15 @@ export function BrokerComparisonTable({
                 <TableRow key={broker.id} className="hover:bg-muted/30 group">
                   <TableCell className="font-medium py-5 sticky left-0 bg-background group-hover:bg-muted/30 z-10">
                     <div className="flex items-center gap-4">
-                      {broker.logo && (
-                        <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-card shadow-sm rounded-md border relative">
-                          {isVisible && (
-                            <Image
-                              src={broker.logo}
-                              alt={`${broker.name} logo`}
-                              width={32}
-                              height={32}
-                              className="object-contain"
-                              loading="lazy"
-                              priority={false}
-                              onError={(e) => {
-                                // Fallback for image loading errors
-                                const target = e.target as HTMLImageElement;
-                                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=32&bold=true`;
-                              }}
-                            />
-                          )}
-                        </div>
-                      )}
+                      <div className="flex-shrink-0">
+                        <BrokerLogo 
+                          broker={broker} 
+                          size="lg" 
+                          rounded 
+                          withBorder 
+                          priority={false}
+                        />
+                      </div>
                       <div className="min-w-0 flex-grow">
                         <div className="flex flex-col mb-1">
                           <span className="text-base font-semibold text-foreground">{broker.name}</span>

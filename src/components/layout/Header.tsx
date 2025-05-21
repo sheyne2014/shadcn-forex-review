@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, User, LogOut, Check, Search, Percent, BarChart3, Globe, BookOpen, Award, DollarSign, Shield, Smartphone, Settings } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 import { useAuth } from '@/lib/providers/AuthProvider';
 import { cn } from '@/lib/utils';
