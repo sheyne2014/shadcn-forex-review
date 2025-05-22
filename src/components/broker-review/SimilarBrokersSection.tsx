@@ -135,38 +135,48 @@ export function SimilarBrokersSection({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold tracking-tight">Similar Brokers</h2>
-        <Link href="/compare" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-          View comparison tool
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Similar Brokers</h2>
+          <p className="text-muted-foreground">Compare alternatives to {currentBroker} with similar features and services</p>
+        </div>
+        <Link
+          href="/compare"
+          className="text-sm font-medium bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground px-4 py-2 rounded-md transition-colors flex items-center self-start"
+        >
+          View full comparison tool <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
         {brokers.map((broker, index) => (
-          <Card key={broker.id} className="flex flex-col h-full overflow-hidden group hover:shadow-md transition-all">
+          <Card
+            key={broker.id}
+            className="flex flex-col h-full overflow-hidden group hover:shadow-lg transition-all border-border/60 hover:border-primary/30"
+          >
             {/* Card header with logo and rating */}
-            <div className="border-b p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="relative h-12 w-28 bg-white rounded-md border flex items-center justify-center p-1">
+            <div className="border-b p-5">
+              <div className="flex items-center justify-between mb-4">
+                <div className="relative h-16 w-36 bg-white rounded-md border flex items-center justify-center p-1">
                   {broker.logo_url ? (
                     <Image
                       src={broker.logo_url}
                       alt={`${broker.name} logo`}
                       fill
                       className="object-contain p-1"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   ) : (
-                    <div className="text-lg font-semibold text-center">
+                    <div className="text-xl font-semibold text-center">
                       {getBrokerInitials(broker.name)}
                     </div>
                   )}
                 </div>
 
-                <div className="flex items-center bg-muted px-2 py-1 rounded">
-                  <Star className="h-4 w-4 text-yellow-500 fill-yellow-500 mr-1" />
-                  <span className="font-medium">
+                <div className="flex items-center bg-muted/50 px-3 py-1.5 rounded-full">
+                  <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 mr-1.5" />
+                  <span className="font-medium text-base">
                     {typeof broker.overall_rating === 'number'
                       ? broker.overall_rating.toFixed(1)
                       : broker.overall_rating || "4.0"}
@@ -174,56 +184,57 @@ export function SimilarBrokersSection({
                 </div>
               </div>
 
-              <h3 className="font-semibold text-lg">{broker.name}</h3>
+              <h3 className="font-semibold text-xl mb-2">{broker.name}</h3>
 
               {/* Better than feature */}
-              <div className="mt-2 flex items-center text-green-600 text-sm">
-                <CheckCircle className="h-4 w-4 mr-1.5 flex-shrink-0" />
-                <span>{getBetterThanFeature(broker, index)}</span>
+              <div className="mt-2 flex items-center text-green-600 text-sm bg-green-50 dark:bg-green-950/30 px-3 py-1.5 rounded-full">
+                <CheckCircle className="h-4 w-4 mr-2 flex-shrink-0" />
+                <span className="font-medium">{getBetterThanFeature(broker, index)}</span>
               </div>
             </div>
 
             {/* Card content with key trading info */}
-            <CardContent className="p-4 flex-grow flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground text-xs flex items-center">
-                      <DollarSign className="h-3 w-3 mr-1" />
+            <CardContent className="p-5 flex-grow flex flex-col justify-between">
+              <div className="space-y-5">
+                <div className="grid grid-cols-2 gap-5">
+                  <div className="flex flex-col bg-muted/30 p-3 rounded-md">
+                    <span className="text-muted-foreground text-xs flex items-center mb-1">
+                      <DollarSign className="h-3.5 w-3.5 mr-1.5" />
                       Min. Deposit
                     </span>
-                    <span className="font-medium">
+                    <span className="font-medium text-base">
                       {broker.min_deposit ? `$${typeof broker.min_deposit === 'string' ? broker.min_deposit : broker.min_deposit}` : "Varies"}
                     </span>
                   </div>
 
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground text-xs flex items-center">
-                      <BarChart4 className="h-3 w-3 mr-1" />
+                  <div className="flex flex-col bg-muted/30 p-3 rounded-md">
+                    <span className="text-muted-foreground text-xs flex items-center mb-1">
+                      <BarChart4 className="h-3.5 w-3.5 mr-1.5" />
                       Spreads From
                     </span>
-                    <span className="font-medium">
+                    <span className="font-medium text-base">
                       {broker.spreads_from || "Variable"}
                     </span>
                   </div>
 
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground text-xs flex items-center">
-                      <Shield className="h-3 w-3 mr-1" />
+                  <div className="flex flex-col bg-muted/30 p-3 rounded-md">
+                    <span className="text-muted-foreground text-xs flex items-center mb-1">
+                      <Shield className="h-3.5 w-3.5 mr-1.5" />
                       Regulation
                     </span>
-                    <span className="font-medium truncate" title={broker.regulations || "Unknown"}>
+                    <span className="font-medium text-base truncate" title={broker.regulations || "Unknown"}>
                       {broker.regulations
                         ? broker.regulations.split(',')[0] + (broker.regulations.includes(',') ? '...' : '')
                         : "Unknown"}
                     </span>
                   </div>
 
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground text-xs">
+                  <div className="flex flex-col bg-muted/30 p-3 rounded-md">
+                    <span className="text-muted-foreground text-xs flex items-center mb-1">
+                      <BarChart4 className="h-3.5 w-3.5 mr-1.5" />
                       Leverage
                     </span>
-                    <span className="font-medium">
+                    <span className="font-medium text-base">
                       {broker.max_leverage || "Standard"}
                     </span>
                   </div>
@@ -231,11 +242,15 @@ export function SimilarBrokersSection({
               </div>
 
               {/* Actions */}
-              <div className="mt-4 space-y-3">
-                <Button variant="outline" className="w-full group-hover:bg-primary/5 transition-colors" asChild>
+              <div className="mt-6 space-y-3">
+                <Button
+                  variant="default"
+                  className="w-full shadow-sm group-hover:shadow-md transition-all"
+                  asChild
+                >
                   <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : (broker.slug ? `/broker/${broker.slug}` : `/broker/${broker.id}`)}>
                     <span className="flex items-center justify-center w-full">
-                      View Details
+                      View Full Review
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>
@@ -243,18 +258,18 @@ export function SimilarBrokersSection({
 
                 <div className="flex gap-2">
                   {broker.website_url && (
-                    <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
+                    <Button variant="outline" size="sm" className="flex-1" asChild>
                       <Link href={broker.website_url} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-3 w-3 mr-1" />
-                        Visit
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Visit Website
                       </Link>
                     </Button>
                   )}
 
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
-                    className="flex-1 text-xs"
+                    className="flex-1"
                     onClick={() => onCompare && onCompare(broker.id)}
                   >
                     Compare

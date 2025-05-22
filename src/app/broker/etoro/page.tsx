@@ -173,6 +173,7 @@ export default async function EToroReviewPage() {
             <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
             <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
             <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
+            <a href="#similar" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Similar Brokers</a>
             <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
           </div>
         </div>
@@ -266,13 +267,15 @@ export default async function EToroReviewPage() {
             <section id="analysis">
               <BrokerAnalysisWidget broker={broker} />
             </section>
-
-            {/* Similar Brokers Recommendation */}
-            <section id="similar">
-              <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
-            </section>
           </div>
         </div>
+
+        <Separator className="my-8 sm:my-12" />
+
+        {/* Similar Brokers Section - Full Width */}
+        <section id="similar" className="mt-8 sm:mt-12 mb-12">
+          <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
+        </section>
 
         <Separator className="my-8 sm:my-12" />
 
