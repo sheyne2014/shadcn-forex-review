@@ -156,7 +156,7 @@ export default async function EToroReviewPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="container mx-auto px-4 py-6 sm:py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8 max-w-7xl">
         {/* Hero Section with broker overview */}
         <HeroBrokerSection broker={broker} />
 
@@ -167,60 +167,68 @@ export default async function EToroReviewPage() {
         <Separator className="my-8 sm:my-12" />
 
         {/* Mobile Navigation for sections */}
-        <div className="lg:hidden mb-8 overflow-x-auto">
-          <div className="flex space-x-4 pb-2 min-w-max">
-            <a href="#trading-conditions" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Trading Conditions</a>
-            <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
-            <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
-            <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
-            <a href="#similar" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Similar Brokers</a>
-            <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
+        <div className="lg:hidden mb-8 overflow-x-auto scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent sticky top-16 z-20 bg-background/95 backdrop-blur-sm pb-2 pt-2 -mx-4 px-4 shadow-sm">
+          <div className="flex space-x-3 min-w-max">
+            <a href="#trading-conditions" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">Trading Conditions</a>
+            <a href="#platforms" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">Platforms</a>
+            <a href="#education" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">Education</a>
+            <a href="#reviews" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">Reviews</a>
+            <a href="#similar" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">Similar Brokers</a>
+            <a href="#faq" className="px-3 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center">FAQ</a>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-10 sm:space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
             {/* Trading Conditions */}
-            <section id="trading-conditions">
-              <BrokerTradingConditions broker={broker} />
+            <section id="trading-conditions" className="scroll-mt-20">
+              <div className="rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <BrokerTradingConditions broker={broker} />
+              </div>
             </section>
 
             {/* Trading Platforms */}
-            <section id="platforms">
-              <PlatformsSection broker={broker} />
+            <section id="platforms" className="scroll-mt-20">
+              <div className="rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <PlatformsSection broker={broker} />
+              </div>
             </section>
 
             {/* Educational Resources */}
-            <section id="education">
-              <Card>
-                <CardHeader>
+            <section id="education" className="scroll-mt-20">
+              <Card className="overflow-hidden border-border/80 hover:shadow-md transition-shadow">
+                <CardHeader className="bg-muted/30">
                   <div className="flex justify-between items-start">
                     <div>
-                      <CardTitle>Educational Resources</CardTitle>
+                      <CardTitle className="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                        Educational Resources
+                      </CardTitle>
                       <CardDescription>
                         Learning materials and resources offered by {broker.name}
                       </CardDescription>
                     </div>
-                    <div className="flex items-center">
-                      <div className="flex items-center">
-                        <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                        <span className="ml-1 font-medium">4.2/5</span>
-                      </div>
-                      <Badge variant="outline" className="ml-2">Education Rating</Badge>
+                    <div className="flex items-center bg-background/80 px-3 py-1.5 rounded-full">
+                      <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+                      <span className="ml-1 font-medium">4.2/5</span>
+                      <Badge variant="outline" className="ml-2 bg-background">Education Rating</Badge>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-6">
                   <p className="text-muted-foreground mb-6">
                     {broker.name} offers a variety of educational resources designed to help traders at different skill levels improve their trading knowledge and skills. The resources include articles, videos, and comprehensive guides.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 flex items-center">
-                        <CheckCircle className="h-5 w-5 text-green-600 mr-2" /> Strengths
+                    <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-100 dark:border-green-900/30">
+                      <h3 className="text-lg font-semibold mb-3 flex items-center text-green-700 dark:text-green-400">
+                        <CheckCircle className="h-5 w-5 mr-2" /> Strengths
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {[
                           "Comprehensive learning materials for all trader levels",
                           "Free access to basic educational content",
@@ -234,18 +242,18 @@ export default async function EToroReviewPage() {
                         ))}
                       </ul>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3 flex items-center">
-                        <AlertTriangle className="h-5 w-5 text-red-600 mr-2" /> Considerations
+                    <div className="bg-amber-50 dark:bg-amber-950/20 p-4 rounded-lg border border-amber-100 dark:border-amber-900/30">
+                      <h3 className="text-lg font-semibold mb-3 flex items-center text-amber-700 dark:text-amber-400">
+                        <AlertTriangle className="h-5 w-5 mr-2" /> Considerations
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {[
                           "Advanced content may require premium account",
                           "Limited one-on-one coaching options",
                           "Some content may not be available in all languages"
                         ].map((weakness, index) => (
                           <li key={index} className="flex items-start">
-                            <AlertTriangle className="h-4 w-4 text-red-600 mt-1 mr-2 flex-shrink-0" />
+                            <AlertTriangle className="h-4 w-4 text-amber-600 mt-1 mr-2 flex-shrink-0" />
                             <span>{weakness}</span>
                           </li>
                         ))}
@@ -257,15 +265,19 @@ export default async function EToroReviewPage() {
             </section>
 
             {/* User Reviews */}
-            <section id="reviews">
-              <ReviewsSection broker={broker} />
+            <section id="reviews" className="scroll-mt-20">
+              <div className="rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <ReviewsSection broker={broker} />
+              </div>
             </section>
           </div>
 
           <div className="space-y-8">
             {/* Broker Analysis Widget */}
-            <section id="analysis">
-              <BrokerAnalysisWidget broker={broker} />
+            <section id="analysis" className="scroll-mt-20">
+              <div className="sticky top-20 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <BrokerAnalysisWidget broker={broker} />
+              </div>
             </section>
           </div>
         </div>
@@ -273,15 +285,19 @@ export default async function EToroReviewPage() {
         <Separator className="my-8 sm:my-12" />
 
         {/* Similar Brokers Section - Full Width */}
-        <section id="similar" className="mt-8 sm:mt-12 mb-12">
-          <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
+        <section id="similar" className="mt-8 sm:mt-12 mb-12 scroll-mt-20">
+          <div className="bg-gradient-to-b from-muted/30 to-transparent py-10 px-6 -mx-6 rounded-lg">
+            <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
+          </div>
         </section>
 
         <Separator className="my-8 sm:my-12" />
 
         {/* FAQ Section */}
-        <section id="faq" className="mt-8 sm:mt-12">
-          <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
+        <section id="faq" className="mt-8 sm:mt-12 scroll-mt-20">
+          <div className="max-w-4xl mx-auto">
+            <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
+          </div>
         </section>
       </div>
     </>

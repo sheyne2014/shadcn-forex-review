@@ -40,8 +40,7 @@ interface SimilarBrokersSectionProps {
 
 export function SimilarBrokersSection({
   brokers,
-  currentBroker,
-  onCompare
+  currentBroker
 }: SimilarBrokersSectionProps) {
   // Safely handle empty brokers array
   if (!brokers || brokers.length === 0) {
@@ -248,7 +247,7 @@ export function SimilarBrokersSection({
                   className="w-full shadow-sm group-hover:shadow-md transition-all"
                   asChild
                 >
-                  <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : (broker.slug ? `/broker/${broker.slug}` : `/broker/${broker.id}`)}>
+                  <Link href={`/broker/${broker.id.toLowerCase()}`}>
                     <span className="flex items-center justify-center w-full">
                       View Full Review
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -270,9 +269,11 @@ export function SimilarBrokersSection({
                     variant="outline"
                     size="sm"
                     className="flex-1"
-                    onClick={() => onCompare && onCompare(broker.id)}
+                    asChild
                   >
-                    Compare
+                    <Link href={`/compare?brokers=${currentBroker.toLowerCase()},${broker.id.toLowerCase()}`}>
+                      Compare
+                    </Link>
                   </Button>
                 </div>
               </div>
