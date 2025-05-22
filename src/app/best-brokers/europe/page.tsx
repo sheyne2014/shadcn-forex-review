@@ -59,7 +59,7 @@ const topBrokers = [
       "Higher spreads than some competitors",
       "Withdrawal fees"
     ],
-    url: "/reviews/etoro",
+    url: "/broker/etoro",
     features: {
       lowSpread: false,
       fastExecution: true,
@@ -160,7 +160,7 @@ export default function BestEuropeBrokersPage() {
           Compare the top European brokers with ESMA-compliant platforms, multilingual support, and comprehensive trading tools for traders across the EU.
         </p>
       </div>
-      
+
       {/* Quick Navigation */}
       <div className="bg-muted/30 p-6 rounded-lg mb-12">
         <h2 className="text-xl font-semibold mb-4">Quick Navigation</h2>
@@ -191,11 +191,11 @@ export default function BestEuropeBrokersPage() {
           </Link>
         </div>
       </div>
-      
+
       {/* Top 5 Brokers */}
       <section className="mb-16" id="comparison">
         <h2 className="text-3xl font-bold mb-8">Top 5 European Brokers</h2>
-        
+
         <div className="space-y-6">
           {topBrokers.map((broker, index) => (
             <Card key={broker.id} className="overflow-hidden">
@@ -203,8 +203,8 @@ export default function BestEuropeBrokersPage() {
                 <div className="md:w-1/4 bg-muted/30 flex flex-col items-center justify-center p-6 border-r">
                   <Badge className="mb-2">{`#${index + 1}`}</Badge>
                   <div className="w-[120px] h-[60px] bg-white flex items-center justify-center rounded mb-4">
-                    <img 
-                      src={broker.logo} 
+                    <img
+                      src={broker.logo}
                       alt={`${broker.name} logo`}
                       className="max-w-full max-h-full"
                     />
@@ -223,7 +223,7 @@ export default function BestEuropeBrokersPage() {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="md:w-3/4 p-6">
                   <Tabs defaultValue="overview">
                     <TabsList className="mb-4">
@@ -231,7 +231,7 @@ export default function BestEuropeBrokersPage() {
                       <TabsTrigger value="features">Features</TabsTrigger>
                       <TabsTrigger value="pros-cons">Pros & Cons</TabsTrigger>
                     </TabsList>
-                    
+
                     <TabsContent value="overview">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -252,7 +252,7 @@ export default function BestEuropeBrokersPage() {
                         </div>
                       </div>
                     </TabsContent>
-                    
+
                     <TabsContent value="features">
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
@@ -281,7 +281,7 @@ export default function BestEuropeBrokersPage() {
                         </div>
                       </div>
                     </TabsContent>
-                    
+
                     <TabsContent value="pros-cons">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -315,7 +315,7 @@ export default function BestEuropeBrokersPage() {
           ))}
         </div>
       </section>
-      
+
       {/* Broker Comparison Table */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold mb-8">European Broker Comparison</h2>
@@ -346,7 +346,7 @@ export default function BestEuropeBrokersPage() {
           </Table>
         </div>
       </section>
-      
+
       {/* How We Rank Section */}
       <section className="mb-16" id="how-we-rank">
         <h2 className="text-3xl font-bold mb-8">How We Rank European Brokers</h2>
@@ -360,7 +360,7 @@ export default function BestEuropeBrokersPage() {
               <p>All brokers we recommend must be fully regulated by at least one major European financial authority such as CySEC, FCA (pre-Brexit), BaFin, AMF, or other national regulators operating under ESMA guidelines. We verify that brokers comply with MiFID II requirements, including negative balance protection and leverage restrictions.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Trading Costs</CardTitle>
@@ -370,7 +370,7 @@ export default function BestEuropeBrokersPage() {
               <p>We conduct detailed analyses of each broker's fee structure, including typical spreads on popular currency pairs, commissions, swaps, and any additional account fees. We examine costs in both euro-denominated accounts and other currency options available to European clients.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Platform Capabilities</CardTitle>
@@ -380,7 +380,7 @@ export default function BestEuropeBrokersPage() {
               <p>Our team tests each platform's execution speed, stability, charting tools, available indicators, and overall user experience. We consider both desktop and mobile platforms, with special attention to multilingual support for European traders from different countries.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Multilingual Support</CardTitle>
@@ -392,30 +392,30 @@ export default function BestEuropeBrokersPage() {
           </Card>
         </div>
       </section>
-      
+
       {/* EU Regulations Section */}
       <section className="mb-16" id="regulations">
         <h2 className="text-3xl font-bold mb-8">Understanding European Broker Regulations</h2>
         <Card>
           <CardContent className="pt-6">
             <p className="mb-4">Trading with an EU-regulated broker provides significant protections for European traders:</p>
-            
+
             <div className="space-y-4">
               <div>
                 <h3 className="font-bold mb-1">European Securities and Markets Authority (ESMA)</h3>
                 <p>ESMA sets standards that all EU financial regulators must follow. Key protections include leverage limits on CFDs (30:1 for major forex pairs, lower for other instruments), negative balance protection, standardized risk warnings, and restrictions on marketing bonuses.</p>
               </div>
-              
+
               <div>
                 <h3 className="font-bold mb-1">Markets in Financial Instruments Directive (MiFID II)</h3>
                 <p>MiFID II regulations enforce strict transparency requirements, best execution policies, and investor protection measures. EU brokers must provide detailed information about costs, risks, and maintain clear audit trails of all transactions.</p>
               </div>
-              
+
               <div>
                 <h3 className="font-bold mb-1">Client Money Segregation</h3>
                 <p>EU regulations require brokers to keep client funds in segregated accounts, separate from the company's operational funds, ensuring your money is protected if the broker faces financial difficulties.</p>
               </div>
-              
+
               <div>
                 <h3 className="font-bold mb-1">Investor Compensation Schemes</h3>
                 <p>European brokers must participate in national investor compensation schemes, which typically provide protection up to €20,000 (varies by country) if a regulated broker becomes insolvent.</p>
@@ -424,7 +424,7 @@ export default function BestEuropeBrokersPage() {
           </CardContent>
         </Card>
       </section>
-      
+
       {/* European Market Insights Section */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold mb-8">European Trading Market Insights</h2>
@@ -437,7 +437,7 @@ export default function BestEuropeBrokersPage() {
               <p>European traders benefit from SEPA (Single Euro Payments Area) integration, which enables fast and free EUR transfers between accounts in different EU countries. This allows traders to fund accounts with EU-regulated brokers based in any member state with minimal friction or cost.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Tax Considerations Across Europe</CardTitle>
@@ -448,14 +448,14 @@ export default function BestEuropeBrokersPage() {
           </Card>
         </div>
       </section>
-      
+
       {/* Methodology Section */}
       <section className="mb-16" id="methodology">
         <h2 className="text-3xl font-bold mb-8">Our Testing Methodology</h2>
         <Card>
           <CardContent className="pt-6">
             <p className="mb-4">Our broker evaluations involve rigorous, hands-on testing:</p>
-            
+
             <ol className="space-y-4 list-decimal pl-5">
               <li>
                 <span className="font-bold">Account Creation:</span> We open real accounts with each broker to evaluate the onboarding process, including KYC procedures and account funding options.
@@ -476,7 +476,7 @@ export default function BestEuropeBrokersPage() {
           </CardContent>
         </Card>
       </section>
-      
+
       {/* FAQ Section */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
@@ -489,7 +489,7 @@ export default function BestEuropeBrokersPage() {
               <p>ESMA regulations limit leverage for retail traders to protect consumers from excessive risk. Maximum leverage is capped at 30:1 for major forex pairs, 20:1 for minor forex pairs, gold, and major indices, 10:1 for commodities other than gold and non-major equity indices, 5:1 for individual equities, and 2:1 for cryptocurrencies. Professional clients can access higher leverage by qualifying under specific criteria regarding trading experience, portfolio size, and financial industry knowledge.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Can European traders access brokers from any EU country?</CardTitle>
@@ -498,7 +498,7 @@ export default function BestEuropeBrokersPage() {
               <p>Yes, under EU passporting rules, a broker regulated in one EU member state can offer services to clients throughout the European Economic Area (EEA). This means a trader in Spain, for example, can use a broker regulated by the Cyprus Securities and Exchange Commission (CySEC) with the same protections as if the broker were directly regulated in Spain.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>How has Brexit affected European traders using UK brokers?</CardTitle>
@@ -507,7 +507,7 @@ export default function BestEuropeBrokersPage() {
               <p>Brexit has complicated the relationship between UK brokers and EU clients. UK brokers must now obtain separate authorizations in EU countries or establish EU-regulated entities to continue serving European clients with full regulatory protections. Many larger brokers have established EU subsidiaries (often in Cyprus, Germany, or Ireland) to maintain seamless service to European clients, while some smaller firms have had to exit the European market.</p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>What payment methods are commonly available with European brokers?</CardTitle>
@@ -518,7 +518,7 @@ export default function BestEuropeBrokersPage() {
           </Card>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="text-center">
         <Card className="bg-primary/5 border-0">
@@ -537,4 +537,4 @@ export default function BestEuropeBrokersPage() {
       </section>
     </div>
   );
-} 
+}

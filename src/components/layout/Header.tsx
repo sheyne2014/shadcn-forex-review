@@ -81,7 +81,7 @@ const mainNavItems: NavItem[] = [
       {
         heading: 'Top Broker Reviews',
         items: [
-          { label: 'eToro Review', href: '/reviews/etoro' },
+          { label: 'eToro Review', href: '/broker/etoro' },
           { label: 'XM Review', href: '/reviews/xm' },
           { label: 'IG Review', href: '/reviews/ig' },
           { label: 'Plus500 Review', href: '/reviews/plus500' },

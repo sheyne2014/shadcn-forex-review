@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const featuredReviews = [
   {
     name: "eToro",
-    slug: "etoro",
+    slug: "broker/etoro",
     description: "Popular social trading platform with a wide range of assets including forex, stocks, and crypto.",
     logoUrl: "/broker-logos-simple/etoro_clearbit.png",
     rating: 4.7,
@@ -91,11 +91,11 @@ export default function ReviewsPage() {
             <Card key={review.slug} className="flex flex-col hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center gap-4 pb-2">
                 <div className="w-12 h-12 relative flex-shrink-0 border rounded-md overflow-hidden">
-                  <Image 
-                    src={review.logoUrl} 
-                    alt={`${review.name} logo`} 
-                    width={48} 
-                    height={48} 
+                  <Image
+                    src={review.logoUrl}
+                    alt={`${review.name} logo`}
+                    width={48}
+                    height={48}
                     className="object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -137,9 +137,9 @@ export default function ReviewsPage() {
               { name: "Crypto Brokers", slug: "crypto" },
               { name: "Options Brokers", slug: "options" },
             ].map((category) => (
-              <Button 
-                key={category.slug} 
-                variant="outline" 
+              <Button
+                key={category.slug}
+                variant="outline"
                 className="h-auto py-4 justify-start"
                 asChild
               >
@@ -185,4 +185,4 @@ export default function ReviewsPage() {
       </div>
     </div>
   );
-} 
+}

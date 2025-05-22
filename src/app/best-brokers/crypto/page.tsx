@@ -137,7 +137,7 @@ const topBrokers = [
       "Higher fees for crypto trading",
       "Not all cryptocurrencies are directly owned"
     ],
-    url: "/reviews/etoro",
+    url: "/broker/etoro",
     features: {
       lowFees: false,
       fastExecution: false,
@@ -160,7 +160,7 @@ export default function BestCryptoBrokersPage() {
           Compare the top crypto brokers with secure storage, competitive fees, and comprehensive trading tools. All platforms thoroughly tested by our expert team.
         </p>
       </div>
-      
+
       {/* Quick Navigation */}
       <div className="bg-muted/30 p-6 rounded-lg mb-12">
         <h2 className="text-xl font-semibold mb-4">Quick Navigation</h2>
@@ -191,11 +191,11 @@ export default function BestCryptoBrokersPage() {
           </Link>
         </div>
       </div>
-      
+
       {/* Top 5 Brokers */}
       <section className="mb-16" id="comparison">
         <h2 className="text-3xl font-bold mb-8">Top 5 Cryptocurrency Brokers</h2>
-        
+
         <div className="space-y-6">
           {topBrokers.map((broker, index) => (
             <Card key={broker.id} className="overflow-hidden">
@@ -203,8 +203,8 @@ export default function BestCryptoBrokersPage() {
                 <div className="md:w-1/4 bg-muted/30 flex flex-col items-center justify-center p-6 border-r">
                   <Badge className="mb-2">{`#${index + 1}`}</Badge>
                   <div className="w-[120px] h-[60px] bg-white flex items-center justify-center rounded mb-4">
-                    <img 
-                      src={broker.logo} 
+                    <img
+                      src={broker.logo}
                       alt={`${broker.name} logo`}
                       className="max-w-full max-h-full"
                     />
@@ -223,7 +223,7 @@ export default function BestCryptoBrokersPage() {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="md:w-3/4 p-6">
                   <Tabs defaultValue="overview">
                     <TabsList className="mb-4">
@@ -231,7 +231,7 @@ export default function BestCryptoBrokersPage() {
                       <TabsTrigger value="features">Features</TabsTrigger>
                       <TabsTrigger value="pros-cons">Pros & Cons</TabsTrigger>
                     </TabsList>
-                    
+
                     <TabsContent value="overview">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -256,7 +256,7 @@ export default function BestCryptoBrokersPage() {
                         </div>
                       </div>
                     </TabsContent>
-                    
+
                     <TabsContent value="features">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className={`p-3 rounded-lg border flex items-center ${broker.features.lowFees ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-900' : 'bg-muted/30'}`}>
@@ -277,7 +277,7 @@ export default function BestCryptoBrokersPage() {
                         </div>
                       </div>
                     </TabsContent>
-                    
+
                     <TabsContent value="pros-cons">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -311,7 +311,7 @@ export default function BestCryptoBrokersPage() {
           ))}
         </div>
       </section>
-      
+
       {/* Methodology */}
       <section className="mb-16" id="how-we-rank">
         <h2 className="text-3xl font-bold mb-6">How We Rank Cryptocurrency Brokers</h2>
@@ -348,7 +348,7 @@ export default function BestCryptoBrokersPage() {
           </CardContent>
         </Card>
       </section>
-      
+
       {/* Security */}
       <section className="mb-16" id="regulations">
         <h2 className="text-3xl font-bold mb-6">Cryptocurrency Security & Regulations</h2>
@@ -386,7 +386,7 @@ export default function BestCryptoBrokersPage() {
           </CardContent>
         </Card>
       </section>
-      
+
       {/* Methodology Section */}
       <section className="mb-16" id="methodology">
         <h2 className="text-3xl font-bold mb-6">Our Testing Methodology</h2>
@@ -416,7 +416,7 @@ export default function BestCryptoBrokersPage() {
           </CardContent>
         </Card>
       </section>
-      
+
       {/* FAQs */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -447,7 +447,7 @@ export default function BestCryptoBrokersPage() {
           </Card>
         </div>
       </section>
-      
+
       {/* Call to Action */}
       <section className="bg-muted/30 rounded-xl p-8 md:p-12 text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -471,4 +471,4 @@ export default function BestCryptoBrokersPage() {
       </section>
     </div>
   );
-} 
+}

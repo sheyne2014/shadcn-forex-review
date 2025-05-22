@@ -24,18 +24,18 @@ const forexBrokers = [
   },
   {
     name: "eToro",
-    slug: "etoro",
+    slug: "broker/etoro",
     description: "Popular social trading platform with copy trading features and access to multiple markets.",
     logoUrl: "/broker-logos-simple/etoro_clearbit.png",
     rating: 4.7,
     minDeposit: 50,
-    typicalSpread: 3.0, 
+    typicalSpread: 3.0,
   },
   {
     name: "IC Markets",
     slug: "ic-markets",
     description: "Leading ECN broker with ultra-low spreads and raw pricing for professional traders.",
-    logoUrl: "/broker-logos-simple/ic_markets_clearbit.png", 
+    logoUrl: "/broker-logos-simple/ic_markets_clearbit.png",
     rating: 4.8,
     minDeposit: 200,
     typicalSpread: 0.6,
@@ -108,9 +108,9 @@ export default function ForexReviewsPage() {
               <div className="grid md:grid-cols-[1fr_3fr] gap-6">
                 <div className="p-6 bg-muted/30 flex flex-col items-center justify-center border-r">
                   <div className="w-24 h-24 relative flex-shrink-0 border rounded-md overflow-hidden bg-white p-2 mb-3">
-                    <Image 
-                      src={broker.logoUrl} 
-                      alt={`${broker.name} logo`} 
+                    <Image
+                      src={broker.logoUrl}
+                      alt={`${broker.name} logo`}
                       fill
                       className="object-contain"
                       onError={(e) => {
@@ -122,17 +122,17 @@ export default function ForexReviewsPage() {
                   <StarRating rating={broker.rating} />
                   <Badge variant="outline" className="mt-2">#{index + 1}</Badge>
                 </div>
-                
+
                 <div className="p-6">
                   <CardHeader className="px-0 pt-0">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-2xl">{broker.name} Review</CardTitle>
                     </div>
                   </CardHeader>
-                  
+
                   <CardContent className="px-0 space-y-4">
                     <p>{broker.description}</p>
-                    
+
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="bg-muted p-3 rounded-md text-center">
                         <div className="text-sm text-muted-foreground">Min. Deposit</div>
@@ -152,7 +152,7 @@ export default function ForexReviewsPage() {
                       </div>
                     </div>
                   </CardContent>
-                  
+
                   <CardFooter className="px-0 flex justify-between">
                     <Button asChild>
                       <Link href={`/reviews/${broker.slug}`} className="flex items-center">
@@ -196,7 +196,7 @@ export default function ForexReviewsPage() {
                 </li>
               </ul>
             </div>
-            
+
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Trading Platforms</h3>
               <ul className="space-y-2">
@@ -225,4 +225,4 @@ export default function ForexReviewsPage() {
       </div>
     </div>
   );
-} 
+}
