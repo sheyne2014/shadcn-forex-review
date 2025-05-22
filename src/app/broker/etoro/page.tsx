@@ -4,12 +4,14 @@ import { HeroBrokerSection } from "@/components/broker-review/HeroBrokerSection"
 import { BrokerOverviewSection } from "@/components/broker-review/BrokerOverviewSection";
 import { BrokerTradingConditions } from "@/components/broker-review/BrokerTradingConditions";
 import { PlatformsSection } from "@/components/broker-review/PlatformsSection";
-import { EducationSection } from "@/components/broker-review/EducationSection";
 import { ReviewsSection } from "@/components/broker-review/ReviewsSection";
 import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisWidget";
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Star, CheckCircle, AlertTriangle } from "lucide-react";
 
 // Generate metadata for the broker review page
 export async function generateMetadata(): Promise<Metadata> {
@@ -189,7 +191,68 @@ export default async function EToroReviewPage() {
 
             {/* Educational Resources */}
             <section id="education">
-              <EducationSection broker={broker} />
+              <Card>
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>Educational Resources</CardTitle>
+                      <CardDescription>
+                        Learning materials and resources offered by {broker.name}
+                      </CardDescription>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="flex items-center">
+                        <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+                        <span className="ml-1 font-medium">4.2/5</span>
+                      </div>
+                      <Badge variant="outline" className="ml-2">Education Rating</Badge>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-6">
+                    {broker.name} offers a variety of educational resources designed to help traders at different skill levels improve their trading knowledge and skills. The resources include articles, videos, and comprehensive guides.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 flex items-center">
+                        <CheckCircle className="h-5 w-5 text-green-600 mr-2" /> Strengths
+                      </h3>
+                      <ul className="space-y-2">
+                        {[
+                          "Comprehensive learning materials for all trader levels",
+                          "Free access to basic educational content",
+                          "Social trading learning opportunities",
+                          "Mobile-friendly educational platform"
+                        ].map((strength, index) => (
+                          <li key={index} className="flex items-start">
+                            <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
+                            <span>{strength}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 flex items-center">
+                        <AlertTriangle className="h-5 w-5 text-red-600 mr-2" /> Considerations
+                      </h3>
+                      <ul className="space-y-2">
+                        {[
+                          "Advanced content may require premium account",
+                          "Limited one-on-one coaching options",
+                          "Some content may not be available in all languages"
+                        ].map((weakness, index) => (
+                          <li key={index} className="flex items-start">
+                            <AlertTriangle className="h-4 w-4 text-red-600 mt-1 mr-2 flex-shrink-0" />
+                            <span>{weakness}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </section>
 
             {/* User Reviews */}
