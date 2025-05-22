@@ -29,19 +29,19 @@ export const metadata: Metadata = {
 };
 
 // Broker Card Component
-function BrokerCard({ broker, formatSupportedAssets }: { 
-  broker: Broker, 
-  formatSupportedAssets: (supportedAssets: string | string[] | null | undefined) => string[] 
+function BrokerCard({ broker, formatSupportedAssets }: {
+  broker: Broker,
+  formatSupportedAssets: (supportedAssets: string | string[] | null | undefined) => string[]
 }) {
   return (
-                <Link href={`/broker/${broker.id}`} key={broker.id} className="group">
+                <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`} key={broker.id} className="group">
                   <Card className="h-full transition-all hover:shadow-md">
                     <CardHeader className="pb-4">
                       <div className="flex justify-between items-start">
                         <div className="h-16 w-40 bg-muted flex items-center justify-center rounded overflow-hidden">
-                          <img 
-                            src={broker.logo_url || `https://placehold.co/150x60?text=${encodeURIComponent(broker.name)}`} 
-                            alt={`${broker.name} logo`} 
+                          <img
+                            src={broker.logo_url || `https://placehold.co/150x60?text=${encodeURIComponent(broker.name)}`}
+                            alt={`${broker.name} logo`}
                             className="max-h-full max-w-full object-contain"
                           />
                         </div>
@@ -89,8 +89,8 @@ function BrokerCard({ broker, formatSupportedAssets }: {
 }
 
 // BrokerGrid Component
-function BrokerGrid({ brokers, categoryName, formatSupportedAssets }: { 
-  brokers: Broker[], 
+function BrokerGrid({ brokers, categoryName, formatSupportedAssets }: {
+  brokers: Broker[],
   categoryName?: string,
   formatSupportedAssets: (supportedAssets: string | string[] | null | undefined) => string[]
 }) {
@@ -98,10 +98,10 @@ function BrokerGrid({ brokers, categoryName, formatSupportedAssets }: {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {brokers.length > 0 ? (
         brokers.map((broker) => (
-          <BrokerCard 
-            key={broker.id} 
-            broker={broker} 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerCard
+            key={broker.id}
+            broker={broker}
+            formatSupportedAssets={formatSupportedAssets}
           />
               ))
             ) : (
@@ -110,7 +110,7 @@ function BrokerGrid({ brokers, categoryName, formatSupportedAssets }: {
             {categoryName ? `No ${categoryName} brokers found` : 'No brokers found'}
           </h3>
           <p className="text-muted-foreground">
-            {categoryName 
+            {categoryName
               ? `${categoryName} brokers will appear here once they are added to the database.`
               : 'Brokers will appear here once they are added to the database.'
             }
@@ -137,21 +137,21 @@ export default async function BrokersPage() {
   console.log(`Fetched ${brokers?.length || 0} brokers from Supabase`);
   if (brokers && brokers.length > 0) {
     console.log("First broker data:", JSON.stringify(brokers[0], null, 2));
-    
+
     // Check categories that will actually have brokers
     console.log("Brokers by category:");
     ["Forex", "Crypto", "Stocks", "ETF", "CFD", "Commodities", "Options"].forEach(category => {
       const matchingBrokers = brokers.filter(broker => {
         if (!broker.supported_assets) return false;
-        
+
         if (Array.isArray(broker.supported_assets)) {
-          return broker.supported_assets.some((asset: string) => 
+          return broker.supported_assets.some((asset: string) =>
             typeof asset === 'string' && asset.toLowerCase() === category.toLowerCase()
           );
         }
         return false;
       });
-      
+
       console.log(`- ${category}: ${matchingBrokers.length} brokers`);
       if (matchingBrokers.length > 0) {
         console.log(`  First match: ${matchingBrokers[0].name} with assets: ${JSON.stringify(matchingBrokers[0].supported_assets)}`);
@@ -171,10 +171,10 @@ export default async function BrokersPage() {
     // Filter brokers based on supported_assets
     return brokers?.filter(broker => {
       if (!broker.supported_assets) return false;
-      
+
       // Make the category check case-insensitive
       const categoryLower = categoryName.toLowerCase();
-      
+
       // Handle different formats of supported_assets
       const parsedAssets = (() => {
         if (typeof broker.supported_assets === 'string') {
@@ -190,63 +190,63 @@ export default async function BrokersPage() {
         }
         return [];
       })();
-      
+
       // Case-insensitive match for more reliable filtering
       const hasMatch = parsedAssets.some((asset: string) => {
         if (typeof asset !== 'string') return false;
-        
+
         // Normalize asset names to improve matching
         const assetLower = asset.toLowerCase();
-        
+
         if (categoryLower === 'forex' && (assetLower === 'forex' || assetLower === 'fx')) {
           return true;
         }
-        
+
         if (categoryLower === 'crypto' && (
-          assetLower === 'crypto' || 
-          assetLower === 'cryptocurrency' || 
-          assetLower === 'cryptocurrencies' || 
-          assetLower === 'bitcoin' || 
-          assetLower === 'ethereum' || 
+          assetLower === 'crypto' ||
+          assetLower === 'cryptocurrency' ||
+          assetLower === 'cryptocurrencies' ||
+          assetLower === 'bitcoin' ||
+          assetLower === 'ethereum' ||
           assetLower === 'altcoins'
         )) {
           return true;
         }
-        
+
         if (categoryLower === 'stocks' && (assetLower === 'stocks' || assetLower === 'equities')) {
           return true;
         }
-        
+
         if (categoryLower === 'etf' && (assetLower === 'etf' || assetLower === 'etfs')) {
           return true;
         }
-        
+
         if (categoryLower === 'cfd' && (assetLower === 'cfd' || assetLower === 'cfds')) {
           return true;
         }
-        
+
         if (categoryLower === 'commodities' && (
-          assetLower === 'commodities' || 
-          assetLower === 'metals' || 
-          assetLower === 'gold' || 
+          assetLower === 'commodities' ||
+          assetLower === 'metals' ||
+          assetLower === 'gold' ||
           assetLower === 'silver'
         )) {
           return true;
         }
-        
+
         if (categoryLower === 'options' && assetLower === 'options') {
           return true;
         }
-        
+
         // Direct match
         return assetLower === categoryLower;
       });
-      
+
       // Log matches for debugging
       if (hasMatch) {
         console.log(`Match found for ${categoryName}: ${broker.name} with assets: ${JSON.stringify(broker.supported_assets)}`);
       }
-      
+
       return hasMatch;
     }) || [];
   };
@@ -254,7 +254,7 @@ export default async function BrokersPage() {
   // Helper function to format supported_assets
   const formatSupportedAssets = (supportedAssets: string | string[] | null | undefined) => {
     if (!supportedAssets) return [];
-    
+
     if (typeof supportedAssets === 'string') {
       try {
         return JSON.parse(supportedAssets);
@@ -289,7 +289,7 @@ export default async function BrokersPage() {
             <TabsTrigger value="cfd">CFD</TabsTrigger>
             <TabsTrigger value="options">Options</TabsTrigger>
           </TabsList>
-          
+
           <Button variant="outline" size="sm" className="gap-2">
             <Filter className="h-4 w-4" />
             Filters
@@ -297,72 +297,72 @@ export default async function BrokersPage() {
         </div>
 
         <TabsContent value="all" className="mt-0">
-          <BrokerGrid 
-            brokers={brokers || []} 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={brokers || []}
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
-        
+
         {/* Forex tab */}
         <TabsContent value="forex" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("Forex")} 
-            categoryName="Forex" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("Forex")}
+            categoryName="Forex"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
-        
+
         {/* Crypto tab */}
         <TabsContent value="crypto" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("Crypto")} 
-            categoryName="Crypto" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("Crypto")}
+            categoryName="Crypto"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
 
         {/* Stocks tab */}
         <TabsContent value="stocks" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("Stocks")} 
-            categoryName="Stock" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("Stocks")}
+            categoryName="Stock"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
 
         {/* Commodities tab */}
         <TabsContent value="commodities" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("Commodities")} 
-            categoryName="Commodity" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("Commodities")}
+            categoryName="Commodity"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
-        
+
         {/* ETF tab */}
         <TabsContent value="etf" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("ETF")} 
-            categoryName="ETF" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("ETF")}
+            categoryName="ETF"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
-        
+
         {/* CFD tab */}
         <TabsContent value="cfd" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("CFD")} 
-            categoryName="CFD" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("CFD")}
+            categoryName="CFD"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
-        
+
         {/* Options tab */}
         <TabsContent value="options" className="mt-0">
-          <BrokerGrid 
-            brokers={getBrokersByCategory("Options")} 
-            categoryName="Options" 
-            formatSupportedAssets={formatSupportedAssets} 
+          <BrokerGrid
+            brokers={getBrokersByCategory("Options")}
+            categoryName="Options"
+            formatSupportedAssets={formatSupportedAssets}
           />
         </TabsContent>
       </Tabs>
@@ -397,4 +397,4 @@ export default async function BrokersPage() {
       />
     </div>
   );
-} 
+}

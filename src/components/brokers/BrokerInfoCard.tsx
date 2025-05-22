@@ -25,15 +25,15 @@ function formatSupportedAssets(supportedAssets: string | string[] | null | undef
 
 export function BrokerInfoCard({ broker, showLink = true }: BrokerInfoCardProps) {
   const formattedAssets = formatSupportedAssets(broker.supported_assets);
-  
+
   const cardContent = (
     <Card className="h-full transition-all hover:shadow-md">
       <CardHeader className="pb-4">
         <div className="flex justify-between items-start">
           <div className="h-16 w-40 bg-muted flex items-center justify-center rounded overflow-hidden">
-            <img 
-              src={broker.logo_url || `https://placehold.co/150x60?text=${encodeURIComponent(broker.name)}`} 
-              alt={`${broker.name} logo`} 
+            <img
+              src={broker.logo_url || `https://placehold.co/150x60?text=${encodeURIComponent(broker.name)}`}
+              alt={`${broker.name} logo`}
               className="max-h-full max-w-full object-contain"
             />
           </div>
@@ -83,14 +83,14 @@ export function BrokerInfoCard({ broker, showLink = true }: BrokerInfoCardProps)
       )}
     </Card>
   );
-  
+
   if (showLink) {
     return (
-      <Link href={`/broker/${broker.id}`} className="group">
+      <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`} className="group">
         {cardContent}
       </Link>
     );
   }
-  
+
   return cardContent;
-} 
+}

@@ -48,20 +48,20 @@ export function BrokerCard({
     if (rating === null) return null;
     const fullRating = Math.floor(rating);
     const stars = [];
-    
+
     for (let i = 0; i < 5; i++) {
       const isFilled = i < fullRating;
       stars.push(
-        <Star 
-          key={i} 
+        <Star
+          key={i}
           className={cn(
-            "h-4 w-4", 
+            "h-4 w-4",
             isFilled ? "fill-amber-400 text-amber-400" : "text-gray-300"
           )}
         />
       );
     }
-    
+
     return (
       <div className="flex items-center gap-0.5">
         {stars}
@@ -84,7 +84,7 @@ export function BrokerCard({
           #{ranking}
         </div>
       )}
-      
+
       <CardHeader className="space-y-1 pb-2">
         <div className="flex items-center justify-between">
           <div className="relative h-14 w-36">
@@ -101,21 +101,21 @@ export function BrokerCard({
               </div>
             )}
           </div>
-          
+
           {showRating && broker.rating && renderRatingStars(broker.rating)}
         </div>
-        
+
         <CardTitle className="text-xl font-semibold mt-2">
           {broker.name}
         </CardTitle>
       </CardHeader>
-      
+
       <CardContent className="space-y-4">
         {showMatchScore && displayMatchScore !== undefined && (
           <div className="mb-3 -mt-1">
             <div className="w-full bg-muted rounded-full h-2">
-              <div 
-                className="bg-primary h-2 rounded-full" 
+              <div
+                className="bg-primary h-2 rounded-full"
                 style={{ width: `${displayMatchScore}%` }}
               />
             </div>
@@ -125,21 +125,21 @@ export function BrokerCard({
             </div>
           </div>
         )}
-        
+
         {showMinDeposit && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">Min. Deposit</span>
             <span className="font-semibold">{formatCurrency(broker.min_deposit)}</span>
           </div>
         )}
-        
+
         {broker.trading_fee !== null && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">Trading Fee</span>
             <span className="font-semibold">{broker.trading_fee}%</span>
           </div>
         )}
-        
+
         {broker.supported_assets && broker.supported_assets.length > 0 && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">Assets</span>
@@ -152,7 +152,7 @@ export function BrokerCard({
             </div>
           </div>
         )}
-        
+
         {showPros && prosList.length > 0 && (
           <div className="space-y-2">
             <p className="text-sm font-medium">Pros</p>
@@ -166,7 +166,7 @@ export function BrokerCard({
             </ul>
           </div>
         )}
-        
+
         {consList && consList.length > 0 && (
           <div className="space-y-2">
             <p className="text-sm font-medium">Cons</p>
@@ -180,7 +180,7 @@ export function BrokerCard({
             </ul>
           </div>
         )}
-        
+
         {broker.regulations && (
           <div>
             <Badge variant="outline" className="text-xs">
@@ -189,14 +189,14 @@ export function BrokerCard({
           </div>
         )}
       </CardContent>
-      
+
       <CardFooter className="pt-2">
         <Button asChild className="w-full" variant="default" size="sm">
-          <Link href={`/broker/${broker.id}`}>
+          <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`}>
             Read Review <ChevronRight className="ml-1 h-4 w-4" />
           </Link>
         </Button>
       </CardFooter>
     </Card>
   );
-} 
+}
