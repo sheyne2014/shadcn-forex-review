@@ -232,14 +232,14 @@ export function Header() {
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={item.href}>
-                    <Link href={item.href} legacyBehavior passHref>
-                      <NavigationMenuLink className={cn(
-                        navigationMenuTriggerStyle(),
-                        isActive(item.href) && "text-primary"
-                      )}>
+                    <NavigationMenuLink asChild className={cn(
+                      navigationMenuTriggerStyle(),
+                      isActive(item.href) && "text-primary"
+                    )}>
+                      <Link href={item.href}>
                         {item.label}
-                      </NavigationMenuLink>
-                    </Link>
+                      </Link>
+                    </NavigationMenuLink>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
