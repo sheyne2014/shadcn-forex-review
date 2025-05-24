@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect, useState } from "react";
+import { useMemo } from "react";
 import { Check, X, Info } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { BrokerLogo } from "@/components/brokers/BrokerLogo";
@@ -57,27 +57,17 @@ export function BrokerComparisonTable({
   className
 }: BrokerComparisonTableProps) {
   // Use react-intersection-observer for better performance
-  const { ref: tableRef, inView: isVisible } = useInView({
+  const { ref: tableRef } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  // Virtualize the broker list for better performance with many brokers
-  const [visibleBrokers, setVisibleBrokers] = useState<BrokerData[]>([]);
-
-  useEffect(() => {
-    // Initially show only the first 3 brokers (or all if less than 3)
-    setVisibleBrokers(brokers.slice(0, Math.min(3, brokers.length)));
-
-    // If there are more brokers, gradually load them for better performance
-    if (brokers.length > 3 && isVisible) {
-      const timer = setTimeout(() => {
-        setVisibleBrokers(brokers);
-      }, 100);
-
-      return () => clearTimeout(timer);
-    }
-  }, [brokers, isVisible]);
+  // Use the brokers prop directly instead of virtualizing
+  // This ensures that the table always shows the brokers selected by the parent component
+  const visibleBrokers = useMemo(() => {
+    // Always show all brokers passed from parent component
+    return brokers;
+  }, [brokers]);
   // Render star rating
   const renderRating = (rating: number) => {
     return (
@@ -144,9 +134,9 @@ export function BrokerComparisonTable({
       );
     }
 
-    // For null or undefined values
-    if (value === null || value === undefined) {
-      return <span className="text-muted-foreground">-</span>;
+    // For null, undefined, or empty string values
+    if (value === null || value === undefined || value === '' || value === 'N/A' || value === 'Not specified') {
+      return <span className="text-muted-foreground text-sm">Not specified</span>;
     }
 
     // For numeric values, add visual indicators
@@ -257,7 +247,7 @@ export function BrokerComparisonTable({
                         feature.highlight && "bg-primary/5 group-hover:bg-muted/50"
                       )}
                     >
-                      {renderEnhancedValue(broker.features[feature.name.toLowerCase().replace(/ /g, '_')], feature)}
+                      {renderEnhancedValue(broker.features[feature.id || feature.name.toLowerCase().replace(/ /g, '_')], feature)}
                     </TableCell>
                   ))}
 

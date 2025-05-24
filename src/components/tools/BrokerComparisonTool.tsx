@@ -32,7 +32,7 @@ interface BrokerComparisonToolProps {
 
 export function BrokerComparisonTool({ initialBrokers, availableFeatures }: BrokerComparisonToolProps) {
   const [selectedBrokerIds, setSelectedBrokerIds] = useState<string[]>(
-    initialBrokers.slice(0, Math.min(initialBrokers.length, 3)).map(b => b.id)
+    initialBrokers.slice(0, Math.min(initialBrokers.length, 2)).map(b => b.id)
   );
   const [selectedFeatureIds, setSelectedFeatureIds] = useState<string[]>(
     availableFeatures.filter(f => f.highlight || f.group === "Trading Conditions").map(f => f.id || "").filter(id => id !== "") // Default selected features
@@ -136,8 +136,8 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
   };
 
   const resetFilters = () => {
-    // Reset broker selection to the first 3 brokers
-    setSelectedBrokerIds(initialBrokers.slice(0, Math.min(initialBrokers.length, 3)).map(b => b.id));
+    // Reset broker selection to the first 2 brokers
+    setSelectedBrokerIds(initialBrokers.slice(0, Math.min(initialBrokers.length, 2)).map(b => b.id));
 
     // Reset feature selection to highlighted features and Trading features
     // Only include features with valid IDs

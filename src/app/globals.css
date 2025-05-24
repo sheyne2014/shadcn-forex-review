@@ -260,6 +260,44 @@
   background-color: hsl(var(--background)) !important;
 }
 
+/* Fix for broker comparison page select dropdowns */
+[data-slot="select-content"],
+[data-slot="select-content"] > *,
+[data-radix-select-viewport] {
+  background-color: hsl(var(--background)) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure select triggers have solid background */
+[data-slot="select-trigger"] {
+  background-color: hsl(var(--background)) !important;
+  opacity: 1 !important;
+}
+
+/* Fix for tabs styling */
+[data-slot="tabs-list"] {
+  background-color: hsl(var(--background)) !important;
+  border: 2px solid hsl(var(--border)) !important;
+  opacity: 1 !important;
+}
+
+[data-slot="tabs-trigger"] {
+  background-color: hsl(var(--background)) !important;
+  opacity: 1 !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+[data-slot="tabs-trigger"][data-state="active"] {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+[data-slot="tabs-trigger"]:hover {
+  background-color: hsl(var(--accent)) !important;
+}
+
 /* Preserve text colors and other elements that should not have the background color */
 [data-radix-popper-content-wrapper] [data-slot="dropdown-menu-item"],
 [data-radix-popper-content-wrapper] [data-slot="select-item"],

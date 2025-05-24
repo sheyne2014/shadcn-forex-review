@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BrokerCompareSelector } from "@/components/compare/BrokerCompareSelector";
-import { BrokerCompareDetails } from "@/components/compare/BrokerCompareDetails";
-import { Suspense } from "react";
-import { db } from "@/lib/database";
+import { BrokerCompareDetailsWrapper } from "@/components/compare/BrokerCompareDetailsWrapper";
 import { siteConfig } from "@/config/site";
 import { getBrokerComparisonPairs } from "@/lib/route-generation";
 import { supabaseBrokerClient } from "@/lib/supabase/broker-client";
@@ -11,15 +9,15 @@ import { supabaseBrokerClient } from "@/lib/supabase/broker-client";
 // Generate static params for all comparison pages
 export async function generateStaticParams() {
   const comparisonPairs = await getBrokerComparisonPairs();
-  
+
   return comparisonPairs.map(pair => ({
     brokers: [pair],
   }));
 }
 
 export async function generateMetadata(
-  props: { 
-    params: Promise<{ brokers: string[] }> 
+  props: {
+    params: Promise<{ brokers: string[] }>
   }
 ): Promise<Metadata> {
   const params = await props.params;
@@ -34,7 +32,7 @@ export async function generateMetadata(
 
   // Parse the broker comparison string (broker1-vs-broker2)
   const comparisonString = brokers[0];
-  const brokerNames = comparisonString.split('-vs-').map(part => 
+  const brokerNames = comparisonString.split('-vs-').map(part =>
     part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   );
 
@@ -76,8 +74,8 @@ export async function generateMetadata(
       images: [`${siteConfig.url}/images/comparisons/${comparisonString}.png`],
     },
     keywords: [
-      `${brokerNames[0]} vs ${brokerNames[1]}`, 
-      `compare ${brokerNames[0]} and ${brokerNames[1]}`, 
+      `${brokerNames[0]} vs ${brokerNames[1]}`,
+      `compare ${brokerNames[0]} and ${brokerNames[1]}`,
       `${brokerNames[0]} ${brokerNames[1]} comparison`,
       `best between ${brokerNames[0]} and ${brokerNames[1]}`,
       `${brokerNames[0]} or ${brokerNames[1]}`,
@@ -105,7 +103,7 @@ async function generateComparisonJsonLd(comparisonString: string, broker1Name: s
       .select('*')
       .or(`name.ilike.%${brokerSlugs[0].replace(/-/g, '%')}%,name.ilike.%${brokerSlugs[1].replace(/-/g, '%')}%`)
       .limit(2);
-    
+
     if (brokers && brokers.length === 2) {
       const jsonLd = {
         '@context': 'https://schema.org',
@@ -133,20 +131,20 @@ async function generateComparisonJsonLd(comparisonString: string, broker1Name: s
           '@type': 'AggregateOffer',
           highPrice: Math.max(brokers[0].min_deposit || 0, brokers[1].min_deposit || 0),
           lowPrice: Math.min(
-            brokers[0].min_deposit > 0 ? brokers[0].min_deposit : 1000, 
+            brokers[0].min_deposit > 0 ? brokers[0].min_deposit : 1000,
             brokers[1].min_deposit > 0 ? brokers[1].min_deposit : 1000
           ),
           priceCurrency: 'USD',
           offerCount: 2
         }
       };
-      
+
       return jsonLd;
     }
   } catch (error) {
     console.error('Error generating comparison JSON-LD:', error);
   }
-  
+
   // Fallback generic JSON-LD if broker data couldn't be fetched
   return createFallbackJsonLd(broker1Name, broker2Name, comparisonString);
 }
@@ -177,8 +175,8 @@ function createFallbackJsonLd(broker1Name: string, broker2Name: string, comparis
 }
 
 export default async function CompareBrokersPage(
-  props: { 
-    params: Promise<{ brokers: string[] }> 
+  props: {
+    params: Promise<{ brokers: string[] }>
   }
 ) {
   const params = await props.params;
@@ -193,20 +191,18 @@ export default async function CompareBrokersPage(
         <p className="text-muted-foreground mb-8">
           Select two brokers to compare them side by side.
         </p>
-        <Suspense fallback={<div>Loading broker selection...</div>}>
-          <BrokerCompareSelector 
-            brokers={[
-              // Provide default brokers for selection
-              { id: "broker1", name: "Broker 1" },
-              { id: "broker2", name: "Broker 2" },
-              { id: "broker3", name: "Broker 3" },
-              { id: "broker4", name: "Broker 4" },
-              { id: "broker5", name: "Broker 5" },
-            ]} 
-            initialBroker1="broker1" 
-            initialBroker2="broker2" 
-          />
-        </Suspense>
+        <BrokerCompareSelector
+          brokers={[
+            // Provide default brokers for selection
+            { id: "broker1", name: "Broker 1" },
+            { id: "broker2", name: "Broker 2" },
+            { id: "broker3", name: "Broker 3" },
+            { id: "broker4", name: "Broker 4" },
+            { id: "broker5", name: "Broker 5" },
+          ]}
+          initialBroker1="broker1"
+          initialBroker2="broker2"
+        />
       </div>
     );
   }
@@ -224,7 +220,7 @@ export default async function CompareBrokersPage(
   const broker2Id = brokerParts[1];
 
   // Format for display
-  const brokerNames = brokerParts.map(part => 
+  const brokerNames = brokerParts.map(part =>
     part.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   );
 
@@ -238,25 +234,25 @@ export default async function CompareBrokersPage(
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
-      <div className="container py-10">
-        <h1 className="text-3xl font-bold mb-2">
-          {brokerNames[0]} vs {brokerNames[1]}
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8">
-          Detailed comparison of features, fees, platforms and more
-        </p>
-        
-        <Suspense fallback={<div>Loading comparison data...</div>}>
-          <BrokerCompareDetails 
-            brokerIds={[broker1Id, broker2Id]}
-            lastUpdated={{
-              month: new Date().toLocaleString('default', { month: 'long' }),
-              year: new Date().getFullYear().toString()
-            }}
-          />
-        </Suspense>
+
+      <div className="container mx-auto py-16">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            {brokerNames[0]} vs {brokerNames[1]}
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Detailed comparison of features, fees, platforms and more to help you choose the best broker
+          </p>
+        </div>
+
+        <BrokerCompareDetailsWrapper
+          brokerIds={[broker1Id, broker2Id]}
+          lastUpdated={{
+            month: new Date().toLocaleString('default', { month: 'long' }),
+            year: new Date().getFullYear().toString()
+          }}
+        />
       </div>
     </>
   );
-} 
+}

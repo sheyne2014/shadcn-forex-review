@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { BrokerCompareSelector } from "@/components/compare/BrokerCompareSelector";
+import { BrokerCompareSelectorWrapper } from "@/components/compare/BrokerCompareSelectorWrapper";
 import { BrokerCompareDetails } from "@/components/compare/BrokerCompareDetails";
 import { Suspense } from "react";
 import { db } from "@/lib/database";
@@ -9,7 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export const metadata: Metadata = {
   title: "Compare Brokers Side by Side | Find Your Best Broker Match",
-  description: "Compare up to 5 trading brokers side by side with our detailed comparison tool. Review fees, platforms, products, and more to find the perfect broker for your needs.",
+  description: "Compare 2 trading brokers side by side with our detailed comparison tool. Review fees, platforms, products, and more to find the perfect broker for your needs.",
 };
 
 interface SearchParams {
@@ -54,8 +54,8 @@ export default async function ComparePage(
     { id: "startrader", name: "StarTrader" },
   ];
 
-  const availableBrokers = brokers.length >= 2 ? 
-    brokers.map(b => ({ id: b.id, name: b.name })) : 
+  const availableBrokers = brokers.length >= 2 ?
+    brokers.map(b => ({ id: b.id, name: b.name })) :
     fallbackBrokers;
 
   // Ensure we have at least 2 broker IDs
@@ -77,32 +77,32 @@ export default async function ComparePage(
             Last updated: {currentMonth} {currentYear}
           </Badge>
         </div>
-        
+
         <Alert className="bg-card border-primary/10 max-w-3xl mx-auto">
           <Info className="h-4 w-4 text-primary" />
           <AlertDescription>
-            Our broker comparison tool provides accurate and up-to-date information to help you find the best trading platform. Compare up to 5 brokers at once. All data was verified in {currentMonth} {currentYear}.
+            Our broker comparison tool provides accurate and up-to-date information to help you find the best trading platform. Compare 2 brokers side by side. All data was verified in {currentMonth} {currentYear}.
           </AlertDescription>
         </Alert>
-        
+
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Select brokers to compare their features, fees, platforms, and more. 
+          Select brokers to compare their features, fees, platforms, and more.
           Find the perfect trading platform for your investment needs.
         </p>
       </div>
-      
-      <BrokerCompareSelector 
+
+      <BrokerCompareSelectorWrapper
         brokers={availableBrokers}
         initialBroker1={brokerIds[0]}
         initialBroker2={brokerIds[1]}
       />
-      
+
       <Suspense fallback={<div className="my-12 text-center">Loading comparison data...</div>}>
-        <BrokerCompareDetails 
+        <BrokerCompareDetails
           brokerIds={brokerIds}
           lastUpdated={{month: currentMonth, year: currentYear}}
         />
       </Suspense>
     </main>
   );
-} 
+}

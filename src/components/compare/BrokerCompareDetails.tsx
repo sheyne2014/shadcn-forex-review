@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, X, Info, Star, Shield, CreditCard, Clock, HelpCircle, Globe } from "lucide-react";
+import { Check, X, Star, Shield, CreditCard, Globe } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +20,7 @@ import {
   AccordionItem,
   AccordionTrigger
 } from "@/components/ui/accordion";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BrokerCompareRatings } from "@/components/compare/BrokerCompareRatings";
 import { BrokerCompareFeesTable } from "@/components/compare/BrokerCompareFeesTable";
@@ -102,161 +102,220 @@ export function BrokerCompareDetails({ brokerIds, lastUpdated }: BrokerCompareDe
   };
 
   return (
-    <div className="space-y-12 max-w-4xl mx-auto">
+    <div className="space-y-16">
       {/* Header with broker logos and summary */}
-      <div className="p-6 bg-card border rounded-lg shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-11 gap-6">
-          {/* Broker 1 */}
-          <div className="md:col-span-5 flex flex-col items-center space-y-4">
-            <div className="relative w-40 h-20 bg-background rounded-md flex items-center justify-center p-4 border overflow-hidden shadow-sm">
-              {brokers[0].logo_url ? (
-                <Image
-                  src={brokers[0].logo_url}
-                  alt={brokers[0].name}
-                  fill
-                  className="object-contain p-2"
-                  onError={(e) => {
-                    // @ts-ignore
-                    e.target.onerror = null;
-                    // @ts-ignore
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brokers[0].name)}&background=random&color=fff&size=128&bold=true&format=png`;
-                  }}
-                />
-              ) : (
-                <div className="font-bold text-xl">{brokers[0].name}</div>
-              )}
+      <div className="relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50"></div>
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+
+        <div className="relative p-8 bg-card/80 backdrop-blur-sm border rounded-xl shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-11 gap-8">
+            {/* Broker 1 */}
+            <div className="lg:col-span-5 flex flex-col items-center space-y-6">
+              <div className="relative w-48 h-24 bg-background rounded-xl flex items-center justify-center p-6 border-2 border-primary/10 overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                {brokers[0].logo_url ? (
+                  <Image
+                    src={brokers[0].logo_url}
+                    alt={brokers[0].name}
+                    fill
+                    className="object-contain p-3"
+                    onError={(e) => {
+                      // @ts-ignore
+                      e.target.onerror = null;
+                      // @ts-ignore
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brokers[0].name)}&background=random&color=fff&size=128&bold=true&format=png`;
+                    }}
+                  />
+                ) : (
+                  <div className="font-bold text-xl text-center">{brokers[0].name}</div>
+                )}
+              </div>
+              <div className="text-center space-y-3">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  {brokers[0].name}
+                </h2>
+                <div className="flex items-center justify-center space-x-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={`${brokers[0].id}-star-${i}`}
+                      className={`h-6 w-6 ${i < Math.floor(brokers[0].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
+                    />
+                  ))}
+                  <span className="ml-2 font-semibold text-lg">{brokers[0].rating?.toFixed(1) || '-'}/5</span>
+                </div>
+                <Badge
+                  variant={overallWinner === brokers[0].name ? "default" : "outline"}
+                  className={`px-4 py-2 text-sm font-medium ${overallWinner === brokers[0].name ? 'bg-primary text-primary-foreground' : ''}`}
+                >
+                  {overallWinner === brokers[0].name ? "🏆 Overall Winner" : ""}
+                  {!overallWinner || overallWinner === "Tie" ? "⚖️ Comparable" : ""}
+                </Badge>
+                <Button asChild size="lg" className="mt-4 px-8 py-3 font-semibold">
+                  <Link href={`/broker/${brokerIds[0]}`}>
+                    View Full Review
+                  </Link>
+                </Button>
+              </div>
             </div>
-            <h2 className="text-2xl font-bold">{brokers[0].name}</h2>
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={`${brokers[0].id}-star-${i}`}
-                  className={`h-5 w-5 ${i < Math.floor(brokers[0].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
-                />
-              ))}
-              <span className="ml-2 font-medium">{brokers[0].rating?.toFixed(1) || '-'}/5</span>
+
+            {/* VS */}
+            <div className="lg:col-span-1 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                VS
+              </div>
             </div>
-            <Badge
-              variant={overallWinner === brokers[0].name ? "default" : "outline"}
-              className={overallWinner === brokers[0].name ? "px-3 py-1 text-sm" : "px-3 py-1 text-sm"}
-            >
-              {overallWinner === brokers[0].name ? "Overall Winner" : ""}
-              {!overallWinner || overallWinner === "Tie" ? "Comparable" : ""}
-            </Badge>
-            <Button asChild size="sm" className="mt-2">
-              <Link href={`/broker/${brokerIds[0]}`}>Open Account</Link>
-            </Button>
+
+            {/* Broker 2 */}
+            <div className="lg:col-span-5 flex flex-col items-center space-y-6">
+              <div className="relative w-48 h-24 bg-background rounded-xl flex items-center justify-center p-6 border-2 border-primary/10 overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                {brokers[1].logo_url ? (
+                  <Image
+                    src={brokers[1].logo_url}
+                    alt={brokers[1].name}
+                    fill
+                    className="object-contain p-3"
+                    onError={(e) => {
+                      // @ts-ignore
+                      e.target.onerror = null;
+                      // @ts-ignore
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brokers[1].name)}&background=random&color=fff&size=128&bold=true&format=png`;
+                    }}
+                  />
+                ) : (
+                  <div className="font-bold text-xl text-center">{brokers[1].name}</div>
+                )}
+              </div>
+              <div className="text-center space-y-3">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  {brokers[1].name}
+                </h2>
+                <div className="flex items-center justify-center space-x-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={`${brokers[1].id}-star-${i}`}
+                      className={`h-6 w-6 ${i < Math.floor(brokers[1].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
+                    />
+                  ))}
+                  <span className="ml-2 font-semibold text-lg">{brokers[1].rating?.toFixed(1) || '-'}/5</span>
+                </div>
+                <Badge
+                  variant={overallWinner === brokers[1].name ? "default" : "outline"}
+                  className={`px-4 py-2 text-sm font-medium ${overallWinner === brokers[1].name ? 'bg-primary text-primary-foreground' : ''}`}
+                >
+                  {overallWinner === brokers[1].name ? "🏆 Overall Winner" : ""}
+                  {!overallWinner || overallWinner === "Tie" ? "⚖️ Comparable" : ""}
+                </Badge>
+                <Button asChild size="lg" className="mt-4 px-8 py-3 font-semibold">
+                  <Link href={`/broker/${brokerIds[1]}`}>
+                    View Full Review
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
 
-          {/* VS */}
-          <div className="md:col-span-1 flex items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-xs font-bold shadow-sm">VS</div>
-          </div>
-
-          {/* Broker 2 */}
-          <div className="md:col-span-5 flex flex-col items-center space-y-4">
-            <div className="relative w-40 h-20 bg-background rounded-md flex items-center justify-center p-4 border overflow-hidden shadow-sm">
-              {brokers[1].logo_url ? (
-                <Image
-                  src={brokers[1].logo_url}
-                  alt={brokers[1].name}
-                  fill
-                  className="object-contain p-2"
-                  onError={(e) => {
-                    // @ts-ignore
-                    e.target.onerror = null;
-                    // @ts-ignore
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brokers[1].name)}&background=random&color=fff&size=128&bold=true&format=png`;
-                  }}
-                />
-              ) : (
-                <div className="font-bold text-xl">{brokers[1].name}</div>
-              )}
+          {/* Data verification indicator */}
+          {lastUpdated && (
+            <div className="mt-8 pt-6 border-t border-border/40 flex justify-center items-center text-sm text-muted-foreground">
+              <Shield className="h-5 w-5 mr-2 text-primary/70" />
+              <span className="text-center font-medium">
+                Data verified and updated in {lastUpdated.month} {lastUpdated.year}. Our comparison criteria include regulatory status, trading fees, platform features, and user experience.
+              </span>
             </div>
-            <h2 className="text-2xl font-bold">{brokers[1].name}</h2>
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={`${brokers[1].id}-star-${i}`}
-                  className={`h-5 w-5 ${i < Math.floor(brokers[1].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
-                />
-              ))}
-              <span className="ml-2 font-medium">{brokers[1].rating?.toFixed(1) || '-'}/5</span>
-            </div>
-            <Badge
-              variant={overallWinner === brokers[1].name ? "default" : "outline"}
-              className={overallWinner === brokers[1].name ? "px-3 py-1 text-sm" : "px-3 py-1 text-sm"}
-            >
-              {overallWinner === brokers[1].name ? "Overall Winner" : ""}
-              {!overallWinner || overallWinner === "Tie" ? "Comparable" : ""}
-            </Badge>
-            <Button asChild size="sm" className="mt-2">
-              <Link href={`/broker/${brokerIds[1]}`}>Open Account</Link>
-            </Button>
-          </div>
+          )}
         </div>
-
-        {/* Data verification indicator */}
-        {lastUpdated && (
-          <div className="mt-6 pt-4 border-t border-border/40 flex justify-center items-center text-sm text-muted-foreground">
-            <Shield className="h-4 w-4 mr-1.5 text-primary/70" />
-            <span className="text-center">
-              Data verified and updated in {lastUpdated.month} {lastUpdated.year}. Our comparison criteria include regulatory status, trading fees, platform features, and user experience.
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Key Differences */}
-      <div className="p-6 bg-card border rounded-lg shadow-sm">
-        <h2 className="text-2xl font-bold mb-6 flex items-center justify-center">
-          <span className="inline-block w-1.5 h-6 bg-primary mr-2 rounded-sm"></span>
-          Key Differences
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="border-primary/20 overflow-hidden">
-            <CardHeader className="pb-2 bg-primary/5 border-b border-primary/10">
-              <CardTitle className="text-lg">{brokers[0].name} Advantages</CardTitle>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>{brokers[0].name} is {brokers[0].regulations ? 'regulated by ' + getRegulatedText(brokers[0]) : 'established in the industry'}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>Offers {brokers[0].min_deposit ? `lower minimum deposit ($${brokers[0].min_deposit})` : 'competitive trading conditions'}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>{brokers[0].trading_platforms ? `Provides ${brokers[0].trading_platforms}` : 'Offers multiple trading platforms'}</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-50"></div>
+        <div className="relative p-8 bg-card/80 backdrop-blur-sm border rounded-xl shadow-lg">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Key Differences
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Compare the unique advantages of each broker
+            </p>
+          </div>
 
-          <Card className="border-primary/20 overflow-hidden">
-            <CardHeader className="pb-2 bg-primary/5 border-b border-primary/10">
-              <CardTitle className="text-lg">{brokers[1].name} Advantages</CardTitle>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>{brokers[1].name} is {brokers[1].regulations ? 'regulated by ' + getRegulatedText(brokers[1]) : 'established in the industry'}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>Offers {brokers[1].min_deposit ? `lower minimum deposit ($${brokers[1].min_deposit})` : 'competitive trading conditions'}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5 shrink-0" />
-                  <span>{brokers[1].trading_platforms ? `Provides ${brokers[1].trading_platforms}` : 'Offers multiple trading platforms'}</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="pb-4 bg-gradient-to-r from-primary/10 to-primary/5 border-b border-primary/20">
+                <CardTitle className="text-xl font-bold text-center flex items-center justify-center">
+                  <Star className="h-5 w-5 mr-2 text-primary" />
+                  {brokers[0].name} Advantages
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <ul className="space-y-4">
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      {brokers[0].name} is {brokers[0].regulations ? 'regulated by ' + getRegulatedText(brokers[0]) : 'established in the industry'}
+                    </span>
+                  </li>
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      Offers {brokers[0].min_deposit ? `lower minimum deposit ($${brokers[0].min_deposit})` : 'competitive trading conditions'}
+                    </span>
+                  </li>
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      {brokers[0].trading_platforms ? `Provides ${brokers[0].trading_platforms}` : 'Offers multiple trading platforms'}
+                    </span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="pb-4 bg-gradient-to-r from-primary/10 to-primary/5 border-b border-primary/20">
+                <CardTitle className="text-xl font-bold text-center flex items-center justify-center">
+                  <Star className="h-5 w-5 mr-2 text-primary" />
+                  {brokers[1].name} Advantages
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <ul className="space-y-4">
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      {brokers[1].name} is {brokers[1].regulations ? 'regulated by ' + getRegulatedText(brokers[1]) : 'established in the industry'}
+                    </span>
+                  </li>
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      Offers {brokers[1].min_deposit ? `lower minimum deposit ($${brokers[1].min_deposit})` : 'competitive trading conditions'}
+                    </span>
+                  </li>
+                  <li className="flex items-start group">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-0.5 shrink-0">
+                      <Check className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm leading-relaxed group-hover:text-primary transition-colors">
+                      {brokers[1].trading_platforms ? `Provides ${brokers[1].trading_platforms}` : 'Offers multiple trading platforms'}
+                    </span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
 
@@ -264,15 +323,39 @@ export function BrokerCompareDetails({ brokerIds, lastUpdated }: BrokerCompareDe
       <BrokerCompareRatings broker1={brokers[0]} broker2={brokers[1]} />
 
       {/* Detailed Comparison Tabs */}
-      <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid grid-cols-2 md:grid-cols-6 mb-6 bg-muted/70 p-1">
-          <TabsTrigger value="overview" className="font-medium">Overview</TabsTrigger>
-          <TabsTrigger value="fees" className="font-medium">Fees</TabsTrigger>
-          <TabsTrigger value="platforms" className="font-medium">Platforms</TabsTrigger>
-          <TabsTrigger value="markets" className="font-medium">Markets</TabsTrigger>
-          <TabsTrigger value="research" className="font-medium">Research & Education</TabsTrigger>
-          <TabsTrigger value="accounts" className="font-medium">Account Types</TabsTrigger>
-        </TabsList>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-30"></div>
+        <div className="relative">
+          <Tabs defaultValue="overview" className="w-full">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Detailed Comparison
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Explore comprehensive side-by-side analysis
+              </p>
+            </div>
+
+            <TabsList className="grid grid-cols-2 md:grid-cols-6 mb-8 bg-background border-2 border-border p-2 rounded-xl shadow-lg">
+              <TabsTrigger value="overview" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Overview
+              </TabsTrigger>
+              <TabsTrigger value="fees" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Fees
+              </TabsTrigger>
+              <TabsTrigger value="platforms" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Platforms
+              </TabsTrigger>
+              <TabsTrigger value="markets" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Markets
+              </TabsTrigger>
+              <TabsTrigger value="research" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Research
+              </TabsTrigger>
+              <TabsTrigger value="accounts" className="font-semibold text-sm px-4 py-3 rounded-lg transition-all duration-200 bg-background data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-accent">
+                Accounts
+              </TabsTrigger>
+            </TabsList>
 
         {/* Overview Tab */}
         <TabsContent value="overview" className="p-6 bg-card border rounded-lg shadow-sm">
@@ -554,63 +637,99 @@ export function BrokerCompareDetails({ brokerIds, lastUpdated }: BrokerCompareDe
             </div>
           </div>
         </TabsContent>
-      </Tabs>
+          </Tabs>
+        </div>
+      </div>
 
       {/* Bottom CTAs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <Card className="bg-muted/30 border-primary/10 shadow-sm hover:shadow-md transition-all text-center">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-center">{brokers[0].name}</CardTitle>
-            <div className="flex justify-center">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={`${brokers[0].id}-bottom-star-${i}`}
-                  className={`h-5 w-5 ${i < Math.floor(brokers[0].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
-                />
-              ))}
-            </div>
-          </CardHeader>
-          <CardContent className="text-center flex flex-col items-center">
-            <p className="mb-4">{brokers[0].name} offers {brokers[0].trading_platforms || 'various trading platforms'} with a minimum deposit of {brokers[0].min_deposit !== null && brokers[0].min_deposit !== undefined ? `$${brokers[0].min_deposit}` : 'an unspecified amount'}.</p>
-            <Button asChild size="lg" className="mt-2 px-8">
-              <Link href={brokers[0].website_url || `#${brokers[0].id}`}>
-                Visit {brokers[0].name}
-              </Link>
-            </Button>
-            {lastUpdated && (
-              <p className="text-xs text-muted-foreground mt-4">
-                Information verified in {lastUpdated.month} {lastUpdated.year}
-              </p>
-            )}
-          </CardContent>
-        </Card>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-50"></div>
+        <div className="relative p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Ready to Start Trading?
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Choose your preferred broker and open an account today
+            </p>
+          </div>
 
-        <Card className="bg-muted/30 border-primary/10 shadow-sm hover:shadow-md transition-all text-center">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-center">{brokers[1].name}</CardTitle>
-            <div className="flex justify-center">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={`${brokers[1].id}-bottom-star-${i}`}
-                  className={`h-5 w-5 ${i < Math.floor(brokers[1].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
-                />
-              ))}
-            </div>
-          </CardHeader>
-          <CardContent className="text-center flex flex-col items-center">
-            <p className="mb-4">{brokers[1].name} offers {brokers[1].trading_platforms || 'various trading platforms'} with a minimum deposit of {brokers[1].min_deposit !== null && brokers[1].min_deposit !== undefined ? `$${brokers[1].min_deposit}` : 'an unspecified amount'}.</p>
-            <Button asChild size="lg" className="mt-2 px-8">
-              <Link href={brokers[1].website_url || `#${brokers[1].id}`}>
-                Visit {brokers[1].name}
-              </Link>
-            </Button>
-            {lastUpdated && (
-              <p className="text-xs text-muted-foreground mt-4">
-                Information verified in {lastUpdated.month} {lastUpdated.year}
-              </p>
-            )}
-          </CardContent>
-        </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="bg-card/80 backdrop-blur-sm border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 text-center group">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl font-bold text-center">{brokers[0].name}</CardTitle>
+                <div className="flex justify-center space-x-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={`${brokers[0].id}-bottom-star-${i}`}
+                      className={`h-6 w-6 ${i < Math.floor(brokers[0].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
+                    />
+                  ))}
+                  <span className="ml-2 font-semibold text-lg">{brokers[0].rating?.toFixed(1) || '-'}/5</span>
+                </div>
+              </CardHeader>
+              <CardContent className="text-center flex flex-col items-center space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  {brokers[0].name} offers {brokers[0].trading_platforms || 'various trading platforms'} with a minimum deposit of {brokers[0].min_deposit !== null && brokers[0].min_deposit !== undefined ? `$${brokers[0].min_deposit}` : 'an unspecified amount'}.
+                </p>
+                <div className="space-y-3 w-full">
+                  <Button asChild size="lg" className="w-full px-8 py-4 font-semibold text-lg group-hover:scale-105 transition-transform">
+                    <Link href={brokers[0].website_url || `/broker/${brokerIds[0]}`} target={brokers[0].website_url ? "_blank" : "_self"} rel={brokers[0].website_url ? "noopener noreferrer" : undefined}>
+                      Visit {brokers[0].name} {brokers[0].website_url && "↗"}
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="w-full px-8 py-3 font-medium">
+                    <Link href={`/broker/${brokerIds[0]}`}>
+                      Read Full Review
+                    </Link>
+                  </Button>
+                </div>
+                {lastUpdated && (
+                  <p className="text-xs text-muted-foreground mt-4">
+                    Information verified in {lastUpdated.month} {lastUpdated.year}
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 backdrop-blur-sm border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 text-center group">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl font-bold text-center">{brokers[1].name}</CardTitle>
+                <div className="flex justify-center space-x-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={`${brokers[1].id}-bottom-star-${i}`}
+                      className={`h-6 w-6 ${i < Math.floor(brokers[1].rating || 0) ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`}
+                    />
+                  ))}
+                  <span className="ml-2 font-semibold text-lg">{brokers[1].rating?.toFixed(1) || '-'}/5</span>
+                </div>
+              </CardHeader>
+              <CardContent className="text-center flex flex-col items-center space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  {brokers[1].name} offers {brokers[1].trading_platforms || 'various trading platforms'} with a minimum deposit of {brokers[1].min_deposit !== null && brokers[1].min_deposit !== undefined ? `$${brokers[1].min_deposit}` : 'an unspecified amount'}.
+                </p>
+                <div className="space-y-3 w-full">
+                  <Button asChild size="lg" className="w-full px-8 py-4 font-semibold text-lg group-hover:scale-105 transition-transform">
+                    <Link href={brokers[1].website_url || `/broker/${brokerIds[1]}`} target={brokers[1].website_url ? "_blank" : "_self"} rel={brokers[1].website_url ? "noopener noreferrer" : undefined}>
+                      Visit {brokers[1].name} {brokers[1].website_url && "↗"}
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="w-full px-8 py-3 font-medium">
+                    <Link href={`/broker/${brokerIds[1]}`}>
+                      Read Full Review
+                    </Link>
+                  </Button>
+                </div>
+                {lastUpdated && (
+                  <p className="text-xs text-muted-foreground mt-4">
+                    Information verified in {lastUpdated.month} {lastUpdated.year}
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
