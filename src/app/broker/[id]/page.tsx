@@ -8,9 +8,32 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertTriangle, ArrowLeft, CheckCircle, HelpCircle, Share2, Shield, Star } from "lucide-react";
 import { ScamBrokerCheckWidget } from "@/components/ScamBrokerCheckWidget";
-import { getBrokerById } from "@/lib/supabase/broker-client";
+import { getMockBroker } from "@/lib/brokers";
+import { getBrokerTemplate } from "@/lib/broker-templates";
 import { siteConfig } from "@/config/site";
 import { getAllBrokerIds } from "@/lib/route-generation";
+
+// Import our new components
+import { HeroBrokerSection } from "@/components/broker-review/HeroBrokerSection";
+import { BrokerOverviewSection } from "@/components/broker-review/BrokerOverviewSection";
+import { TradingConditionsSection } from "@/components/broker-review/TradingConditionsSection";
+import { PlatformsSection } from "@/components/broker-review/PlatformsSection";
+import { EducationSection } from "@/components/broker-review/EducationSection";
+import { ReviewsSection } from "@/components/broker-review/ReviewsSection";
+import { FAQSection } from "@/components/broker-review/FAQSection";
+import { BrokerComparisonWidget } from "@/components/broker-review/BrokerComparisonWidget";
+import { BrokerComparisonWidgetWrapper } from "@/components/broker-comparison/BrokerComparisonWidgetWrapper";
+import { BrokerLegitimacyScore } from "@/components/broker-review/BrokerLegitimacyScore";
+import { BrokerRiskIndex } from "@/components/broker-review/BrokerRiskIndex";
+import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisWidget";
+import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
+import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
+import { SimilarBrokersSectionWrapper } from "@/components/broker-comparison/SimilarBrokersSectionWrapper";
+import { generateBrokerDescription } from "@/lib/broker-analysis";
+
+// Import Context7Config and client wrapper
+import { Context7Config } from "@/lib/context7";
+import { BrokerDetailClientWrapper } from "@/components/BrokerDetailClientWrapper";
 
 interface BrokerPageProps {
   params: Promise<{
@@ -21,7 +44,7 @@ interface BrokerPageProps {
 // Generate static params for all broker pages
 export async function generateStaticParams() {
   const brokerIds = await getAllBrokerIds();
-  
+
   return brokerIds.map(id => ({
     id,
   }));
@@ -30,7 +53,32 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: BrokerPageProps): Promise<Metadata> {
   const params = await props.params;
   const id = params.id;
-  const { data: broker, error } = await getBrokerById(id);
+
+  // Get broker data from template or mock data
+  let broker;
+  let error = null;
+
+  try {
+    // Try to find a matching broker template by ID
+    // First, convert ID to a slug format if needed
+    const slug = id.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+
+    // Get broker template
+    const brokerTemplate = getBrokerTemplate(slug);
+
+    if (brokerTemplate) {
+      // Use the template data
+      broker = getMockBroker(slug);
+      Object.assign(broker, brokerTemplate);
+    } else {
+      // Fallback to a generic mock broker
+      broker = getMockBroker(id);
+      broker.name = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+  } catch (err) {
+    error = err;
+    console.error("Error getting broker data:", err);
+  }
 
   if (error || !broker) {
     return {
@@ -47,13 +95,58 @@ export async function generateMetadata(props: BrokerPageProps): Promise<Metadata
 
   // Generate primary and secondary keywords
   const primaryKeyword = `${broker.name} Review`;
-  const secondaryKeyword = `Best ${broker.categories?.[0]?.name || 'Trading'} Platform`;
+  const secondaryKeyword = broker.categories?.[0]?.name
+    ? `Best ${broker.categories[0].name} Platform ${year}`
+    : `Best Trading Platform ${year}`;
 
-  // Create a more descriptive meta description
-  const metaDescription = `${broker.description?.slice(0, 120) || `${broker.name} is a ${broker.categories?.[0]?.name || 'trading'} broker offering various financial instruments`} with ${broker.min_deposit ? `$${broker.min_deposit} min deposit` : 'competitive fees'} and ${broker.rating ? `${broker.rating}/5 rating` : 'professional service'}.`;
+  // Enhanced broker features for meta description
+  const features = [];
+  if (broker.min_deposit) features.push(`$${broker.min_deposit} min deposit`);
+  if (broker.trading_fee) features.push(`${broker.trading_fee}% trading fee`);
+  if (broker.max_leverage) features.push(`${broker.max_leverage} leverage`);
+  if (broker.regulations) features.push(`${broker.regulations} regulated`);
+
+  // Create a more descriptive meta description with trading features
+  const brokerDesc = broker.description?.slice(0, 100) ||
+    `${broker.name} is a ${broker.categories?.[0]?.name || 'forex'} broker offering various financial instruments`;
+
+  const featuresText = features.length > 0
+    ? ` with ${features.slice(0, 2).join(' and ')}`
+    : ' with competitive trading conditions';
+
+  const ratingText = broker.rating
+    ? ` and ${broker.rating}/5 rating`
+    : '';
+
+  const metaDescription = `${brokerDesc}${featuresText}${ratingText}. Updated ${month} ${year}.`;
+
+  // Generate more comprehensive keywords
+  const keywordsList = [
+    `${broker.name}`,
+    `${broker.name} review`,
+    `${broker.name} trading`,
+    `${broker.name} forex broker`,
+    `${broker.name} ${year}`,
+    `${broker.name} regulation`,
+    `${broker.name} minimum deposit`,
+    `${broker.name} trading platforms`,
+    `${broker.name} trading fees`,
+    `${broker.name} spreads`,
+    `${month} ${year} broker review`,
+    `best ${broker.categories?.[0]?.name?.toLowerCase() || 'forex'} broker`,
+    `regulated forex broker`,
+    `${broker.country} forex broker`
+  ];
+
+  if (broker.categories) {
+    broker.categories.forEach((cat: {name: string}) => {
+      keywordsList.push(`${broker.name} ${cat.name.toLowerCase()}`);
+      keywordsList.push(`best ${cat.name.toLowerCase()} broker ${year}`);
+    });
+  }
 
   return {
-    title: `${primaryKeyword} | ${secondaryKeyword} | ${siteConfig.name}`,
+    title: `${primaryKeyword} (${broker.rating || "N/A"}/5) | ${secondaryKeyword} | ${siteConfig.name}`,
     description: metaDescription.length > 160 ? metaDescription.slice(0, 157) + '...' : metaDescription,
     openGraph: {
       title: `${broker.name} Broker Review & Rating ${year} (${broker.rating || "N/A"}/5) | ${month} ${year} Update`,
@@ -75,17 +168,7 @@ export async function generateMetadata(props: BrokerPageProps): Promise<Metadata
       description: metaDescription,
       images: [broker.logo_url || `${siteConfig.url}/images/brokers/default-broker.png`],
     },
-    keywords: [
-      `${broker.name}`, 
-      "forex broker", 
-      "broker review", 
-      `${broker.name} review`, 
-      `${broker.name} trading`, 
-      `${broker.name} regulation`,
-      `${month} ${year} update`,
-      `${year} broker review`,
-      broker.categories?.map((cat: {name: string}) => cat.name).join(', ') || ''
-    ],
+    keywords: keywordsList,
     alternates: {
       canonical: `${siteConfig.url}/broker/${broker.id}`,
     },
@@ -95,10 +178,10 @@ export async function generateMetadata(props: BrokerPageProps): Promise<Metadata
 // Helper function to format date
 function formatDate(dateString: string) {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 }
 
@@ -115,9 +198,36 @@ function formatSupportedAssets(supportedAssets: string | string[] | null | undef
   return supportedAssets;
 }
 
-// Generate JSON-LD structured data
+// Generate enhanced JSON-LD structured data with FAQ
 function generateBrokerJsonLd(broker: any) {
-  const jsonLd = {
+  // Generate sample FAQs based on broker information
+  const faqs = [
+    {
+      question: `Is ${broker.name} a regulated broker?`,
+      answer: broker.regulations
+        ? `Yes, ${broker.name} is regulated by ${broker.regulations}.`
+        : `Information about ${broker.name}'s regulation status is not fully verified.`
+    },
+    {
+      question: `What is the minimum deposit for ${broker.name}?`,
+      answer: broker.min_deposit
+        ? `The minimum deposit for ${broker.name} is $${broker.min_deposit}.`
+        : `The minimum deposit information for ${broker.name} is not currently specified.`
+    },
+    {
+      question: `What trading platforms does ${broker.name} offer?`,
+      answer: broker.trading_platforms
+        ? `${broker.name} offers ${broker.trading_platforms}.`
+        : `${broker.name} provides various trading platforms to its clients.`
+    },
+    {
+      question: `Is ${broker.name} good for beginners?`,
+      answer: `${broker.name} offers ${broker.min_deposit && broker.min_deposit <= 100 ? 'low minimum deposits' : 'various account types'} and ${broker.educational_resources ? 'educational resources' : 'trading tools'} that can be suitable for traders of different experience levels.`
+    }
+  ];
+
+  // Create the broker review schema
+  const brokerReview = {
     '@context': 'https://schema.org',
     '@type': 'Review',
     name: `${broker.name} Broker Review`,
@@ -129,8 +239,11 @@ function generateBrokerJsonLd(broker: any) {
     },
     author: {
       '@type': 'Organization',
-      name: siteConfig.name
+      name: siteConfig.name,
+      url: siteConfig.url
     },
+    reviewBody: broker.description || `Our comprehensive review of ${broker.name}, covering trading conditions, platforms, and more.`,
+    datePublished: new Date().toISOString().split('T')[0],
     itemReviewed: {
       '@type': 'FinancialService',
       name: broker.name,
@@ -147,525 +260,558 @@ function generateBrokerJsonLd(broker: any) {
     }
   };
 
-  return `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+  // Create the FAQ schema
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  };
+
+  // Return both schemas as a string
+  return `<script type="application/ld+json">${JSON.stringify(brokerReview)}</script>
+<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`;
 }
 
 export default async function BrokerDetailPage(props: BrokerPageProps) {
   const params = await props.params;
   const id = params.id;
-  const { data: broker, error } = await getBrokerById(id);
+
+  // Get broker data from template or mock data
+  let broker;
+  let error = null;
+
+  try {
+    // Try to find a matching broker template by ID
+    // First, convert ID to a slug format if needed
+    const slug = id.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+
+    // Get broker template
+    const brokerTemplate = getBrokerTemplate(slug);
+
+    if (brokerTemplate) {
+      // Use the template data
+      broker = getMockBroker(slug);
+      Object.assign(broker, brokerTemplate);
+    } else {
+      // Fallback to a generic mock broker
+      broker = getMockBroker(id);
+      broker.name = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+    // Add additional properties needed for this page
+    broker.categories = broker.categories || [{ name: 'Forex' }];
+    broker.trading_fee = broker.trading_fee || 0.8;
+    broker.rating = broker.overall_rating || 4.5;
+  } catch (err) {
+    error = err;
+    console.error("Error getting broker data:", err);
+  }
 
   if (error || !broker) {
     console.error("Error fetching broker:", error);
     notFound();
   }
 
-  // In a real app, this would make an API call to get real-time verification
-  // Simulating the verification using FireCrawl scraper
-  const legitimacyData = {
-    isLegitimate: true,
-    regulatoryStatus: `${broker.name} appears to be properly regulated by ${broker.regulations || "N/A"}`,
-    warningFlags: []
+  // Get similar brokers for comparison (mocked for now)
+  const getSimilarBrokers = () => {
+    return [
+      {
+        id: "similar-broker-1",
+        name: "SimilarFX",
+        logo_url: `https://placehold.co/150x60?text=SimilarFX`,
+        regulations: "FCA, ASIC",
+        min_deposit: 100,
+        max_leverage: "1:500",
+        trading_platforms: "MT4, MT5, WebTrader",
+        overall_rating: 4.1
+      },
+      {
+        id: "xm",
+        name: "XM",
+        logo_url: `https://placehold.co/150x60?text=XM`,
+        regulations: "CySEC, ASIC, FCA",
+        min_deposit: 5,
+        max_leverage: "1:1000",
+        spreads_from: "1.0",
+        trading_platforms: "MT4, MT5, Mobile Trading",
+        overall_rating: 4.3,
+        key_feature: "Ultra-low minimum deposit"
+      },
+      {
+        id: "pepperstone",
+        name: "Pepperstone",
+        logo_url: `https://placehold.co/150x60?text=Pepperstone`,
+        regulations: "FCA, ASIC, CySEC, DFSA",
+        min_deposit: 200,
+        max_leverage: "1:500",
+        spreads_from: "0.0",
+        trading_platforms: "MT4, MT5, cTrader",
+        overall_rating: 4.7,
+        key_feature: "Fast execution and tight spreads"
+      }
+    ];
   };
 
-  // In a real app, this would make an API call to get latest news
-  // Simulating news data using FireCrawl scraper
-  const newsData = [
-    {
-      title: `${broker.name} Expands Asset Offering with New Cryptocurrency Pairs`,
-      url: "#",
-      source: "ForexNews.com",
-      publishedDate: "2 days ago"
+  const similarBrokers = getSimilarBrokers();
+
+  // Helper function to determine if broker is legitimate based on criteria
+  const getLegitimacyData = (broker: any) => {
+    if (!broker) return { isLegitimate: false, regulatoryStatus: "Unknown", warningFlags: ["No broker data"] };
+
+    // Safely parse values
+    const safeParseNumber = (value: any, defaultVal = 0): number => {
+      if (value === null || value === undefined) return defaultVal;
+      if (typeof value === 'number') return value;
+      if (typeof value === 'string') {
+        try {
+          const parsed = parseFloat(value);
+          return isNaN(parsed) ? defaultVal : parsed;
+        } catch {
+          return defaultVal;
+        }
+      }
+      return defaultVal;
+    };
+
+    // Parse max leverage value safely
+    const parseLeverage = (leverage: any): number => {
+      if (!leverage) return 0;
+      if (typeof leverage === 'number') return leverage;
+      if (typeof leverage === 'string') {
+        try {
+          // Handle formats like "1:500"
+          if (leverage.includes(':')) {
+            const parts = leverage.split(':');
+            return parseInt(parts[1]) || 0;
+          }
+          // Handle numeric strings with or without text
+          return parseInt(leverage.replace(/\D/g, '')) || 0;
+        } catch {
+          return 0;
+        }
+      }
+      return 0;
+    };
+
+    // Some basic criteria to determine legitimacy - can be expanded
+    const isRegulated = !!broker.regulations;
+    const hasRedFlags = !!broker.red_flags;
+    const minDeposit = safeParseNumber(broker.min_deposit, 0);
+    const minDepositTooHigh = minDeposit > 5000;
+    const leverageValue = parseLeverage(broker.max_leverage);
+    const unrealisticLeverage = leverageValue > 1000;
+
+    // Set warning flags
+    const warningFlags: string[] = [];
+    if (!isRegulated) warningFlags.push("Unregulated entity");
+    if (hasRedFlags) warningFlags.push("Known regulatory warnings");
+    if (minDepositTooHigh) warningFlags.push("Unusually high minimum deposit");
+    if (unrealisticLeverage) warningFlags.push("Unrealistically high leverage");
+
+    return {
+      isLegitimate: isRegulated && !hasRedFlags && warningFlags.length === 0,
+      regulatoryStatus: broker.regulations || "Unverified",
+      warningFlags
+    };
+  };
+
+  // Sample broker analysis for demo purposes
+  const brokerAnalysis = {
+    overview: broker.description || `${broker.name} is a forex and CFD broker offering trading services across multiple financial markets. The broker provides various account types tailored to different trading needs and experience levels.`,
+    strengths: "This broker offers competitive spreads, a variety of trading platforms, and comprehensive educational resources. Their customer support is available 24/5 in multiple languages.",
+    considerations: "Some account types have higher minimum deposit requirements. Additionally, certain features may only be available to premium account holders.",
+    suitableFor: [
+      "Active forex traders",
+      "Traders seeking multiple platform options",
+      "Both beginner and experienced traders"
+    ],
+    notSuitableFor: [
+      "Traders looking for extensive stock offerings",
+      "Ultra-low budget traders",
+      "Traders requiring 24/7 support"
+    ]
+  };
+
+  // Sample pros and cons for demo purposes
+  const prosCons = {
+    pros: [
+      "Regulated by reputable financial authorities",
+      "Competitive spreads starting from 0.6 pips",
+      "Multiple trading platforms available",
+      "Comprehensive educational resources",
+      "Fast customer support"
+    ],
+    cons: [
+      "Higher minimum deposit for premium accounts",
+      "Limited stock CFD offerings",
+      "Weekend support limited",
+      broker.min_deposit && Number(broker.min_deposit) > 100 ? "Relatively high minimum deposit" : ""
+    ].filter(Boolean)
+  };
+
+  // Generate samples reviews for demo purposes
+  const generateSampleReviews = () => {
+    const currentDate = new Date();
+
+    return [
+      {
+        id: "1",
+        user_name: "Michael S.",
+        rating: 5,
+        comment: `${broker.name} has been my go-to broker for the past 2 years. Their platform is stable and execution speed is excellent. I've had no issues with withdrawals and their customer service always responds quickly.`,
+        created_at: new Date(currentDate.setDate(currentDate.getDate() - 5)).toISOString(),
+        verified_purchase: true,
+        helpful_count: 12,
+        trading_experience: "Experienced Trader",
+        pros: "Fast execution, reliable platform, quick withdrawals",
+        cons: "Spreads widen during news events"
+      },
+      {
+        id: "2",
+        user_name: "Jennifer L.",
+        rating: 4,
+        comment: `I've been using ${broker.name} for 6 months now. Overall a good experience with helpful customer support. The only drawback is that sometimes the spreads widen during volatile market conditions.`,
+        created_at: new Date(currentDate.setDate(currentDate.getDate() - 15)).toISOString(),
+        verified_purchase: true,
+        helpful_count: 8,
+        trading_experience: "Intermediate Trader",
+        pros: "User-friendly platform, good educational resources",
+        cons: "Variable spreads can get wide"
+      },
+      {
+        id: "3",
+        user_name: "Robert T.",
+        rating: 2,
+        comment: `Disappointed with ${broker.name}'s customer service. Had to wait for days to get a response to my queries. The platform itself is okay, but customer support needs improvement.`,
+        created_at: new Date(currentDate.setDate(currentDate.getDate() - 30)).toISOString(),
+        verified_purchase: true,
+        helpful_count: 5,
+        trading_experience: "Novice Trader",
+        pros: "Good trading platform, multiple instruments",
+        cons: "Slow customer service, withdrawal delays"
+      }
+    ];
+  };
+
+  // Get legitimacy data
+  const legitimacyData = getLegitimacyData(broker);
+
+  // Get sample reviews
+  const sampleReviews = generateSampleReviews();
+
+  // Format current date for the review
+  const currentDate = new Date();
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const month = monthNames[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+
+  // Generate broker description using our broker analysis tool
+  const enhancedDescription = generateBrokerDescription(broker, year, month);
+
+  // Create Context7 configuration for SEO optimization
+  const context7Config: Context7Config = {
+    title: `${broker.name} Review (${broker.rating || "N/A"}/5) | Best Trading Platform ${year}`,
+    description: enhancedDescription.slice(0, 160),
+    keywords: [
+      `${broker.name}`,
+      `${broker.name} review`,
+      `${broker.name} forex broker`,
+      `best trading platform ${year}`,
+      `${broker.name} regulation`,
+      `${broker.name} trading`,
+      `forex broker review`,
+      broker.regulations || `regulated forex broker`,
+      broker.min_deposit ? `forex broker with ${broker.min_deposit} minimum deposit` : `low deposit forex broker`,
+      broker.max_leverage || `high leverage forex broker`,
+      `${month} ${year} broker review`
+    ],
+    openGraph: {
+      title: `${broker.name} Review and Rating ${year} (${broker.rating || "N/A"}/5)`,
+      description: enhancedDescription.slice(0, 200),
+      images: [
+        {
+          url: broker.logo_url || `${process.env.NEXT_PUBLIC_APP_URL || 'https://brokeranalysis.com'}/images/brokers/default-broker.png`,
+          width: 1200,
+          height: 630,
+          alt: `${broker.name} logo`,
+        },
+      ],
+      siteName: "BrokerAnalysis",
+      type: "website",
     },
-    {
-      title: `Regulatory Update: ${broker.name} Obtains New License`,
-      url: "#",
-      source: "TradingTimes.com",
-      publishedDate: "1 week ago"
-    }
-  ];
-
-  // Sample pros and cons (could be stored in database in the future)
-  const pros = [
-    "Regulated by top-tier authorities",
-    "Wide range of trading instruments",
-    "Advanced trading platform"
-  ];
-
-  const cons = [
-    "Limited educational resources",
-    "Customer support can be slow",
-    "Higher fees for some instruments"
-  ];
-
-  // Sample features (could be stored in database in the future)
-  const features = {
-    "Trading Platforms": "MT4, MT5, WebTrader",
-    "Account Types": "Standard, Premium, VIP",
-    "Deposit Methods": "Credit Card, Bank Transfer, E-wallets",
-    "Customer Support": "24/5, Live Chat, Email, Phone",
-    "Education": "Webinars, Trading Guides, Videos",
-    "Promotions": "Welcome Bonus, Loyalty Program"
+    twitter: {
+      cardType: "summary_large_image",
+      title: `${broker.name} Broker Review ${year}`,
+      description: enhancedDescription.slice(0, 200),
+      image: broker.logo_url || `${process.env.NEXT_PUBLIC_APP_URL || 'https://brokeranalysis.com'}/images/brokers/default-broker.png`,
+    },
+    canonical: `${process.env.NEXT_PUBLIC_APP_URL || 'https://brokeranalysis.com'}/broker/${broker.id}`,
+    // Extract structured data without parsing
+    structuredData: [
+      // Broker review schema
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Review',
+        name: `${broker.name} Broker Review`,
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: broker.rating || '4.0',
+          bestRating: '5',
+          worstRating: '1'
+        },
+        author: {
+          '@type': 'Organization',
+          name: siteConfig.name,
+          url: siteConfig.url
+        },
+        reviewBody: broker.description || `Our comprehensive review of ${broker.name}, covering trading conditions, platforms, and more.`,
+        datePublished: new Date().toISOString().split('T')[0],
+        itemReviewed: {
+          '@type': 'FinancialService',
+          name: broker.name,
+          description: broker.description,
+          image: broker.logo_url,
+          url: broker.website_url || `https://yoursite.com/brokers/${broker.slug}`,
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: broker.rating || '4.0',
+            reviewCount: broker.reviews?.length || '10',
+            bestRating: '5',
+            worstRating: '1'
+          }
+        }
+      },
+      // FAQ Schema
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: `Is ${broker.name} a regulated broker?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: broker.regulations
+                ? `Yes, ${broker.name} is regulated by ${broker.regulations}.`
+                : `Information about ${broker.name}'s regulation status is not fully verified.`
+            }
+          },
+          {
+            '@type': 'Question',
+            name: `What is the minimum deposit for ${broker.name}?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: broker.min_deposit
+                ? `The minimum deposit for ${broker.name} is $${broker.min_deposit}.`
+                : `The minimum deposit information for ${broker.name} is not currently specified.`
+            }
+          },
+          {
+            '@type': 'Question',
+            name: `What trading platforms does ${broker.name} offer?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: broker.trading_platforms
+                ? `${broker.name} offers ${broker.trading_platforms}.`
+                : `${broker.name} provides various trading platforms to its clients.`
+            }
+          },
+          {
+            '@type': 'Question',
+            name: `Is ${broker.name} good for beginners?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: `${broker.name} offers ${broker.min_deposit && Number(broker.min_deposit) <= 100 ? 'low minimum deposits' : 'various account types'} and ${broker.educational_resources ? 'educational resources' : 'trading tools'} that can be suitable for traders of different experience levels.`
+            }
+          }
+        ]
+      }
+    ]
   };
 
-  return (
-    <>
-      {/* Add JSON-LD structured data */}
-      <div dangerouslySetInnerHTML={{ __html: generateBrokerJsonLd(broker) }} />
-      
-      <div className="container max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <Link href="/brokers" className="flex items-center text-muted-foreground hover:text-foreground transition-colors mb-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Brokers
-          </Link>
-          
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <div className="flex-grow">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="h-16 w-40 bg-muted flex items-center justify-center rounded overflow-hidden">
-                  <Image
-                    src={broker.logo_url || `https://placehold.co/150x60?text=${encodeURIComponent(broker.name)}`}
-                    alt={`${broker.name} logo`}
-                    width={150}
-                    height={60}
-                    className="max-h-full max-w-full object-contain"
-                    priority
-                  />
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <Badge variant={legitimacyData.isLegitimate ? "default" : "destructive"}>
-                    {legitimacyData.isLegitimate ? (
-                      <><Shield className="h-3 w-3 mr-1" /> Verified</>
-                    ) : (
-                      <><AlertTriangle className="h-3 w-3 mr-1" /> Warning</>
-                    )}
-                  </Badge>
-                  <Badge variant="outline">
-                    <Star className="fill-primary h-3 w-3 mr-1" /> {broker.rating || "N/A"}/5
-                  </Badge>
-                </div>
-              </div>
-              
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{broker.name} Review</h1>
-              <p className="text-muted-foreground mt-2">{broker.description || `${broker.name} is a forex broker offering trading services across multiple markets.`}</p>
-            </div>
-            
-            <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" className="gap-1">
-                <Share2 className="h-4 w-4" /> Share
-              </Button>
-              <Button variant="secondary" size="sm" asChild>
-                <a href={broker.url || "#"} target="_blank" rel="noopener noreferrer">
-                  Visit Website
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
+  const pageContent = (
+    <main className="container py-6 space-y-10">
+      {/* Hero Section */}
+      <HeroBrokerSection
+        broker={broker}
+        legitimacyData={legitimacyData}
+      />
 
+        {/* Content Tabs */}
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="mb-6">
+          <TabsList className="mb-8 w-full justify-start overflow-x-auto">
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="features">Features</TabsTrigger>
+            <TabsTrigger value="trading-conditions">Trading Conditions</TabsTrigger>
+            <TabsTrigger value="platforms">Platforms</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsTrigger value="analysis">Strategy Analysis</TabsTrigger>
             <TabsTrigger value="reviews">Reviews</TabsTrigger>
-            <TabsTrigger value="verify">Verify Legitimacy</TabsTrigger>
+            <TabsTrigger value="risk-analysis">Risk Analysis</TabsTrigger>
+            <TabsTrigger value="comparison">Comparison</TabsTrigger>
+            <TabsTrigger value="faq">FAQ</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="overview" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2 space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Key Information</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Regulated By</h3>
-                        <p className="font-medium">{broker.regulations || "N/A"}</p>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Country</h3>
-                        <p className="font-medium">{broker.country || "Global"}</p>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Min Deposit</h3>
-                        <p className="font-medium">${broker.min_deposit || "N/A"}</p>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Trading Fee</h3>
-                        <p className="font-medium">{broker.trading_fee ? `${broker.trading_fee}%` : "N/A"}</p>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Established</h3>
-                        <p className="font-medium">{broker.created_at ? new Date(broker.created_at).getFullYear() : "N/A"}</p>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-muted-foreground">Rating</h3>
-                        <p className="font-medium flex items-center">
-                          <Star className="fill-primary h-4 w-4 mr-1" /> {broker.rating || "N/A"}/5
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Supported Assets</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {formatSupportedAssets(broker.supported_assets).length > 0 ? (
-                        formatSupportedAssets(broker.supported_assets).map((asset: string, index: number) => (
-                          <Badge key={index} variant="secondary">
-                            {asset}
-                          </Badge>
-                        ))
-                      ) : (
-                        <p className="text-muted-foreground">Asset information not available</p>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Pros & Cons</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h3 className="font-semibold mb-3 flex items-center text-green-600">
-                          <CheckCircle className="h-4 w-4 mr-2" /> Pros
-                        </h3>
-                        <ul className="space-y-2">
-                          {pros.map((pro, index) => (
-                            <li key={index} className="flex items-start">
-                              <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                              <span>{pro}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-3 flex items-center text-red-600">
-                          <AlertTriangle className="h-4 w-4 mr-2" /> Cons
-                        </h3>
-                        <ul className="space-y-2">
-                          {cons.map((con, index) => (
-                            <li key={index} className="flex items-start">
-                              <AlertTriangle className="h-4 w-4 text-red-600 mt-1 mr-2 flex-shrink-0" />
-                              <span>{con}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Overall Rating</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-2">
-                    <div className="flex flex-col items-center">
-                      <div className="text-4xl font-bold flex items-center">
-                        {broker.rating || "N/A"} <Star className="h-6 w-6 ml-1 fill-primary" />
-                      </div>
-                      <p className="text-muted-foreground text-sm mt-1">
-                        Based on {broker.reviews?.length || 0} user reviews
-                      </p>
-                    </div>
-                    
-                    <div className="mt-6 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 text-sm">Excellent</div>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-green-500 rounded-full" style={{ width: "70%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 text-sm">Good</div>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-green-400 rounded-full" style={{ width: "20%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 text-sm">Average</div>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-yellow-400 rounded-full" style={{ width: "5%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 text-sm">Poor</div>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-red-400 rounded-full" style={{ width: "3%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 text-sm">Very Poor</div>
-                        <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-red-500 rounded-full" style={{ width: "2%" }}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Recent News</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <ul className="space-y-4">
-                      {newsData.map((news, index) => (
-                        <li key={index}>
-                          <Link href={news.url} className="hover:underline font-medium">
-                            {news.title}
-                          </Link>
-                          <div className="text-sm text-muted-foreground mt-1">
-                            {news.source} • {news.publishedDate}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-                
-                <ScamBrokerCheckWidget brokerName={broker.name || ''} />
-              </div>
-            </div>
+            <BrokerOverviewSection
+              broker={{...broker, description: enhancedDescription}}
+              brokerAnalysis={brokerAnalysis}
+              prosCons={prosCons}
+            />
           </TabsContent>
-          
-          <TabsContent value="features" className="mt-0">
-            <Card>
-              <CardHeader>
-                <CardTitle>Broker Features</CardTitle>
-                <CardDescription>
-                  Detailed information about {broker.name}'s trading features
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                  {Object.entries(features).map(([feature, value]: [string, string], index: number) => (
-                    <div key={index} className="border-b pb-4">
-                      <h3 className="font-medium mb-2">{feature}</h3>
-                      <p className="text-muted-foreground">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+
+          <TabsContent value="trading-conditions" className="mt-0">
+            <TradingConditionsSection broker={broker} />
           </TabsContent>
-          
+
+          <TabsContent value="platforms" className="mt-0">
+            <PlatformsSection broker={broker} />
+          </TabsContent>
+
+          <TabsContent value="education" className="mt-0">
+            <EducationSection broker={broker} />
+          </TabsContent>
+
+          <TabsContent value="analysis" className="mt-0">
+            <BrokerAnalysisWidget
+              broker={broker}
+              userPreferences={{
+                experienceLevel: "intermediate",
+                tradingStyle: "day trading",
+                accountSize: "medium",
+                riskTolerance: "medium"
+              }}
+            />
+          </TabsContent>
+
           <TabsContent value="reviews" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2 space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>User Reviews</CardTitle>
-                    <CardDescription>
-                      See what traders are saying about {broker.name}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {broker.reviews && broker.reviews.length > 0 ? (
-                      <div className="space-y-6">
-                        {broker.reviews.map((review: any) => (
-                          <div key={review.id} className="border-b pb-5">
-                            <div className="flex justify-between items-center mb-2">
-                              <div className="font-medium">{review.user_name || "Anonymous User"}</div>
-                              <div className="flex items-center">
-                                <div className="font-medium mr-2">{review.rating}/5</div>
-                                <Star className="h-4 w-4 fill-primary" />
-                              </div>
-                            </div>
-                            <p className="text-muted-foreground mb-2">{review.comment || "No comment provided."}</p>
-                            <div className="text-xs text-muted-foreground">
-                              {new Date(review.created_at).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
-                              })}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-8">
-                        <HelpCircle className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold mb-2">No reviews yet</h3>
-                        <p className="text-muted-foreground max-w-md mx-auto">
-                          Be the first to leave a review for {broker.name}.
-                        </p>
-                        <Button className="mt-4">
-                          Write a Review
-                        </Button>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Leave a Review</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-center py-6">
-                      <p className="mb-4">Share your experience with {broker.name} to help other traders.</p>
-                      <Button>Write Your Review</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Rating Breakdown</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-2">
-                    <div className="space-y-4">
-                      {[
-                        { label: "Ease of Use", value: 4.2 },
-                        { label: "Customer Service", value: 3.8 },
-                        { label: "Trading Tools", value: 4.5 },
-                        { label: "Fees", value: 4.1 },
-                        { label: "Mobile App", value: 4.3 }
-                      ].map((item: { label: string; value: number }, index: number) => (
-                        <div key={index}>
-                          <div className="flex justify-between items-center mb-1">
-                            <span className="text-sm">{item.label}</span>
-                            <div className="flex items-center text-sm">
-                              <span className="mr-1">{item.value}</span>
-                              <Star className="h-3 w-3 fill-primary" />
-                            </div>
-                          </div>
-                          <div className="h-2 bg-muted rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-primary rounded-full" 
-                              style={{ width: `${(item.value / 5) * 100}%` }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Review Guidelines</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Share your personal trading experience</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Be specific with details (platforms, assets, fees)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Mention both positives and negatives</span>
-                      </li>
-                      <li className="flex items-start">
-                        <AlertTriangle className="h-4 w-4 text-red-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Avoid offensive language or personal attacks</span>
-                      </li>
-                      <li className="flex items-start">
-                        <AlertTriangle className="h-4 w-4 text-red-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Don't include contact information or links</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+            <ReviewsSection broker={broker} reviews={sampleReviews} />
+          </TabsContent>
+
+          <TabsContent value="risk-analysis" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <BrokerLegitimacyScore broker={broker} />
+              <BrokerRiskIndex broker={broker} />
+            </div>
+            <div className="mt-6 p-4 bg-muted/30 rounded-lg border">
+              <div className="flex items-start">
+                <AlertTriangle className="h-5 w-5 text-amber-500 mt-1 mr-3" />
+                <div>
+                  <h3 className="font-semibold mb-1">Risk Disclaimer</h3>
+                  <p className="text-sm text-muted-foreground">
+                    This risk analysis is provided for informational purposes only and should not be considered as financial advice.
+                    Trading forex and CFDs involves significant risk of capital loss. Always conduct your own research and consider your risk tolerance before trading.
+                  </p>
+                </div>
               </div>
             </div>
           </TabsContent>
-          
-          <TabsContent value="verify" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2">
-                <ScamBrokerCheckWidget brokerName={broker.name || ''} />
-              </div>
-              <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Regulatory Status</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-4">
-                      {legitimacyData.isLegitimate ? (
-                        <Badge variant="default" className="px-2 py-1">
-                          <Shield className="h-3 w-3 mr-1" /> Regulated
-                        </Badge>
-                      ) : (
-                        <Badge variant="destructive" className="px-2 py-1">
-                          <AlertTriangle className="h-3 w-3 mr-1" /> Unregulated
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-sm">{legitimacyData.regulatoryStatus}</p>
-                    
-                    {legitimacyData.warningFlags.length > 0 && (
-                      <div className="mt-4">
-                        <h3 className="text-sm font-semibold text-red-600 mb-2">Warning Flags:</h3>
-                        <ul className="space-y-1 text-sm">
-                          {legitimacyData.warningFlags.map((flag: string, index: number) => (
-                            <li key={index} className="flex items-start">
-                              <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 mr-2 flex-shrink-0" />
-                              <span>{flag}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Verification Tips</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Check the broker's regulatory status on the official regulator website</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Verify that the company name matches the regulated entity</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Look for secure website connection (https://)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Check for transparent company information and address</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                        <span>Research customer reviews across multiple platforms</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+
+          <TabsContent value="comparison" className="mt-0">
+            <BrokerComparisonWidgetWrapper
+              primaryBroker={broker}
+              comparisonBrokers={similarBrokers}
+            />
+          </TabsContent>
+
+          <TabsContent value="faq" className="mt-0">
+            <DynamicFAQSection
+              broker={broker}
+              additionalFaqs={[
+                {
+                  question: `Is ${broker.name} good for beginners?`,
+                  answer: `Based on our analysis, ${broker.name} is ${
+                    broker.min_deposit && Number(broker.min_deposit) <= 100 && broker.educational_resources
+                      ? 'well-suited for beginners due to its low minimum deposit requirements and educational resources.'
+                      : broker.min_deposit && Number(broker.min_deposit) <= 100
+                        ? 'accessible to beginners due to its low minimum deposit requirements, though more educational content would be beneficial.'
+                        : broker.educational_resources
+                          ? 'partially suited for beginners thanks to its educational resources, though the higher minimum deposit may be a barrier for some.'
+                          : 'better suited for traders with some experience, as it lacks comprehensive beginner resources and has higher entry requirements.'
+                  }`
+                },
+                {
+                  question: `What makes ${broker.name} different from other brokers?`,
+                  answer: `${broker.name} distinguishes itself through ${
+                    broker.regulations ? `its regulation by ${broker.regulations}, ` : ''
+                  }${
+                    broker.spreads_from ? (() => {
+                      try {
+                        const spreadValue = parseFloat(broker.spreads_from);
+                        return !isNaN(spreadValue) && spreadValue <= 1.0 ? 'competitive spreads, ' : '';
+                      } catch {
+                        return '';
+                      }
+                    })() : ''
+                  }${
+                    broker.max_leverage ? `leverage options up to ${broker.max_leverage}, ` : ''
+                  }${
+                    broker.trading_platforms ? `and a variety of trading platforms including ${broker.trading_platforms}` : 'and its trading platform offerings'
+                  }.`
+                }
+              ]}
+            />
           </TabsContent>
         </Tabs>
-      </div>
-    </>
+
+        {/* Related Brokers Section */}
+        <section>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">Similar Brokers</h2>
+          {similarBrokers && similarBrokers.length > 0 ? (
+            <SimilarBrokersSectionWrapper
+              brokers={similarBrokers}
+              currentBroker={broker.name}
+            />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((relatedId) => (
+                <Card key={relatedId} className="overflow-hidden flex flex-col">
+                  <div className="border-b p-4 bg-card">
+                    <div className="aspect-[3/1] relative rounded-md overflow-hidden mb-3 bg-muted flex items-center justify-center">
+                      <Image
+                        src={`https://placehold.co/300x100?text=Broker+${relatedId}`}
+                        alt={`Broker ${relatedId}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <h3 className="font-semibold mb-1">Similar Broker {relatedId}</h3>
+                    <div className="text-sm text-muted-foreground mb-2">
+                      {broker.regulations || "Regulated"}
+                    </div>
+                    <div className="flex space-x-2 text-sm">
+                      <span className="border px-2 py-0.5 rounded-md">Min: $100</span>
+                      <span className="border px-2 py-0.5 rounded-md">Leverage: 1:400</span>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 pt-3 flex-grow">
+                    <div className="text-sm text-muted-foreground mb-4">
+                      A similar broker offering comparable trading conditions and services.
+                    </div>
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link href={`/broker/${relatedId}`}>
+                        View Broker
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
   );
-} 
+
+  // Wrap the page content with the client-side Context7Provider
+  return (
+    <BrokerDetailClientWrapper seoConfig={context7Config}>
+      {pageContent}
+    </BrokerDetailClientWrapper>
+  );
+}

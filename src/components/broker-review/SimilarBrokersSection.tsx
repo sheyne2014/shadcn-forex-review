@@ -141,7 +141,7 @@ export function SimilarBrokersSection({
           <p className="text-muted-foreground">Compare alternatives to {currentBroker} with similar features and services</p>
         </div>
         <Link
-          href="/compare"
+          href="/tools/compare"
           className="text-sm font-medium bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground px-4 py-2 rounded-md transition-colors flex items-center self-start"
         >
           View full comparison tool <ArrowRight className="ml-2 h-4 w-4" />

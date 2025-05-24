@@ -35,7 +35,7 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
     initialBrokers.slice(0, Math.min(initialBrokers.length, 3)).map(b => b.id)
   );
   const [selectedFeatureIds, setSelectedFeatureIds] = useState<string[]>(
-    availableFeatures.filter(f => f.highlight || f.group === "Trading").map(f => f.id || "") // Default selected features
+    availableFeatures.filter(f => f.highlight || f.group === "Trading Conditions").map(f => f.id || "").filter(id => id !== "") // Default selected features
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredBrokers, setFilteredBrokers] = useState<BrokerData[]>(initialBrokers);
@@ -72,10 +72,12 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
   );
 
   // Filter features to display based on selection
-  const featuresToDisplay = useMemo(() =>
-    availableFeatures.filter(feature => selectedFeatureIds.includes(feature.id || "")),
-    [availableFeatures, selectedFeatureIds]
-  );
+  const featuresToDisplay = useMemo(() => {
+    // Only include features that are selected in the dropdown
+    return availableFeatures.filter(feature =>
+      feature.id && selectedFeatureIds.includes(feature.id)
+    );
+  }, [availableFeatures, selectedFeatureIds]);
 
   // Memoize the comparison table to prevent unnecessary re-renders
   const MemoizedComparisonTable = useMemo(() => {
@@ -92,6 +94,7 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
       );
     }
 
+    // Only pass the selected features to the comparison table
     return (
       <div className="border rounded-lg overflow-hidden shadow-sm">
         <BrokerComparisonTable brokers={brokersToDisplay} features={featuresToDisplay} />
@@ -115,13 +118,16 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
   const toggleFeatureGroup = (groupId: string) => {
     const groupFeatureIds = availableFeatures
       .filter(feature => feature.group === groupId)
-      .map(feature => feature.id || "");
+      .map(feature => feature.id || "")
+      .filter(id => id); // Filter out empty IDs
 
     const allSelected = groupFeatureIds.every(id => selectedFeatureIds.includes(id));
 
     if (allSelected) {
+      // If all are selected, remove all from this group
       setSelectedFeatureIds(prev => prev.filter(id => !groupFeatureIds.includes(id)));
     } else {
+      // If not all selected, add all from this group
       setSelectedFeatureIds(prev => [
         ...prev,
         ...groupFeatureIds.filter(id => !prev.includes(id)),
@@ -130,8 +136,19 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
   };
 
   const resetFilters = () => {
+    // Reset broker selection to the first 3 brokers
     setSelectedBrokerIds(initialBrokers.slice(0, Math.min(initialBrokers.length, 3)).map(b => b.id));
-    setSelectedFeatureIds(availableFeatures.filter(f => f.highlight || f.group === "Trading").map(f => f.id || ""));
+
+    // Reset feature selection to highlighted features and Trading features
+    // Only include features with valid IDs
+    setSelectedFeatureIds(
+      availableFeatures
+        .filter(f => (f.highlight || f.group === "Trading") && f.id)
+        .map(f => f.id || "")
+        .filter(id => id)
+    );
+
+    // Reset search
     setSearchQuery("");
     setFilteredBrokers(initialBrokers);
   };
@@ -234,7 +251,7 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
               Search Brokers
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="sm:max-w-md bg-background">
             <DialogHeader>
               <DialogTitle>Search Brokers</DialogTitle>
               <DialogDescription>
@@ -249,7 +266,7 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full"
                 />
-                <div className="max-h-[300px] overflow-y-auto">
+                <div className="max-h-[300px] overflow-y-auto bg-background">
                   {filteredBrokers.length > 0 ? (
                     <div className="space-y-2">
                       {filteredBrokers.map((broker) => (
@@ -292,36 +309,51 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
         </Dialog>
 
         {/* Broker selection dropdown */}
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Filter className="mr-2 h-4 w-4" />
               Brokers ({selectedBrokerIds.length})
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-64">
+          <DropdownMenuContent className="w-64 bg-background !bg-background" onCloseAutoFocus={(e) => e.preventDefault()}>
             <DropdownMenuLabel>Select Brokers (max 7)</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <ScrollArea className="h-[300px]">
+            <ScrollArea className="h-[300px] bg-background !bg-background">
               <DropdownMenuGroup>
                 {initialBrokers.map((broker) => (
                   <DropdownMenuItem
                     key={broker.id}
-                    className="flex items-center gap-2 cursor-pointer"
+                    className="flex items-center gap-2 cursor-pointer bg-background hover:bg-muted"
                     onSelect={(e) => { e.preventDefault(); toggleBroker(broker.id); }}
                   >
-                    <Checkbox
-                      id={`broker-select-${broker.id}`}
-                      checked={selectedBrokerIds.includes(broker.id)}
-                      disabled={!selectedBrokerIds.includes(broker.id) && selectedBrokerIds.length >= 7}
-                    />
-                    <label htmlFor={`broker-select-${broker.id}`} className="flex-1 cursor-pointer">
-                      {broker.name}
-                    </label>
-                    <span className="flex items-center text-xs text-muted-foreground">
-                      <Star className="h-3 w-3 fill-amber-400 text-amber-400 mr-1" />
-                      {broker.rating.toFixed(1)}
-                    </span>
+                    <div
+                      key={`broker-div-${broker.id}`}
+                      className="flex items-center gap-2 w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleBroker(broker.id);
+                      }}
+                    >
+                      <Checkbox
+                        id={`broker-select-${broker.id}`}
+                        checked={selectedBrokerIds.includes(broker.id)}
+                        disabled={!selectedBrokerIds.includes(broker.id) && selectedBrokerIds.length >= 7}
+                        onCheckedChange={() => toggleBroker(broker.id)}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                      <label
+                        htmlFor={`broker-select-${broker.id}`}
+                        className="flex-1 cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {broker.name}
+                      </label>
+                      <span className="flex items-center text-xs text-muted-foreground">
+                        <Star className="h-3 w-3 fill-amber-400 text-amber-400 mr-1" />
+                        {broker.rating.toFixed(1)}
+                      </span>
+                    </div>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>
@@ -330,50 +362,99 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
         </DropdownMenu>
 
         {/* Feature selection dropdown */}
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Filter className="mr-2 h-4 w-4" />
               Features ({selectedFeatureIds.length})
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-64">
+          <DropdownMenuContent className="w-64 bg-background !bg-background" onCloseAutoFocus={(e) => e.preventDefault()}>
             <DropdownMenuLabel>Select Features to Compare</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <ScrollArea className="h-[300px]">
-              {featureGroups.map((group) => (
-                <div key={group.id} className="px-2 py-1.5">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Checkbox
-                      id={`group-select-${group.id}`}
-                      checked={availableFeatures
+            <div className="p-2 text-xs text-muted-foreground bg-background !bg-background">
+              Only selected features will appear in the comparison table
+            </div>
+            <DropdownMenuSeparator />
+            <ScrollArea className="h-[300px] bg-background !bg-background">
+              {featureGroups.map((group) => {
+                // Get all valid feature IDs in this group
+                const groupFeatureIds = availableFeatures
+                  .filter(feature => feature.group === group.id && feature.id)
+                  .map(feature => feature.id || "");
+
+                // Check if all features in this group are selected
+                const allSelected = groupFeatureIds.length > 0 &&
+                  groupFeatureIds.every(id => selectedFeatureIds.includes(id));
+
+                // Check if some features in this group are selected
+                const someSelected = groupFeatureIds.some(id => selectedFeatureIds.includes(id));
+
+                return (
+                  <div key={group.id} className="px-2 py-1.5 bg-background !bg-background">
+                    <div className="flex items-center gap-2 mb-1 bg-background !bg-background">
+                      <div
+                        key={`group-div-${group.id}`}
+                        className="flex items-center gap-2 w-full"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFeatureGroup(group.id);
+                        }}
+                      >
+                        <Checkbox
+                          id={`group-select-${group.id}`}
+                          checked={allSelected}
+                          className={someSelected && !allSelected ? "data-[state=checked]:bg-primary/50" : ""}
+                          onCheckedChange={() => toggleFeatureGroup(group.id)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <label
+                          htmlFor={`group-select-${group.id}`}
+                          className={`font-medium text-sm cursor-pointer ${someSelected ? "text-primary" : ""}`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {group.name} ({groupFeatureIds.length})
+                        </label>
+                      </div>
+                    </div>
+                    <div className="ml-6 border-l pl-3 space-y-0.5 bg-background !bg-background">
+                      {availableFeatures
                         .filter(feature => feature.group === group.id)
-                        .every(feature => selectedFeatureIds.includes(feature.id || ""))
-                      }
-                      onCheckedChange={() => toggleFeatureGroup(group.id)}
-                    />
-                    <label htmlFor={`group-select-${group.id}`} className="font-medium text-sm cursor-pointer">
-                      {group.name}
-                    </label>
+                        .map((feature) => (
+                          <div
+                            key={feature.id}
+                            className={`flex items-center gap-2 py-0.5 bg-background !bg-background hover:bg-muted rounded-sm ${
+                              feature.id && selectedFeatureIds.includes(feature.id) ? "bg-muted/50" : ""
+                            }`}
+                          >
+                            <div
+                              key={`feature-div-${feature.id || `feature-${feature.name}`}`}
+                              className="flex items-center gap-2 w-full"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                feature.id && toggleFeature(feature.id);
+                              }}
+                            >
+                              <Checkbox
+                                id={`feature-select-${feature.id}`}
+                                checked={feature.id ? selectedFeatureIds.includes(feature.id) : false}
+                                onCheckedChange={() => feature.id && toggleFeature(feature.id)}
+                                onClick={(e) => e.stopPropagation()}
+                              />
+                              <label
+                                htmlFor={`feature-select-${feature.id}`}
+                                className={`text-sm cursor-pointer ${feature.id && selectedFeatureIds.includes(feature.id) ? "font-medium" : ""}`}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {feature.name}
+                              </label>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                   </div>
-                  <div className="ml-6 border-l pl-3 space-y-0.5">
-                    {availableFeatures
-                      .filter(feature => feature.group === group.id)
-                      .map((feature) => (
-                        <div key={feature.id} className="flex items-center gap-2 py-0.5">
-                          <Checkbox
-                            id={`feature-select-${feature.id}`}
-                            checked={selectedFeatureIds.includes(feature.id || "")}
-                            onCheckedChange={() => toggleFeature(feature.id || "")}
-                          />
-                          <label htmlFor={`feature-select-${feature.id}`} className="text-sm cursor-pointer">
-                            {feature.name}
-                          </label>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </ScrollArea>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -419,7 +500,7 @@ export function BrokerComparisonTool({ initialBrokers, availableFeatures }: Brok
       <div className="text-sm text-muted-foreground bg-muted/20 p-5 rounded-lg border border-border/50">
         <div className="flex items-start gap-2">
           <Info className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-          <div>
+          <div key="info-content">
             <p className="font-medium text-foreground mb-1">Important Information</p>
             <p>
               Information is updated regularly but may not reflect recent changes.

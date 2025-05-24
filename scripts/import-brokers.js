@@ -11,20 +11,20 @@ const supabase = createClient(
 // Main import function
 async function importBrokers() {
   console.log('Starting broker import...');
-  
+
   try {
     // First make sure we have categories
     const categories = await ensureCategories();
     console.log(`✅ Verified ${categories.length} categories`);
-    
+
     // Get broker data (hardcoded list)
     const brokers = getHardcodedBrokers();
     console.log(`✅ Prepared ${brokers.length} brokers for import`);
-    
+
     // Import brokers to database
     const importedBrokers = await importBrokersToDatabase(brokers, categories);
     console.log(`✅ Imported ${importedBrokers.length} brokers to Supabase`);
-    
+
     console.log('✅ Import completed successfully!');
   } catch (error) {
     console.error('❌ Error importing brokers:', error);
@@ -38,14 +38,14 @@ async function ensureCategories() {
   const { data: existingCategories, error } = await supabase
     .from('categories')
     .select('*');
-    
+
   if (error) throw error;
-  
+
   // If we have categories, return them
   if (existingCategories && existingCategories.length > 0) {
     return existingCategories;
   }
-  
+
   // Otherwise create default categories
   const categoryNames = [
     'ECN Brokers',
@@ -57,7 +57,7 @@ async function ensureCategories() {
     'Regulated Brokers',
     'MT4/MT5 Brokers'
   ];
-  
+
   const categories = [];
   for (const name of categoryNames) {
     const { data, error } = await supabase
@@ -65,11 +65,11 @@ async function ensureCategories() {
       .insert({ name })
       .select()
       .single();
-      
+
     if (error) throw error;
     categories.push(data);
   }
-  
+
   return categories;
 }
 
@@ -148,14 +148,14 @@ function getHardcodedBrokers() {
     { name: 'SimpleFX', rating: 3.9, website: 'https://simplefx.com' },
     { name: 'LQDFX', rating: 3.8, website: 'https://lqdfx.com' },
     { name: 'CryptoAltum', rating: 3.9, website: 'https://cryptoaltum.com' },
-    { name: 'LMAX Exchange', rating: 4.3, website: 'https://lmax.com' },
+
     { name: 'Stocks', rating: 3.9, website: 'https://stocks.com' },
     { name: 'TradeView Forex', rating: 4.0, website: 'https://tradeviewforex.com' },
     { name: 'City Index', rating: 4.1, website: 'https://cityindex.com' },
     { name: 'Hantec Markets', rating: 4.0, website: 'https://hantecmarkets.com' },
     { name: 'Rakuten Securities', rating: 4.2, website: 'https://rakutensecurities.com' }
   ];
-  
+
   // Generate broker metadata
   return topBrokers.map(broker => {
     return {
@@ -175,7 +175,7 @@ function getHardcodedBrokers() {
 // Import brokers to database
 async function importBrokersToDatabase(brokers, categories) {
   const importedBrokers = [];
-  
+
   // Create each broker
   for (const broker of brokers) {
     try {
@@ -185,13 +185,13 @@ async function importBrokersToDatabase(brokers, categories) {
         .select('id')
         .eq('name', broker.name)
         .maybeSingle();
-      
+
       if (existingBroker) {
         console.log(`Broker ${broker.name} already exists, skipping...`);
         importedBrokers.push(existingBroker);
         continue;
       }
-      
+
       // Insert broker into the database
       const { data: createdBroker, error } = await supabase
         .from('Brokers')
@@ -208,16 +208,16 @@ async function importBrokersToDatabase(brokers, categories) {
         })
         .select()
         .single();
-      
+
       if (error) {
         console.error(`Error creating broker ${broker.name}:`, error);
         continue;
       }
-      
+
       // Assign to 2-3 random categories
       const shuffledCategories = [...categories].sort(() => 0.5 - Math.random());
       const categoryCount = Math.floor(Math.random() * 2) + 2; // 2-3 categories
-      
+
       for (let i = 0; i < categoryCount && i < shuffledCategories.length; i++) {
         const { error: categoryError } = await supabase
           .from('broker_categories')
@@ -225,19 +225,19 @@ async function importBrokersToDatabase(brokers, categories) {
             broker_id: createdBroker.id,
             category_id: shuffledCategories[i].id
           });
-          
+
         if (categoryError) {
           console.error(`Error linking broker ${broker.name} to category:`, categoryError);
         }
       }
-      
+
       importedBrokers.push(createdBroker);
       console.log(`Imported broker: ${broker.name}`);
     } catch (error) {
       console.error(`Error importing broker ${broker.name}:`, error);
     }
   }
-  
+
   return importedBrokers;
 }
 
@@ -250,4 +250,4 @@ importBrokers()
   .catch((error) => {
     console.error('Error importing brokers:', error);
     process.exit(1);
-  }); 
+  });

@@ -22,32 +22,14 @@ const brokersToAdd = [
     country: "Seychelles",
     rating: 4.3
   },
-  {
-    name: "IC Pro",
-    logo_url: "https://broker-analysis.com/images/brokers/ic-pro.png",
-    min_deposit: 200,
-    trading_fee: 0.6,
-    regulations: "ASIC, CySEC",
-    supported_assets: ["Forex", "CFDs", "Crypto"],
-    country: "Australia",
-    rating: 4.5
-  },
-  {
-    name: "Korea Investment & Securities",
-    logo_url: "https://broker-analysis.com/images/brokers/korea-investment.png",
-    min_deposit: 1000,
-    trading_fee: 0.15,
-    regulations: "FSC",
-    supported_assets: ["Stocks", "Bonds", "Futures"],
-    country: "South Korea",
-    rating: 4.4
-  }
+
+
 ];
 
 // Function to add brokers
 async function addBrokers() {
   console.log('Starting to add missing brokers...');
-  
+
   for (const broker of brokersToAdd) {
     try {
       // Check if broker already exists
@@ -55,17 +37,17 @@ async function addBrokers() {
         .from('brokers')
         .select('*')
         .ilike('name', `%${broker.name}%`);
-      
+
       if (searchError) {
         console.error(`Error searching for broker ${broker.name}:`, searchError);
         continue;
       }
-      
+
       if (existingBrokers && existingBrokers.length > 0) {
         console.log(`Broker "${broker.name}" already exists, skipping.`);
         continue;
       }
-      
+
       // Insert the new broker
       const { data, error } = await supabase
         .from('brokers')
@@ -80,7 +62,7 @@ async function addBrokers() {
           rating: broker.rating
         })
         .select();
-      
+
       if (error) {
         console.error(`Error adding broker ${broker.name}:`, error);
       } else {
@@ -90,9 +72,9 @@ async function addBrokers() {
       console.error(`Unexpected error adding broker ${broker.name}:`, error);
     }
   }
-  
+
   console.log('Finished adding brokers.');
 }
 
 // Run the function
-addBrokers().catch(console.error); 
+addBrokers().catch(console.error);

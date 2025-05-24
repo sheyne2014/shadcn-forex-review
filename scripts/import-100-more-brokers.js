@@ -13,7 +13,7 @@ try {
   if (fs.existsSync(envPath)) {
     const envContent = fs.readFileSync(envPath, 'utf8');
     const envLines = envContent.split('\n');
-    
+
     for (const line of envLines) {
       const [key, value] = line.split('=');
       if (key === 'NEXT_PUBLIC_SUPABASE_URL') {
@@ -23,14 +23,14 @@ try {
       }
     }
   }
-  
+
   // If still not found, try parent directory
   if (!supabaseUrl || !supabaseKey) {
     const parentEnvPath = path.join(process.cwd(), '../.env.local');
     if (fs.existsSync(parentEnvPath)) {
       const envContent = fs.readFileSync(parentEnvPath, 'utf8');
       const envLines = envContent.split('\n');
-      
+
       for (const line of envLines) {
         const [key, value] = line.split('=');
         if (key === 'NEXT_PUBLIC_SUPABASE_URL') {
@@ -41,19 +41,19 @@ try {
       }
     }
   }
-  
+
   // Check if environment variables are in process.env
   if (!supabaseUrl && process.env.NEXT_PUBLIC_SUPABASE_URL) {
     supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   }
-  
+
   if (!supabaseKey && process.env.SUPABASE_SERVICE_ROLE_KEY) {
     supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   }
-  
+
   console.log(`Supabase URL found: ${supabaseUrl ? 'Yes' : 'No'}`);
   console.log(`Supabase Key found: ${supabaseKey ? 'Yes' : 'No'}`);
-  
+
   if (!supabaseUrl || !supabaseKey) {
     throw new Error('Required environment variables not found');
   }
@@ -68,27 +68,27 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Main import function
 async function importMoreBrokers() {
   console.log('🚀 Starting import of 100 more brokers...');
-  
+
   try {
     // Get categories
     const { data: categories, error } = await supabase.from('categories').select('*');
     if (error) throw error;
-    
+
     console.log(`✅ Found ${categories.length} categories`);
-    
+
     // Create category map for lookups
     const categoryMap = {};
     categories.forEach(category => {
       categoryMap[category.name] = category.id;
     });
-    
+
     // Get broker data
     const moreBrokers = getMoreBrokers();
     console.log(`✅ Prepared ${moreBrokers.length} additional brokers for import`);
-    
+
     // Import brokers
     let importCount = 0;
-    
+
     for (const broker of moreBrokers) {
       try {
         // Check if broker already exists
@@ -97,13 +97,13 @@ async function importMoreBrokers() {
           .select('id')
           .eq('name', broker.name)
           .maybeSingle();
-        
+
         let brokerId;
-        
+
         if (existingBroker) {
           console.log(`Broker ${broker.name} already exists, updating...`);
           brokerId = existingBroker.id;
-          
+
           // Update existing broker
           await supabase
             .from('brokers')
@@ -117,7 +117,7 @@ async function importMoreBrokers() {
               supported_assets: broker.assets || []
             })
             .eq('id', brokerId);
-          
+
         } else {
           // Insert new broker
           const { data: newBroker, error } = await supabase
@@ -134,25 +134,25 @@ async function importMoreBrokers() {
             })
             .select()
             .single();
-          
+
           if (error) {
             console.error(`Error creating broker ${broker.name}:`, error);
             continue;
           }
-          
+
           brokerId = newBroker.id;
           importCount++;
           console.log(`Imported broker: ${broker.name}`);
         }
-        
+
         // Add broker categories
         await linkBrokerToCategories(brokerId, broker.categories, categoryMap);
-        
+
       } catch (error) {
         console.error(`Error processing broker ${broker.name}:`, error);
       }
     }
-    
+
     console.log(`✅ Successfully imported ${importCount} new brokers to Supabase`);
   } catch (error) {
     console.error('❌ Error importing brokers:', error);
@@ -167,9 +167,9 @@ async function linkBrokerToCategories(brokerId, brokerCategories, categoryMap) {
     .from('broker_categories')
     .select('category_id')
     .eq('broker_id', brokerId);
-    
+
   const existingCategoryIds = existingLinks ? existingLinks.map(link => link.category_id) : [];
-  
+
   // Process each category
   for (const categoryName of brokerCategories) {
     // Find matching category
@@ -180,17 +180,17 @@ async function linkBrokerToCategories(brokerId, brokerCategories, categoryMap) {
         break;
       }
     }
-    
+
     // Skip if no category match or already linked
     if (!categoryId) continue;
     if (existingCategoryIds.includes(categoryId)) continue;
-    
+
     try {
       // Add broker-category relation
       const { error } = await supabase
         .from('broker_categories')
         .insert({ broker_id: brokerId, category_id: categoryId });
-        
+
       if (error && error.code !== '23505') { // Ignore duplicate key errors
         console.error(`Error linking broker to category:`, error);
       }
@@ -225,7 +225,7 @@ function getMoreBrokers() {
     { name: "M4Markets", rating: 4.2, deposit: 100, fee: 0.7, country: "Seychelles", regulations: "FSA, CySEC", logo: "https://example.com/m4markets.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "CFD Brokers"] },
     { name: "FXOpen", rating: 4.4, deposit: 1, fee: 0.5, country: "UK", regulations: "FCA, ASIC", logo: "https://example.com/fxopen.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
     { name: "Swissquote", rating: 4.7, deposit: 1000, fee: 0.9, country: "Switzerland", regulations: "FINMA, FCA, ACPR", logo: "https://example.com/swissquote.png", assets: ["Forex", "Stocks", "CFDs"], categories: ["Forex Brokers", "Stock Brokers"] },
-    { name: "LMAX", rating: 4.6, deposit: 10000, fee: 0.4, country: "UK", regulations: "FCA", logo: "https://example.com/lmax.png", assets: ["Forex", "CFDs", "Metals"], categories: ["Forex Brokers", "Professional Traders"] },
+
 
     // Cryptocurrency Brokers
     { name: "Bitfinex", rating: 4.5, deposit: 0, fee: 0.1, country: "Hong Kong", regulations: "Various", logo: "https://example.com/bitfinex.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
@@ -236,7 +236,7 @@ function getMoreBrokers() {
     { name: "Kraken Pro", rating: 4.6, deposit: 0, fee: 0.16, country: "USA", regulations: "FinCEN", logo: "https://example.com/krakenpro.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
     { name: "Liquid", rating: 4.3, deposit: 0, fee: 0.1, country: "Japan", regulations: "FSA", logo: "https://example.com/liquid.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
     { name: "BitMax", rating: 4.2, deposit: 0, fee: 0.1, country: "Singapore", regulations: "Various", logo: "https://example.com/bitmax.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
-    { name: "Phemex", rating: 4.3, deposit: 0, fee: 0.1, country: "Singapore", regulations: "Various", logo: "https://example.com/phemex.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
+
     { name: "Coincheck", rating: 4.1, deposit: 0, fee: 0.25, country: "Japan", regulations: "FSA", logo: "https://example.com/coincheck.png", assets: ["Bitcoin", "Ethereum", "Altcoins"], categories: ["Cryptocurrency Brokers"] },
 
     // Stock Brokers
@@ -259,7 +259,7 @@ function getMoreBrokers() {
     { name: "AMP Futures", rating: 4.3, deposit: 500, fee: 0.5, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/ampfutures.png", assets: ["Futures", "Options"], categories: ["Futures Brokers"] },
     { name: "Optimus Futures", rating: 4.4, deposit: 500, fee: 0.55, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/optimus.png", assets: ["Futures"], categories: ["Futures Brokers"] },
     { name: "Generic Trade", rating: 4.1, deposit: 1000, fee: 0.59, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/generictrade.png", assets: ["Futures"], categories: ["Futures Brokers"] },
-    { name: "Dorman Trading", rating: 4.3, deposit: 2500, fee: 0.65, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/dorman.png", assets: ["Futures", "Options"], categories: ["Futures Brokers"] },
+
     { name: "Daniels Trading", rating: 4.2, deposit: 500, fee: 0.6, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/daniels.png", assets: ["Futures", "Options"], categories: ["Futures Brokers"] },
     { name: "Cannon Trading", rating: 4.1, deposit: 1000, fee: 0.59, country: "USA", regulations: "CFTC, NFA", logo: "https://example.com/cannon.png", assets: ["Futures", "Options"], categories: ["Futures Brokers"] },
 
@@ -299,14 +299,14 @@ function getMoreBrokers() {
     { name: "Monex", rating: 4.4, deposit: 0, fee: 0.2, country: "Japan", regulations: "FSA", logo: "https://example.com/monex.png", assets: ["Stocks", "Forex", "Futures"], categories: ["Stock Brokers", "Forex Brokers"] },
     { name: "Nomura Securities", rating: 4.7, deposit: 1000, fee: 0.1, country: "Japan", regulations: "FSA", logo: "https://example.com/nomura.png", assets: ["Stocks", "Bonds", "Futures"], categories: ["Stock Brokers"] },
     { name: "Mirae Asset", rating: 4.5, deposit: 0, fee: 0.15, country: "South Korea", regulations: "FSC", logo: "https://example.com/miraeasset.png", assets: ["Stocks", "ETFs", "Futures"], categories: ["Stock Brokers"] },
-    { name: "Korea Investment & Securities", rating: 4.4, deposit: 0, fee: 0.15, country: "South Korea", regulations: "FSC", logo: "https://example.com/koreainvestment.png", assets: ["Stocks", "Bonds", "Futures"], categories: ["Stock Brokers"] },
+
 
     // Specialized Brokers
-    { name: "Merrill", rating: 4.6, deposit: 0, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/merrill.png", assets: ["Stocks", "ETFs", "Options"], categories: ["Stock Brokers"] },
+
     { name: "JP Morgan Self-Directed Investing", rating: 4.5, deposit: 0, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/jpmorgan.png", assets: ["Stocks", "ETFs", "Options"], categories: ["Stock Brokers"] },
-    { name: "Wells Fargo Advisors", rating: 4.4, deposit: 0, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/wellsfargo.png", assets: ["Stocks", "ETFs", "Options"], categories: ["Stock Brokers"] },
+
     { name: "Zacks Trade", rating: 4.5, deposit: 2500, fee: 0.01, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/zackstrade.png", assets: ["Stocks", "Options", "Futures"], categories: ["Stock Brokers", "Options Brokers"] },
-    { name: "WeBull Securities", rating: 4.3, deposit: 0, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/webull.png", assets: ["Stocks", "ETFs", "Options"], categories: ["Stock Brokers", "Brokers for Beginners"] },
+
     { name: "M1 Finance", rating: 4.4, deposit: 100, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/m1finance.png", assets: ["Stocks", "ETFs"], categories: ["Stock Brokers", "Brokers for Beginners"] },
     { name: "eToro USA", rating: 4.2, deposit: 50, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/etorousa.png", assets: ["Stocks", "ETFs", "Crypto"], categories: ["Stock Brokers", "Brokers for Beginners"] },
     { name: "SogoTrade", rating: 4.1, deposit: 500, fee: 0.0, country: "USA", regulations: "SEC, FINRA", logo: "https://example.com/sogotrade.png", assets: ["Stocks", "Options"], categories: ["Stock Brokers", "Options Brokers"] },
@@ -324,4 +324,4 @@ importMoreBrokers()
   .catch((error) => {
     console.error('Error importing brokers:', error);
     process.exit(1);
-  }); 
+  });

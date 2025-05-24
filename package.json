@@ -21,7 +21,9 @@
     "blog-import-all": "npm run create-blog-categories && npm run update-blog-frontmatter && npm run import-blog-posts",
     "add-missing-brokers": "node src/scripts/add-missing-brokers.js",
     "add-regulated-brokers-blog": "node src/scripts/add-regulated-brokers-blog.js",
-    "delete-brokers": "node scripts/delete-brokers.js"
+    "delete-brokers": "node scripts/delete-brokers.js",
+    "find-broker-logos": "node scripts/find-missing-broker-logos.js",
+    "find-broker-logos-advanced": "node scripts/find-broker-logos-advanced.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

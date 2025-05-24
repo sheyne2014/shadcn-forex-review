@@ -26,7 +26,7 @@ import { BrokerCompareRatings } from "@/components/compare/BrokerCompareRatings"
 import { BrokerCompareFeesTable } from "@/components/compare/BrokerCompareFeesTable";
 import { BrokerComparePlatformsTable } from "@/components/compare/BrokerComparePlatformsTable";
 import { BrokerCompareMarketsTable } from "@/components/compare/BrokerCompareMarketsTable";
-import { fetchBrokerDetails, BrokerDetails } from "@/lib/brokers";
+import { getBrokerBySlug, BrokerDetails } from "@/lib/brokers";
 
 interface BrokerCompareDetailsProps {
   brokerIds: string[];
@@ -44,7 +44,21 @@ export function BrokerCompareDetails({ brokerIds, lastUpdated }: BrokerCompareDe
     const loadBrokers = async () => {
       setLoading(true);
       try {
-        const brokerData = await Promise.all(brokerIds.map(id => fetchBrokerDetails(id)));
+        const brokerData = await Promise.all(
+          brokerIds.map(async (id) => {
+            const broker = await getBrokerBySlug(id);
+            return broker || {
+              id,
+              name: id.charAt(0).toUpperCase() + id.slice(1),
+              slug: id,
+              rating: 4.0,
+              min_deposit: 100,
+              regulations: "Various",
+              trading_platforms: "Multiple platforms",
+              country: "Not specified"
+            } as BrokerDetails;
+          })
+        );
         setBrokers(brokerData);
       } catch (error) {
         console.error("Error loading broker data:", error);

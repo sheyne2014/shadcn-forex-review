@@ -730,6 +730,7 @@ export default async function LandingPage() {
                               key={idx}
                               broker={broker}
                               idx={idx}
+                              disableLink={true}
                             />
                           ))}
                         </div>

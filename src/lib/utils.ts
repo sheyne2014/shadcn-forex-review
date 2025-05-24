@@ -2,8 +2,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 /**
- * Utility function to merge Tailwind CSS classes with clsx
- * Used for conditionally applying classes
+ * A utility for conditionally joining class names together
+ * Combines clsx and tailwind-merge for smart class name handling
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -81,4 +81,15 @@ export function capitalize(str: string): string {
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');
+}
+
+/**
+ * Format a date in a human-readable format (e.g., "Jan 15, 2023")
+ */
+export function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(date);
 } 

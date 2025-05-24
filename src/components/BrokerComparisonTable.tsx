@@ -192,9 +192,9 @@ export function BrokerComparisonTable({
             <TableHeader>
               <TableRow className="bg-muted/50 hover:bg-muted/50">
                 <TableHead className="w-[240px] font-semibold sticky left-0 bg-muted/50 z-10" scope="col">Broker</TableHead>
-                {features.map((feature) => (
+                {features.map((feature, index) => (
                   <TableHead
-                    key={feature.name}
+                    key={feature.id || `feature-${index}-${feature.name}`}
                     className={cn(
                       "text-center font-semibold",
                       feature.highlight && "bg-primary/5"
@@ -225,11 +225,11 @@ export function BrokerComparisonTable({
                   <TableCell className="font-medium py-5 sticky left-0 bg-background group-hover:bg-muted/30 z-10">
                     <div className="flex items-center gap-4">
                       <div className="flex-shrink-0">
-                        <BrokerLogo 
-                          broker={broker} 
-                          size="lg" 
-                          rounded 
-                          withBorder 
+                        <BrokerLogo
+                          broker={broker}
+                          size="lg"
+                          rounded
+                          withBorder
                           priority={false}
                         />
                       </div>
@@ -249,9 +249,9 @@ export function BrokerComparisonTable({
                     </div>
                   </TableCell>
 
-                  {features.map((feature) => (
+                  {features.map((feature, index) => (
                     <TableCell
-                      key={`${broker.id}-${feature.name}`}
+                      key={`${broker.id}-${feature.id || `feature-${index}-${feature.name}`}`}
                       className={cn(
                         "text-center",
                         feature.highlight && "bg-primary/5 group-hover:bg-muted/50"
@@ -287,8 +287,8 @@ export function BrokerComparisonTable({
 
       {/* Feature group legend */}
       <div className="mt-6 flex flex-wrap gap-4">
-        {Object.entries(groupedFeatures).map(([group, features]) => (
-          <div key={group} className="bg-muted/20 rounded-md p-2 border border-border/50">
+        {Object.entries(groupedFeatures).map(([group, features], index) => (
+          <div key={`group-${index}-${group}`} className="bg-muted/20 rounded-md p-2 border border-border/50">
             <div className="font-medium text-sm mb-1">{group}</div>
             <div className="text-xs text-muted-foreground">
               {(features as FeatureItem[]).length} feature{(features as FeatureItem[]).length !== 1 ? 's' : ''}
