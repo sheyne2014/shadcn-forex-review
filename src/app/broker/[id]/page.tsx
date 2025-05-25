@@ -114,14 +114,20 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
   let broker = null;
   try {
     if (isUUID) {
-      // Use getBrokerById for UUIDs
-      const result = await getBrokerById(id);
-      if (result && !result.error) {
-        broker = result.data;
-      } else {
-        // If database fails, try to get mock data based on the ID
-        console.warn("Database unavailable, falling back to mock data for UUID:", id);
-        broker = await getBrokerBySlug(id); // This will fall back to mock data
+      // Use getBrokerById for UUIDs with comprehensive error handling
+      try {
+        const result = await getBrokerById(id);
+        if (result && !result.error && result.data) {
+          broker = result.data;
+        } else {
+          console.warn("Database query returned no data or error for UUID:", id, result?.error);
+          // If database fails, try to get mock data based on the ID
+          broker = await getBrokerBySlug(id); // This will fall back to mock data
+        }
+      } catch (dbError) {
+        console.error("Database error for UUID:", id, dbError);
+        // Fallback to mock data
+        broker = await getBrokerBySlug(id);
       }
     } else {
       // Use getBrokerBySlug for slugs

@@ -118,42 +118,78 @@ export async function getBrokers({
 export async function getBrokerById(id: string) {
   try {
     if (!supabaseBrokerClient) {
-      console.error("Supabase client not initialized. Missing environment variables.");
+      console.warn("Supabase client not initialized. Missing environment variables.");
       return { data: null, error: new Error("Database client not available") };
     }
 
-    // Get the broker details
-    const { data: broker, error: brokerError } = await supabaseBrokerClient
-      .from('brokers')
-      .select('*')
-      .eq('id', id)
-      .single();
+    // Validate the ID parameter
+    if (!id || typeof id !== 'string') {
+      console.error("Invalid broker ID provided:", id);
+      return { data: null, error: new Error("Invalid broker ID") };
+    }
+
+    // Get the broker details with additional error handling
+    let broker = null;
+    let brokerError = null;
+
+    try {
+      const result = await supabaseBrokerClient
+        .from('brokers')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      broker = result.data;
+      brokerError = result.error;
+    } catch (queryError) {
+      console.error("Database query failed:", queryError);
+      return { data: null, error: new Error("Database query failed") };
+    }
 
     if (brokerError) {
-      console.error("Error fetching broker:", brokerError);
+      console.warn("Broker not found or error fetching broker:", brokerError.message);
       return { data: null, error: brokerError };
     }
 
-    // Get categories for the broker
-    const { data: brokerCategories, error: categoriesError } = await supabaseBrokerClient
-      .from('broker_categories')
-      .select('categories(id, name)')
-      .eq('broker_id', id);
+    if (!broker) {
+      console.warn("No broker data returned for ID:", id);
+      return { data: null, error: new Error("Broker not found") };
+    }
 
-    if (categoriesError) {
-      console.error("Error fetching broker categories:", categoriesError);
+    // Get categories for the broker with error handling
+    let brokerCategories: any[] = [];
+    try {
+      const categoriesResult = await supabaseBrokerClient
+        .from('broker_categories')
+        .select('categories(id, name)')
+        .eq('broker_id', id);
+
+      if (categoriesResult.error) {
+        console.warn("Error fetching broker categories:", categoriesResult.error.message);
+      } else {
+        brokerCategories = categoriesResult.data || [];
+      }
+    } catch (categoriesQueryError) {
+      console.warn("Categories query failed:", categoriesQueryError);
       // Continue anyway, just without categories
     }
 
-    // Get reviews for the broker
-    const { data: reviews, error: reviewsError } = await supabaseBrokerClient
-      .from('reviews')
-      .select('*, users(id, email)')
-      .eq('broker_id', id)
-      .order('created_at', { ascending: false });
+    // Get reviews for the broker with error handling
+    let reviews = [];
+    try {
+      const reviewsResult = await supabaseBrokerClient
+        .from('reviews')
+        .select('*, users(id, email)')
+        .eq('broker_id', id)
+        .order('created_at', { ascending: false });
 
-    if (reviewsError) {
-      console.error("Error fetching broker reviews:", reviewsError);
+      if (reviewsResult.error) {
+        console.warn("Error fetching broker reviews:", reviewsResult.error.message);
+      } else {
+        reviews = reviewsResult.data || [];
+      }
+    } catch (reviewsQueryError) {
+      console.warn("Reviews query failed:", reviewsQueryError);
       // Continue anyway, just without reviews
     }
 
@@ -166,13 +202,13 @@ export async function getBrokerById(id: string) {
     // Extract categories
     const categories = brokerCategories?.map(bc => bc.categories) || [];
 
-    return { 
-      data: { 
-        ...broker, 
-        categories, 
-        reviews: formattedReviews 
-      }, 
-      error: null 
+    return {
+      data: {
+        ...broker,
+        categories,
+        reviews: formattedReviews
+      },
+      error: null
     };
   } catch (error) {
     console.error("Error getting broker by ID:", error);
@@ -231,7 +267,7 @@ export async function getBrokersByCategory(categoryIdOrSlug: string, limit = 10)
 
     // Check if the parameter is a UUID (category ID) or a slug
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(categoryIdOrSlug);
-    
+
     if (isUuid) {
       // First get broker_ids in the category by ID
       const { data: brokerCategories, error: categoryError } = await supabaseBrokerClient
@@ -246,7 +282,7 @@ export async function getBrokersByCategory(categoryIdOrSlug: string, limit = 10)
 
       // Extract broker_ids and get broker details
       const brokerIds = brokerCategories?.map(bc => bc.broker_id) || [];
-      
+
       if (brokerIds.length === 0) {
         return { data: [], error: null };
       }
@@ -265,20 +301,20 @@ export async function getBrokersByCategory(categoryIdOrSlug: string, limit = 10)
         .from('brokers')
         .select('*')
         .order('rating', { ascending: false });
-      
+
       // Filter by category slug in categories or tags arrays
       query = query.or(`categories.cs.{${categoryIdOrSlug}},tags.cs.{${categoryIdOrSlug}}`);
-      
+
       if (limit > 0) {
         query = query.limit(limit);
       }
-      
+
       const { data, error } = await query;
-      
+
       return { data, error };
     }
   } catch (error) {
     console.error("Error getting brokers by category:", error);
     return { data: [], error };
   }
-} 
+}
