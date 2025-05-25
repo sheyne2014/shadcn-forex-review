@@ -38,7 +38,7 @@ const supabase = createClient(
 
 // MCP and external services setup
 let mcpServices: any = {};
-let webSearchEnabled = false;
+let webSearchEnabled = true; // Enable web search functionality
 
 // Enhanced broker data interface
 interface EnhancedBrokerData {
@@ -196,6 +196,87 @@ async function initializeMCPServices() {
   }
 }
 
+// Known broker data for major brokers
+const KNOWN_BROKER_DATA: { [key: string]: Partial<EnhancedBrokerData> } = {
+  'etoro': {
+    website_url: 'https://www.etoro.com',
+    min_deposit: 50,
+    max_leverage: '1:30',
+    spread_from: '1.0 pips',
+    trading_platforms: 'eToro Platform, eToro Mobile App',
+    regulations: 'FCA, CySEC, ASIC',
+    headquarters: 'Cyprus',
+    year_founded: '2007',
+    supported_assets: ['Forex', 'Stocks', 'Crypto', 'ETFs', 'Commodities']
+  },
+  'xm': {
+    website_url: 'https://www.xm.com',
+    min_deposit: 5,
+    max_leverage: '1:888',
+    spread_from: '0.6 pips',
+    trading_platforms: 'MT4, MT5, XM WebTrader, XM Mobile',
+    regulations: 'FCA, CySEC, ASIC',
+    headquarters: 'Cyprus',
+    year_founded: '2009',
+    supported_assets: ['Forex', 'Stocks', 'Commodities', 'Indices']
+  },
+  'pepperstone': {
+    website_url: 'https://pepperstone.com',
+    min_deposit: 200,
+    max_leverage: '1:500',
+    spread_from: '0.0 pips',
+    trading_platforms: 'MT4, MT5, cTrader, TradingView',
+    regulations: 'FCA, ASIC, CySEC',
+    headquarters: 'Australia',
+    year_founded: '2010',
+    supported_assets: ['Forex', 'Indices', 'Commodities', 'Crypto']
+  },
+  'ic markets': {
+    website_url: 'https://www.icmarkets.com',
+    min_deposit: 200,
+    max_leverage: '1:500',
+    spread_from: '0.0 pips',
+    trading_platforms: 'MT4, MT5, cTrader',
+    regulations: 'ASIC, CySEC',
+    headquarters: 'Australia',
+    year_founded: '2007',
+    supported_assets: ['Forex', 'Indices', 'Commodities', 'Crypto']
+  },
+  'fxpro': {
+    website_url: 'https://www.fxpro.com',
+    min_deposit: 100,
+    max_leverage: '1:500',
+    spread_from: '0.6 pips',
+    trading_platforms: 'MT4, MT5, cTrader, FxPro Edge',
+    regulations: 'FCA, CySEC, ASIC',
+    headquarters: 'Cyprus',
+    year_founded: '2006',
+    supported_assets: ['Forex', 'Indices', 'Commodities', 'Crypto']
+  },
+  'oanda': {
+    website_url: 'https://www.oanda.com',
+    min_deposit: 0,
+    max_leverage: '1:50',
+    spread_from: '0.8 pips',
+    trading_platforms: 'OANDA Trade, MT4, TradingView',
+    regulations: 'FCA, ASIC, CFTC',
+    headquarters: 'United States',
+    year_founded: '1996',
+    supported_assets: ['Forex', 'Indices', 'Commodities', 'Bonds']
+  },
+  'plus500': {
+    website_url: 'https://www.plus500.com',
+    min_deposit: 100,
+    max_leverage: '1:30',
+    spread_from: '0.6 pips',
+    trading_platforms: 'Plus500 WebTrader, Plus500 Mobile',
+    regulations: 'FCA, CySEC, ASIC',
+    headquarters: 'Israel',
+    year_founded: '2008',
+    supported_assets: ['Forex', 'Stocks', 'Indices', 'Commodities', 'Crypto']
+  }
+};
+
 // Web search function using Claude AI capabilities
 async function performWebSearch(query: string): Promise<any[]> {
   if (!webSearchEnabled) {
@@ -204,11 +285,10 @@ async function performWebSearch(query: string): Promise<any[]> {
   }
 
   try {
-    // This would use Claude AI web search capabilities
-    // For now, we'll simulate the search results
     log('info', `Performing web search for: ${query}`);
 
-    // Placeholder for actual web search implementation
+    // For now, return empty results since we're using known data
+    // In a real implementation, this would use Claude AI web search
     return [];
   } catch (error) {
     log('error', 'Web search failed', { query, error });
@@ -452,6 +532,25 @@ async function main() {
   }
 }
 
+// Get known data for a broker
+function getKnownBrokerData(brokerName: string): Partial<EnhancedBrokerData> {
+  const normalizedName = brokerName.toLowerCase().trim();
+
+  // Try exact match first
+  if (KNOWN_BROKER_DATA[normalizedName]) {
+    return KNOWN_BROKER_DATA[normalizedName];
+  }
+
+  // Try partial matches
+  for (const [key, data] of Object.entries(KNOWN_BROKER_DATA)) {
+    if (normalizedName.includes(key) || key.includes(normalizedName)) {
+      return data;
+    }
+  }
+
+  return {};
+}
+
 // Process individual broker
 async function processBroker(broker: any) {
   log('info', `Processing broker: ${broker.name} (${broker.id})`);
@@ -459,27 +558,32 @@ async function processBroker(broker: any) {
   try {
     const enhancedData: Partial<EnhancedBrokerData> = {
       id: broker.id,
-      name: broker.name,
-      last_updated: new Date().toISOString(),
-      data_sources: []
+      name: broker.name
     };
 
-    // 1. Scrape broker website
+    // 1. Get known data for major brokers
+    const knownData = getKnownBrokerData(broker.name);
+    if (Object.keys(knownData).length > 0) {
+      Object.assign(enhancedData, knownData);
+      log('success', `Found known data for ${broker.name}`);
+    }
+
+    // 2. Scrape broker website (if available)
     const scrapedData = await scrapeBrokerWebsite(broker);
     Object.assign(enhancedData, scrapedData);
 
-    // 2. Generate enhanced content with Context7
+    // 3. Generate enhanced content with Context7 (if available)
     const generatedData = await generateEnhancedContent(broker);
     Object.assign(enhancedData, generatedData);
 
-    // 3. Search for missing images
+    // 4. Search for missing images
     await findMissingImages(broker, enhancedData);
 
-    // 4. Perform web search for additional data
+    // 5. Perform web search for additional data
     const searchData = await searchForAdditionalData(broker);
     Object.assign(enhancedData, searchData);
 
-    // 5. Update database
+    // 6. Update database
     await updateBrokerInDatabase(broker.id, enhancedData);
 
     progress.successful++;
@@ -645,22 +749,33 @@ async function searchForAdditionalData(broker: any): Promise<Partial<EnhancedBro
 // Update broker data in database
 async function updateBrokerInDatabase(brokerId: string, enhancedData: Partial<EnhancedBrokerData>) {
   try {
-    // Prepare update data by removing undefined values
-    const updateData = Object.fromEntries(
-      Object.entries(enhancedData).filter(([_, value]) => value !== undefined)
-    );
+    // Map enhanced data to existing database columns
+    const updateData: any = {};
 
-    // Convert arrays to PostgreSQL array format if needed
-    if (updateData.account_types && Array.isArray(updateData.account_types)) {
-      updateData.account_types = updateData.account_types;
+    // Map to existing columns only
+    if (enhancedData.min_deposit !== undefined) updateData.min_deposit = enhancedData.min_deposit;
+    if (enhancedData.max_leverage !== undefined) updateData.max_leverage = enhancedData.max_leverage;
+    if (enhancedData.spread_from !== undefined) updateData.spread_from = enhancedData.spread_from;
+    if (enhancedData.trading_platforms !== undefined) updateData.trading_platforms = enhancedData.trading_platforms;
+    if (enhancedData.regulations !== undefined) updateData.regulations = enhancedData.regulations;
+    if (enhancedData.website_url !== undefined) updateData.website_url = enhancedData.website_url;
+    if (enhancedData.logo_url !== undefined) updateData.logo_url = enhancedData.logo_url;
+    if (enhancedData.headquarters !== undefined) updateData.headquarters = enhancedData.headquarters;
+    if (enhancedData.year_founded !== undefined) updateData.year_founded = enhancedData.year_founded;
+    if (enhancedData.trading_fee !== undefined) updateData.trading_fee = enhancedData.trading_fee;
+
+    // Convert supported_assets array to PostgreSQL array format
+    if (enhancedData.supported_assets && Array.isArray(enhancedData.supported_assets)) {
+      updateData.supported_assets = enhancedData.supported_assets;
     }
 
-    if (updateData.payment_methods && Array.isArray(updateData.payment_methods)) {
-      updateData.payment_methods = updateData.payment_methods;
-    }
+    // Skip fields that don't exist in current schema
+    // data_sources, platform_details, account_types, payment_methods, etc.
 
-    if (updateData.data_sources && Array.isArray(updateData.data_sources)) {
-      updateData.data_sources = updateData.data_sources;
+    // Only update if we have data to update
+    if (Object.keys(updateData).length === 0) {
+      log('info', `No valid data to update for broker ${brokerId}`);
+      return;
     }
 
     // Update the broker record
@@ -673,7 +788,7 @@ async function updateBrokerInDatabase(brokerId: string, enhancedData: Partial<En
       throw error;
     }
 
-    log('success', `Updated database for broker ${brokerId}`);
+    log('success', `Updated database for broker ${brokerId} with ${Object.keys(updateData).length} fields`);
   } catch (error) {
     log('error', `Failed to update database for broker ${brokerId}`, error);
     throw error;

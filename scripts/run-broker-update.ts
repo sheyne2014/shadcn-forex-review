@@ -2,7 +2,7 @@
 
 /**
  * Broker Data Update Runner
- * 
+ *
  * Simple execution script to run the comprehensive broker data update
  * with command line options and safety checks.
  */
@@ -11,6 +11,10 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config({ path: '.env.local' });
 
 // Command line interface
 const rl = readline.createInterface({
@@ -56,7 +60,7 @@ function displayBanner() {
 // Check prerequisites
 async function checkPrerequisites() {
   console.log('🔍 Checking prerequisites...');
-  
+
   const checks = [
     {
       name: 'Environment variables',
@@ -65,7 +69,7 @@ async function checkPrerequisites() {
           'NEXT_PUBLIC_SUPABASE_URL',
           'SUPABASE_SERVICE_ROLE_KEY'
         ];
-        
+
         const missing = required.filter(env => !process.env[env]);
         if (missing.length > 0) {
           throw new Error(`Missing environment variables: ${missing.join(', ')}`);
@@ -82,7 +86,7 @@ async function checkPrerequisites() {
             process.env.NEXT_PUBLIC_SUPABASE_URL!,
             process.env.SUPABASE_SERVICE_ROLE_KEY!
           );
-          
+
           const { data, error } = await supabase.from('brokers').select('count').limit(1);
           if (error) throw error;
           return true;
@@ -106,7 +110,7 @@ async function checkPrerequisites() {
       }
     }
   ];
-  
+
   for (const check of checks) {
     try {
       console.log(`  ⏳ ${check.name}...`);
@@ -118,7 +122,7 @@ async function checkPrerequisites() {
       return false;
     }
   }
-  
+
   console.log('✅ All prerequisites met!');
   return true;
 }
@@ -135,7 +139,7 @@ async function displayOptionsMenu() {
   console.log('5. 🔙 Rollback (Restore from backup)');
   console.log('6. ❌ Cancel');
   console.log('');
-  
+
   const choice = await askQuestion('Select an option (1-6): ');
   return choice.trim();
 }
@@ -172,23 +176,23 @@ async function runFullUpdate() {
   console.log('🔄 FULL UPDATE SELECTED');
   console.log('This will update ALL brokers with data from ALL sources.');
   console.log('');
-  
+
   const confirm = await askQuestion('Are you sure you want to proceed? (yes/no): ');
   if (confirm.toLowerCase() !== 'yes') {
     console.log('❌ Update cancelled.');
     return;
   }
-  
+
   console.log('');
   console.log('🚀 Starting full broker data update...');
-  
+
   try {
     // Run the comprehensive update script
     execSync('npx tsx scripts/comprehensive-broker-data-update.ts', {
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    
+
     console.log('✅ Full update completed successfully!');
   } catch (error) {
     console.log('❌ Update failed:', error.message);
@@ -201,28 +205,28 @@ async function runSelectiveUpdate() {
   console.log('🎯 SELECTIVE UPDATE SELECTED');
   console.log('You can choose specific brokers to update.');
   console.log('');
-  
+
   // This would show a list of brokers and allow selection
   console.log('📋 Available brokers:');
   console.log('(This feature will show a list of brokers from the database)');
   console.log('');
-  
+
   const brokerIds = await askQuestion('Enter broker IDs (comma-separated) or "all": ');
-  
+
   if (brokerIds.toLowerCase() === 'all') {
     await runFullUpdate();
     return;
   }
-  
+
   console.log(`🚀 Starting selective update for brokers: ${brokerIds}`);
-  
+
   try {
     // Run the update script with specific broker IDs
     execSync(`npx tsx scripts/comprehensive-broker-data-update.ts --brokers="${brokerIds}"`, {
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    
+
     console.log('✅ Selective update completed successfully!');
   } catch (error) {
     console.log('❌ Update failed:', error.message);
@@ -235,21 +239,21 @@ async function runImagesOnlyUpdate() {
   console.log('🖼️  IMAGES ONLY UPDATE SELECTED');
   console.log('This will search for missing logos and platform screenshots.');
   console.log('');
-  
+
   const confirm = await askQuestion('Proceed with image search? (yes/no): ');
   if (confirm.toLowerCase() !== 'yes') {
     console.log('❌ Update cancelled.');
     return;
   }
-  
+
   console.log('🚀 Starting image search and update...');
-  
+
   try {
     execSync('npx tsx scripts/comprehensive-broker-data-update.ts --images-only', {
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    
+
     console.log('✅ Image update completed successfully!');
   } catch (error) {
     console.log('❌ Image update failed:', error.message);
@@ -262,15 +266,15 @@ async function runDataValidation() {
   console.log('📊 DATA VALIDATION SELECTED');
   console.log('This will check the quality and completeness of existing broker data.');
   console.log('');
-  
+
   console.log('🚀 Starting data validation...');
-  
+
   try {
     execSync('npx tsx scripts/comprehensive-broker-data-update.ts --validate-only', {
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    
+
     console.log('✅ Data validation completed successfully!');
   } catch (error) {
     console.log('❌ Data validation failed:', error.message);
@@ -283,47 +287,47 @@ async function runRollback() {
   console.log('🔙 ROLLBACK SELECTED');
   console.log('This will restore broker data from a backup file.');
   console.log('');
-  
+
   // List available backup files
   const backupFiles = fs.readdirSync('.')
     .filter(file => file.startsWith('broker-backup-') && file.endsWith('.json'))
     .sort()
     .reverse(); // Most recent first
-  
+
   if (backupFiles.length === 0) {
     console.log('❌ No backup files found.');
     return;
   }
-  
+
   console.log('📁 Available backup files:');
   backupFiles.forEach((file, index) => {
     const stats = fs.statSync(file);
     console.log(`${index + 1}. ${file} (${stats.mtime.toISOString()})`);
   });
   console.log('');
-  
+
   const choice = await askQuestion('Select backup file number: ');
   const selectedFile = backupFiles[parseInt(choice) - 1];
-  
+
   if (!selectedFile) {
     console.log('❌ Invalid selection.');
     return;
   }
-  
+
   const confirm = await askQuestion(`Restore from ${selectedFile}? This will overwrite current data! (yes/no): `);
   if (confirm.toLowerCase() !== 'yes') {
     console.log('❌ Rollback cancelled.');
     return;
   }
-  
+
   console.log(`🚀 Starting rollback from ${selectedFile}...`);
-  
+
   try {
     execSync(`npx tsx scripts/comprehensive-broker-data-update.ts --rollback="${selectedFile}"`, {
       stdio: 'inherit',
       cwd: process.cwd()
     });
-    
+
     console.log('✅ Rollback completed successfully!');
   } catch (error) {
     console.log('❌ Rollback failed:', error.message);
@@ -334,20 +338,20 @@ async function runRollback() {
 async function main() {
   try {
     displayBanner();
-    
+
     // Check prerequisites
     const prerequisitesPassed = await checkPrerequisites();
     if (!prerequisitesPassed) {
       console.log('❌ Prerequisites not met. Please fix the issues above and try again.');
       process.exit(1);
     }
-    
+
     // Display options and get user choice
     const option = await displayOptionsMenu();
-    
+
     // Execute the selected option
     await executeOption(option);
-    
+
   } catch (error) {
     console.log('❌ Script execution failed:', error.message);
     process.exit(1);
