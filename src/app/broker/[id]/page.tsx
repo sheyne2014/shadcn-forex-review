@@ -40,21 +40,37 @@ export async function generateMetadata(props: BrokerPageProps): Promise<Metadata
   // Check if the ID is a UUID or a slug
   const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 
-  // Get broker data using the appropriate method
+  // Get broker data using the appropriate method with error handling
   let broker = null;
-  if (isUUID) {
-    // Use getBrokerById for UUIDs
-    const { data } = await getBrokerById(id);
-    broker = data;
-  } else {
-    // Use getBrokerBySlug for slugs
-    broker = await getBrokerBySlug(id);
+  try {
+    if (isUUID) {
+      // Use getBrokerById for UUIDs
+      const result = await getBrokerById(id);
+      if (result && !result.error) {
+        broker = result.data;
+      } else {
+        // If database fails, try to get mock data based on the ID
+        console.warn("Database unavailable for metadata, falling back to mock data for UUID:", id);
+        broker = await getBrokerBySlug(id); // This will fall back to mock data
+      }
+    } else {
+      // Use getBrokerBySlug for slugs
+      broker = await getBrokerBySlug(id);
+    }
+  } catch (error) {
+    console.error("Error fetching broker for metadata:", error);
+    // Try one more fallback to mock data
+    try {
+      broker = await getBrokerBySlug(id);
+    } catch (fallbackError) {
+      console.error("Metadata fallback also failed:", fallbackError);
+    }
   }
 
   if (!broker) {
     return {
-      title: "Broker Not Found",
-      description: "The requested broker review could not be found."
+      title: "Broker Review | BrokerAnalysis",
+      description: "Professional broker review and analysis. Compare trading fees, platforms, and features."
     };
   }
 
@@ -94,15 +110,31 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
   // Check if the ID is a UUID or a slug
   const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 
-  // Get broker data using the appropriate method
+  // Get broker data using the appropriate method with error handling
   let broker = null;
-  if (isUUID) {
-    // Use getBrokerById for UUIDs
-    const { data } = await getBrokerById(id);
-    broker = data;
-  } else {
-    // Use getBrokerBySlug for slugs
-    broker = await getBrokerBySlug(id);
+  try {
+    if (isUUID) {
+      // Use getBrokerById for UUIDs
+      const result = await getBrokerById(id);
+      if (result && !result.error) {
+        broker = result.data;
+      } else {
+        // If database fails, try to get mock data based on the ID
+        console.warn("Database unavailable, falling back to mock data for UUID:", id);
+        broker = await getBrokerBySlug(id); // This will fall back to mock data
+      }
+    } else {
+      // Use getBrokerBySlug for slugs
+      broker = await getBrokerBySlug(id);
+    }
+  } catch (error) {
+    console.error("Error fetching broker data:", error);
+    // Try one more fallback to mock data
+    try {
+      broker = await getBrokerBySlug(id);
+    } catch (fallbackError) {
+      console.error("Fallback also failed:", fallbackError);
+    }
   }
 
   // If broker is not found, return 404
