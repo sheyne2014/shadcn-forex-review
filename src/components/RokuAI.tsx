@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Bot, X, Minimize2, Maximize2, MessagesSquare, Sparkles, ExternalLink, Plus, Search } from "lucide-react";
+import { Send, Bot, X, Minimize2, Maximize2, MessagesSquare, Sparkles, ExternalLink, Plus, Search, TrendingUp, Calculator, Users, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import ReactMarkdown from 'react-markdown';
+import { RokuAvatar, RokuLogo, RokuFAB } from "@/components/ui/roku-avatar";
 
 // Define message types
 interface ChatMessage {
@@ -36,30 +37,36 @@ interface SuggestedQuery {
   icon: React.ReactNode;
 }
 
-// Define suggested queries
+// Enhanced suggested queries with professional icons
 const SUGGESTED_QUERIES: SuggestedQuery[] = [
-  { 
-    text: "What are the fees at IBKR?", 
-    icon: <span className="text-amber-500 text-xl">💰</span> 
+  {
+    text: "What's the best broker for beginners?",
+    icon: <Users className="h-4 w-4 text-blue-500" />
   },
-  { 
-    text: "Does Lightyear pay interest on uninvested cash?", 
-    icon: <span className="text-amber-500 text-xl">⚡</span> 
+  {
+    text: "Compare eToro vs XM",
+    icon: <TrendingUp className="h-4 w-4 text-green-500" />
   },
-  { 
-    text: "What is the best broker for beginners?", 
-    icon: <span className="text-amber-500 text-xl">🚀</span> 
+  {
+    text: "Show me low-cost brokers",
+    icon: <Calculator className="h-4 w-4 text-purple-500" />
+  },
+  {
+    text: "Are these brokers regulated?",
+    icon: <Shield className="h-4 w-4 text-orange-500" />
   }
 ];
 
-// Additional topics for discovery
+// Enhanced discovery topics with categories
 const DISCOVERY_TOPICS = [
-  "Best forex brokers",
-  "Trading platforms comparison",
-  "Forex trading strategies",
-  "Market analysis tools",
-  "Broker verification tips",
-  "Investment planning"
+  "Best forex brokers 2024",
+  "Crypto trading platforms",
+  "Mobile trading apps",
+  "Demo account brokers",
+  "High leverage brokers",
+  "ECN vs STP brokers",
+  "Islamic trading accounts",
+  "Copy trading platforms"
 ];
 
 export function RokuAI() {
@@ -69,15 +76,15 @@ export function RokuAI() {
   const [messages, setMessages] = useState<MessageWithTimestamp[]>([
     {
       role: "assistant",
-      content: "👋 Hey there! I'm Roku, your personal AI assistant. Think of me as your shortcut to all things investing and brokerage. I'm here to help you find your perfect broker or answer any questions you have.",
+      content: "👋 **Welcome! I'm Roku, your intelligent trading assistant.**\n\nI'm here to help you navigate the world of forex and trading with confidence. Whether you're looking for the perfect broker, need trading guidance, or want to compare platforms, I've got you covered with expert insights and personalized recommendations.",
       timestamp: new Date(),
-      isMarkdown: false
+      isMarkdown: true
     },
     {
       role: "system",
-      content: "How can I help you today? You can ask me anything or check out these popular questions:",
+      content: "**What can I help you with today?** Try asking me about brokers, trading strategies, or check out these popular questions:",
       timestamp: new Date(),
-      isMarkdown: false
+      isMarkdown: true
     }
   ]);
   const [inputValue, setInputValue] = useState("");
@@ -156,7 +163,7 @@ export function RokuAI() {
 
     // Add thinking delay to simulate more thoughtful responses
     const thinkingTime = Math.max(1500, Math.min(query.length * 100, 4000));
-    
+
     try {
       // Send the message to API route
       const response = await fetch("/api/roku-ai", {
@@ -199,10 +206,10 @@ export function RokuAI() {
       ]);
     } catch (error) {
       console.error("Error getting AI response:", error);
-      
+
       // Add a delay to simulate thinking
       await new Promise(resolve => setTimeout(resolve, thinkingTime));
-      
+
       setMessages((prev) => [
         ...prev,
         {
@@ -228,15 +235,15 @@ export function RokuAI() {
     setMessages([
       {
         role: "assistant",
-        content: "👋 Hey there! I'm Roku, your personal AI assistant. Think of me as your shortcut to all things investing and brokerage. I'm here to help you find your perfect broker or answer any questions you have.",
+        content: "👋 **Welcome! I'm Roku, your intelligent trading assistant.**\n\nI'm here to help you navigate the world of forex and trading with confidence. Whether you're looking for the perfect broker, need trading guidance, or want to compare platforms, I've got you covered with expert insights and personalized recommendations.",
         timestamp: new Date(),
-        isMarkdown: false
+        isMarkdown: true
       },
       {
         role: "system",
-        content: "How can I help you today? You can ask me anything or check out these popular questions:",
+        content: "**What can I help you with today?** Try asking me about brokers, trading strategies, or check out these popular questions:",
         timestamp: new Date(),
-        isMarkdown: false
+        isMarkdown: true
       }
     ]);
     setShowSuggestions(true);
@@ -295,23 +302,22 @@ export function RokuAI() {
     <div className="fixed bottom-4 right-4 z-50">
       {!isOpen ? (
         <div className="relative">
-          <Button
+          <RokuFAB
             onClick={() => setIsOpen(true)}
-            size="icon"
-            className="h-[72px] w-[72px] rounded-lg shadow-lg hover:shadow-xl transition-all bg-purple-500/90 dark:bg-purple-600/90 border border-purple-400/20 backdrop-blur-sm flex flex-col items-center justify-center"
-          >
-            <span className="text-2xl font-bold text-white">AI</span>
-            <span className="text-xs text-white/80 mt-1">Roku</span>
-            {notificationCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-6 w-6 flex items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold animate-bounce-in animate-pulse-notification">
-                {notificationCount}
-              </span>
-            )}
-          </Button>
-          
+            notificationCount={notificationCount}
+          />
+
           {notificationCount > 0 && (
-            <div className="absolute right-full mr-3 bottom-3/4 transform translate-y-1/2 bg-card border border-border rounded-lg shadow-lg p-3 w-[180px] h-[180px] flex items-center justify-center text-sm animate-fade-in">
-              <p className="text-center">Hey there! Not sure where to start? I can help you find the best broker, compare options, or answer any questions.</p>
+            <div className="absolute right-full mr-4 bottom-1/2 transform translate-y-1/2 bg-card border border-border rounded-xl shadow-xl p-4 w-[220px] animate-fade-in">
+              <div className="flex items-start gap-3">
+                <RokuAvatar size="sm" variant="professional" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium mb-1">👋 Hi there!</p>
+                  <p className="text-xs text-muted-foreground">
+                    Need help finding the perfect broker or have trading questions? I'm here to guide you!
+                  </p>
+                </div>
+              </div>
               <div className="absolute right-[-6px] top-1/2 transform -translate-y-1/2 w-3 h-3 bg-card border-t border-r border-border rotate-45"></div>
             </div>
           )}
@@ -320,18 +326,19 @@ export function RokuAI() {
         <div className="flex flex-col items-end">
           {isMinimized ? (
             <Card className="w-[350px] shadow-xl mb-2 overflow-hidden">
-              <div className="p-3 flex items-center justify-between bg-purple-600 text-white">
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-6 w-6 bg-gradient-to-br from-purple-400 to-indigo-600">
-                    <Bot className="h-3 w-3 text-white" />
-                  </Avatar>
-                  <span className="text-sm font-medium">ROKU AI</span>
+              <div className="p-3 flex items-center justify-between bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white">
+                <div className="flex items-center gap-3">
+                  <RokuAvatar size="sm" variant="professional" />
+                  <div>
+                    <span className="text-sm font-bold">ROKU AI</span>
+                    <p className="text-xs text-white/80">Your Trading Assistant</p>
+                  </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-white hover:bg-purple-700">
+                  <Button variant="ghost" size="icon" onClick={toggleMinimized} className="h-6 w-6 text-white hover:bg-white/20">
                     <Maximize2 className="h-3 w-3" />
                   </Button>
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-white hover:bg-purple-700">
+                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-6 w-6 text-white hover:bg-white/20">
                     <X className="h-3 w-3" />
                   </Button>
                 </div>
@@ -343,16 +350,24 @@ export function RokuAI() {
                 {/* Left sidebar */}
                 <Card className="w-full md:w-[250px] h-auto md:h-full flex flex-col border-r bg-background">
                   <CardHeader className="p-4">
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-8 w-8 bg-gradient-to-br from-blue-400 to-indigo-600">
-                        <Bot className="h-4 w-4 text-white" />
-                      </Avatar>
-                      <CardTitle className="text-base flex items-center">
-                        Roku AI <span className="ml-1 text-xs bg-gray-200 dark:bg-gray-700 px-1 rounded">BETA</span>
-                      </CardTitle>
+                    <div className="flex items-center gap-3">
+                      <RokuAvatar size="lg" variant="professional" />
+                      <div className="flex-1">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
+                            ROKU AI
+                          </span>
+                          <span className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full font-medium">
+                            BETA
+                          </span>
+                        </CardTitle>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Your Trading Assistant
+                        </p>
+                      </div>
                     </div>
-                    <CardDescription className="text-sm mt-3">
-                      Meet Roku, your AI guide to investing. Backed by BrokerChooser's trusted expertise, Roku uses advanced AI to provide personalized help and answers.
+                    <CardDescription className="text-sm mt-3 leading-relaxed">
+                      Powered by advanced AI and backed by comprehensive broker data, I provide personalized trading guidance and expert recommendations.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-2 flex-1 bg-background">
@@ -418,34 +433,45 @@ export function RokuAI() {
 
                                 {/* Show suggested queries after system message */}
                                 {message.role === "system" && showSuggestions && (
-                                  <div className="flex flex-wrap gap-3 mt-3">
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                                     {SUGGESTED_QUERIES.map((query, i) => (
-                                      <div 
+                                      <div
                                         key={i}
-                                        className="flex-1 min-w-[150px] bg-background border rounded-lg p-3 cursor-pointer hover:border-primary transition-colors"
+                                        className="group bg-gradient-to-br from-background to-muted/30 border rounded-xl p-4 cursor-pointer hover:border-primary/50 hover:shadow-md transition-all duration-200 hover:scale-[1.02]"
                                         onClick={() => handleSuggestedQuery(query.text)}
                                       >
-                                        <div className="mb-1">{query.icon}</div>
-                                        <div className="text-sm font-medium">{query.text}</div>
+                                        <div className="flex items-start gap-3">
+                                          <div className="p-2 rounded-lg bg-background border group-hover:border-primary/30 transition-colors">
+                                            {query.icon}
+                                          </div>
+                                          <div className="flex-1">
+                                            <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                                              {query.text}
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                     ))}
                                   </div>
                                 )}
                               </div>
                             ))}
-                            {/* Thinking indicator - shows before AI response comes in */}
+                            {/* Enhanced thinking indicator */}
                             {isThinking && (
-                              <div className="flex w-full max-w-full flex-col gap-2 rounded-lg px-4 py-3 text-sm bg-card text-card-foreground border animate-fade-in">
-                                <div className="flex items-center">
-                                  <div className="bg-muted p-2 rounded-full mr-2">
-                                    <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+                              <div className="flex w-full max-w-full flex-col gap-2 rounded-xl px-4 py-4 text-sm bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 border border-blue-200/50 dark:border-blue-800/50 animate-fade-in">
+                                <div className="flex items-center gap-3">
+                                  <RokuAvatar size="sm" variant="animated" />
+                                  <div className="flex-1">
+                                    <p className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                                      Analyzing your request
+                                      <span className="inline-block w-8 text-center">
+                                        {".".repeat(thinkingDots)}
+                                      </span>
+                                    </p>
+                                    <p className="text-xs text-blue-600/70 dark:text-blue-400/70 mt-1">
+                                      Searching through broker data and market insights
+                                    </p>
                                   </div>
-                                  <p className="text-muted-foreground">
-                                    Thinking
-                                    <span className="inline-block w-6 text-center">
-                                      {".".repeat(thinkingDots)}
-                                    </span>
-                                  </p>
                                 </div>
                               </div>
                             )}
@@ -461,7 +487,7 @@ export function RokuAI() {
                             )}
                             <div ref={messagesEndRef} />
                           </div>
-                          
+
                           {showSuggestions && (
                             <div className="mt-8 border-t pt-4">
                               <h3 className="text-sm font-medium mb-3">Discover more topics</h3>
@@ -509,8 +535,11 @@ export function RokuAI() {
                             <Send className="h-4 w-4" />
                           </Button>
                         </form>
-                        <div className="w-full text-xs text-center mt-2 text-muted-foreground">
-                          Powered by AI with data from our extensive broker database.
+                        <div className="w-full text-xs text-center mt-3 text-muted-foreground">
+                          <div className="flex items-center justify-center gap-2">
+                            <RokuAvatar size="sm" variant="professional" />
+                            <span>Powered by advanced AI • Backed by comprehensive broker data</span>
+                          </div>
                         </div>
                       </CardFooter>
                     </>
@@ -548,7 +577,7 @@ export function RokuAI() {
                               ))}
                             </div>
                           </div>
-                          
+
                           <div>
                             <h3 className="font-medium mb-3">Trading Topics</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

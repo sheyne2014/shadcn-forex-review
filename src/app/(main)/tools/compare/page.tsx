@@ -2,21 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { BrokerData, FeatureItem } from "@/components/BrokerComparisonTable";
 import { db } from "@/lib/database";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
-
-// Dynamically import the BrokerComparisonTool component
-const BrokerComparisonTool = dynamic(
-  () => import("@/components/tools/BrokerComparisonTool").then(mod => mod.BrokerComparisonTool),
-  {
-    loading: () => <div className="p-8 text-center">Loading comparison tool...</div>,
-    ssr: true
-  }
-);
+import { BrokerComparisonWrapper } from "@/components/tools/BrokerComparisonWrapper";
 
 export const metadata: Metadata = {
-  title: "Broker Comparison Tool | Compare Trading Platforms",
-  description: "Compare up to 7 forex brokers side by side. View fees, features, minimum deposits, and platform details to find the best trading broker for your needs.",
+  title: "Broker Comparison Tool | Compare Trading Platforms for Forex, Stocks, Crypto & More",
+  description: "Compare up to 7 trading brokers side by side. View fees, features, minimum deposits, and platform details for forex, stocks, crypto, options, ETFs, and CFDs to find the best trading broker for your needs.",
 };
 
 async function getBrokerComparisonData() {
@@ -46,7 +37,9 @@ async function getBrokerComparisonData() {
       { id: "trading_fee", name: "Trading Fee", tooltip: "Standard trading fee or commission", highlight: true, group: "Trading Conditions" },
       { id: "spreads", name: "Spreads", tooltip: "Average spread ranges for major pairs", group: "Trading Conditions" },
       { id: "leverage", name: "Leverage", tooltip: "Maximum leverage offered", group: "Trading Conditions" },
-      { id: "supported_assets", name: "Supported Assets", tooltip: "Types of assets available for trading", highlight: true, group: "Trading Conditions" },
+      { id: "supported_assets", name: "Supported Assets", tooltip: "Types of assets available for trading (Forex, Stocks, Crypto, CFDs, Options, ETFs)", highlight: true, group: "Trading Conditions" },
+      { id: "crypto_assets", name: "Crypto Assets", tooltip: "Number of cryptocurrencies available for trading", group: "Trading Conditions" },
+      { id: "stock_markets", name: "Stock Markets", tooltip: "Number of stock exchanges and markets accessible", group: "Trading Conditions" },
       { id: "execution_type", name: "Execution Type", tooltip: "Market execution, instant execution, etc.", group: "Trading Conditions" },
       { id: "scalping_allowed", name: "Scalping Allowed", tooltip: "Whether scalping trading strategy is permitted", group: "Trading Conditions" },
       { id: "hedging_allowed", name: "Hedging Allowed", tooltip: "Whether hedging positions is permitted", group: "Trading Conditions" },
@@ -123,7 +116,9 @@ async function getBrokerComparisonData() {
         leverage: 'Up to 1:500', // Placeholder for future data
         supported_assets: Array.isArray(broker.supported_assets)
           ? broker.supported_assets.join(', ')
-          : broker.supported_assets || 'Forex, CFDs, Stocks',
+          : broker.supported_assets || 'Forex, Stocks, Crypto, CFDs, Options, ETFs',
+        crypto_assets: broker.supported_assets?.includes('Crypto') ? '50+ Cryptocurrencies' : 'Not Available',
+        stock_markets: broker.supported_assets?.includes('Stocks') ? '15+ Global Markets' : 'Not Available',
         execution_type: 'Market Execution', // Placeholder for future data
         scalping_allowed: 'Yes', // Placeholder for future data
         hedging_allowed: 'Yes', // Placeholder for future data
@@ -213,33 +208,34 @@ export default async function BrokerComparisonPage() {
 
       <div className="text-center mb-10 md:mb-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-          Compare Forex Brokers
+          Compare Trading Brokers
         </h1>
         <p className="mt-3 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Compare up to 7 trading brokers side by side to find the broker that best fits your needs.
+          Compare up to 7 trading brokers side by side across forex, stocks, crypto, options, ETFs, and CFDs to find the broker that best fits your needs.
         </p>
       </div>
 
       <div className="mb-8">
         <Suspense fallback={<div className="p-8 text-center">Loading comparison tool...</div>}>
-          <BrokerComparisonTool initialBrokers={brokers} availableFeatures={features} />
+          <BrokerComparisonWrapper initialBrokers={brokers} availableFeatures={features} />
         </Suspense>
       </div>
 
       <div className="mt-12 space-y-6 text-muted-foreground">
-        <h2 className="text-2xl font-semibold text-foreground">How to Compare Brokers Effectively</h2>
+        <h2 className="text-2xl font-semibold text-foreground">How to Compare Trading Brokers Effectively</h2>
         <p>
-          When comparing forex brokers, consider these key factors to find the best match for your trading style:
+          When comparing trading brokers across different asset classes (forex, stocks, crypto, options, ETFs, and CFDs), consider these key factors to find the best match for your trading style:
         </p>
         <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Regulation:</strong> Ensure the broker is regulated by reputable authorities like FCA, ASIC, or CySEC.</li>
-          <li><strong>Trading Costs:</strong> Compare spreads, commissions, and overnight fees that can impact your profitability.</li>
-          <li><strong>Platform Options:</strong> Check if they offer your preferred trading platform (MT4, MT5, cTrader, etc.).</li>
-          <li><strong>Account Types:</strong> Look for account options that match your trading capital and style.</li>
-          <li><strong>Educational Resources:</strong> Beginners should prioritize brokers with comprehensive learning materials.</li>
+          <li><strong>Regulation:</strong> Ensure the broker is regulated by reputable authorities like FCA, ASIC, CySEC, SEC, or FINRA depending on your location and asset preferences.</li>
+          <li><strong>Asset Coverage:</strong> Verify the broker offers the specific assets you want to trade - forex pairs, stock markets, cryptocurrencies, options contracts, ETFs, or CFDs.</li>
+          <li><strong>Trading Costs:</strong> Compare spreads, commissions, overnight fees, and any asset-specific charges that can impact your profitability.</li>
+          <li><strong>Platform Options:</strong> Check if they offer your preferred trading platform (MT4, MT5, cTrader, proprietary platforms) with support for your chosen assets.</li>
+          <li><strong>Account Types:</strong> Look for account options that match your trading capital, style, and asset preferences (e.g., crypto-specific accounts, stock trading accounts).</li>
+          <li><strong>Educational Resources:</strong> Beginners should prioritize brokers with comprehensive learning materials covering their preferred asset classes.</li>
         </ul>
         <p>
-          Remember that the "best" broker varies based on individual needs. A day trader might prioritize tight spreads, while a long-term investor might focus more on platform stability and research tools.
+          Remember that the "best" broker varies based on individual needs and asset preferences. A forex day trader might prioritize tight spreads and fast execution, while a stock investor might focus more on research tools and market access. Crypto traders may need specialized features like DeFi integration or staking options.
         </p>
       </div>
     </div>

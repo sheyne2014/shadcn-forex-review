@@ -34,7 +34,7 @@ function BrokerCard({ broker, formatSupportedAssets }: {
   formatSupportedAssets: (supportedAssets: string | string[] | null | undefined) => string[]
 }) {
   return (
-                <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`} key={broker.id} className="group">
+                <Link href={`/broker/${broker.id}`} key={broker.id} className="group">
                   <Card className="h-full transition-all hover:shadow-md">
                     <CardHeader className="pb-4">
                       <div className="flex justify-between items-start">

@@ -1,11 +1,5 @@
 [
-  {
-    "broker": "50K Global",
-    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
-    "status": "success",
-    "message": "Used existing logo",
-    "logoUrl": "https://ui-avatars.com/api/?name=50K%20Global&background=random&color=fff&size=128&bold=true&format=png"
-  },
+
   {
     "broker": "ActivTrades",
     "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",
@@ -48,13 +42,7 @@
     "message": "Used existing logo",
     "logoUrl": "https://ui-avatars.com/api/?name=AMarkets%20ECN&background=random&color=fff&size=128&bold=true&format=png"
   },
-  {
-    "broker": "AMP Futures",
-    "brokerId": "dbcdf520-51d1-4509-a3f8-e1c685e66ae7",
-    "status": "success",
-    "message": "Used existing logo",
-    "logoUrl": "https://logo.clearbit.com/ampfutures.com"
-  },
+
   {
     "broker": "AMP Global",
     "brokerId": "55393c87-ea3f-43ed-9cb2-a911a0ec3750",
@@ -62,20 +50,7 @@
     "message": "Used existing logo",
     "logoUrl": "https://logo.clearbit.com/ampglobal.com"
   },
-  {
-    "broker": "Angel Broking",
-    "brokerId": "91a26401-cc44-434b-8d42-4178ecf305a6",
-    "status": "success",
-    "message": "Used existing logo",
-    "logoUrl": "https://logo.clearbit.com/angelbroking.com"
-  },
-  {
-    "broker": "Angel One",
-    "brokerId": "60739d65-2c16-49df-a22a-e43d1eb29543",
-    "status": "success",
-    "message": "Used existing logo",
-    "logoUrl": "https://logo.clearbit.com/angelone.com"
-  },
+
   {
     "broker": "ATFX",
     "brokerId": "f3156cef-68f7-4f04-997d-53afe3e7c803",

@@ -1,4 +1,30 @@
-import { NextSeoProps } from 'next-seo';
+// Custom interface to replace NextSeoProps dependency
+export interface HeadProps {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    images?: Array<{
+      url: string;
+      width?: number;
+      height?: number;
+      alt?: string;
+    }>;
+    type?: string;
+    locale?: string;
+    siteName?: string;
+  };
+  twitter?: {
+    cardType?: 'summary' | 'summary_large_image' | 'app' | 'player';
+    site?: string;
+    handle?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+}
 
 // Context7 configuration for SEO-focused content delivery
 export interface Context7Config {
@@ -72,8 +98,8 @@ export class Context7Tool {
     return this.config;
   }
 
-  // Generate NextSEO compatible props from current context
-  public getNextSeoProps(): NextSeoProps {
+  // Generate Head props from current context
+  public getHeadProps(): HeadProps {
     if (!this.config) {
       // Instead of throwing an error, attempt to import the default config or return empty values
       try {
@@ -83,10 +109,11 @@ export class Context7Tool {
           description: 'Forex broker reviews and comparisons',
           keywords: ['forex', 'broker', 'review']
         };
-        
+
         return {
           title: defaultConfig.title,
           description: defaultConfig.description,
+          keywords: defaultConfig.keywords.join(', '),
           // Minimal props when no config is available
         };
       } catch (e) {
@@ -101,14 +128,16 @@ export class Context7Tool {
     return {
       title: this.config.title,
       description: this.config.description,
-      canonical: this.config.canonical,
+      keywords: this.config.keywords.join(', '),
       openGraph: this.config.openGraph,
       twitter: {
         cardType: this.config.twitter?.cardType,
         site: this.config.twitter?.site,
         handle: this.config.twitter?.handle,
+        title: this.config.twitter?.title,
+        description: this.config.twitter?.description,
+        image: this.config.twitter?.image,
       },
-      additionalMetaTags: this.config.additionalMetaTags as any,
     };
   }
 

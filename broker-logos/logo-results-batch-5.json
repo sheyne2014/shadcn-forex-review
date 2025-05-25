@@ -1,11 +1,5 @@
 [
-  {
-    "broker": "50K Global",
-    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
-    "status": "success",
-    "message": "Found and downloaded logo",
-    "logoUrl": "https://logo.clearbit.com/50kglobal.broker.com"
-  },
+
   {
     "broker": "ActivTrades",
     "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",

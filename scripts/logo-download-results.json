@@ -1,0 +1,65 @@
+{
+  "successful": [
+    {
+      "broker": "eToro",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\etoro.png"
+    },
+    {
+      "broker": "XM",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\xm.png"
+    },
+    {
+      "broker": "IC Markets",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\ic-markets.png"
+    },
+    {
+      "broker": "Pepperstone",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\pepperstone.png"
+    },
+    {
+      "broker": "OANDA",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\oanda.png"
+    },
+    {
+      "broker": "Interactive Brokers",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\interactive-brokers.png"
+    },
+    {
+      "broker": "Plus500",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\plus500.png"
+    },
+    {
+      "broker": "Capital.com",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\capital-com.png"
+    },
+    {
+      "broker": "Saxo Bank",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\saxo-bank.png"
+    },
+    {
+      "broker": "XTB",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\xtb.png"
+    },
+    {
+      "broker": "Binance",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\binance.png"
+    },
+    {
+      "broker": "Coinbase",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\coinbase.png"
+    },
+    {
+      "broker": "Kraken",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\kraken.png"
+    },
+    {
+      "broker": "Crypto.com",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\crypto-com.png"
+    },
+    {
+      "broker": "Gemini",
+      "filepath": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\gemini.png"
+    }
+  ],
+  "failed": []
+}

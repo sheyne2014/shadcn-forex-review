@@ -2,16 +2,15 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { CheckCircle2, ExternalLink, Info, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { siteConfig } from "@/config/site";
 import { getAllCategorySlugs } from "@/lib/route-generation";
 import { capitalize } from "@/lib/utils";
-import { getBrokersByCategory } from "@/lib/supabase/broker-client";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { BrokerLogo } from "@/components/brokers/BrokerLogo";
+import { getBrokersForCategory } from "@/lib/broker-data-service";
 
 // Generate static params for all category pages
 export async function generateStaticParams() {
@@ -232,15 +231,17 @@ export default async function BestCategoryBrokersPage({
     title: capitalizedCategory
   };
 
-  // Get brokers for this category
-  const { data: brokers, error } = await getBrokersByCategory(category);
+  // Always use static broker data for consistent logo display
+  console.log(`Loading brokers for category: ${category}`);
+  const staticBrokers = getBrokersForCategory(category);
 
-  if (error || !brokers || brokers.length === 0) {
-    console.error(`Error fetching ${category} brokers:`, error);
+  if (staticBrokers.length === 0) {
+    console.log(`No brokers found for category: ${category}`);
     notFound();
   }
 
-  const topBrokers = brokers.slice(0, 10); // Limit to top 10 brokers
+  const topBrokers = staticBrokers.slice(0, 10);
+  console.log(`Found ${topBrokers.length} brokers for ${category}:`, topBrokers.map(b => b.name));
 
   return (
     <>
@@ -301,12 +302,15 @@ export default async function BestCategoryBrokersPage({
                   <div className="md:w-1/4 bg-muted/30 flex flex-col items-center justify-center p-6 border-r">
                     <Badge className="mb-2">{`#${index + 1}`}</Badge>
                     <div className="w-[120px] h-[60px] bg-white flex items-center justify-center rounded mb-4">
-                      <Image
-                        src={broker.logo_url || `https://placehold.co/120x60/png?text=${encodeURIComponent(broker.name)}`}
-                        alt={`${broker.name} logo`}
-                        width={120}
-                        height={60}
-                        className="max-w-full max-h-full object-contain"
+                      <BrokerLogo
+                        broker={{
+                          name: broker.name,
+                          id: broker.id,
+                          logo_url: broker.logo
+                        }}
+                        size="lg"
+                        withBorder={false}
+                        rounded={true}
                       />
                     </div>
                     <h3 className="text-xl font-bold text-center">{broker.name}</h3>
@@ -335,26 +339,37 @@ export default async function BestCategoryBrokersPage({
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           <div>
                             <h4 className="text-sm font-medium text-muted-foreground mb-1">Min. Deposit</h4>
-                            <p className="font-medium">${broker.min_deposit || "Varies"}</p>
+                            <p className="font-medium">{broker.minDeposit || "Varies"}</p>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-muted-foreground mb-1">Trading Fee</h4>
-                            <p className="font-medium">{broker.trading_fee ? `${broker.trading_fee}%` : "Varies by market"}</p>
+                            <h4 className="text-sm font-medium text-muted-foreground mb-1">Spread</h4>
+                            <p className="font-medium">{broker.spread || "Varies by market"}</p>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-muted-foreground mb-1">Country</h4>
-                            <p className="font-medium">{broker.country || "Global"}</p>
+                            <h4 className="text-sm font-medium text-muted-foreground mb-1">Platforms</h4>
+                            <p className="font-medium">{broker.platforms?.join(", ") || "Multiple platforms"}</p>
                           </div>
                           <div className="md:col-span-3">
                             <h4 className="text-sm font-medium text-muted-foreground mb-1">Regulation</h4>
-                            <p className="font-medium">{broker.regulations || "Multiple regulatory bodies"}</p>
+                            <p className="font-medium">{broker.regulation?.join(", ") || "Multiple regulatory bodies"}</p>
                           </div>
                         </div>
                       </TabsContent>
 
                       <TabsContent value="features">
                         <div className="space-y-2">
-                          <p className="text-sm">{broker.description || `${broker.name} is a leading ${content.title.toLowerCase()} broker offering competitive pricing, advanced trading platforms, and excellent customer service.`}</p>
+                          <p className="text-sm">{`${broker.name} is a leading ${content.title.toLowerCase()} broker offering competitive pricing, advanced trading platforms, and excellent customer service.`}</p>
+                          <div className="mt-4">
+                            <h4 className="text-sm font-medium text-muted-foreground mb-2">Key Features:</h4>
+                            <ul className="text-sm space-y-1">
+                              {broker.pros?.slice(0, 3).map((pro, idx) => (
+                                <li key={idx} className="flex items-center">
+                                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                                  {pro}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                           <div className="mt-4">
                             <Button asChild size="sm" variant="outline" className="text-xs">
                               <Link href={`/broker/${broker.id}`}>View Full Details</Link>

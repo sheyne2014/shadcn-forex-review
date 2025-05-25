@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
 import { Star, ThumbsUp, MessageSquare, AlertTriangle, Shield, Flag, HelpCircle, Filter } from "lucide-react";
+import { toast } from "sonner";
 
 interface ReviewsSectionProps {
   broker: any;
@@ -28,9 +29,85 @@ interface ReviewsSectionProps {
 
 export function ReviewsSection({
   broker,
-  reviews = []
+  reviews: initialReviews = []
 }: ReviewsSectionProps) {
   const [filter, setFilter] = useState("all");
+  const [reviews, setReviews] = useState(initialReviews);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    rating: 0,
+    comment: '',
+    pros: '',
+    cons: '',
+    user_name: '',
+    user_email: ''
+  });
+
+  // Fetch reviews on component mount
+  useEffect(() => {
+    fetchReviews();
+  }, [broker.id]);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch(`/api/reviews?broker_id=${broker.id}`);
+      const data = await response.json();
+
+      if (data.success) {
+        setReviews(data.reviews);
+      }
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
+  const handleSubmitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (formData.rating === 0) {
+      toast.error("Please select a rating");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          broker_id: broker.id,
+          ...formData
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Review submitted successfully!");
+        // Reset form
+        setFormData({
+          rating: 0,
+          comment: '',
+          pros: '',
+          cons: '',
+          user_name: '',
+          user_email: ''
+        });
+        // Refresh reviews
+        fetchReviews();
+      } else {
+        toast.error(data.error || "Failed to submit review");
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      toast.error("Failed to submit review");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Calculate average rating if reviews are provided
   const calculateAverageRating = () => {
@@ -101,6 +178,14 @@ export function ReviewsSection({
     ));
   };
 
+  // Parse user name and comment from structured comment
+  const parseReviewData = (comment: string) => {
+    const userMatch = comment.match(/^\[USER:([^\]]+)\]/);
+    const userName = userMatch ? userMatch[1] : 'Anonymous Trader';
+    const cleanComment = comment.replace(/^\[USER:[^\]]+\]\n?/, '');
+    return { userName, cleanComment };
+  };
+
   // Format date for display
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -156,72 +241,60 @@ export function ReviewsSection({
               emptyReviewsMessage
             ) : (
               <div className="space-y-6">
-                {filteredReviews().map((review, index) => (
-                  <div key={index} className="border-b pb-6 last:border-0 last:pb-0">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex items-start">
-                        <Avatar className="h-10 w-10 mr-3">
-                          <AvatarFallback>{(review.user_name || 'User').charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <div className="font-medium flex items-center">
-                            {review.user_name || "Anonymous Trader"}
-                            {review.verified_purchase && (
-                              <Badge variant="outline" className="ml-2 py-0 text-xs">
-                                <Shield className="h-3 w-3 mr-1" /> Verified
-                              </Badge>
-                            )}
+                {filteredReviews().map((review, index) => {
+                  const { userName, cleanComment } = parseReviewData(review.comment || '');
+                  return (
+                    <div key={index} className="border-b pb-6 last:border-0 last:pb-0">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex items-start">
+                          <Avatar className="h-10 w-10 mr-3">
+                            <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="font-medium flex items-center">
+                              {userName}
+                              {review.verified_purchase && (
+                                <Badge variant="outline" className="ml-2 py-0 text-xs">
+                                  <Shield className="h-3 w-3 mr-1" /> Verified
+                                </Badge>
+                              )}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              Forex Trader
+                            </div>
                           </div>
-                          <div className="text-xs text-muted-foreground">
-                            {review.trading_experience || "Forex Trader"}
+                        </div>
+                        <div className="flex flex-col items-end">
+                          <div className="flex items-center">
+                            {renderStars(review.rating)}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {formatDate(review.created_at)}
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col items-end">
-                        <div className="flex items-center">
-                          {renderStars(review.rating)}
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {formatDate(review.created_at)}
-                        </div>
+
+                      {cleanComment && (
+                        <p className="text-sm mb-4 whitespace-pre-line">{cleanComment}</p>
+                      )}
+
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <ThumbsUp className="h-4 w-4 mr-1" />
+                          Helpful {review.helpful_count ? `(${review.helpful_count})` : ""}
+                        </Button>
+                        <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <MessageSquare className="h-4 w-4 mr-1" />
+                          Comment
+                        </Button>
+                        <Button variant="ghost" size="sm" className="h-8 px-2">
+                          <Flag className="h-4 w-4 mr-1" />
+                          Report
+                        </Button>
                       </div>
                     </div>
-
-                    {review.comment && (
-                      <p className="text-sm mb-4">{review.comment}</p>
-                    )}
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                      {review.pros && (
-                        <div className="bg-muted/30 rounded-md p-3">
-                          <div className="font-medium text-sm mb-1">Pros</div>
-                          <p className="text-xs text-muted-foreground">{review.pros}</p>
-                        </div>
-                      )}
-                      {review.cons && (
-                        <div className="bg-muted/30 rounded-md p-3">
-                          <div className="font-medium text-sm mb-1">Cons</div>
-                          <p className="text-xs text-muted-foreground">{review.cons}</p>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <Button variant="ghost" size="sm" className="h-8 px-2">
-                        <ThumbsUp className="h-4 w-4 mr-1" />
-                        Helpful {review.helpful_count ? `(${review.helpful_count})` : ""}
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-8 px-2">
-                        <MessageSquare className="h-4 w-4 mr-1" />
-                        Comment
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-8 px-2">
-                        <Flag className="h-4 w-4 mr-1" />
-                        Report
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </CardContent>
@@ -242,33 +315,53 @@ export function ReviewsSection({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmitReview} className="space-y-4">
               <div>
                 <Label htmlFor="rating" className="block mb-2">Your Rating</Label>
-                <RadioGroup defaultValue="4" className="flex space-x-2" id="rating">
+                <div className="flex space-x-2">
                   {[1, 2, 3, 4, 5].map((value) => (
                     <div key={value} className="flex flex-col items-center">
-                      <RadioGroupItem
-                        value={value.toString()}
-                        id={`rating-${value}`}
-                        className="sr-only"
-                      />
-                      <Label
-                        htmlFor={`rating-${value}`}
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, rating: value }))}
                         className="cursor-pointer p-2 rounded-full hover:bg-muted"
                       >
-                        <Star className={`h-8 w-8 hover:fill-amber-500 hover:text-amber-500 ${value <= 4 ? "fill-amber-500 text-amber-500" : "text-muted-foreground"}`} />
-                      </Label>
+                        <Star className={`h-8 w-8 hover:fill-amber-500 hover:text-amber-500 ${value <= formData.rating ? "fill-amber-500 text-amber-500" : "text-muted-foreground"}`} />
+                      </button>
                       <span className="text-xs">{value}</span>
                     </div>
                   ))}
-                </RadioGroup>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="user_name" className="block mb-2">Name (Optional)</Label>
+                  <Input
+                    id="user_name"
+                    value={formData.user_name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, user_name: e.target.value }))}
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="user_email" className="block mb-2">Email (Optional)</Label>
+                  <Input
+                    id="user_email"
+                    type="email"
+                    value={formData.user_email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, user_email: e.target.value }))}
+                    placeholder="your@email.com"
+                  />
+                </div>
               </div>
 
               <div>
                 <Label htmlFor="review" className="block mb-2">Your Review</Label>
                 <Textarea
                   id="review"
+                  value={formData.comment}
+                  onChange={(e) => setFormData(prev => ({ ...prev, comment: e.target.value }))}
                   placeholder={`What was your experience trading with ${broker.name}?`}
                   className="min-h-[120px]"
                 />
@@ -279,6 +372,8 @@ export function ReviewsSection({
                   <Label htmlFor="pros" className="block mb-2">Pros</Label>
                   <Textarea
                     id="pros"
+                    value={formData.pros}
+                    onChange={(e) => setFormData(prev => ({ ...prev, pros: e.target.value }))}
                     placeholder="What did you like about this broker?"
                     className="min-h-[80px]"
                   />
@@ -287,14 +382,16 @@ export function ReviewsSection({
                   <Label htmlFor="cons" className="block mb-2">Cons</Label>
                   <Textarea
                     id="cons"
+                    value={formData.cons}
+                    onChange={(e) => setFormData(prev => ({ ...prev, cons: e.target.value }))}
                     placeholder="What could be improved?"
                     className="min-h-[80px]"
                   />
                 </div>
               </div>
 
-              <Button type="submit" className="w-full">
-                Submit Review
+              <Button type="submit" disabled={isSubmitting} className="w-full">
+                {isSubmitting ? "Submitting..." : "Submit Review"}
               </Button>
             </form>
           </CardContent>

@@ -1,11 +1,5 @@
 [
-  {
-    "broker": "50K Global",
-    "brokerId": "945337e5-0e56-4c95-858b-4b0b8cc0998f",
-    "status": "success",
-    "message": "Found and downloaded logo",
-    "logoUrl": "https://logo.clearbit.com/50kglobal.broker.com"
-  },
+
   {
     "broker": "ActivTrades",
     "brokerId": "da2022b1-b291-4974-a290-1e97225cb1ce",
@@ -83,13 +77,7 @@
     "message": "Found and downloaded logo",
     "logoUrl": "https://logo.clearbit.com/atfx.broker.com"
   },
-  {
-    "broker": "ATFX Connect",
-    "brokerId": "0bd33ee9-ee33-4479-9a79-e130ed21d9ad",
-    "status": "success",
-    "message": "Found and downloaded logo",
-    "logoUrl": "https://logo.clearbit.com/atfxconnect.broker.com"
-  },
+
   {
     "broker": "AvaTrade",
     "brokerId": "8cdc832e-62b0-4734-9f5d-af308277f40f",
@@ -97,13 +85,7 @@
     "message": "Found and downloaded logo",
     "logoUrl": "https://logo.clearbit.com/avatrade.broker.com"
   },
-  {
-    "broker": "Avenue Securities",
-    "brokerId": "77b7dcae-3545-410f-8368-3d686c995454",
-    "status": "success",
-    "message": "Found and downloaded logo",
-    "logoUrl": "https://logo.clearbit.com/avenuesecurities.broker.com"
-  },
+
   {
     "broker": "Avenue Securities Pro",
     "brokerId": "d1adcd3b-2add-442a-935d-04a6d61fff72",

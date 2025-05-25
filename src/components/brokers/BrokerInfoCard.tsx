@@ -86,7 +86,7 @@ export function BrokerInfoCard({ broker, showLink = true }: BrokerInfoCardProps)
 
   if (showLink) {
     return (
-      <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`} className="group">
+      <Link href={`/broker/${broker.id}`} className="group">
         {cardContent}
       </Link>
     );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -18,34 +18,28 @@ interface BrokerLogoProps {
 }
 
 /**
- * A standardized component for displaying broker logos with proper fallbacks
- * 
- * @param broker - Either a broker string ID or a broker object with name and optional logo_url
- * @param size - Size of the logo: sm (24px), md (32px), lg (48px), xl (64px)
- * @param className - Additional CSS classes
- * @param rounded - Whether to use rounded corners
- * @param withBorder - Whether to add a border
- * @param priority - Whether to prioritize loading (for important logos above the fold)
+ * SIMPLIFIED BrokerLogo component - directly uses provided URLs without complex fallbacks
+ * This ensures our static broker data with correct paths is used reliably
  */
-export function BrokerLogo({ 
+export function BrokerLogo({
   broker,
-  size = 'md', 
+  size = 'md',
   className,
   rounded = false,
   withBorder = false,
   priority = false
 }: BrokerLogoProps) {
   const [hasError, setHasError] = useState(false);
-  const [loadingFirstSource, setLoadingFirstSource] = useState(true);
-  
+
   // Extract broker name and id
   const brokerName = typeof broker === 'string' ? broker : broker.name;
-  const brokerId = typeof broker === 'string' ? broker.toLowerCase().replace(/\s+/g, '-') : 
+  const brokerId = typeof broker === 'string' ? broker.toLowerCase().replace(/\s+/g, '-') :
     broker.id ? broker.id : broker.name.toLowerCase().replace(/\s+/g, '-');
-  
-  // Get the logo URL if provided directly
+
+  // Get the logo URL - prioritize provided URL
   const providedLogoUrl = typeof broker !== 'string' ? broker.logo_url : null;
-  
+  const logoUrl = providedLogoUrl || `/images/brokers/${brokerId}.png`;
+
   // Get dimensions based on size
   const dimensions = {
     sm: { width: 24, height: 24 },
@@ -54,92 +48,65 @@ export function BrokerLogo({
     xl: { width: 64, height: 64 }
   }[size];
 
-  // Get container dimensions (slightly larger to account for padding)
-  const containerDimensions = {
-    sm: { width: 28, height: 28 },
-    md: { width: 36, height: 36 },
-    lg: { width: 56, height: 56 },
-    xl: { width: 72, height: 72 }
-  }[size];
+  // Debug logging for troubleshooting
+  if (typeof window !== 'undefined' && brokerName && ['eToro', 'Plus500', 'Capital.com', 'XM', 'Coinbase'].includes(brokerName)) {
+    console.log(`🔍 SIMPLIFIED BrokerLogo Debug for ${brokerName}:`, {
+      brokerName,
+      brokerId,
+      providedLogoUrl,
+      logoUrl,
+      hasProvidedUrl: !!providedLogoUrl
+    });
+  }
 
-  // Try our sources in this order:
-  // 1. Explicitly provided logo_url
-  // 2. Our optimized local broker logos
-  // 3. Clearbit API as fallback
-  // 4. Initials as ultimate fallback
-  
-  // Format broker ID for domain lookup
-  const brokerId_clean = brokerId.replace(/-/g, '').replace(/\.com$/i, '');
-  
-  // Generate the sources in priority order
-  const logoSources = [
-    providedLogoUrl,
-    `/images/brokers/${brokerId}.png`,
-    `https://logo.clearbit.com/${brokerId_clean}.com`
-  ].filter(Boolean) as string[];
-  
-  // Track current source index
-  const [currentSourceIndex, setCurrentSourceIndex] = useState(0);
-  const currentSource = logoSources[currentSourceIndex];
-
-  // Fallback to initials if all sources fail
-  const initials = brokerName
-    .split(' ')
-    .map(word => word[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-
-  // Handle error by trying the next source
-  const handleError = () => {
-    if (currentSourceIndex < logoSources.length - 1) {
-      setCurrentSourceIndex(prevIndex => prevIndex + 1);
-    } else {
-      setHasError(true);
-    }
+  // Fallback to initials if image fails
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   };
 
-  // When source changes, reset loading state
-  useEffect(() => {
-    setLoadingFirstSource(true);
-  }, [currentSource]);
+  // Handle error by showing initials
+  const handleError = () => {
+    if (typeof window !== 'undefined' && brokerName && ['eToro', 'Plus500', 'Capital.com', 'XM', 'Coinbase'].includes(brokerName)) {
+      console.log(`❌ Failed to load logo for ${brokerName}: ${logoUrl}`);
+    }
+    setHasError(true);
+  };
 
   return (
-    <div 
+    <div
       className={cn(
-        "flex items-center justify-center bg-white dark:bg-gray-800 relative",
-        withBorder && "border", 
-        rounded && "rounded-md",
+        'relative flex items-center justify-center bg-white dark:bg-gray-800',
+        rounded && 'rounded-md',
+        withBorder && 'border border-gray-200 dark:border-gray-700',
         className
       )}
-      style={{ 
-        width: containerDimensions.width, 
-        height: containerDimensions.height,
+      style={{
+        width: dimensions.width,
+        height: dimensions.height,
       }}
     >
       {hasError ? (
         // Show initials as fallback
-        <div className="w-full h-full flex items-center justify-center text-primary font-medium">
-          {initials}
+        <div className="text-xs font-semibold text-gray-600 dark:text-gray-300">
+          {getInitials(brokerName)}
         </div>
       ) : (
-        // Try loading the image
+        // Load the image directly
         <Image
-          src={currentSource}
+          src={logoUrl}
           alt={`${brokerName} logo`}
           width={dimensions.width}
           height={dimensions.height}
           className="object-contain p-1"
-          onLoad={() => setLoadingFirstSource(false)}
           onError={handleError}
           priority={priority}
         />
       )}
-
-      {/* Loading skeleton */}
-      {loadingFirstSource && !hasError && (
-        <div className="absolute inset-0 bg-gray-100 dark:bg-gray-700 animate-pulse rounded-md"></div>
-      )}
     </div>
   );
-} 
+}

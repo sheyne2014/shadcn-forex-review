@@ -192,7 +192,7 @@ export function BrokerCard({
 
       <CardFooter className="pt-2">
         <Button asChild className="w-full" variant="default" size="sm">
-          <Link href={broker.name.toLowerCase() === 'etoro' ? '/broker/etoro' : `/broker/${broker.id}`}>
+          <Link href={`/broker/${broker.id}`}>
             Read Review <ChevronRight className="ml-1 h-4 w-4" />
           </Link>
         </Button>

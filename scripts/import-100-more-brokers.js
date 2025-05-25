@@ -271,18 +271,17 @@ function getMoreBrokers() {
     { name: "RoboForex", rating: 4.4, deposit: 10, fee: 0.7, country: "Belize", regulations: "IFSC", logo: "https://example.com/roboforex.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
     { name: "Vantagepoint", rating: 4.2, deposit: 25, fee: 0.5, country: "Australia", regulations: "ASIC, FCA", logo: "https://example.com/vantagepoint.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
     { name: "NBHM", rating: 4.1, deposit: 100, fee: 0.5, country: "UK", regulations: "FCA", logo: "https://example.com/nbhm.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
-    { name: "LCG", rating: 4.3, deposit: 0, fee: 0.6, country: "UK", regulations: "FCA", logo: "https://example.com/lcg.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
+
     { name: "ATFX", rating: 4.4, deposit: 100, fee: 0.6, country: "UK", regulations: "FCA, CySEC", logo: "https://example.com/atfx.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
     { name: "FXFlat", rating: 4.2, deposit: 500, fee: 0.5, country: "Germany", regulations: "BaFin", logo: "https://example.com/fxflat.png", assets: ["Forex", "CFDs", "Crypto"], categories: ["Forex Brokers", "ECN Brokers"] },
 
     // Regional Brokers
     { name: "Zerodha", rating: 4.7, deposit: 0, fee: 0.0, country: "India", regulations: "SEBI", logo: "https://example.com/zerodha.png", assets: ["Stocks", "Options", "Futures"], categories: ["Stock Brokers"] },
     { name: "Upstox", rating: 4.5, deposit: 0, fee: 0.05, country: "India", regulations: "SEBI", logo: "https://example.com/upstox.png", assets: ["Stocks", "Options", "Futures"], categories: ["Stock Brokers"] },
-    { name: "Angel One", rating: 4.4, deposit: 0, fee: 0.05, country: "India", regulations: "SEBI", logo: "https://example.com/angelone.png", assets: ["Stocks", "Options", "Futures"], categories: ["Stock Brokers"] },
-    { name: "Groww", rating: 4.5, deposit: 0, fee: 0.05, country: "India", regulations: "SEBI", logo: "https://example.com/groww.png", assets: ["Stocks", "ETFs", "Mutual Funds"], categories: ["Stock Brokers", "Brokers for Beginners"] },
+
     { name: "XP Investimentos", rating: 4.6, deposit: 0, fee: 0.0, country: "Brazil", regulations: "CVM", logo: "https://example.com/xp.png", assets: ["Stocks", "ETFs", "Futures"], categories: ["Stock Brokers"] },
     { name: "Nubank", rating: 4.7, deposit: 0, fee: 0.0, country: "Brazil", regulations: "CVM", logo: "https://example.com/nubank.png", assets: ["Stocks", "ETFs", "Crypto"], categories: ["Stock Brokers", "Brokers for Beginners"] },
-    { name: "Avenue Securities", rating: 4.3, deposit: 0, fee: 0.2, country: "Brazil", regulations: "CVM, SEC", logo: "https://example.com/avenue.png", assets: ["Stocks", "ETFs", "REITs"], categories: ["Stock Brokers"] },
+
     { name: "SMC Global", rating: 4.2, deposit: 0, fee: 0.05, country: "India", regulations: "SEBI", logo: "https://example.com/smcglobal.png", assets: ["Stocks", "Commodities", "Forex"], categories: ["Stock Brokers"] },
     { name: "ICICI Direct", rating: 4.3, deposit: 0, fee: 0.05, country: "India", regulations: "SEBI", logo: "https://example.com/icicidirect.png", assets: ["Stocks", "ETFs", "Mutual Funds"], categories: ["Stock Brokers"] },
     { name: "SaxoInvestor", rating: 4.5, deposit: 2000, fee: 0.1, country: "Denmark", regulations: "FSA", logo: "https://example.com/saxoinvestor.png", assets: ["Stocks", "ETFs", "Bonds"], categories: ["Stock Brokers"] },

@@ -26,18 +26,35 @@ export function PipValueCalculator() {
 
   const calculatePipValue = () => {
     let value = 0;
-    
-    if (quoteCurrency === accountCurrency) {
-      // Direct quote
-      value = lotSize * 100000 * 0.0001;
-    } else if (baseCurrency === accountCurrency) {
-      // Indirect quote
-      value = lotSize * 100000 * 0.0001 / rate;
-    } else {
-      // Cross rate (simplified)
-      value = lotSize * 100000 * 0.0001; // We'd need a conversion rate here in real app
+    const contractSize = 100000; // Standard lot size
+
+    // Determine pip size based on currency pair
+    let pipSize = 0.0001; // Standard pip size
+    if (quoteCurrency === "JPY") {
+      pipSize = 0.01; // JPY pairs use 0.01 as pip size
     }
-    
+
+    if (quoteCurrency === accountCurrency) {
+      // Direct quote: Account currency is the quote currency
+      value = lotSize * contractSize * pipSize;
+    } else if (baseCurrency === accountCurrency) {
+      // Indirect quote: Account currency is the base currency
+      value = (lotSize * contractSize * pipSize) / rate;
+    } else {
+      // Cross rate: Need conversion to account currency
+      // This is simplified - in reality, you'd need the conversion rate
+      value = lotSize * contractSize * pipSize;
+
+      // Apply basic conversion estimates for common currencies
+      if (accountCurrency === "EUR" && quoteCurrency === "USD") {
+        value = value * 0.85; // Approximate EUR/USD rate
+      } else if (accountCurrency === "GBP" && quoteCurrency === "USD") {
+        value = value * 0.75; // Approximate GBP/USD rate
+      } else if (accountCurrency === "USD" && quoteCurrency === "EUR") {
+        value = value * 1.18; // Approximate USD/EUR rate
+      }
+    }
+
     setPipValue(value);
   };
 
@@ -62,7 +79,7 @@ export function PipValueCalculator() {
               min="0.01"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="account-currency">Account Currency</Label>
             <Select value={accountCurrency} onValueChange={setAccountCurrency}>
@@ -93,7 +110,7 @@ export function PipValueCalculator() {
             </Select>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="base-currency">Base Currency</Label>
@@ -133,7 +150,7 @@ export function PipValueCalculator() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="quote-currency">Quote Currency</Label>
             <Select value={quoteCurrency} onValueChange={setQuoteCurrency}>
@@ -168,7 +185,7 @@ export function PipValueCalculator() {
             </Select>
           </div>
         </div>
-        
+
         <div className="space-y-2">
           <Label htmlFor="exchange-rate">Exchange Rate</Label>
           <Input
@@ -180,20 +197,39 @@ export function PipValueCalculator() {
             min="0.0001"
           />
         </div>
-        
+
         <Button onClick={calculatePipValue} className="w-full mt-4">
           <Calculator className="mr-2 h-4 w-4" />
           Calculate Pip Value
         </Button>
-        
+
         {pipValue > 0 && (
-          <div className="mt-4 p-4 bg-muted rounded-md text-center">
-            <div className="text-sm text-muted-foreground">Pip Value</div>
-            <div className="text-2xl font-bold">
-              {accountCurrency} {pipValue.toFixed(2)}
+          <div className="mt-4 space-y-4">
+            <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg text-center border">
+              <div className="text-sm text-muted-foreground">Pip Value</div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+                {accountCurrency} {pipValue.toFixed(2)}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">
+                per pip movement for {lotSize} lot{lotSize !== 1 ? 's' : ''}
+              </div>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">
-              per pip movement
+
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-muted/30 p-3 rounded-lg">
+                <div className="text-muted-foreground">10 Pips</div>
+                <div className="font-semibold">{accountCurrency} {(pipValue * 10).toFixed(2)}</div>
+              </div>
+              <div className="bg-muted/30 p-3 rounded-lg">
+                <div className="text-muted-foreground">100 Pips</div>
+                <div className="font-semibold">{accountCurrency} {(pipValue * 100).toFixed(2)}</div>
+              </div>
+            </div>
+
+            <div className="text-xs text-muted-foreground bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
+              <strong>Currency Pair:</strong> {baseCurrency}/{quoteCurrency} |
+              <strong> Exchange Rate:</strong> {rate} |
+              <strong> Pip Size:</strong> {quoteCurrency === "JPY" ? "0.01" : "0.0001"}
             </div>
           </div>
         )}
@@ -205,4 +241,4 @@ export function PipValueCalculator() {
       </CardFooter>
     </Card>
   );
-} 
+}

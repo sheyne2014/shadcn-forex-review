@@ -95,51 +95,251 @@ interface FAQ {
 async function performWebSearch(query: string, restrictToSite: boolean = false, siteUrl: string = ''): Promise<WebSearchResult[]> {
   // This is a placeholder for a real search API integration
   // In a production environment, integrate with Google Custom Search, Bing API, etc.
-  
-  // Simulated website pages - in production, these would come from a real search API
-  const simulatedPages = [
-    {
-      title: "Best Forex Brokers for Beginners",
-      url: "/guides/best-forex-brokers-for-beginners",
-      content: "Comprehensive guide to the top forex brokers suitable for beginners with low minimum deposits and educational resources."
-    },
-    {
-      title: "Forex Trading Strategies Guide",
-      url: "/guides/forex-trading-strategies",
-      content: "Learn about different forex trading strategies including day trading, swing trading, and position trading approaches."
-    },
-    {
-      title: "How to Choose a Reliable Forex Broker",
-      url: "/guides/how-to-choose-forex-broker",
-      content: "Factors to consider when selecting a forex broker including regulation, fees, platforms, and customer support."
-    },
-    {
-      title: "Forex Risk Management Calculator",
-      url: "/tools/risk-calculator",
-      content: "Use our risk management calculator to determine appropriate position sizes and stop-loss levels for your forex trades."
-    },
-    {
-      title: "Forex Broker Comparison Tool",
-      url: "/tools/broker-comparison",
-      content: "Compare features, fees, and offerings of popular forex brokers side by side."
-    }
-  ];
-  
-  // Filter results based on query terms
+
+  // Comprehensive website knowledge base for intelligent routing
+  const WEBSITE_KNOWLEDGE = {
+    // Main navigation pages
+    mainPages: [
+      { title: "Homepage", url: "/landing", keywords: ["home", "main", "start", "welcome"] },
+      { title: "Best Brokers", url: "/best-brokers", keywords: ["best", "top", "recommended", "brokers"] },
+      { title: "Broker Comparison", url: "/tools/compare", keywords: ["compare", "comparison", "vs", "versus"] },
+      { title: "Trading Tools", url: "/tools", keywords: ["tools", "calculator", "converter", "quiz"] },
+      { title: "FAQ", url: "/faq", keywords: ["faq", "questions", "help", "support"] },
+      { title: "About Us", url: "/about", keywords: ["about", "company", "team", "contact"] }
+    ],
+
+    // Broker categories
+    brokerCategories: [
+      { title: "Best Forex Brokers", url: "/best-brokers/forex", keywords: ["forex", "fx", "currency", "foreign exchange"] },
+      { title: "Best Brokers for Beginners", url: "/best-brokers/beginners", keywords: ["beginner", "new", "starter", "novice", "first time"] },
+      { title: "Low-Cost Brokers", url: "/best-brokers/low-cost", keywords: ["low cost", "cheap", "affordable", "low fees", "commission free"] },
+      { title: "Crypto Brokers", url: "/best-brokers/crypto", keywords: ["crypto", "cryptocurrency", "bitcoin", "ethereum", "digital currency"] },
+      { title: "Stock Brokers", url: "/best-brokers/stocks", keywords: ["stocks", "shares", "equity", "stock market"] },
+      { title: "CFD Brokers", url: "/best-brokers/cfd", keywords: ["cfd", "contract for difference", "derivatives"] },
+      { title: "Day Trading Brokers", url: "/best-brokers/day-trading", keywords: ["day trading", "scalping", "short term"] },
+      { title: "Swing Trading Brokers", url: "/best-brokers/swing-trading", keywords: ["swing trading", "medium term", "position trading"] },
+      { title: "Mobile Trading Apps", url: "/best-brokers/mobile-trading", keywords: ["mobile", "app", "smartphone", "tablet"] },
+      { title: "High Leverage Brokers", url: "/best-brokers/high-leverage", keywords: ["leverage", "margin", "high leverage"] },
+      { title: "ECN Brokers", url: "/best-brokers/ecn", keywords: ["ecn", "electronic communication network", "direct market access"] },
+      { title: "Islamic Brokers", url: "/best-brokers/islamic", keywords: ["islamic", "sharia", "swap free", "halal"] },
+      { title: "Professional Brokers", url: "/best-brokers/professional", keywords: ["professional", "advanced", "institutional"] },
+      { title: "Demo Account Brokers", url: "/best-brokers/demo-accounts", keywords: ["demo", "practice", "trial", "test account"] }
+    ],
+
+    // Individual broker pages
+    brokers: [
+      { title: "eToro Review", url: "/broker/805f65c5-3911-448e-8800-0143bbbb2a0f", keywords: ["etoro", "social trading", "copy trading"] },
+      { title: "XM Review", url: "/brokers/xm", keywords: ["xm", "xm group", "xm global"] },
+      { title: "IC Markets Review", url: "/brokers/ic-markets", keywords: ["ic markets", "ic", "raw spread"] },
+      { title: "Pepperstone Review", url: "/brokers/pepperstone", keywords: ["pepperstone", "razor"] },
+      { title: "OANDA Review", url: "/brokers/oanda", keywords: ["oanda", "oanda corporation"] },
+      { title: "Interactive Brokers Review", url: "/brokers/interactive-brokers", keywords: ["interactive brokers", "ibkr", "ib"] },
+      { title: "Plus500 Review", url: "/brokers/plus500", keywords: ["plus500", "plus 500"] },
+      { title: "Capital.com Review", url: "/brokers/capital-com", keywords: ["capital.com", "capital", "capitalcom"] },
+      { title: "Saxo Bank Review", url: "/brokers/saxo-bank", keywords: ["saxo", "saxo bank"] },
+      { title: "Swissquote Review", url: "/brokers/swissquote", keywords: ["swissquote", "swiss"] },
+      { title: "FXTM Review", url: "/brokers/fxtm", keywords: ["fxtm", "forextime"] },
+      { title: "Exness Review", url: "/brokers/exness", keywords: ["exness"] },
+      { title: "Axi Review", url: "/brokers/axi", keywords: ["axi", "axitrader"] },
+      { title: "EasyMarkets Review", url: "/brokers/easymarkets", keywords: ["easymarkets", "easy markets"] },
+      { title: "TMGM Review", url: "/brokers/tmgm", keywords: ["tmgm", "trademax"] },
+      { title: "XTB Review", url: "/brokers/xtb", keywords: ["xtb", "x-trade brokers"] },
+      { title: "StarTrader Review", url: "/brokers/startrader", keywords: ["startrader", "star trader"] }
+    ],
+
+    // Trading tools
+    tools: [
+      { title: "Broker Comparison Tool", url: "/tools/compare", keywords: ["compare", "comparison", "side by side", "vs"] },
+      { title: "Trading Calculator", url: "/tools/calculator", keywords: ["calculator", "calculate", "pip", "profit", "loss"] },
+      { title: "Currency Converter", url: "/tools/converter", keywords: ["converter", "convert", "currency", "exchange rate"] },
+      { title: "Broker Finder Quiz", url: "/tools/quiz", keywords: ["quiz", "finder", "find broker", "questionnaire"] },
+      { title: "Scam Check Tool", url: "/tools/scam-check", keywords: ["scam", "verify", "check", "legitimate", "fraud"] }
+    ],
+
+    // Regional pages
+    regions: [
+      { title: "Best Brokers in UK", url: "/best-brokers/uk", keywords: ["uk", "united kingdom", "britain", "british"] },
+      { title: "Best Brokers in US", url: "/best-brokers/us", keywords: ["us", "usa", "united states", "america", "american"] },
+      { title: "Best Brokers in Europe", url: "/best-brokers/europe", keywords: ["europe", "european", "eu"] },
+      { title: "Best Brokers in Australia", url: "/best-brokers/australia", keywords: ["australia", "australian", "aussie"] },
+      { title: "Best Brokers in Canada", url: "/best-brokers/canada", keywords: ["canada", "canadian"] },
+      { title: "Best Brokers in Asia", url: "/best-brokers/asia", keywords: ["asia", "asian"] },
+      { title: "Best Brokers in Singapore", url: "/best-brokers/singapore", keywords: ["singapore"] },
+      { title: "Best Brokers in India", url: "/best-brokers/india", keywords: ["india", "indian"] }
+    ]
+  };
+
+  // Intelligent page matching using the knowledge base
   const queryTerms = query.toLowerCase().split(/\s+/);
-  let results = simulatedPages.filter(page => {
-    return queryTerms.some(term => 
-      page.title.toLowerCase().includes(term) || 
-      page.content.toLowerCase().includes(term)
-    );
+  const allPages = [
+    ...WEBSITE_KNOWLEDGE.mainPages,
+    ...WEBSITE_KNOWLEDGE.brokerCategories,
+    ...WEBSITE_KNOWLEDGE.brokers,
+    ...WEBSITE_KNOWLEDGE.tools,
+    ...WEBSITE_KNOWLEDGE.regions
+  ];
+
+  // Score pages based on keyword matches
+  const scoredPages = allPages.map(page => {
+    let score = 0;
+    const titleLower = page.title.toLowerCase();
+
+    // Check for exact matches in title (highest score)
+    queryTerms.forEach(term => {
+      if (titleLower.includes(term)) score += 10;
+    });
+
+    // Check for keyword matches
+    page.keywords.forEach(keyword => {
+      queryTerms.forEach(term => {
+        if (keyword.includes(term) || term.includes(keyword)) score += 5;
+      });
+    });
+
+    return { ...page, score };
   });
-  
+
+  // Filter and sort by score
+  const results = scoredPages
+    .filter(page => page.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
   // Convert to search result format
   return results.map(page => ({
     title: page.title,
     url: page.url,
-    snippet: page.content
+    snippet: `${page.title} - Find detailed information and reviews.`
   }));
+}
+
+// Intelligent response generation function
+function generateIntelligentResponse(
+  message: string,
+  relevantContent: PageContent[],
+  webSearchResults: WebSearchResult[],
+  searchTerms: string[]
+): string {
+  const messageLower = message.toLowerCase();
+
+  // Define response patterns for common queries
+  const responsePatterns = [
+    {
+      patterns: ["best broker", "top broker", "recommend broker", "which broker"],
+      response: "I'd be happy to help you find the best broker! Here are some great options based on your needs:"
+    },
+    {
+      patterns: ["compare", "vs", "versus", "difference between"],
+      response: "Great question! Let me help you compare these options. Here's what I found:"
+    },
+    {
+      patterns: ["beginner", "new to trading", "start trading", "first time"],
+      response: "Perfect! I love helping new traders get started. Here are the best resources for beginners:"
+    },
+    {
+      patterns: ["fees", "cost", "commission", "spread", "cheap"],
+      response: "Cost is definitely important when choosing a broker. Here are some low-cost options and fee information:"
+    },
+    {
+      patterns: ["demo", "practice", "trial", "test"],
+      response: "Practice makes perfect! Here are brokers with excellent demo accounts:"
+    },
+    {
+      patterns: ["mobile", "app", "smartphone", "tablet"],
+      response: "Mobile trading is essential these days! Here are the best mobile trading platforms:"
+    },
+    {
+      patterns: ["regulation", "regulated", "safe", "secure", "legitimate"],
+      response: "Safety first! Here are well-regulated and secure brokers:"
+    },
+    {
+      patterns: ["forex", "fx", "currency", "foreign exchange"],
+      response: "Forex trading is exciting! Here are the top forex brokers and resources:"
+    },
+    {
+      patterns: ["crypto", "bitcoin", "ethereum", "cryptocurrency"],
+      response: "Crypto trading is booming! Here are the best crypto brokers and information:"
+    },
+    {
+      patterns: ["calculator", "calculate", "pip", "profit", "loss"],
+      response: "Let me help you with trading calculations! Here are our useful tools:"
+    }
+  ];
+
+  // Find matching response pattern
+  let contextualResponse = "Here's what I found to help answer your question:";
+  for (const pattern of responsePatterns) {
+    if (pattern.patterns.some(p => messageLower.includes(p))) {
+      contextualResponse = pattern.response;
+      break;
+    }
+  }
+
+  return contextualResponse;
+}
+
+// Generate intelligent fallback response with relevant suggestions
+function generateFallbackResponse(message: string, searchTerms: string[]): string {
+  const messageLower = message.toLowerCase();
+
+  // Suggest relevant pages based on query intent
+  let suggestions: string[] = [];
+
+  // Broker-related queries
+  if (messageLower.includes('broker') || messageLower.includes('trading')) {
+    suggestions.push(
+      "🏆 [Best Forex Brokers](/best-brokers/forex) - Top-rated brokers for forex trading",
+      "🔍 [Broker Comparison Tool](/tools/compare) - Compare brokers side by side",
+      "📝 [Broker Reviews](/brokers) - Detailed broker reviews and ratings"
+    );
+  }
+
+  // Beginner-related queries
+  if (messageLower.includes('beginner') || messageLower.includes('start') || messageLower.includes('new')) {
+    suggestions.push(
+      "🚀 [Best Brokers for Beginners](/best-brokers/beginners) - Perfect for new traders",
+      "📚 [Trading Guides](/blog) - Learn the basics of trading",
+      "🎯 [Broker Finder Quiz](/tools/quiz) - Find your ideal broker"
+    );
+  }
+
+  // Cost-related queries
+  if (messageLower.includes('fee') || messageLower.includes('cost') || messageLower.includes('cheap')) {
+    suggestions.push(
+      "💰 [Low-Cost Brokers](/best-brokers/low-cost) - Affordable trading options",
+      "📊 [Trading Calculator](/tools/calculator) - Calculate trading costs"
+    );
+  }
+
+  // Tool-related queries
+  if (messageLower.includes('tool') || messageLower.includes('calculator') || messageLower.includes('convert')) {
+    suggestions.push(
+      "🛠️ [Trading Tools](/tools) - All our helpful trading tools",
+      "📱 [Currency Converter](/tools/converter) - Convert currencies instantly",
+      "🧮 [Trading Calculator](/tools/calculator) - Calculate profits and losses"
+    );
+  }
+
+  // If no specific suggestions, provide general ones
+  if (suggestions.length === 0) {
+    suggestions = [
+      "🏆 [Best Brokers](/best-brokers) - Find top-rated brokers",
+      "🔍 [Broker Comparison](/tools/compare) - Compare brokers easily",
+      "🎯 [Broker Finder Quiz](/tools/quiz) - Discover your perfect broker",
+      "📚 [Trading Guides](/blog) - Learn trading strategies",
+      "❓ [FAQ](/faq) - Common questions answered"
+    ];
+  }
+
+  const suggestionText = suggestions.slice(0, 4).join('\n');
+
+  return `I'd love to help you with "${message}"! While I search for more specific information, here are some great resources that might be exactly what you're looking for:
+
+${suggestionText}
+
+💡 **Quick tip**: Try asking me about specific brokers (like "Tell me about eToro"), trading topics, or use phrases like "best broker for beginners" for more targeted results!
+
+Is there anything specific about trading or brokers you'd like to know more about?`;
 }
 
 export async function POST(request: Request) {
@@ -174,16 +374,16 @@ export async function POST(request: Request) {
     try {
       // Create an array to hold all search promises
       const searchPromises: Promise<any>[] = [];
-      
+
       // Add database search promises
       const blogPromise = searchBlogPosts(searchTerms);
       const pagePromise = searchPages(searchTerms);
       const brokerPromise = searchBrokers(searchTerms);
       const toolPromise = searchTools(searchTerms);
       const faqPromise = searchFAQs(searchTerms);
-      
+
       searchPromises.push(blogPromise, pagePromise, brokerPromise, toolPromise, faqPromise);
-      
+
       // Add web search if enabled
       let webSearchPromise: Promise<WebSearchResult[]> | null = null;
       if (searchWeb) {
@@ -193,9 +393,9 @@ export async function POST(request: Request) {
 
       // Wait for all promises to resolve
       const results = await Promise.all(searchPromises);
-      
+
       const [blogData, pageData, brokerData, toolData, faqData] = results;
-      
+
       // If web search was performed, get the results
       if (searchWeb && webSearchPromise) {
         const webResults = await webSearchPromise;
@@ -284,8 +484,8 @@ export async function POST(request: Request) {
       // Continue with empty content rather than failing completely
     }
 
-    // Generate response based on available content
-    let aiResponse = "I don't have specific information about that. Try asking about forex brokers, trading strategies, or market analysis.";
+    // Enhanced AI response generation with intelligent routing
+    let aiResponse = generateIntelligentResponse(message, relevantContent, webSearchResults, searchTerms);
 
     if (relevantContent.length > 0 || webSearchResults.length > 0) {
       // Sort content by relevance (improved implementation)
@@ -385,21 +585,8 @@ export async function POST(request: Request) {
 ${linkSections}
 Would you like more specific information about any of these topics? You can ask me to explain more about a particular item.`;
     } else {
-      // Provide a more helpful response when no content is found
-      aiResponse = `I don't have specific information about "${message}" in our database. 
-
-Here are some topics I can help you with:
-- Information about specific forex brokers (e.g., "Tell me about eToro")
-- Comparison between brokers (e.g., "Compare XM and IG")
-- Trading strategies and analysis (e.g., "What is scalping in forex?")
-- Beginner trading guides (e.g., "How to start forex trading")
-- Broker selection advice (e.g., "Best brokers for beginners")
-- Trading tools and calculators (e.g., "How to use the risk calculator")
-
-You might also want to check:
-- Broker Finder Quiz: Find your ideal broker based on your preferences
-- Comparison Tool: Side-by-side broker feature comparison
-- Latest Reviews: Up-to-date broker reviews and ratings`;
+      // Enhanced fallback response with intelligent suggestions
+      aiResponse = generateFallbackResponse(message, searchTerms);
     }
 
     return NextResponse.json({ response: aiResponse });

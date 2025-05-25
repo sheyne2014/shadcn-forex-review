@@ -34,8 +34,7 @@ const brokersToDelete = [
   'saxo investor',
   'tradovte',
   'upstox pro',
-  'groww stocks',
-  'test crypto broker',
+
   'crypto exchange',
   'optionshouse pro',
   'optionshouse',

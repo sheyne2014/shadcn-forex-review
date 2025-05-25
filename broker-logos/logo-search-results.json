@@ -1,9 +1,5 @@
 [
-  {
-    "broker": "50K Global",
-    "status": "not_found",
-    "error": "No logos found"
-  },
+
   {
     "broker": "ActivTrades",
     "status": "not_found",
@@ -14,11 +10,7 @@
     "status": "not_found",
     "error": "No logos found"
   },
-  {
-    "broker": "Ally Invest",
-    "status": "not_found",
-    "error": "No logos found"
-  },
+
   {
     "broker": "Alpha Trading",
     "status": "success",

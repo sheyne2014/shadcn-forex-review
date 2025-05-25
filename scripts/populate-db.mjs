@@ -24,7 +24,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 async function setupDatabase() {
   try {
     console.log('Setting up Supabase database...');
-    
+
     // Insert sample brokers
     const { data, error } = await supabase
       .from('brokers')
@@ -55,19 +55,7 @@ async function setupDatabase() {
           supported_assets: ['Forex', 'Commodities', 'Indices'],
           url: 'https://alpha-trading.example.com'
         },
-        {
-          id: 'b3000000-0000-0000-0000-000000000003',
-          name: 'Global FX',
-          description: 'Global forex broker with 24/7 customer support and educational resources.',
-          country: 'Cyprus',
-          regulations: 'CySEC, FSA',
-          min_deposit: 50,
-          trading_fee: 0.5,
-          logo_url: 'https://placehold.co/150x60?text=GlobalFX',
-          rating: 4.8,
-          supported_assets: ['Forex', 'Crypto', 'Metals'],
-          url: 'https://globalfx.example.com'
-        },
+
         {
           id: 'b4000000-0000-0000-0000-000000000004',
           name: 'Trade Pro',
@@ -94,19 +82,7 @@ async function setupDatabase() {
           supported_assets: ['Crypto', 'Tokens', 'NFTs'],
           url: 'https://cryptoex.example.com'
         },
-        {
-          id: 'b6000000-0000-0000-0000-000000000006',
-          name: 'Stock Trader',
-          description: 'Stock trading platform with access to global markets.',
-          country: 'United States',
-          regulations: 'SEC, FINRA',
-          min_deposit: 0,
-          trading_fee: 0.01,
-          logo_url: 'https://placehold.co/150x60?text=StockTrader',
-          rating: 4.3,
-          supported_assets: ['Stocks', 'ETF', 'Options'],
-          url: 'https://stocktrader.example.com'
-        },
+
         {
           id: 'b7000000-0000-0000-0000-000000000007',
           name: 'Commodity Hub',
@@ -176,4 +152,4 @@ async function setupDatabase() {
   }
 }
 
-setupDatabase(); 
+setupDatabase();

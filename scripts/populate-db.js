@@ -18,7 +18,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 async function setupDatabase() {
   try {
     console.log('Setting up Supabase database...');
-    
+
     // 1. Make sure the brokers table exists
     const { error: brokerTableError } = await supabase
       .from('brokers')
@@ -28,11 +28,11 @@ async function setupDatabase() {
     if (brokerTableError) {
       console.error('Error checking brokers table:', brokerTableError);
       console.log('Creating tables...');
-      
+
       // Read and execute database-setup.sql
       const setupSQL = fs.readFileSync(path.resolve(__dirname, '../database-setup.sql'), 'utf8');
       const { error: setupError } = await supabase.rpc('exec_sql', { sql: setupSQL });
-      
+
       if (setupError) {
         console.error('Error setting up database:', setupError);
         return;
@@ -44,19 +44,19 @@ async function setupDatabase() {
 
     // 2. Insert sample data
     console.log('Inserting sample data...');
-    
+
     // Insert sample brokers
-    const { error: insertError } = await supabase.rpc('exec_sql', { 
+    const { error: insertError } = await supabase.rpc('exec_sql', {
       sql: `
         -- Insert sample brokers if they don't exist
         INSERT INTO brokers (id, name, description, country, regulations, min_deposit, trading_fee, logo_url, rating, supported_assets, url)
-        VALUES 
+        VALUES
             ('b1000000-0000-0000-0000-000000000001', 'XYZ Broker', 'A leading forex broker with competitive spreads and advanced trading tools.', 'United Kingdom', 'FCA, ASIC', 100, 0.8, 'https://placehold.co/150x60?text=XYZ', 4.7, ARRAY['Forex', 'Stocks', 'Commodities', 'Crypto'], 'https://xyz-broker.example.com'),
             ('b2000000-0000-0000-0000-000000000002', 'Alpha Trading', 'Multi-asset broker with a focus on forex and commodities trading.', 'Australia', 'ASIC, CySEC', 200, 1.2, 'https://placehold.co/150x60?text=Alpha', 4.2, ARRAY['Forex', 'Commodities', 'Indices'], 'https://alpha-trading.example.com'),
-            ('b3000000-0000-0000-0000-000000000003', 'Global FX', 'Global forex broker with 24/7 customer support and educational resources.', 'Cyprus', 'CySEC, FSA', 50, 0.5, 'https://placehold.co/150x60?text=GlobalFX', 4.8, ARRAY['Forex', 'Crypto', 'Metals'], 'https://globalfx.example.com'),
+
             ('b4000000-0000-0000-0000-000000000004', 'Trade Pro', 'Advanced trading platform for professional traders and institutions.', 'Germany', 'BaFin, FCA', 500, 0.3, 'https://placehold.co/150x60?text=TradePro', 4.6, ARRAY['Forex', 'CFD', 'Options', 'ETF'], 'https://tradepro.example.com'),
             ('b5000000-0000-0000-0000-000000000005', 'Crypto Exchange', 'Specialized in cryptocurrency trading with low fees and high security.', 'Singapore', 'MAS', 100, 0.1, 'https://placehold.co/150x60?text=CryptoEx', 4.5, ARRAY['Crypto', 'Tokens', 'NFTs'], 'https://cryptoex.example.com'),
-            ('b6000000-0000-0000-0000-000000000006', 'Stock Trader', 'Stock trading platform with access to global markets.', 'United States', 'SEC, FINRA', 0, 0.01, 'https://placehold.co/150x60?text=StockTrader', 4.3, ARRAY['Stocks', 'ETF', 'Options'], 'https://stocktrader.example.com'),
+
             ('b7000000-0000-0000-0000-000000000007', 'Commodity Hub', 'Specialized in commodity trading with deep market insights.', 'Switzerland', 'FINMA', 250, 0.9, 'https://placehold.co/150x60?text=CommodityHub', 4.0, ARRAY['Commodities', 'Metals', 'Energy'], 'https://commodityhub.example.com'),
             ('b8000000-0000-0000-0000-000000000008', 'CFD Master', 'CFD trading with high leverage and competitive spreads.', 'United Kingdom', 'FCA', 200, 0.7, 'https://placehold.co/150x60?text=CFDMaster', 4.1, ARRAY['CFD', 'Indices', 'Stocks'], 'https://cfdmaster.example.com'),
             ('b9000000-0000-0000-0000-000000000009', 'Options Trader', 'Options trading platform with advanced analytics.', 'United States', 'SEC, CFTC', 300, 1.0, 'https://placehold.co/150x60?text=OptionsTrader', 4.4, ARRAY['Options', 'Futures', 'Stocks'], 'https://optionstrader.example.com'),
@@ -79,4 +79,4 @@ async function setupDatabase() {
   }
 }
 
-setupDatabase(); 
+setupDatabase();

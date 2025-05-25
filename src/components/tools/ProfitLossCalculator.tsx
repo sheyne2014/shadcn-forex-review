@@ -25,18 +25,17 @@ export function ProfitLossCalculator() {
   const [baseCurrency, setBaseCurrency] = useState("EUR");
   const [quoteCurrency, setQuoteCurrency] = useState("USD");
   const [profitLoss, setProfitLoss] = useState<number | null>(null);
-  
+
   const calculateProfitLoss = () => {
     const direction = positionType === "buy" ? 1 : -1;
     const priceDifference = (exitPrice - entryPrice) * direction;
-    
+
     // Standard calculation for major pairs where quote is the same as account currency
-    const pipsDifference = priceDifference * 10000;
     const profitLossValue = lotSize * 100000 * priceDifference;
-    
+
     setProfitLoss(profitLossValue);
   };
-  
+
   return (
     <Card>
       <CardHeader>
@@ -59,7 +58,7 @@ export function ProfitLossCalculator() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="lot-size-pl">Lot Size</Label>
             <Input
@@ -72,7 +71,7 @@ export function ProfitLossCalculator() {
             />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="entry-price">Entry Price</Label>
@@ -85,7 +84,7 @@ export function ProfitLossCalculator() {
               min="0.0001"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="exit-price">Exit Price</Label>
             <Input
@@ -98,7 +97,7 @@ export function ProfitLossCalculator() {
             />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-3 gap-4">
           <div className="space-y-2">
             <Label htmlFor="base-currency-pl">Base Currency</Label>
@@ -138,7 +137,7 @@ export function ProfitLossCalculator() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="quote-currency-pl">Quote Currency</Label>
             <Select value={quoteCurrency} onValueChange={setQuoteCurrency}>
@@ -172,7 +171,7 @@ export function ProfitLossCalculator() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="account-currency-pl">Account Currency</Label>
             <Select value={accountCurrency} onValueChange={setAccountCurrency}>
@@ -203,24 +202,55 @@ export function ProfitLossCalculator() {
             </Select>
           </div>
         </div>
-        
+
         <Button onClick={calculateProfitLoss} className="w-full mt-4">
           <Calculator className="mr-2 h-4 w-4" />
           Calculate Profit/Loss
         </Button>
-        
+
         {profitLoss !== null && (
-          <div className={`mt-4 p-4 rounded-md text-center ${profitLoss >= 0 ? 'bg-green-100 dark:bg-green-900' : 'bg-red-100 dark:bg-red-900'}`}>
-            <div className="text-sm text-muted-foreground">Profit/Loss</div>
-            <div className={`text-2xl font-bold ${profitLoss >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-              {accountCurrency} {profitLoss.toFixed(2)}
+          <div className="mt-4 space-y-4">
+            <div className={`p-4 rounded-lg text-center border ${
+              profitLoss >= 0
+                ? 'bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800'
+                : 'bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border-red-200 dark:border-red-800'
+            }`}>
+              <div className="text-sm text-muted-foreground">
+                {profitLoss >= 0 ? 'Profit' : 'Loss'}
+              </div>
+              <div className={`text-3xl font-bold ${
+                profitLoss >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+              }`}>
+                {profitLoss >= 0 ? '+' : ''}{accountCurrency} {profitLoss.toFixed(2)}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">
+                for {lotSize} lot{lotSize !== 1 ? 's' : ''} • {Math.abs(entryPrice - exitPrice).toFixed(5)} price movement
+              </div>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">
-              {Math.abs((exitPrice - entryPrice) * 10000).toFixed(1)} pips {profitLoss >= 0 ? 'profit' : 'loss'}
+
+            {/* Additional Analysis */}
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-muted/30 p-3 rounded-lg">
+                <div className="text-muted-foreground">Pips Gained/Lost</div>
+                <div className="font-semibold">
+                  {profitLoss >= 0 ? '+' : ''}{Math.abs((exitPrice - entryPrice) * 10000).toFixed(1)} pips
+                </div>
+              </div>
+              <div className="bg-muted/30 p-3 rounded-lg">
+                <div className="text-muted-foreground">Position Type</div>
+                <div className="font-semibold capitalize">{positionType}</div>
+              </div>
+            </div>
+
+            <div className="text-xs text-muted-foreground bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
+              <strong>Trade Details:</strong> {positionType.toUpperCase()} {baseCurrency}/{quoteCurrency} |
+              <strong> Entry:</strong> {entryPrice} |
+              <strong> Exit:</strong> {exitPrice} |
+              <strong> Size:</strong> {lotSize} lots
             </div>
           </div>
         )}
       </CardContent>
     </Card>
   );
-} 
+}
