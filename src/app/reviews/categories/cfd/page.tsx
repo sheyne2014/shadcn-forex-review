@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 import { ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -107,16 +107,15 @@ export default function CFDReviewsPage() {
             <Card key={broker.slug} className="overflow-hidden">
               <div className="grid md:grid-cols-[1fr_3fr] gap-6">
                 <div className="p-6 bg-muted/30 flex flex-col items-center justify-center border-r">
-                  <div className="w-24 h-24 relative flex-shrink-0 border rounded-md overflow-hidden bg-white p-2 mb-3">
-                    <Image
-                      src={broker.logoUrl}
-                      alt={`${broker.name} logo`}
-                      fill
-                      className="object-contain"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=48&bold=true`;
+                  <div className="mb-3">
+                    <BrokerLogo
+                      broker={{
+                        name: broker.name,
+                        logo_url: broker.logoUrl
                       }}
+                      size="lg"
+                      rounded
+                      withBorder
                     />
                   </div>
                   <StarRating rating={broker.rating} />
