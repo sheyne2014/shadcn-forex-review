@@ -103,7 +103,6 @@
     "typescript": "5.8.3",
     "webpack-bundle-analyzer": "^4.10.2"
   },
-  "type": "module",
   "overrides": {
     "@types/react": "19.1.4",
     "@types/react-dom": "19.1.5"

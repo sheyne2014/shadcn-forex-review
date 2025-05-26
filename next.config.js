@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// Simplified config without bundle analyzer to avoid import issues
-const withBundleAnalyzer = (config) => config;
+// Bundle analyzer setup
+const bundleAnalyzer = require('@next/bundle-analyzer');
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig = {
   // Enhanced React configuration for better performance
@@ -207,6 +210,7 @@ const nextConfig = {
 
   // Webpack optimizations for better performance
   webpack: (config, { dev }) => {
+
     // Production optimizations
     if (!dev) {
       // Enhanced code splitting
@@ -274,4 +278,4 @@ const nextConfig = {
   generateEtags: true,
 };
 
-export default withBundleAnalyzer(nextConfig);
+module.exports = withBundleAnalyzer(nextConfig);

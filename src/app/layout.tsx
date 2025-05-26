@@ -1,3 +1,6 @@
+// Import polyfills first to prevent SSR errors
+import "@/lib/polyfills";
+
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
