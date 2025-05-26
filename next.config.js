@@ -210,7 +210,7 @@ const nextConfig = {
   },
 
   // Webpack optimizations for better performance
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev, isServer, webpack }) => {
     // Fix for SSR issues with browser-only libraries
     if (isServer) {
       // Exclude problematic browser-only packages from server bundle
@@ -242,7 +242,7 @@ const nextConfig = {
     // Define global variables to prevent 'self is not defined' errors
     config.plugins = config.plugins || [];
     config.plugins.push(
-      new config.webpack.DefinePlugin({
+      new webpack.DefinePlugin({
         'typeof window': JSON.stringify(isServer ? 'undefined' : 'object'),
         'typeof self': JSON.stringify(isServer ? 'undefined' : 'object'),
         'typeof global': JSON.stringify('object'),
