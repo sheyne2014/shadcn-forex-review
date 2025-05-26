@@ -16,13 +16,13 @@ import { Star, CheckCircle, AlertTriangle } from "lucide-react";
 // Generate metadata for the broker review page
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "BlackBull Markets Review 2025 | Expert Analysis of Low-Cost ECN Access",
-    description: "Comprehensive BlackBull Markets review. Discover trading fees, platforms, regulation, and key features. Updated for 2025.",
-    keywords: ["BlackBull Markets review", "BlackBull Markets trading fees", "BlackBull Markets platforms", "forex broker review"],
+    title: "BlackBull Markets Review 2025 | Award-Winning ECN Broker | 4.8/5 Rating",
+    description: "BlackBull Markets review: Award-winning New Zealand broker with true ECN execution, 26,000+ instruments, and excellent customer service. FMA regulated with 4.8/5 Trustpilot rating.",
+    keywords: ["BlackBull Markets review", "ECN broker", "New Zealand forex broker", "FMA regulated", "MT4 MT5 trading", "award winning broker"],
     openGraph: {
-      title: "BlackBull Markets Review 2025 | Expert Analysis of Low-Cost ECN Access",
-      description: "Comprehensive BlackBull Markets review. Discover trading fees, platforms, regulation, and key features. Updated for 2025.",
-      url: "https://brokeranalysis.com/broker/blackbull-markets",
+      title: "BlackBull Markets Review 2025 | Award-Winning ECN Broker",
+      description: "Comprehensive review of BlackBull Markets - award-winning New Zealand broker with true ECN execution and excellent customer service.",
+      url: "https://forexbrokerreview.com/broker/blackbull-markets",
       type: "article",
     },
   };
@@ -31,38 +31,50 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function BlackBullMarketsReviewPage() {
   // BlackBull Markets broker data
   const broker = {
-    id: "a2000000-0000-0000-0000-000000000620",
+    id: "blackbull-markets",
     name: "BlackBull Markets",
     logo_url: "/images/brokers/blackbull-markets.png",
-    description: "BlackBull Markets is a New Zealand-based ECN broker offering very low minimum deposits with competitive spreads and copy trading. Key features include FMA, ASIC regulation, $10 min deposit, ECN execution. Particularly suitable for traders seeking affordable ECN access with professional conditions. Updated May 2023.",
-    min_deposit: 10,
+    description: "BlackBull Markets is an award-winning New Zealand broker offering true ECN execution with institutional-grade trading conditions across 26,000+ instruments. Key features include FMA, FSA, ASIC, FCA regulation, $200 min deposit, ECN execution. Particularly suitable for professional traders seeking award-winning ECN execution with excellent customer service. Updated May 2025.",
+    min_deposit: 200,
     max_leverage: "1:500",
-    regulations: "FMA, ASIC",
-    trading_platforms: "MT4, MT5, BlackBull Mobile",
+    regulations: "FMA, FSA, ASIC, FCA",
+    trading_platforms: "MT4, MT5, BlackBull CopyTrader, TradingView",
     spreads_from: "From 0.0 pips",
-    account_types: ["Standard", "Professional"],
+    account_types: ["Standard", "Prime", "Institutional", "Islamic"],
     country: "New Zealand",
     established: "2014",
-    overall_rating: 4.4,
-    pros: ["Very low minimum deposit","ECN execution","Competitive spreads","Copy trading"],
-    cons: ["Limited regulation","New Zealand focus","Limited educational content"],
+    overall_rating: 4.8,
+    pros: ["Award-winning broker","True ECN execution","Excellent customer service","26,000+ instruments"],
+    cons: ["Higher minimum deposit","Limited educational resources","New Zealand time zone support"],
     educational_resources: true,
-    feature: "Low-Cost ECN Access",
-    website_url: "https://www.blackbull.com",
-    published_date: "2023-05-15",
-    last_updated: "2023-05-15",
+    feature: "Award-Winning ECN Execution",
+    website_url: "https://blackbull.com",
+    published_date: "2025-05-26",
+    last_updated: "2025-05-26",
     faqs: [
       {
             "question": "Is BlackBull Markets regulated?",
-            "answer": "BlackBull Markets is regulated by FMA (New Zealand) and ASIC (Australia), ensuring comprehensive regulatory oversight."
+            "answer": "BlackBull Markets is regulated by multiple authorities including FMA (New Zealand), FSA (Seychelles), ASIC (Australia), and FCA (UK), ensuring comprehensive regulatory oversight."
       },
       {
-            "question": "What is the minimum deposit for BlackBull Markets?",
-            "answer": "BlackBull Markets has a minimum deposit of just $10 for ECN trading accounts."
+            "question": "What is the minimum deposit at BlackBull Markets?",
+            "answer": "BlackBull Markets requires a minimum deposit of $200, which is competitive for an ECN broker offering institutional-grade trading conditions."
       },
       {
-            "question": "What makes BlackBull Markets special?",
-            "answer": "BlackBull Markets offers very low minimum deposits with ECN execution and competitive spreads."
+            "question": "What trading platforms does BlackBull Markets offer?",
+            "answer": "BlackBull Markets offers MT4, MT5, BlackBull CopyTrader, and TradingView integration, providing comprehensive trading platform options for all trader types."
+      },
+      {
+            "question": "What spreads does BlackBull Markets offer?",
+            "answer": "BlackBull Markets offers spreads from 0.0 pips on their ECN accounts, with transparent pricing and no dealing desk intervention."
+      },
+      {
+            "question": "Does BlackBull Markets offer copy trading?",
+            "answer": "Yes, BlackBull Markets offers BlackBull CopyTrader, a proprietary copy trading platform that allows you to copy successful traders' strategies."
+      },
+      {
+            "question": "What instruments can I trade with BlackBull Markets?",
+            "answer": "BlackBull Markets offers over 26,000 trading instruments including forex, CFDs, stocks, commodities, indices, and cryptocurrencies."
       }
 ]
   };
@@ -108,7 +120,7 @@ export default async function BlackBullMarketsReviewPage() {
   ];
 
   // Generate headline for the broker
-  const headline = "BlackBull Markets is a trusted ECN broker renowned for its very low minimum deposits and competitive spreads. With professional execution and copy trading features, BlackBull serves traders seeking affordable access to institutional-grade trading conditions.";
+  const headline = "BlackBull Markets is an award-winning ECN broker renowned for its true ECN execution and excellent customer service. With institutional-grade trading conditions across 26,000+ instruments, BlackBull serves professional traders seeking award-winning execution with comprehensive regulatory oversight.";
 
   // Structured data for SEO
   const structuredData = {
@@ -140,8 +152,8 @@ export default async function BlackBullMarketsReviewPage() {
       }
     },
     "headline": headline,
-    "datePublished": "2023-05-15",
-    "dateModified": "2023-05-15"
+    "datePublished": "2025-05-26",
+    "dateModified": "2025-05-26"
   };
 
   return (

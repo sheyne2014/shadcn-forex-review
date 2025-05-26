@@ -203,20 +203,7 @@ export const BROKER_DATABASE = {
     url: "/brokers/kraken",
     categories: ["crypto", "professional", "secure", "low-cost"]
   },
-  "Crypto.com": {
-    id: "crypto-com",
-    name: "Crypto.com",
-    logo: "/images/brokers/crypto-com.png",
-    rating: 4.4,
-    minDeposit: "$1",
-    spread: "0.4% trading fee",
-    platforms: ["Crypto.com App", "Exchange", "DeFi Wallet"],
-    regulation: ["Various Global Licenses"],
-    pros: ["Crypto debit card", "Staking rewards", "Mobile-first design"],
-    cons: ["High withdrawal fees", "Limited advanced tools"],
-    url: "/brokers/crypto-com",
-    categories: ["crypto", "mobile-trading", "beginners"]
-  },
+
   "Gemini": {
     id: "gemini",
     name: "Gemini",
@@ -230,49 +217,63 @@ export const BROKER_DATABASE = {
     cons: ["Limited cryptocurrency selection", "Higher fees"],
     url: "/brokers/gemini",
     categories: ["crypto", "secure", "beginners", "us"]
+  },
+  "BlackBull Markets": {
+    id: "blackbull-markets",
+    name: "BlackBull Markets",
+    logo: "https://logo.clearbit.com/blackbull.com",
+    rating: 4.8,
+    minDeposit: "$200",
+    spread: "From 0.0 pips",
+    platforms: ["MT4", "MT5", "BlackBull CopyTrader", "TradingView"],
+    regulation: ["FMA", "FSA", "ASIC", "FCA"],
+    pros: ["Award-winning broker", "True ECN execution", "Excellent customer service", "26,000+ instruments"],
+    cons: ["Higher minimum deposit", "Limited educational resources", "New Zealand time zone support"],
+    url: "/broker/blackbull-markets",
+    categories: ["forex", "cfd", "stocks", "crypto", "commodities", "professional", "highest-rated", "secure", "low-cost", "international"]
   }
 };
 
 // Category to broker mapping using real broker data
 export const CATEGORY_BROKER_MAPPING = {
   // Asset types
-  forex: ["eToro", "XM", "IC Markets", "Pepperstone", "OANDA", "Interactive Brokers", "Plus500"],
-  crypto: ["Binance", "Coinbase", "Kraken", "Crypto.com", "Gemini", "eToro", "Plus500"],
-  stocks: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro", "Plus500"],
-  cfd: ["Plus500", "Capital.com", "XTB", "eToro", "IC Markets"],
+  forex: ["eToro", "XM", "IC Markets", "Pepperstone", "BlackBull Markets", "OANDA", "Interactive Brokers"],
+  crypto: ["Binance", "Coinbase", "Kraken", "BlackBull Markets", "Gemini", "eToro", "Plus500"],
+  stocks: ["Interactive Brokers", "Saxo Bank", "XTB", "BlackBull Markets", "eToro", "Plus500"],
+  cfd: ["Plus500", "Capital.com", "XTB", "BlackBull Markets", "eToro", "IC Markets"],
   options: ["Interactive Brokers", "Saxo Bank", "XTB"],
   futures: ["Interactive Brokers", "Saxo Bank", "XTB"],
   etf: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro"],
-  commodities: ["Interactive Brokers", "Saxo Bank", "XM", "Pepperstone"],
+  commodities: ["Interactive Brokers", "Saxo Bank", "BlackBull Markets", "XM", "Pepperstone"],
 
   // Experience levels
   beginners: ["eToro", "Plus500", "Capital.com", "XM", "Coinbase"],
-  intermediate: ["XM", "Pepperstone", "OANDA"],
-  professional: ["Interactive Brokers", "Saxo Bank", "IC Markets", "Pepperstone", "XTB", "Binance"],
+  intermediate: ["XM", "Pepperstone", "BlackBull Markets", "OANDA"],
+  professional: ["Interactive Brokers", "Saxo Bank", "IC Markets", "Pepperstone", "BlackBull Markets", "XTB", "Binance"],
 
   // Trading styles
-  "day-trading": ["IC Markets", "Pepperstone", "XM"],
+  "day-trading": ["IC Markets", "Pepperstone", "BlackBull Markets", "XM"],
   "swing-trading": ["eToro", "XM", "Interactive Brokers", "Saxo Bank"],
   "mobile-trading": ["eToro", "Plus500", "Capital.com", "XM", "Coinbase", "Binance"],
 
   // Features
-  "low-cost": ["IC Markets", "Pepperstone", "XTB", "Interactive Brokers", "Saxo Bank", "Binance"],
-  "highest-rated": ["Interactive Brokers", "Saxo Bank", "IC Markets", "Pepperstone", "eToro", "Binance"],
-  secure: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro", "Coinbase", "Kraken"],
+  "low-cost": ["IC Markets", "Pepperstone", "BlackBull Markets", "XTB", "Interactive Brokers", "Saxo Bank"],
+  "highest-rated": ["BlackBull Markets", "Interactive Brokers", "Saxo Bank", "IC Markets", "Pepperstone", "eToro"],
+  secure: ["Interactive Brokers", "Saxo Bank", "BlackBull Markets", "XTB", "eToro", "Coinbase", "Kraken"],
   research: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro", "XM"],
   education: ["eToro", "XM", "Plus500", "Coinbase"],
-  "low-deposit": ["XM", "Capital.com", "Coinbase", "Crypto.com"],
+  "low-deposit": ["XM", "Capital.com", "Coinbase"],
   "customer-service": ["XM", "Interactive Brokers", "Saxo Bank"],
 
   // Regions
   uk: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro", "Plus500"],
   us: ["Interactive Brokers", "XTB", "eToro", "Plus500", "Saxo Bank", "OANDA", "Coinbase", "Gemini"],
   europe: ["Saxo Bank", "XTB", "eToro", "Plus500", "Interactive Brokers"],
-  australia: ["Pepperstone", "IC Markets", "Interactive Brokers", "Saxo Bank"],
+  australia: ["Pepperstone", "IC Markets", "BlackBull Markets", "Interactive Brokers", "Saxo Bank"],
   asia: ["XM", "Saxo Bank", "Interactive Brokers", "Binance"],
   canada: ["Interactive Brokers", "Saxo Bank", "XTB", "eToro", "Plus500", "OANDA"],
   singapore: ["Saxo Bank", "Interactive Brokers", "XM", "Plus500"],
-  international: ["Interactive Brokers", "Saxo Bank", "XM", "Pepperstone", "Binance"]
+  international: ["BlackBull Markets", "Interactive Brokers", "Saxo Bank", "XM", "Pepperstone", "Binance"]
 };
 
 /**
