@@ -219,6 +219,8 @@ const nextConfig = {
         'ws': 'ws',
         'web-vitals': 'web-vitals',
         'canvas': 'canvas',
+        '@supabase/realtime-js': '@supabase/realtime-js',
+        '@supabase/postgrest-js': '@supabase/postgrest-js',
       });
 
       // Provide fallbacks for browser globals
@@ -237,17 +239,36 @@ const nextConfig = {
         'os': false,
         'path': false,
       };
-    }
 
-    // Define global variables to prevent 'self is not defined' errors
-    config.plugins = config.plugins || [];
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'typeof window': JSON.stringify(isServer ? 'undefined' : 'object'),
-        'typeof self': JSON.stringify(isServer ? 'undefined' : 'object'),
-        'typeof global': JSON.stringify('object'),
-      })
-    );
+      // Provide global variables for server-side rendering
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'typeof window': '"undefined"',
+          'typeof self': '"undefined"',
+          'typeof global': '"object"',
+          'self': 'undefined',
+          'window': 'undefined',
+        })
+      );
+
+      // Provide polyfills for missing globals
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          'global': 'global',
+        })
+      );
+    } else {
+      // Client-side configuration
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'typeof window': '"object"',
+          'typeof self': '"object"',
+          'typeof global': '"object"',
+        })
+      );
+    }
 
     // Production optimizations
     if (!dev) {

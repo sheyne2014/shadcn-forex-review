@@ -90,10 +90,15 @@ export async function generateMetadata(
 
 // Function to generate JSON-LD structured data for comparison
 async function generateComparisonJsonLd(comparisonString: string, broker1Name: string, broker2Name: string) {
+  // During build time, skip database calls to avoid SSR issues
+  if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === 'production') {
+    return createFallbackJsonLd(broker1Name, broker2Name, comparisonString);
+  }
+
   // Try to fetch actual broker data if available
   try {
-    if (!supabaseBrokerClient) {
-      // If the client is not available, return the fallback JSON-LD
+    if (!supabaseBrokerClient || typeof window !== 'undefined') {
+      // If the client is not available or we're on client side, return the fallback JSON-LD
       return createFallbackJsonLd(broker1Name, broker2Name, comparisonString);
     }
 
