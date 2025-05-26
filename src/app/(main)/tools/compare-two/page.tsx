@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getBrokers } from "@/lib/supabase/broker-client";
-import { TwoBrokerComparisonTool } from "@/components/tools/TwoBrokerComparisonTool";
+import { TwoBrokerComparisonToolWrapper } from "@/components/tools/TwoBrokerComparisonToolWrapper";
 
 export const metadata: Metadata = {
   title: "Compare Two Brokers Side-by-Side | Trading Platform Comparison Tool",
@@ -63,7 +63,7 @@ export default async function CompareTwoBrokersPage() {
   const { brokers } = await getBrokerComparisonData();
 
   return (
-    <div className="container mx-auto px-4 py-10 md:py-16">
+    <div className="container mx-auto px-4 py-10 md:py-16 compare-two-page">
       {/* Breadcrumb Navigation */}
       <div className="mb-8">
         <nav className="flex items-center space-x-1 text-sm text-muted-foreground">
@@ -169,7 +169,7 @@ export default async function CompareTwoBrokersPage() {
       </div>
 
       {/* Comparison Tool */}
-      <TwoBrokerComparisonTool brokers={brokers} />
+      <TwoBrokerComparisonToolWrapper brokers={brokers} />
 
       {/* Additional Information */}
       <div className="mt-16 space-y-6 text-muted-foreground">

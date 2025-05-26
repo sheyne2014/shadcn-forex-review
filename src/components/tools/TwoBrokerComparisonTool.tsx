@@ -69,9 +69,9 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
     }
   }, [selectedBroker2, brokers]);
 
-  // Sync with URL parameters
+  // Sync with URL parameters (only on client side)
   useEffect(() => {
-    if (searchParams) {
+    if (typeof window !== 'undefined' && searchParams) {
       const broker1 = searchParams.get('broker1');
       const broker2 = searchParams.get('broker2');
 
@@ -84,9 +84,9 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
     }
   }, [searchParams, brokers]);
 
-  // Update URL when selection changes
+  // Update URL when selection changes (only on client side)
   const updateUrl = (broker1Id: string, broker2Id: string) => {
-    if (!router) return;
+    if (typeof window === 'undefined' || !router) return;
 
     const params = new URLSearchParams();
     if (broker1Id) params.set('broker1', broker1Id);
@@ -151,7 +151,7 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" suppressHydrationWarning>
       {/* Broker Selection */}
       <Card>
         <CardHeader>
@@ -165,17 +165,17 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
                 First Broker
               </label>
               <Select value={selectedBroker1} onValueChange={handleBroker1Change}>
-                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground">
+                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground !bg-opacity-100 backdrop-filter-none">
                   <SelectValue placeholder="Choose first broker..." />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-border shadow-lg">
+                <SelectContent className="bg-background border-border shadow-lg !bg-opacity-100 backdrop-filter-none">
                   {brokers
                     .filter(broker => broker.id !== selectedBroker2)
                     .map((broker) => (
                       <SelectItem
                         key={broker.id}
                         value={broker.id}
-                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground !bg-opacity-100"
                       >
                         <div className="flex items-center gap-2">
                           {broker.logo_url && (
@@ -207,17 +207,17 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
                 Second Broker
               </label>
               <Select value={selectedBroker2} onValueChange={handleBroker2Change}>
-                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground">
+                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground !bg-opacity-100 backdrop-filter-none">
                   <SelectValue placeholder="Choose second broker..." />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-border shadow-lg">
+                <SelectContent className="bg-background border-border shadow-lg !bg-opacity-100 backdrop-filter-none">
                   {brokers
                     .filter(broker => broker.id !== selectedBroker1)
                     .map((broker) => (
                       <SelectItem
                         key={broker.id}
                         value={broker.id}
-                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground !bg-opacity-100"
                       >
                         <div className="flex items-center gap-2">
                           {broker.logo_url && (

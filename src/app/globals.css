@@ -236,7 +236,7 @@
 [data-slot="select-content"] [data-radix-select-viewport],
 [data-slot="select-viewport"],
 [data-radix-select-viewport] {
-  background-color: hsl(var(--popover)) !important;
+  background-color: hsl(var(--background)) !important;
 }
 
 /* Fix for dropdown menu content in tools/compare page */
@@ -272,6 +272,24 @@
 
 /* Ensure select triggers have solid background */
 [data-slot="select-trigger"] {
+  background-color: hsl(var(--background)) !important;
+  opacity: 1 !important;
+}
+
+/* Specific fix for two-broker comparison tool dropdowns */
+.compare-two-page [data-slot="select-trigger"],
+.compare-two-page [data-slot="select-content"],
+.compare-two-page [data-radix-select-viewport] {
+  background-color: hsl(var(--background)) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Force solid background for all select components on comparison pages */
+[data-slot="select-content"] [data-radix-select-viewport],
+[data-radix-select-content] [data-radix-select-viewport],
+[data-radix-select-content] {
   background-color: hsl(var(--background)) !important;
   opacity: 1 !important;
 }
