@@ -165,14 +165,18 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
                 First Broker
               </label>
               <Select value={selectedBroker1} onValueChange={handleBroker1Change}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground">
                   <SelectValue placeholder="Choose first broker..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background border-border shadow-lg">
                   {brokers
                     .filter(broker => broker.id !== selectedBroker2)
                     .map((broker) => (
-                      <SelectItem key={broker.id} value={broker.id}>
+                      <SelectItem
+                        key={broker.id}
+                        value={broker.id}
+                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
                         <div className="flex items-center gap-2">
                           {broker.logo_url && (
                             <div className="w-6 h-6 relative">
@@ -203,14 +207,18 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
                 Second Broker
               </label>
               <Select value={selectedBroker2} onValueChange={handleBroker2Change}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground">
                   <SelectValue placeholder="Choose second broker..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background border-border shadow-lg">
                   {brokers
                     .filter(broker => broker.id !== selectedBroker1)
                     .map((broker) => (
-                      <SelectItem key={broker.id} value={broker.id}>
+                      <SelectItem
+                        key={broker.id}
+                        value={broker.id}
+                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
                         <div className="flex items-center gap-2">
                           {broker.logo_url && (
                             <div className="w-6 h-6 relative">

@@ -85,34 +85,87 @@ export default async function CompareTwoBrokersPage() {
           Compare Two Brokers Side-by-Side
         </h1>
         <p className="mt-3 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Select any two trading brokers to compare their features, fees, platforms, and regulations. 
+          Select any two trading brokers to compare their features, fees, platforms, and regulations.
           Make an informed decision with our detailed side-by-side analysis.
         </p>
       </div>
 
-      {/* Instructions */}
-      <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
-        <h2 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
-          How to Use This Comparison Tool
-        </h2>
-        <ul className="space-y-2 text-blue-800 dark:text-blue-200">
-          <li className="flex items-start">
-            <span className="inline-block w-6 h-6 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center mr-3 mt-0.5 shrink-0">1</span>
-            <span>Select your first broker from the dropdown menu below</span>
-          </li>
-          <li className="flex items-start">
-            <span className="inline-block w-6 h-6 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center mr-3 mt-0.5 shrink-0">2</span>
-            <span>Choose a second broker to compare against</span>
-          </li>
-          <li className="flex items-start">
-            <span className="inline-block w-6 h-6 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center mr-3 mt-0.5 shrink-0">3</span>
-            <span>Review the detailed side-by-side comparison of features, fees, and regulations</span>
-          </li>
-          <li className="flex items-start">
-            <span className="inline-block w-6 h-6 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center mr-3 mt-0.5 shrink-0">4</span>
-            <span>Click "Compare Now" to generate a shareable comparison URL</span>
-          </li>
-        </ul>
+      {/* Professional Instructions Section */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-8 mb-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-6 text-center">
+            Professional Broker Comparison Guide
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">
+                Step-by-Step Instructions
+              </h3>
+              <ol className="space-y-3 text-blue-700 dark:text-blue-300">
+                <li className="flex items-start">
+                  <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white text-sm font-semibold rounded-full mr-3 mt-0.5 shrink-0">1</span>
+                  <div>
+                    <strong className="block">Select Primary Broker</strong>
+                    <span className="text-sm">Choose your first broker from our comprehensive database of regulated trading platforms.</span>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white text-sm font-semibold rounded-full mr-3 mt-0.5 shrink-0">2</span>
+                  <div>
+                    <strong className="block">Select Comparison Broker</strong>
+                    <span className="text-sm">Choose a second broker to conduct a comprehensive side-by-side analysis.</span>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white text-sm font-semibold rounded-full mr-3 mt-0.5 shrink-0">3</span>
+                  <div>
+                    <strong className="block">Analyze Key Metrics</strong>
+                    <span className="text-sm">Review detailed comparisons of trading costs, regulatory compliance, platform features, and asset availability.</span>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-600 text-white text-sm font-semibold rounded-full mr-3 mt-0.5 shrink-0">4</span>
+                  <div>
+                    <strong className="block">Generate Detailed Report</strong>
+                    <span className="text-sm">Access comprehensive comparison reports and share findings with colleagues or advisors.</span>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">
+                Key Comparison Factors
+              </h3>
+              <div className="space-y-3 text-blue-700 dark:text-blue-300">
+                <div className="bg-white/50 dark:bg-blue-900/20 rounded-lg p-3">
+                  <strong className="block text-sm font-semibold mb-1">Regulatory Compliance</strong>
+                  <span className="text-xs">Verify licensing from tier-1 financial authorities (FCA, ASIC, CySEC, SEC) and client protection schemes.</span>
+                </div>
+                <div className="bg-white/50 dark:bg-blue-900/20 rounded-lg p-3">
+                  <strong className="block text-sm font-semibold mb-1">Trading Costs Structure</strong>
+                  <span className="text-xs">Compare spreads, commissions, overnight fees, and hidden charges that impact profitability.</span>
+                </div>
+                <div className="bg-white/50 dark:bg-blue-900/20 rounded-lg p-3">
+                  <strong className="block text-sm font-semibold mb-1">Platform Technology</strong>
+                  <span className="text-xs">Evaluate execution speed, order types, charting tools, and mobile application functionality.</span>
+                </div>
+                <div className="bg-white/50 dark:bg-blue-900/20 rounded-lg p-3">
+                  <strong className="block text-sm font-semibold mb-1">Asset Coverage</strong>
+                  <span className="text-xs">Assess available markets including forex, stocks, commodities, indices, and cryptocurrency offerings.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white/60 dark:bg-blue-900/30 rounded-lg p-4 border border-blue-300/50 dark:border-blue-700/50">
+            <p className="text-sm text-blue-800 dark:text-blue-200 text-center">
+              <strong>Professional Recommendation:</strong> Consider your trading style, capital requirements, and risk tolerance when evaluating brokers.
+              Regulatory oversight and fund protection should be primary considerations for institutional and retail traders alike.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Comparison Tool */}
@@ -122,10 +175,10 @@ export default async function CompareTwoBrokersPage() {
       <div className="mt-16 space-y-6 text-muted-foreground">
         <h2 className="text-2xl font-semibold text-foreground">Why Compare Brokers?</h2>
         <p>
-          Choosing the right trading broker is crucial for your trading success. Different brokers offer varying features, 
+          Choosing the right trading broker is crucial for your trading success. Different brokers offer varying features,
           fee structures, and trading conditions that can significantly impact your profitability and trading experience.
         </p>
-        
+
         <h3 className="text-xl font-semibold text-foreground mt-8">Key Factors to Consider</h3>
         <div className="grid md:grid-cols-2 gap-6 mt-4">
           <div>
@@ -165,9 +218,9 @@ export default async function CompareTwoBrokersPage() {
             </ul>
           </div>
         </div>
-        
+
         <p className="mt-6">
-          Use our comparison tool to evaluate these factors side-by-side and make an informed decision 
+          Use our comparison tool to evaluate these factors side-by-side and make an informed decision
           based on your specific trading needs and preferences.
         </p>
       </div>
