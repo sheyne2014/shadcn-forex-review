@@ -18,6 +18,9 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
 
+  // Server components external packages (Next.js 15 recommended approach)
+  serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
+
   // Turbopack configuration (stable in Next.js 15)
   turbopack: {
     rules: {
@@ -209,107 +212,8 @@ const nextConfig = {
     ];
   },
 
-  // Webpack optimizations for better performance
-  webpack: (config, { dev, isServer, webpack }) => {
-    // Fix for SSR issues with browser-only libraries
-    if (isServer) {
-      // Exclude problematic browser-only packages from server bundle
-      config.externals = config.externals || [];
-      config.externals.push({
-        'ws': 'ws',
-        'web-vitals': 'web-vitals',
-        'canvas': 'canvas',
-        '@supabase/realtime-js': '@supabase/realtime-js',
-        '@supabase/postgrest-js': '@supabase/postgrest-js',
-      });
-
-      // Provide fallbacks for browser globals
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        'fs': false,
-        'net': false,
-        'tls': false,
-        'crypto': false,
-        'stream': false,
-        'url': false,
-        'zlib': false,
-        'http': false,
-        'https': false,
-        'assert': false,
-        'os': false,
-        'path': false,
-        'global': false,
-      };
-
-      // Provide global variables for server-side rendering
-      config.plugins = config.plugins || [];
-      config.plugins.push(
-        new webpack.DefinePlugin({
-          'typeof window': '"undefined"',
-          'typeof self': '"undefined"',
-          'typeof global': '"object"',
-          'self': 'undefined',
-          'window': 'undefined',
-          'global': 'globalThis',
-        })
-      );
-    } else {
-      // Client-side configuration
-      config.plugins = config.plugins || [];
-      config.plugins.push(
-        new webpack.DefinePlugin({
-          'typeof window': '"object"',
-          'typeof self': '"object"',
-          'typeof global': '"object"',
-        })
-      );
-    }
-
-    // Production optimizations
-    if (!dev) {
-      // Enhanced code splitting
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        minSize: 20000,
-        maxSize: 244000,
-        cacheGroups: {
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            priority: -10,
-            chunks: 'all',
-          },
-          react: {
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
-            priority: 20,
-            chunks: 'all',
-          },
-          radix: {
-            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-            name: 'radix',
-            priority: 15,
-            chunks: 'all',
-          },
-          lucide: {
-            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-            name: 'lucide',
-            priority: 10,
-            chunks: 'all',
-          },
-        },
-      };
-
-      // Tree shaking optimization
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
-    }
-
+  // Minimal webpack configuration to avoid conflicts
+  webpack: (config) => {
     // SVG optimization
     config.module.rules.push({
       test: /\.svg$/,
