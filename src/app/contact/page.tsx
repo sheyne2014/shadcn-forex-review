@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
-import { siteConfig } from "@/config/site";
+import { LiveChatButton } from "@/components/LiveChatButton";
 
 export const metadata: Metadata = {
   title: "Contact Us | Get in Touch with Our Team",
@@ -45,8 +45,8 @@ export default function ContactPage() {
                   <p className="text-sm text-muted-foreground">
                     For general inquiries and support:
                   </p>
-                  <a 
-                    href="mailto:info@brokeranalysis.com" 
+                  <a
+                    href="mailto:info@brokeranalysis.com"
                     className="text-primary hover:underline block mt-1"
                   >
                     info@brokeranalysis.com
@@ -65,8 +65,8 @@ export default function ContactPage() {
                   <p className="text-sm text-muted-foreground">
                     Available Monday to Friday, 9am - 5pm EST:
                   </p>
-                  <a 
-                    href="tel:+1-234-567-8900" 
+                  <a
+                    href="tel:+1-234-567-8900"
                     className="text-primary hover:underline block mt-1"
                   >
                     +1 (234) 567-8900
@@ -103,16 +103,7 @@ export default function ContactPage() {
                   <p className="text-sm text-muted-foreground mb-3">
                     Chat with our broker experts in real-time:
                   </p>
-                  <Button 
-                    size="sm" 
-                    className="w-full" 
-                    onClick={() => {
-                      // Live chat functionality would go here
-                      alert("Live chat functionality coming soon!");
-                    }}
-                  >
-                    Start Live Chat
-                  </Button>
+                  <LiveChatButton />
                 </CardContent>
               </Card>
             </div>
@@ -165,9 +156,9 @@ export default function ContactPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="message">Your Message</Label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="Please provide details about your inquiry..." 
+                    <Textarea
+                      id="message"
+                      placeholder="Please provide details about your inquiry..."
                       rows={6}
                       required
                     />
@@ -191,4 +182,4 @@ export default function ContactPage() {
       </div>
     </div>
   );
-} 
+}

@@ -15,8 +15,10 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
-    serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
   },
+
+  // Server external packages (Next.js 15.3.2 updated location)
+  serverExternalPackages: ['ws', 'web-vitals', 'canvas'],
 
   // Turbopack configuration (stable in Next.js 15)
   turbopack: {
