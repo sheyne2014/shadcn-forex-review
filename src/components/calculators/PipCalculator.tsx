@@ -73,7 +73,7 @@ export function PipCalculator() {
     if (!currencyPair) return;
     
     // Get the lot size value
-    let actualLotSize = parseFloat(isCustomLot ? customLotSize : lotSize);
+    const actualLotSize = parseFloat(isCustomLot ? customLotSize : lotSize);
     
     // Validate inputs
     if (isNaN(actualLotSize) || actualLotSize <= 0) {

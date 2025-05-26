@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, BookOpen, Youtube, FileText, CalendarDays, CheckCircle, RefreshCw, AlertTriangle } from "lucide-react";
+import { Star, BookOpen, Video, FileText, CalendarDays, CheckCircle, AlertTriangle } from "lucide-react";
+
+interface Broker {
+  name?: string;
+  educational_resources?: string | string[];
+  webinars?: string | string[];
+  trading_guides?: string | string[];
+  [key: string]: unknown;
+}
 
 interface EducationSectionProps {
-  broker: any;
+  broker: Broker;
   educationalResources?: {
     overview: string;
     rating: number;
@@ -246,7 +254,7 @@ export function EducationSection({
                       ) : (
                         <div className="flex flex-col items-center justify-center">
                           {material.type === 'Article' && <FileText className="h-12 w-12 text-muted-foreground" />}
-                          {material.type === 'Video' && <Youtube className="h-12 w-12 text-muted-foreground" />}
+                          {material.type === 'Video' && <Video className="h-12 w-12 text-muted-foreground" />}
                           {material.type === 'eBook' && <BookOpen className="h-12 w-12 text-muted-foreground" />}
                           <span className="mt-2 text-sm text-muted-foreground">{material.type}</span>
                         </div>
@@ -256,7 +264,7 @@ export function EducationSection({
                       <div className="flex items-center">
                         <Badge variant="secondary" className="mb-2">
                           {material.type === 'Article' && <FileText className="h-3 w-3 mr-1" />}
-                          {material.type === 'Video' && <Youtube className="h-3 w-3 mr-1" />}
+                          {material.type === 'Video' && <Video className="h-3 w-3 mr-1" />}
                           {material.type === 'eBook' && <BookOpen className="h-3 w-3 mr-1" />}
                           {material.type}
                         </Badge>
@@ -360,7 +368,7 @@ export function EducationSection({
                         <span>Forex Trading Guide</span>
                       </li>
                       <li className="flex items-center text-sm">
-                        <Youtube className="h-4 w-4 mr-2 text-primary" />
+                        <Video className="h-4 w-4 mr-2 text-primary" />
                         <span>Introduction to Forex Trading (Video Series)</span>
                       </li>
                       <li className="flex items-center text-sm">
@@ -395,7 +403,7 @@ export function EducationSection({
                         <span>Chart Patterns Guide</span>
                       </li>
                       <li className="flex items-center text-sm">
-                        <Youtube className="h-4 w-4 mr-2 text-primary" />
+                        <Video className="h-4 w-4 mr-2 text-primary" />
                         <span>Technical Indicator Masterclass</span>
                       </li>
                     </ul>

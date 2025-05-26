@@ -85,8 +85,8 @@ export function VolatilityCalculator() {
     const marketPrice = optionPrice;
     
     let sigma = 0.2; // Initial guess
-    let tolerance = 0.0001;
-    let maxIterations = 100;
+    const tolerance = 0.0001;
+    const maxIterations = 100;
     
     for (let i = 0; i < maxIterations; i++) {
       const price = blackScholesPrice(S, K, T, r, sigma, optionType);

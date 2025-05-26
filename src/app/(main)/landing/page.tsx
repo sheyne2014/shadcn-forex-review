@@ -184,7 +184,7 @@ async function getSpecifiedBrokers() {
   ];
 
   // Filter brokers by name
-  let filteredBrokers = allBrokers.filter(broker =>
+  const filteredBrokers = allBrokers.filter(broker =>
     targetBrokerNames.some(name =>
       broker.name.toLowerCase().includes(name.toLowerCase())
     )

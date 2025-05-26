@@ -118,7 +118,7 @@ export function getBrokerSeo(broker: any) {
   description += ". Discover if this broker is right for your trading needs.";
 
   // Generate keywords based on broker properties
-  let keywords = [
+  const keywords = [
     `${brokerName} review`,
     `${brokerName} forex`,
     `${brokerName} trading`,

@@ -74,7 +74,7 @@ async function verifyBroker(brokerName: string, includeWarningTerms: boolean = f
     const allResults: any[] = [];
     const warningFlags: string[] = [];
     let regulatoryStatus: string | undefined;
-    let foundRegulators: string[] = [];
+    const foundRegulators: string[] = [];
     
     // Execute all searches in parallel
     const searchPromises = searchQueries.map(async (query) => {

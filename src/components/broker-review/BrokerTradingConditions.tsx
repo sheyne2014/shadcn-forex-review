@@ -22,8 +22,20 @@ import {
   AlertTriangle
 } from "lucide-react";
 
+interface Broker {
+  name?: string;
+  account_types?: string | string[];
+  spreads?: Record<string, string>;
+  min_deposit?: string | number;
+  max_leverage?: string;
+  spreads_from?: string;
+  commission_details?: string;
+  payment_methods?: string | string[];
+  [key: string]: unknown;
+}
+
 interface TradingConditionsProps {
-  broker: any;
+  broker: Broker;
 }
 
 interface AccountComparisonItem {

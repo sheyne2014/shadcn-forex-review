@@ -4,8 +4,15 @@ import { generateDynamicFAQs } from "@/lib/broker-analysis";
 import { HelpCircle, AlertTriangle } from "lucide-react";
 import { useMemo } from "react";
 
+interface Broker {
+  name?: string;
+  min_deposit?: string | number;
+  regulations?: string;
+  [key: string]: unknown;
+}
+
 interface DynamicFAQSectionProps {
-  broker: any;
+  broker: Broker;
   additionalFaqs?: { question: string; answer: string }[];
 }
 

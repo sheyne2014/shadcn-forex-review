@@ -33,8 +33,15 @@ export function BrokerCompareSelector({
   initialBroker1,
   initialBroker2,
 }: BrokerCompareSelectorProps) {
+  // All hooks must be called at the top level
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [selectedBrokers, setSelectedBrokers] = useState<string[]>([
+    initialBroker1,
+    initialBroker2,
+  ]);
+  const [selectedBrokerDetails, setSelectedBrokerDetails] = useState<(BrokerDetails | null)[]>([]);
+  const [loading, setLoading] = useState(false);
 
   // Early return if hooks are not available (SSR context)
   if (!router || !searchParams) {
@@ -48,14 +55,6 @@ export function BrokerCompareSelector({
       </div>
     );
   }
-
-  // Support only 2 brokers for comparison
-  const [selectedBrokers, setSelectedBrokers] = useState<string[]>([
-    initialBroker1,
-    initialBroker2,
-  ]);
-  const [selectedBrokerDetails, setSelectedBrokerDetails] = useState<(BrokerDetails | null)[]>([]);
-  const [loading, setLoading] = useState(false);
 
   // Update URL when selection changes
   const updateUrl = (newBrokers: string[]) => {
@@ -213,9 +212,9 @@ export function BrokerCompareSelector({
                           fill
                           className="object-contain p-1"
                           onError={(e) => {
-                            // @ts-ignore
+                            // @ts-expect-error - Event target type assertion needed for fallback image
                             e.target.onerror = null;
-                            // @ts-ignore
+                            // @ts-expect-error - Event target type assertion needed for fallback image
                             e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(broker.name)}&background=random&color=fff&size=64&bold=true&format=png`;
                           }}
                         />
