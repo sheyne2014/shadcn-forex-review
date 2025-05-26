@@ -1,4 +1,5 @@
-// Import polyfills first to prevent SSR errors
+// Import global polyfill first to prevent SSR errors
+import "@/lib/global-polyfill";
 import "@/lib/polyfills";
 
 import type { Metadata } from "next";

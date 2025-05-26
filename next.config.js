@@ -209,7 +209,55 @@ const nextConfig = {
   },
 
   // Webpack optimizations for better performance
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer }) => {
+    // Fix for Supabase SSR issues
+    if (isServer) {
+      // Add fallbacks for Node.js modules
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        url: false,
+        zlib: false,
+        http: false,
+        https: false,
+        assert: false,
+        os: false,
+        path: false,
+      };
+
+      // Define globals to prevent 'self is not defined' errors
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new (require('webpack')).DefinePlugin({
+          'typeof self': JSON.stringify('object'),
+          'self': 'global',
+          'typeof window': JSON.stringify('undefined'),
+          'typeof document': JSON.stringify('undefined'),
+          'typeof navigator': JSON.stringify('undefined'),
+        })
+      );
+
+      // Add polyfill to the beginning of the bundle
+      const originalEntry = config.entry;
+      config.entry = async () => {
+        const entries = await originalEntry();
+
+        // Add polyfill to all entry points
+        Object.keys(entries).forEach(key => {
+          if (Array.isArray(entries[key])) {
+            entries[key].unshift('./src/lib/global-polyfill.js');
+          } else if (typeof entries[key] === 'string') {
+            entries[key] = ['./src/lib/global-polyfill.js', entries[key]];
+          }
+        });
+
+        return entries;
+      };
+    }
 
     // Production optimizations
     if (!dev) {
