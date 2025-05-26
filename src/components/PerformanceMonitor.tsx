@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { initPerformanceMonitoring, PerformanceOptimizer } from '@/lib/performance';
 
 /**
@@ -14,39 +14,67 @@ import { initPerformanceMonitoring, PerformanceOptimizer } from '@/lib/performan
  * - Automatic optimizations
  */
 export function PerformanceMonitor() {
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    // Initialize performance monitoring (async)
-    initPerformanceMonitoring().catch(error => {
-      console.warn('Performance monitoring initialization failed:', error);
-    });
-
-    // Preload critical resources based on connection quality
-    const connectionQuality = PerformanceOptimizer.getConnectionQuality();
-
-    if (connectionQuality === 'fast' || connectionQuality === 'good') {
-      // Preload critical fonts
-      PerformanceOptimizer.preloadResource('/fonts/figtree-variable.woff2', 'font', 'font/woff2');
-
-      // Preload critical images
-      PerformanceOptimizer.preloadResource('/images/hero-bg.webp', 'image');
-
-      // Prefetch likely next pages
-      PerformanceOptimizer.prefetchPage('/brokers');
-      PerformanceOptimizer.prefetchPage('/tools/compare');
-    }
-
-    // Monitor memory usage in development
-    if (process.env.NODE_ENV === 'development') {
-      const memoryInterval = setInterval(() => {
-        const memory = PerformanceOptimizer.getMemoryUsage();
-        if (memory && memory.used > 100) { // Alert if using more than 100MB
-          console.warn('High memory usage detected:', memory);
-        }
-      }, 30000); // Check every 30 seconds
-
-      return () => clearInterval(memoryInterval);
-    }
+    // Ensure we're on the client side
+    setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
+    // Add a delay to ensure the page is fully loaded
+    const initTimer = setTimeout(async () => {
+      try {
+        // Initialize performance monitoring with better error handling
+        await initPerformanceMonitoring();
+      } catch (error) {
+        console.warn('Performance monitoring initialization failed:', error);
+      }
+
+      try {
+        // Preload critical resources based on connection quality
+        const connectionQuality = PerformanceOptimizer.getConnectionQuality();
+
+        if (connectionQuality === 'fast' || connectionQuality === 'good') {
+          // Preload critical fonts
+          PerformanceOptimizer.preloadResource('/fonts/figtree-variable.woff2', 'font', 'font/woff2');
+
+          // Preload critical images
+          PerformanceOptimizer.preloadResource('/images/hero-bg.webp', 'image');
+
+          // Prefetch likely next pages
+          PerformanceOptimizer.prefetchPage('/brokers');
+          PerformanceOptimizer.prefetchPage('/tools/compare');
+        }
+      } catch (error) {
+        console.warn('Resource preloading failed:', error);
+      }
+
+      // Monitor memory usage in development
+      if (process.env.NODE_ENV === 'development') {
+        try {
+          const memoryInterval = setInterval(() => {
+            try {
+              const memory = PerformanceOptimizer.getMemoryUsage();
+              if (memory && memory.used > 100) { // Alert if using more than 100MB
+                console.warn('High memory usage detected:', memory);
+              }
+            } catch (error) {
+              console.warn('Memory monitoring failed:', error);
+            }
+          }, 30000); // Check every 30 seconds
+
+          return () => clearInterval(memoryInterval);
+        } catch (error) {
+          console.warn('Memory monitoring setup failed:', error);
+        }
+      }
+    }, 1000); // Wait 1 second after component mount
+
+    return () => clearTimeout(initTimer);
+  }, [isClient]);
 
   // This component doesn't render anything
   return null;

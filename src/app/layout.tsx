@@ -13,6 +13,7 @@ import { SkipToContent } from "@/components/SkipToContent";
 import { Toaster } from "@/components/ui/sonner";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
 import { PerformanceMonitor, CriticalResourceLoader, PerformanceConfig } from "@/components/PerformanceMonitor";
+import { PerformanceErrorBoundary } from "@/components/ErrorBoundary";
 
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -159,12 +160,14 @@ export default function Layout({
           storageKey="theme-preference"
         >
           <AuthProvider>
-            <PerformanceMonitor />
-            <CriticalResourceLoader
-              fonts={PerformanceConfig.criticalFonts}
-              images={PerformanceConfig.criticalImages}
-              scripts={PerformanceConfig.criticalScripts}
-            />
+            <PerformanceErrorBoundary>
+              <PerformanceMonitor />
+              <CriticalResourceLoader
+                fonts={PerformanceConfig.criticalFonts}
+                images={PerformanceConfig.criticalImages}
+                scripts={PerformanceConfig.criticalScripts}
+              />
+            </PerformanceErrorBoundary>
             <SkipToContent />
             <NextTopLoader showSpinner={false} />
             <Header />

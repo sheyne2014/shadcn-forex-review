@@ -18,18 +18,65 @@ const PERFORMANCE_THRESHOLDS = {
  * Sends metrics to analytics for SEO performance tracking
  */
 export async function initPerformanceMonitoring() {
-  if (typeof window === 'undefined') return;
+  // Strict client-side check
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    await new Promise(resolve => {
+      document.addEventListener('DOMContentLoaded', resolve, { once: true });
+    });
+  }
 
   try {
-    // Dynamically import web-vitals to avoid SSR issues
-    const { onCLS, onFCP, onLCP, onTTFB, onINP } = await import('web-vitals');
+    // Add a small delay to ensure all modules are loaded
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-    // Monitor Core Web Vitals (including new INP metric)
-    onCLS(sendToAnalytics);
-    onINP(sendToAnalytics);  // New 2025 metric (replaces FID)
-    onFCP(sendToAnalytics);
-    onLCP(sendToAnalytics);
-    onTTFB(sendToAnalytics);
+    // Dynamically import web-vitals with better error handling
+    const webVitalsModule = await import('web-vitals').catch(error => {
+      console.warn('Failed to load web-vitals module:', error);
+      return null;
+    });
+
+    if (!webVitalsModule) {
+      console.warn('Web vitals module not available, skipping performance monitoring');
+      return;
+    }
+
+    const { onCLS, onFCP, onLCP, onTTFB, onINP } = webVitalsModule;
+
+    // Monitor Core Web Vitals with error handling for each metric
+    try {
+      onCLS(sendToAnalytics);
+    } catch (error) {
+      console.warn('Failed to initialize CLS monitoring:', error);
+    }
+
+    try {
+      onINP(sendToAnalytics);  // New 2025 metric (replaces FID)
+    } catch (error) {
+      console.warn('Failed to initialize INP monitoring:', error);
+    }
+
+    try {
+      onFCP(sendToAnalytics);
+    } catch (error) {
+      console.warn('Failed to initialize FCP monitoring:', error);
+    }
+
+    try {
+      onLCP(sendToAnalytics);
+    } catch (error) {
+      console.warn('Failed to initialize LCP monitoring:', error);
+    }
+
+    try {
+      onTTFB(sendToAnalytics);
+    } catch (error) {
+      console.warn('Failed to initialize TTFB monitoring:', error);
+    }
 
     // Monitor custom performance metrics
     monitorPageLoadTime();
@@ -319,26 +366,34 @@ export const PerformanceOptimizer = {
 
   // Preload critical resources
   preloadResource: (href: string, as: string, type?: string) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = href;
-    link.as = as;
-    if (type) link.type = type;
-    if (as === 'font') link.crossOrigin = 'anonymous';
+    try {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = href;
+      link.as = as;
+      if (type) link.type = type;
+      if (as === 'font') link.crossOrigin = 'anonymous';
 
-    document.head.appendChild(link);
+      document.head.appendChild(link);
+    } catch (error) {
+      console.warn('Failed to preload resource:', href, error);
+    }
   },
 
   // Prefetch next page resources
   prefetchPage: (url: string) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = url;
-    document.head.appendChild(link);
+    try {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = url;
+      document.head.appendChild(link);
+    } catch (error) {
+      console.warn('Failed to prefetch page:', url, error);
+    }
   },
 
   // Optimize images with WebP/AVIF support detection
@@ -378,17 +433,22 @@ export const PerformanceOptimizer = {
 
   // Connection quality detection
   getConnectionQuality: () => {
-    if (typeof window === 'undefined') return 'unknown';
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return 'unknown';
 
-    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
-    if (!connection) return 'unknown';
+    try {
+      const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+      if (!connection) return 'unknown';
 
-    const { effectiveType, downlink, rtt } = connection;
+      const { effectiveType, downlink, rtt } = connection;
 
-    if (effectiveType === '4g' && downlink > 10) return 'fast';
-    if (effectiveType === '4g' || (effectiveType === '3g' && downlink > 1.5)) return 'good';
-    if (effectiveType === '3g') return 'slow';
-    return 'very-slow';
+      if (effectiveType === '4g' && downlink > 10) return 'fast';
+      if (effectiveType === '4g' || (effectiveType === '3g' && downlink > 1.5)) return 'good';
+      if (effectiveType === '3g') return 'slow';
+      return 'very-slow';
+    } catch (error) {
+      console.warn('Failed to detect connection quality:', error);
+      return 'unknown';
+    }
   },
 };
 
