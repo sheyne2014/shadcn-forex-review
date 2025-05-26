@@ -28,42 +28,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
-  
+
   // Convert Supabase user to our app's user format
   const formatUser = (user: SupabaseUser | null | undefined): AuthUser | null => {
     if (!user) return null;
-    
+
     return {
       id: user.id,
       email: user.email || '',
     };
   };
-  
+
   // Initialize the auth state
   useEffect(() => {
     const supabase = createClient();
-    
+
     // Get the initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: any } }) => {
       setSession(session);
       setUser(formatUser(session?.user));
       setIsLoading(false);
     });
-    
+
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (_event: any, session: any) => {
         setSession(session);
         setUser(formatUser(session?.user));
         setIsLoading(false);
       }
     );
-    
+
     return () => {
       subscription.unsubscribe();
     };
   }, []);
-  
+
   // Sign in with email and password
   const signIn = async (email: string, password: string) => {
     setIsLoading(true);
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         password,
       });
-      
+
       if (error) throw error;
       router.refresh();
     } catch (error) {
@@ -83,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
     }
   };
-  
+
   // Sign up with email and password
   const signUp = async (email: string, password: string) => {
     setIsLoading(true);
@@ -93,7 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         password,
       });
-      
+
       if (error) throw error;
     } catch (error) {
       console.error('Error signing up:', error);
@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
     }
   };
-  
+
   // Sign out
   const signOut = async () => {
     setIsLoading(true);
@@ -116,7 +116,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
     }
   };
-  
+
   // Reset password
   const resetPassword = async (email: string) => {
     setIsLoading(true);
@@ -125,7 +125,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/reset-password`,
       });
-      
+
       if (error) throw error;
     } catch (error) {
       console.error('Error resetting password:', error);
@@ -154,10 +154,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  
+
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  
+
   return context;
-}; 
+};

@@ -330,7 +330,7 @@ export function getTopBrokerObjectsForCategory(categoryTitle: string): BrokerDat
   const brokerNames = getTopBrokerNamesForCategory(categoryTitle);
 
   return brokerNames
-    .map(name => BROKER_DATABASE[name])
+    .map(name => BROKER_DATABASE[name as keyof typeof BROKER_DATABASE])
     .filter(Boolean) // Remove any undefined brokers
     .slice(0, 3); // Ensure we only return 3 brokers
 }
@@ -344,7 +344,7 @@ export function getBrokersForCategory(categorySlug: string): BrokerData[] {
   const brokerNames = getTopBrokerNamesForCategory(categoryTitle);
 
   return brokerNames
-    .map(name => BROKER_DATABASE[name])
+    .map(name => BROKER_DATABASE[name as keyof typeof BROKER_DATABASE])
     .filter(Boolean); // Remove any undefined brokers
 }
 

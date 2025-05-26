@@ -14,13 +14,14 @@ import { Separator } from "@/components/ui/separator";
 import { getHeadlineForBroker, getBrokerSeo } from "@/lib/seo-utils";
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate metadata for the broker review page
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Get the broker data using the slug from params
-  const broker = await getBrokerBySlug(params.slug);
+  const { slug } = await params;
+  const broker = await getBrokerBySlug(slug);
 
   if (!broker) {
     return {
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: seoData.title,
       description: seoData.description,
       type: "article",
-      url: `https://yoursite.com/brokers/${params.slug}`,
+      url: `https://yoursite.com/brokers/${slug}`,
       images: [
         {
           url: broker.logo_url || "/images/default-broker-logo.png",
@@ -60,7 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BrokerReviewPage({ params }: Props) {
   // Get the broker data using the slug from params
-  const broker = await getBrokerBySlug(params.slug);
+  const { slug } = await params;
+  const broker = await getBrokerBySlug(slug);
 
   // If broker is not found, return 404
   if (!broker) {

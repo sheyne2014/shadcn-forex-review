@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
+    "performance:test": "node --experimental-json-modules scripts/performance-test.js",
+    "performance:analyze": "npm run build:analyze && npm run performance:test",
     "add-blog-post": "node --experimental-json-modules src/scripts/add-blog-post.js",
     "check-blog-post": "node --experimental-json-modules src/scripts/check-blog-post.js",
     "check-blog-content": "node --experimental-json-modules src/scripts/check-blog-content.js",
@@ -23,7 +26,10 @@
     "add-regulated-brokers-blog": "node src/scripts/add-regulated-brokers-blog.js",
     "delete-brokers": "node scripts/delete-brokers.js",
     "find-broker-logos": "node scripts/find-missing-broker-logos.js",
-    "find-broker-logos-advanced": "node scripts/find-broker-logos-advanced.js"
+    "find-broker-logos-advanced": "node scripts/find-broker-logos-advanced.js",
+    "test-blog-automation": "node --experimental-json-modules scripts/test-blog-automation.js",
+    "test-blog-generation": "node --experimental-json-modules scripts/test-blog-automation.js --generate",
+    "generate-blog-post": "curl -X POST http://localhost:3000/api/generate-blog-post -H \"x-secret-token: $BLOG_AUTOMATION_SECRET\" -H \"Content-Type: application/json\""
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
@@ -81,10 +87,12 @@
     "tailwind-merge": "^3.0.2",
     "tw-animate-css": "^1.2.4",
     "vaul": "^1.1.2",
+    "web-vitals": "^5.0.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.1.4",
@@ -92,7 +100,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "type": "module",
   "overrides": {

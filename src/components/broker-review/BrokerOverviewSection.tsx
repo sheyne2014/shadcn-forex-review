@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Star, CheckCircle, AlertTriangle, Info, XCircle, FileText } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, AlertTriangle, XCircle, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 
@@ -22,13 +21,6 @@ interface BrokerOverviewSectionProps {
 
 export function BrokerOverviewSection({
   broker,
-  brokerAnalysis = {
-    overview: "",
-    strengths: "",
-    considerations: "",
-    suitableFor: [],
-    notSuitableFor: []
-  },
   prosCons = {
     pros: [],
     cons: []
@@ -60,30 +52,7 @@ export function BrokerOverviewSection({
     "Higher fees for some instruments"
   ];
 
-  // Default suitable for categories if not provided
-  const suitableFor = brokerAnalysis.suitableFor.length > 0 ? brokerAnalysis.suitableFor : [
-    "Experienced traders",
-    "Traders looking for low fees",
-    "Technical analysis traders"
-  ];
 
-  const notSuitableFor = brokerAnalysis.notSuitableFor.length > 0 ? brokerAnalysis.notSuitableFor : [
-    "Complete beginners",
-    "Traders requiring extensive education",
-    "Traders looking for extensive customer support"
-  ];
-
-  const formatSupportedAssets = (supportedAssets: string | string[] | null | undefined): string[] => {
-    if (!supportedAssets) return [];
-    if (typeof supportedAssets === 'string') {
-      try {
-        return JSON.parse(supportedAssets);
-      } catch {
-        return supportedAssets.split(',').map(asset => asset.trim());
-      }
-    }
-    return supportedAssets;
-  };
 
   return (
     <div className="space-y-8">

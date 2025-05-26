@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function JPMorganSelf-DirectedInvestingReviewPage() {
+export default async function JPMorganSelfDirectedInvestingReviewPage() {
   // JP Morgan Self-Directed Investing broker data
   const broker = {
     id: "f1000000-0000-0000-0000-000000000410",

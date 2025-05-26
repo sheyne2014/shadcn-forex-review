@@ -45,7 +45,7 @@ export interface UnsplashSearchResponse {
  */
 export async function getPhoto(id: string): Promise<UnsplashPhoto> {
   const apiKey = process.env.UNSPLASH_API_KEY;
-  
+
   if (!apiKey) {
     throw new Error('UNSPLASH_API_KEY is not set in environment variables');
   }
@@ -67,12 +67,12 @@ export async function getPhoto(id: string): Promise<UnsplashPhoto> {
  * Search photos
  */
 export async function searchPhotos(
-  query: string, 
-  page: number = 1, 
+  query: string,
+  page: number = 1,
   perPage: number = 10
 ): Promise<UnsplashSearchResponse> {
   const apiKey = process.env.UNSPLASH_API_KEY;
-  
+
   if (!apiKey) {
     throw new Error('UNSPLASH_API_KEY is not set in environment variables');
   }
@@ -104,7 +104,7 @@ export async function getRandomPhotos(
   query?: string
 ): Promise<UnsplashPhoto[]> {
   const apiKey = process.env.UNSPLASH_API_KEY;
-  
+
   if (!apiKey) {
     throw new Error('UNSPLASH_API_KEY is not set in environment variables');
   }
@@ -128,4 +128,29 @@ export async function getRandomPhotos(
   }
 
   return response.json();
-} 
+}
+
+/**
+ * Get a single image URL for a search query
+ */
+export async function getUnsplashImage(query: string): Promise<string> {
+  try {
+    const searchResults = await searchPhotos(query, 1, 1);
+
+    if (searchResults.results.length > 0) {
+      return searchResults.results[0].urls.regular;
+    }
+
+    // Fallback to a random photo if no search results
+    const randomPhotos = await getRandomPhotos(1, query);
+    if (Array.isArray(randomPhotos) && randomPhotos.length > 0) {
+      return randomPhotos[0].urls.regular;
+    }
+
+    throw new Error('No images found');
+  } catch (error) {
+    console.error('Failed to get Unsplash image:', error);
+    // Return a default placeholder image
+    return `https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center`;
+  }
+}

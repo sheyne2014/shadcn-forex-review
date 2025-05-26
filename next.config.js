@@ -1,7 +1,46 @@
 /** @type {import('next').NextConfig} */
+
+// Bundle analyzer setup
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
+  // Enhanced React configuration for better performance
   reactStrictMode: true,
+
+  // Performance optimizations for Core Web Vitals
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+  },
+
+  // Turbopack configuration (stable in Next.js 15)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // Enhanced image optimization for SEO and performance
   images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year cache
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,18 +73,82 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'upload.wikimedia.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
       }
     ],
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+
+  // Enhanced headers for SEO and security
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400',
+          },
+        ],
+      },
+      {
+        source: '/robots.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+
+  // SEO-friendly redirects for better user experience
   async redirects() {
     return [
+      // Blog redirects
       {
         source: '/blog/guides',
         destination: '/blog',
         permanent: false,
       },
+      // Broker category redirects
       {
         source: '/best-brokers/mobile',
         destination: '/best-brokers/mobile-trading',
@@ -56,8 +159,123 @@ const nextConfig = {
         destination: '/best-brokers/ecn',
         permanent: true,
       },
+      {
+        source: '/best-brokers/swing',
+        destination: '/best-brokers/swing-trading',
+        permanent: true,
+      },
+      // Legacy broker page redirects
+      {
+        source: '/broker/:slug*',
+        has: [
+          {
+            type: 'query',
+            key: 'ref',
+          },
+        ],
+        destination: '/broker/:slug',
+        permanent: false,
+      },
+      // Comparison tool redirects
+      {
+        source: '/compare',
+        destination: '/tools/compare',
+        permanent: true,
+      },
+      {
+        source: '/calculator',
+        destination: '/tools/calculator',
+        permanent: true,
+      },
+      {
+        source: '/converter',
+        destination: '/tools/converter',
+        permanent: true,
+      },
     ];
   },
+
+  // Enhanced rewrites for SEO-friendly URLs
+  async rewrites() {
+    return [
+      {
+        source: '/broker-review/:slug',
+        destination: '/broker/:slug',
+      },
+      {
+        source: '/trading-platform/:slug',
+        destination: '/broker/:slug',
+      },
+    ];
+  },
+
+  // Webpack optimizations for better performance
+  webpack: (config, { dev }) => {
+    // Production optimizations
+    if (!dev) {
+      // Enhanced code splitting
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+        cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            priority: -10,
+            chunks: 'all',
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            priority: 20,
+            chunks: 'all',
+          },
+          radix: {
+            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
+            name: 'radix',
+            priority: 15,
+            chunks: 'all',
+          },
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: 'lucide',
+            priority: 10,
+            chunks: 'all',
+          },
+        },
+      };
+
+      // Tree shaking optimization
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+    }
+
+    // SVG optimization
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
+
+  // Output configuration for static export compatibility
+  output: 'standalone',
+
+  // Compression for better performance
+  compress: true,
+
+  // Power optimizations
+  poweredByHeader: false,
+
+  // Generate ETags for better caching
+  generateEtags: true,
 };
 
-export default nextConfig; 
+export default withBundleAnalyzer(nextConfig);

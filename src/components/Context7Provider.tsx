@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
-import { context7, Context7Config, HeadProps } from '@/lib/context7';
+import { context7, Context7Config } from '@/lib/context7';
 import { defaultContext7Config, ensureContext7Config } from '@/lib/context7-config';
 
 interface Context7ProviderProps {

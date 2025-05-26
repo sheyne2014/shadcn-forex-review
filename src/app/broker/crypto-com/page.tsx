@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Crypto.comReviewPage() {
+export default async function CryptoComReviewPage() {
   // Crypto.com broker data
   const broker = {
     id: "be000000-0000-0000-0000-0000000000e0",

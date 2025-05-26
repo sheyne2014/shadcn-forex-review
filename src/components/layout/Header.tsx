@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, User, LogOut, Check, Search, Percent, BarChart3, Globe, BookOpen, Award, DollarSign, Shield, Smartphone, Settings } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+
 
 import { useAuth } from '@/lib/providers/AuthProvider';
 import { cn } from '@/lib/utils';
@@ -179,7 +179,7 @@ export function Header() {
         <div className="hidden md:flex items-center justify-between w-full">
           <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center" aria-label="Go to homepage">
-              <BrokerAnalysisWordLogo className="h-8 w-auto" />
+              <BrokerAnalysisWordLogo className="h-10 w-auto" width={220} height={44} />
             </Link>
           </div>
 
@@ -297,7 +297,7 @@ export function Header() {
         {/* Mobile Layout */}
         <div className="flex md:hidden items-center justify-between w-full">
           <Link href="/" className="flex items-center" aria-label="Go to homepage">
-            <BrokerAnalysisWordLogo className="h-8 w-auto" />
+            <BrokerAnalysisWordLogo className="h-8 w-auto" variant="compact" width={180} height={36} />
           </Link>
 
           <div className="flex items-center gap-2">

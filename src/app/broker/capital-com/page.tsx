@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Capital.comReviewPage() {
+export default async function CapitalComReviewPage() {
   // Capital.com broker data
   const broker = {
     id: "b8000000-0000-0000-0000-000000000080",

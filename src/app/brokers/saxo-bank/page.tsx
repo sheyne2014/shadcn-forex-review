@@ -15,11 +15,11 @@ import { getHeadlineForBroker, getBrokerSeo } from "@/lib/seo-utils";
 import { getBrokerTemplate } from "@/lib/broker-templates";
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate metadata for the broker review page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params: _ }: Props): Promise<Metadata> {
   // Get the broker data using the template
   const brokerTemplate = getBrokerTemplate('saxo-bank');
   const broker = getMockBroker('saxo-bank');
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BrokerReviewPage({ params }: Props) {
+export default async function BrokerReviewPage({ params: _ }: Props) {
   // Get the broker data using the template
   const brokerTemplate = getBrokerTemplate('saxo-bank');
   const broker = getMockBroker('saxo-bank');

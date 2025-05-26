@@ -1,0 +1,2041 @@
+{
+  "timestamp": "2025-05-25T06:01:23.396Z",
+  "brokers": {
+    "total": 15,
+    "validLogos": 15,
+    "missingLogos": 0,
+    "invalidLogos": 0
+  },
+  "components": {
+    "total": 13,
+    "withBrokerLogo": 4,
+    "withLogoProperty": 11
+  },
+  "pages": {
+    "total": 224,
+    "withBrokerContent": 224,
+    "withBrokerLogo": 2
+  },
+  "logoComponent": {
+    "exists": true,
+    "hasErrorHandling": true,
+    "hasFallback": true,
+    "hasDebugLogging": true,
+    "usesNextImage": true,
+    "hasPropsInterface": true
+  },
+  "coverage": 100,
+  "details": {
+    "validLogos": [
+      {
+        "name": "eToro",
+        "id": "etoro",
+        "logo": "/images/brokers/etoro.png",
+        "fileName": "etoro.png",
+        "size": 4,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\etoro.png"
+      },
+      {
+        "name": "XM",
+        "id": "xm",
+        "logo": "/images/brokers/xm.png",
+        "fileName": "xm.png",
+        "size": 6,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\xm.png"
+      },
+      {
+        "name": "IC Markets",
+        "id": "ic-markets",
+        "logo": "/images/brokers/ic-markets.png",
+        "fileName": "ic-markets.png",
+        "size": 2,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\ic-markets.png"
+      },
+      {
+        "name": "Pepperstone",
+        "id": "pepperstone",
+        "logo": "/images/brokers/pepperstone.png",
+        "fileName": "pepperstone.png",
+        "size": 8,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\pepperstone.png"
+      },
+      {
+        "name": "OANDA",
+        "id": "oanda",
+        "logo": "/images/brokers/oanda.png",
+        "fileName": "oanda.png",
+        "size": 7,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\oanda.png"
+      },
+      {
+        "name": "Interactive Brokers",
+        "id": "interactive-brokers",
+        "logo": "/images/brokers/interactive-brokers.png",
+        "fileName": "interactive-brokers.png",
+        "size": 2,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\interactive-brokers.png"
+      },
+      {
+        "name": "Plus500",
+        "id": "plus500",
+        "logo": "/images/brokers/plus500.png",
+        "fileName": "plus500.png",
+        "size": 2,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\plus500.png"
+      },
+      {
+        "name": "Capital.com",
+        "id": "capital-com",
+        "logo": "/images/brokers/capital-com.png",
+        "fileName": "capital-com.png",
+        "size": 7,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\capital-com.png"
+      },
+      {
+        "name": "Saxo Bank",
+        "id": "saxo-bank",
+        "logo": "/images/brokers/saxo-bank.png",
+        "fileName": "saxo-bank.png",
+        "size": 11,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\saxo-bank.png"
+      },
+      {
+        "name": "XTB",
+        "id": "xtb",
+        "logo": "/images/brokers/xtb.png",
+        "fileName": "xtb.png",
+        "size": 10,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\xtb.png"
+      },
+      {
+        "name": "Binance",
+        "id": "binance",
+        "logo": "/images/brokers/binance.png",
+        "fileName": "binance.png",
+        "size": 24,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\binance.png"
+      },
+      {
+        "name": "Coinbase",
+        "id": "coinbase",
+        "logo": "/images/brokers/coinbase.png",
+        "fileName": "coinbase.png",
+        "size": 562,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\coinbase.png"
+      },
+      {
+        "name": "Kraken",
+        "id": "kraken",
+        "logo": "/images/brokers/kraken.png",
+        "fileName": "kraken.png",
+        "size": 7,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\kraken.png"
+      },
+      {
+        "name": "Crypto.com",
+        "id": "crypto-com",
+        "logo": "/images/brokers/crypto-com.png",
+        "fileName": "crypto-com.png",
+        "size": 13,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\crypto-com.png"
+      },
+      {
+        "name": "Gemini",
+        "id": "gemini",
+        "logo": "/images/brokers/gemini.png",
+        "fileName": "gemini.png",
+        "size": 10,
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\public\\images\\brokers\\gemini.png"
+      }
+    ],
+    "missingLogos": [],
+    "invalidLogos": [],
+    "componentUsage": [
+      {
+        "file": "broker-review\\BrokerComparisonWidget.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\broker-review\\BrokerComparisonWidget.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "broker-review\\HeroBrokerSection.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\broker-review\\HeroBrokerSection.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "broker-review\\SimilarBrokersSection.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\broker-review\\SimilarBrokersSection.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "BrokerCardClient.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\BrokerCardClient.tsx",
+        "hasBrokerLogo": true,
+        "hasLogoProperty": true,
+        "hasImageTag": false
+      },
+      {
+        "file": "BrokerCardWrapper.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\BrokerCardWrapper.tsx",
+        "hasBrokerLogo": true,
+        "hasLogoProperty": false,
+        "hasImageTag": false
+      },
+      {
+        "file": "BrokerComparisonTable.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\BrokerComparisonTable.tsx",
+        "hasBrokerLogo": true,
+        "hasLogoProperty": false,
+        "hasImageTag": false
+      },
+      {
+        "file": "brokers\\BrokerCard.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\brokers\\BrokerCard.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "brokers\\BrokerInfoCard.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\brokers\\BrokerInfoCard.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "brokers\\BrokerLogo.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\brokers\\BrokerLogo.tsx",
+        "hasBrokerLogo": true,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "compare\\BrokerCompareDetails.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\compare\\BrokerCompareDetails.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "compare\\BrokerCompareMultiple.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\compare\\BrokerCompareMultiple.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "compare\\BrokerCompareSelector.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\compare\\BrokerCompareSelector.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": true
+      },
+      {
+        "file": "quiz\\BrokerFinderQuiz.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\components\\quiz\\BrokerFinderQuiz.tsx",
+        "hasBrokerLogo": false,
+        "hasLogoProperty": true,
+        "hasImageTag": false
+      }
+    ],
+    "pageUsage": [
+      {
+        "file": "(main)\\faq\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\faq\\page.tsx",
+        "route": "(main)/faq",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\info\\faq\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\info\\faq\\page.tsx",
+        "route": "(main)/info/faq",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\landing\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\landing\\page.tsx",
+        "route": "(main)/landing",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": true
+      },
+      {
+        "file": "(main)\\tools\\calculator\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\tools\\calculator\\page.tsx",
+        "route": "(main)/tools/calculator",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\tools\\compare\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\tools\\compare\\page.tsx",
+        "route": "(main)/tools/compare",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\tools\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\tools\\page.tsx",
+        "route": "(main)/tools",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\tools\\quiz\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\tools\\quiz\\page.tsx",
+        "route": "(main)/tools/quiz",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "(main)\\tools\\scam-check\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\(main)\\tools\\scam-check\\page.tsx",
+        "route": "(main)/tools/scam-check",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "about\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\about\\page.tsx",
+        "route": "about",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "admin\\brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\admin\\brokers\\page.tsx",
+        "route": "admin/brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "admin\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\admin\\page.tsx",
+        "route": "admin",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "auth\\login\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\auth\\login\\page.tsx",
+        "route": "auth/login",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "auth\\signup\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\auth\\signup\\page.tsx",
+        "route": "auth/signup",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\advanced\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\advanced\\page.tsx",
+        "route": "best-brokers/advanced",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\asia\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\asia\\page.tsx",
+        "route": "best-brokers/asia",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\australia\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\australia\\page.tsx",
+        "route": "best-brokers/australia",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\beginner\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\beginner\\page.tsx",
+        "route": "best-brokers/beginner",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\beginners\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\beginners\\page.tsx",
+        "route": "best-brokers/beginners",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\canada\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\canada\\page.tsx",
+        "route": "best-brokers/canada",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\cfd\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\cfd\\page.tsx",
+        "route": "best-brokers/cfd",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\commodities\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\commodities\\page.tsx",
+        "route": "best-brokers/commodities",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\copy-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\copy-trading\\page.tsx",
+        "route": "best-brokers/copy-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\crypto\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\crypto\\page.tsx",
+        "route": "best-brokers/crypto",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\day-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\day-trading\\page.tsx",
+        "route": "best-brokers/day-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\demo-accounts\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\demo-accounts\\page.tsx",
+        "route": "best-brokers/demo-accounts",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\ecn\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\ecn\\page.tsx",
+        "route": "best-brokers/ecn",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\etf\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\etf\\page.tsx",
+        "route": "best-brokers/etf",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\europe\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\europe\\page.tsx",
+        "route": "best-brokers/europe",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\forex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\forex\\page.tsx",
+        "route": "best-brokers/forex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\futures\\page.tsx",
+        "route": "best-brokers/futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\high-leverage\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\high-leverage\\page.tsx",
+        "route": "best-brokers/high-leverage",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\india\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\india\\page.tsx",
+        "route": "best-brokers/india",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\instant-withdrawals\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\instant-withdrawals\\page.tsx",
+        "route": "best-brokers/instant-withdrawals",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\intermediate\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\intermediate\\page.tsx",
+        "route": "best-brokers/intermediate",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\international\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\international\\page.tsx",
+        "route": "best-brokers/international",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\islamic\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\islamic\\page.tsx",
+        "route": "best-brokers/islamic",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\low-cost\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\low-cost\\page.tsx",
+        "route": "best-brokers/low-cost",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\low-spread\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\low-spread\\page.tsx",
+        "route": "best-brokers/low-spread",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\mobile\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\mobile\\page.tsx",
+        "route": "best-brokers/mobile",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\mobile-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\mobile-trading\\page.tsx",
+        "route": "best-brokers/mobile-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\options\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\options\\page.tsx",
+        "route": "best-brokers/options",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\page.tsx",
+        "route": "best-brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": true,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\penny-stocks\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\penny-stocks\\page.tsx",
+        "route": "best-brokers/penny-stocks",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\professional\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\professional\\page.tsx",
+        "route": "best-brokers/professional",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\research\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\research\\page.tsx",
+        "route": "best-brokers/research",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\retirement\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\retirement\\page.tsx",
+        "route": "best-brokers/retirement",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\singapore\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\singapore\\page.tsx",
+        "route": "best-brokers/singapore",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\stocks\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\stocks\\page.tsx",
+        "route": "best-brokers/stocks",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\swing\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\swing\\page.tsx",
+        "route": "best-brokers/swing",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\swing-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\swing-trading\\page.tsx",
+        "route": "best-brokers/swing-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\uk\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\uk\\page.tsx",
+        "route": "best-brokers/uk",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\us\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\us\\page.tsx",
+        "route": "best-brokers/us",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\zero-commission\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\zero-commission\\page.tsx",
+        "route": "best-brokers/zero-commission",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "best-brokers\\[category]\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\best-brokers\\[category]\\page.tsx",
+        "route": "best-brokers/[category]",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": true,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "blog\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\blog\\page.tsx",
+        "route": "blog",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\activtrades\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\activtrades\\page.tsx",
+        "route": "broker/activtrades",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\admirals\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\admirals\\page.tsx",
+        "route": "broker/admirals",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\alpha-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\alpha-trading\\page.tsx",
+        "route": "broker/alpha-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\amarkets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\amarkets\\page.tsx",
+        "route": "broker/amarkets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\amarkets-ecn\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\amarkets-ecn\\page.tsx",
+        "route": "broker/amarkets-ecn",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\atfx\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\atfx\\page.tsx",
+        "route": "broker/atfx",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\avatrade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\avatrade\\page.tsx",
+        "route": "broker/avatrade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\axi\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\axi\\page.tsx",
+        "route": "broker/axi",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\binance\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\binance\\page.tsx",
+        "route": "broker/binance",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bitfinex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bitfinex\\page.tsx",
+        "route": "broker/bitfinex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bitmax\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bitmax\\page.tsx",
+        "route": "broker/bitmax",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bitmex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bitmex\\page.tsx",
+        "route": "broker/bitmex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bitstamp\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bitstamp\\page.tsx",
+        "route": "broker/bitstamp",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bittrex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bittrex\\page.tsx",
+        "route": "broker/bittrex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\blackbull-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\blackbull-markets\\page.tsx",
+        "route": "broker/blackbull-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\bybit\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\bybit\\page.tsx",
+        "route": "broker/bybit",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\cannon-futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\cannon-futures\\page.tsx",
+        "route": "broker/cannon-futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\capital-com\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\capital-com\\page.tsx",
+        "route": "broker/capital-com",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\capitalcom\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\capitalcom\\page.tsx",
+        "route": "broker/capitalcom",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\cfd-master\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\cfd-master\\page.tsx",
+        "route": "broker/cfd-master",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\charles-schwab\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\charles-schwab\\page.tsx",
+        "route": "broker/charles-schwab",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\cmc-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\cmc-markets\\page.tsx",
+        "route": "broker/cmc-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\coinbase\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\coinbase\\page.tsx",
+        "route": "broker/coinbase",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\coincheck\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\coincheck\\page.tsx",
+        "route": "broker/coincheck",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\crypto-com\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\crypto-com\\page.tsx",
+        "route": "broker/crypto-com",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\cryptocom\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\cryptocom\\page.tsx",
+        "route": "broker/cryptocom",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\daniels-futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\daniels-futures\\page.tsx",
+        "route": "broker/daniels-futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\daniels-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\daniels-trading\\page.tsx",
+        "route": "broker/daniels-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\darwinex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\darwinex\\page.tsx",
+        "route": "broker/darwinex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\degiro\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\degiro\\page.tsx",
+        "route": "broker/degiro",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\dorman-trading\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\dorman-trading\\page.tsx",
+        "route": "broker/dorman-trading",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\dough\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\dough\\page.tsx",
+        "route": "broker/dough",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\dough-finance\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\dough-finance\\page.tsx",
+        "route": "broker/dough-finance",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\dukascopy\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\dukascopy\\page.tsx",
+        "route": "broker/dukascopy",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\eightcap\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\eightcap\\page.tsx",
+        "route": "broker/eightcap",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\etoro-usa\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\etoro-usa\\page.tsx",
+        "route": "broker/etoro-usa",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\etrade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\etrade\\page.tsx",
+        "route": "broker/etrade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\exness\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\exness\\page.tsx",
+        "route": "broker/exness",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fbs\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fbs\\page.tsx",
+        "route": "broker/fbs",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fibo-group\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fibo-group\\page.tsx",
+        "route": "broker/fibo-group",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fidelity\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fidelity\\page.tsx",
+        "route": "broker/fidelity",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\firstrade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\firstrade\\page.tsx",
+        "route": "broker/firstrade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\forexcom\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\forexcom\\page.tsx",
+        "route": "broker/forexcom",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fp-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fp-markets\\page.tsx",
+        "route": "broker/fp-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\ftxus\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\ftxus\\page.tsx",
+        "route": "broker/ftxus",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxcm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxcm\\page.tsx",
+        "route": "broker/fxcm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxdd\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxdd\\page.tsx",
+        "route": "broker/fxdd",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxflat\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxflat\\page.tsx",
+        "route": "broker/fxflat",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxflat-pro\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxflat-pro\\page.tsx",
+        "route": "broker/fxflat-pro",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxopen\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxopen\\page.tsx",
+        "route": "broker/fxopen",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxprimus\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxprimus\\page.tsx",
+        "route": "broker/fxprimus",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxpro\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxpro\\page.tsx",
+        "route": "broker/fxpro",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\fxtm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\fxtm\\page.tsx",
+        "route": "broker/fxtm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\gemini\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\gemini\\page.tsx",
+        "route": "broker/gemini",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\generic-futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\generic-futures\\page.tsx",
+        "route": "broker/generic-futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\generic-trade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\generic-trade\\page.tsx",
+        "route": "broker/generic-trade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\go-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\go-markets\\page.tsx",
+        "route": "broker/go-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\hfm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\hfm\\page.tsx",
+        "route": "broker/hfm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\hotforex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\hotforex\\page.tsx",
+        "route": "broker/hotforex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\hotforex-ecn\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\hotforex-ecn\\page.tsx",
+        "route": "broker/hotforex-ecn",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\huobi\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\huobi\\page.tsx",
+        "route": "broker/huobi",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\hycm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\hycm\\page.tsx",
+        "route": "broker/hycm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\ic-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\ic-markets\\page.tsx",
+        "route": "broker/ic-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\icm-capital\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\icm-capital\\page.tsx",
+        "route": "broker/icm-capital",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\ig\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\ig\\page.tsx",
+        "route": "broker/ig",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\ig-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\ig-markets\\page.tsx",
+        "route": "broker/ig-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\interactive-brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\interactive-brokers\\page.tsx",
+        "route": "broker/interactive-brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\jp-morgan-self-directed-investing\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\jp-morgan-self-directed-investing\\page.tsx",
+        "route": "broker/jp-morgan-self-directed-investing",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\just2trade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\just2trade\\page.tsx",
+        "route": "broker/just2trade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\justforex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\justforex\\page.tsx",
+        "route": "broker/justforex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\kotak-securities\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\kotak-securities\\page.tsx",
+        "route": "broker/kotak-securities",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\kraken\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\kraken\\page.tsx",
+        "route": "broker/kraken",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\kucoin\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\kucoin\\page.tsx",
+        "route": "broker/kucoin",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\lightspeed\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\lightspeed\\page.tsx",
+        "route": "broker/lightspeed",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\liquid\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\liquid\\page.tsx",
+        "route": "broker/liquid",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\lmax\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\lmax\\page.tsx",
+        "route": "broker/lmax",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\m1-finance\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\m1-finance\\page.tsx",
+        "route": "broker/m1-finance",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\m4markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\m4markets\\page.tsx",
+        "route": "broker/m4markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\merrill-edge\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\merrill-edge\\page.tsx",
+        "route": "broker/merrill-edge",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\mirae-asset\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\mirae-asset\\page.tsx",
+        "route": "broker/mirae-asset",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\moneta-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\moneta-markets\\page.tsx",
+        "route": "broker/moneta-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\monex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\monex\\page.tsx",
+        "route": "broker/monex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\moomoo\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\moomoo\\page.tsx",
+        "route": "broker/moomoo",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\multibank\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\multibank\\page.tsx",
+        "route": "broker/multibank",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\naga\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\naga\\page.tsx",
+        "route": "broker/naga",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\nbhm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\nbhm\\page.tsx",
+        "route": "broker/nbhm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\nbhm-pro\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\nbhm-pro\\page.tsx",
+        "route": "broker/nbhm-pro",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\ninjatrader\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\ninjatrader\\page.tsx",
+        "route": "broker/ninjatrader",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\nubank\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\nubank\\page.tsx",
+        "route": "broker/nubank",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\oanda\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\oanda\\page.tsx",
+        "route": "broker/oanda",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\octa\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\octa\\page.tsx",
+        "route": "broker/octa",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\okx\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\okx\\page.tsx",
+        "route": "broker/okx",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\optimus-futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\optimus-futures\\page.tsx",
+        "route": "broker/optimus-futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\pepperstone\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\pepperstone\\page.tsx",
+        "route": "broker/pepperstone",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\phemex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\phemex\\page.tsx",
+        "route": "broker/phemex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\plus500\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\plus500\\page.tsx",
+        "route": "broker/plus500",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\qinvest\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\qinvest\\page.tsx",
+        "route": "broker/qinvest",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\rakuten-securities\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\rakuten-securities\\page.tsx",
+        "route": "broker/rakuten-securities",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\robinhood\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\robinhood\\page.tsx",
+        "route": "broker/robinhood",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\roboforex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\roboforex\\page.tsx",
+        "route": "broker/roboforex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\saxo-bank\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\saxo-bank\\page.tsx",
+        "route": "broker/saxo-bank",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\saxoinvestor\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\saxoinvestor\\page.tsx",
+        "route": "broker/saxoinvestor",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\skilling\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\skilling\\page.tsx",
+        "route": "broker/skilling",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\smc-global\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\smc-global\\page.tsx",
+        "route": "broker/smc-global",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\smc-global-pro\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\smc-global-pro\\page.tsx",
+        "route": "broker/smc-global-pro",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\sofi-invest\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\sofi-invest\\page.tsx",
+        "route": "broker/sofi-invest",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\sogotrade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\sogotrade\\page.tsx",
+        "route": "broker/sogotrade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\stake\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\stake\\page.tsx",
+        "route": "broker/stake",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\swissquote\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\swissquote\\page.tsx",
+        "route": "broker/swissquote",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tastyworks\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tastyworks\\page.tsx",
+        "route": "broker/tastyworks",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\td-ameritrade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\td-ameritrade\\page.tsx",
+        "route": "broker/td-ameritrade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\thinkmarkets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\thinkmarkets\\page.tsx",
+        "route": "broker/thinkmarkets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\thinkorswim\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\thinkorswim\\page.tsx",
+        "route": "broker/thinkorswim",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tickmill\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tickmill\\page.tsx",
+        "route": "broker/tickmill",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tradestation\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tradestation\\page.tsx",
+        "route": "broker/tradestation",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tradezero\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tradezero\\page.tsx",
+        "route": "broker/tradezero",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tradier\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tradier\\page.tsx",
+        "route": "broker/tradier",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\trading-212\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\trading-212\\page.tsx",
+        "route": "broker/trading-212",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tradovate\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tradovate\\page.tsx",
+        "route": "broker/tradovate",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\tradovate-futures\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\tradovate-futures\\page.tsx",
+        "route": "broker/tradovate-futures",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\upstox\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\upstox\\page.tsx",
+        "route": "broker/upstox",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\vanguard\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\vanguard\\page.tsx",
+        "route": "broker/vanguard",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\vantage\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\vantage\\page.tsx",
+        "route": "broker/vantage",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\vantagepoint\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\vantagepoint\\page.tsx",
+        "route": "broker/vantagepoint",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\vantagepoint-ai\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\vantagepoint-ai\\page.tsx",
+        "route": "broker/vantagepoint-ai",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\webull\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\webull\\page.tsx",
+        "route": "broker/webull",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\windsor-brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\windsor-brokers\\page.tsx",
+        "route": "broker/windsor-brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\xm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\xm\\page.tsx",
+        "route": "broker/xm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\xtb\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\xtb\\page.tsx",
+        "route": "broker/xtb",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\zacks-trade\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\zacks-trade\\page.tsx",
+        "route": "broker/zacks-trade",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "broker\\[id]\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\[id]\\page.tsx",
+        "route": "broker/[id]",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\axi\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\axi\\page.tsx",
+        "route": "brokers/axi",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\capital-com\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\capital-com\\page.tsx",
+        "route": "brokers/capital-com",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\easymarkets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\easymarkets\\page.tsx",
+        "route": "brokers/easymarkets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\fxtm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\fxtm\\page.tsx",
+        "route": "brokers/fxtm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\ic-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\ic-markets\\page.tsx",
+        "route": "brokers/ic-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\interactive-brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\interactive-brokers\\page.tsx",
+        "route": "brokers/interactive-brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\oanda\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\oanda\\page.tsx",
+        "route": "brokers/oanda",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\page.tsx",
+        "route": "brokers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": true
+      },
+      {
+        "file": "brokers\\pepperstone\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\pepperstone\\page.tsx",
+        "route": "brokers/pepperstone",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\plus500\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\plus500\\page.tsx",
+        "route": "brokers/plus500",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\saxo-bank\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\saxo-bank\\page.tsx",
+        "route": "brokers/saxo-bank",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\startrader\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\startrader\\page.tsx",
+        "route": "brokers/startrader",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\swissquote\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\swissquote\\page.tsx",
+        "route": "brokers/swissquote",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\tmgm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\tmgm\\page.tsx",
+        "route": "brokers/tmgm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\xm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\xm\\page.tsx",
+        "route": "brokers/xm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\xtb\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\xtb\\page.tsx",
+        "route": "brokers/xtb",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "brokers\\[slug]\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\brokers\\[slug]\\page.tsx",
+        "route": "brokers/[slug]",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "careers\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\careers\\page.tsx",
+        "route": "careers",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "compare\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\compare\\page.tsx",
+        "route": "compare",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "compare\\[...brokers]\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\compare\\[...brokers]\\page.tsx",
+        "route": "compare/[...brokers]",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "contact\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\contact\\page.tsx",
+        "route": "contact",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "dashboard\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\dashboard\\page.tsx",
+        "route": "dashboard",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "dashboard\\settings\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\dashboard\\settings\\page.tsx",
+        "route": "dashboard/settings",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "find-my-broker\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\find-my-broker\\page.tsx",
+        "route": "find-my-broker",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "layout.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\layout.tsx",
+        "route": "/",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "methodology\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\methodology\\page.tsx",
+        "route": "methodology",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "press\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\press\\page.tsx",
+        "route": "press",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\categories\\cfd\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\categories\\cfd\\page.tsx",
+        "route": "reviews/categories/cfd",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\categories\\crypto\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\categories\\crypto\\page.tsx",
+        "route": "reviews/categories/crypto",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\categories\\forex\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\categories\\forex\\page.tsx",
+        "route": "reviews/categories/forex",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\categories\\options\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\categories\\options\\page.tsx",
+        "route": "reviews/categories/options",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\categories\\stocks\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\categories\\stocks\\page.tsx",
+        "route": "reviews/categories/stocks",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\fxcm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\fxcm\\page.tsx",
+        "route": "reviews/fxcm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\ic-markets\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\ic-markets\\page.tsx",
+        "route": "reviews/ic-markets",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\page.tsx",
+        "route": "reviews",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\pepperstone\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\pepperstone\\page.tsx",
+        "route": "reviews/pepperstone",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "reviews\\xm\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\reviews\\xm\\page.tsx",
+        "route": "reviews/xm",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      },
+      {
+        "file": "verify\\page.tsx",
+        "path": "C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\verify\\page.tsx",
+        "route": "verify",
+        "hasBrokerContent": true,
+        "hasBrokerLogo": false,
+        "hasBrokerCard": false
+      }
+    ]
+  }
+}

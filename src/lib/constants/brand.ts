@@ -1,22 +1,40 @@
-import { Computer } from "lucide-react";
-
 /**
- * You can edit this object to change the brand information across the app.
+ * Enhanced brand configuration with professional trading platform identity.
+ * Updated to reflect the new BrokerAnalysis brand and modern design system.
  */
 export const brand = {
-  // Icon is now handled in the Logo component directly
-  name: "ForX",
-  description: "Trade smarter with ForX - The ultimate broker comparison platform",
-  email: "support@forx.com",
-  social: {
-    github: "https://github.com/example",
-    twitter: "https://twitter.com/example",
-    linkedin: "https://linkedin.com/example",
-    instagram: "https://instagram.com/example",
-    facebook: "https://facebook.com/example",
-    youtube: "https://youtube.com/example",
-    twitch: "https://twitch.com/example",
+  // Primary brand name - used in Logo component
+  name: "BrokerAnalysis",
+  // Alternative short name for compact displays
+  shortName: "BA",
+  // Accurate tagline reflecting our service
+  tagline: "Trusted Broker Reviews & Comparisons",
+  // Enhanced description reflecting our expertise
+  description: "BrokerAnalysis - Your trusted source for comprehensive broker reviews, detailed comparisons, and expert insights to help you choose the right trading partner.",
+  // Contact information
+  email: "support@brokeranalysis.com",
+  // Professional color scheme
+  colors: {
+    primary: "hsl(var(--primary))",
+    secondary: "hsl(var(--secondary))",
+    accent: "hsl(var(--accent))",
   },
-  // These are the current social media platforms that are supported.
-  // If you want to add more, please request it on the GitHub repo.
+  // Social media presence
+  social: {
+    github: "https://github.com/brokeranalysis",
+    twitter: "https://twitter.com/brokeranalysis",
+    linkedin: "https://linkedin.com/company/brokeranalysis",
+    instagram: "https://instagram.com/brokeranalysis",
+    facebook: "https://facebook.com/brokeranalysis",
+    youtube: "https://youtube.com/brokeranalysis",
+    telegram: "https://t.me/brokeranalysis",
+  },
+  // Key features highlighting our broker review expertise
+  features: [
+    "In-Depth Broker Reviews",
+    "Comprehensive Broker Comparisons",
+    "Expert Analysis & Ratings",
+    "Unbiased Broker Evaluations",
+    "Trusted by Traders Worldwide"
+  ]
 };

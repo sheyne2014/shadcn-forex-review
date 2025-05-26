@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-05-25T05:58:13.545Z",
+  "totalBrokers": 15,
+  "logosFound": 15,
+  "logosMissing": 0,
+  "orphanedFiles": [
+    "capital.com.png",
+    "etoro.webp",
+    "fxcm.png"
+  ],
+  "coverage": 100,
+  "brokers": [
+    {
+      "name": "eToro",
+      "id": "etoro",
+      "logoPath": "/images/brokers/etoro.png",
+      "fileName": "etoro.png",
+      "exists": true
+    },
+    {
+      "name": "XM",
+      "id": "xm",
+      "logoPath": "/images/brokers/xm.png",
+      "fileName": "xm.png",
+      "exists": true
+    },
+    {
+      "name": "IC Markets",
+      "id": "ic-markets",
+      "logoPath": "/images/brokers/ic-markets.png",
+      "fileName": "ic-markets.png",
+      "exists": true
+    },
+    {
+      "name": "Pepperstone",
+      "id": "pepperstone",
+      "logoPath": "/images/brokers/pepperstone.png",
+      "fileName": "pepperstone.png",
+      "exists": true
+    },
+    {
+      "name": "OANDA",
+      "id": "oanda",
+      "logoPath": "/images/brokers/oanda.png",
+      "fileName": "oanda.png",
+      "exists": true
+    },
+    {
+      "name": "Interactive Brokers",
+      "id": "interactive-brokers",
+      "logoPath": "/images/brokers/interactive-brokers.png",
+      "fileName": "interactive-brokers.png",
+      "exists": true
+    },
+    {
+      "name": "Plus500",
+      "id": "plus500",
+      "logoPath": "/images/brokers/plus500.png",
+      "fileName": "plus500.png",
+      "exists": true
+    },
+    {
+      "name": "Capital.com",
+      "id": "capital-com",
+      "logoPath": "/images/brokers/capital-com.png",
+      "fileName": "capital-com.png",
+      "exists": true
+    },
+    {
+      "name": "Saxo Bank",
+      "id": "saxo-bank",
+      "logoPath": "/images/brokers/saxo-bank.png",
+      "fileName": "saxo-bank.png",
+      "exists": true
+    },
+    {
+      "name": "XTB",
+      "id": "xtb",
+      "logoPath": "/images/brokers/xtb.png",
+      "fileName": "xtb.png",
+      "exists": true
+    },
+    {
+      "name": "Binance",
+      "id": "binance",
+      "logoPath": "/images/brokers/binance.png",
+      "fileName": "binance.png",
+      "exists": true
+    },
+    {
+      "name": "Coinbase",
+      "id": "coinbase",
+      "logoPath": "/images/brokers/coinbase.png",
+      "fileName": "coinbase.png",
+      "exists": true
+    },
+    {
+      "name": "Kraken",
+      "id": "kraken",
+      "logoPath": "/images/brokers/kraken.png",
+      "fileName": "kraken.png",
+      "exists": true
+    },
+    {
+      "name": "Crypto.com",
+      "id": "crypto-com",
+      "logoPath": "/images/brokers/crypto-com.png",
+      "fileName": "crypto-com.png",
+      "exists": true
+    },
+    {
+      "name": "Gemini",
+      "id": "gemini",
+      "logoPath": "/images/brokers/gemini.png",
+      "fileName": "gemini.png",
+      "exists": true
+    }
+  ],
+  "missingLogos": [],
+  "recommendations": []
+}

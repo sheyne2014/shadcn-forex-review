@@ -1,29 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowLeftRight,
-  Check,
-  ShieldCheck,
-  Zap,
-  Award,
-  ChevronRight,
-  Star,
-  BarChart3,
-  Search,
-  Clock,
-  Calculator,
-  ThumbsUp,
-  Users,
-  Briefcase,
-  Sparkles,
-  Trophy,
-  BadgeCheck,
-  Lightbulb,
-  Rocket,
-  DollarSign,
-  ChevronLeft
-} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -33,7 +9,6 @@ import {
   CardTitle,
   CardFooter
 } from "@/components/ui/card";
-import { HeroAnimation } from "@/components/HeroAnimation";
 import { Badge } from "@/components/ui/badge";
 import { CallToAction } from "@/components/CallToAction";
 import { FAQAccordion } from "@/components/FAQAccordion";
@@ -542,9 +517,9 @@ export default async function LandingPage() {
               {/* Trader image */}
               <div className="relative w-full h-full overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent z-10"></div>
-                <img 
-                  src="/trader-smartphone/trader-image.jpg" 
-                  alt="Trader analyzing stock charts on smartphone" 
+                <img
+                  src="/trader-smartphone/trader-image.jpg"
+                  alt="Trader analyzing stock charts on smartphone"
                   className="w-full h-full object-cover object-center"
                   style={{ objectPosition: "center 20%" }}
                 />

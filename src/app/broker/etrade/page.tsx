@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function E*TRADEReviewPage() {
+export default async function ETradeReviewPage() {
   // E*TRADE broker data
   const broker = {
     id: "c3000000-0000-0000-0000-000000000130",

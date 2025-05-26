@@ -9,8 +9,15 @@
     "NEXT_PUBLIC_SUPABASE_URL": "https://imndrogsolkrupmuzikd.supabase.co",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltbmRyb2dzb2xrcnVwbXV6aWtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyODY5MjIsImV4cCI6MjA1ODg2MjkyMn0.sk4slxLQmxCpcmTz_6X-yE6ybZ8eaX4ItUasm_ZVH-k",
     "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltbmRyb2dzb2xrcnVwbXV6aWtkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MzI4NjkyMiwiZXhwIjoyMDU4ODYyOTIyfQ.HfXVNcxF7sqOsaclotpm8vR8lF_tGk-WGZvQik-8GRM",
-    "MCP_API_KEY": "3a9b6664-86d8-4fe0-8a95-c55c80e1bcb1"
+    "MCP_API_KEY": "3a9b6664-86d8-4fe0-8a95-c55c80e1bcb1",
+    "BLOG_AUTOMATION_SECRET": "@blog_automation_secret"
   },
+  "crons": [
+    {
+      "path": "/api/generate-blog-post",
+      "schedule": "0 9 * * 1,3,5"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -1,8 +1,8 @@
 "use client";
 
+import React, { memo, useMemo } from "react";
 import Link from "next/link";
 import { ClientSideIcon } from "@/components/ClientSideIcon";
-import { cn } from "@/lib/utils";
 import { TrustScoreBadge } from "@/components/brokers/TrustScoreBadge";
 import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 
@@ -21,12 +21,17 @@ interface BrokerCardClientProps {
   disableLink?: boolean;
 }
 
-export function BrokerCardClient({ broker, idx = 1, disableLink = false }: BrokerCardClientProps) {
-  // Format broker name for URL
-  const brokerPath = `/broker/${broker.name.toLowerCase().replace(/\s+/g, '-')}`;
+export const BrokerCardClient = memo(function BrokerCardClient({ broker, idx = 1, disableLink = false }: BrokerCardClientProps) {
+  // Memoize expensive calculations
+  const brokerPath = useMemo(() =>
+    `/broker/${broker.name.toLowerCase().replace(/\s+/g, '-')}`,
+    [broker.name]
+  );
 
-  // Calculate trust score
-  const trustScore = Math.round(broker.rating * 20); // Convert 5-star rating to /100 score
+  const trustScore = useMemo(() =>
+    Math.round(broker.rating * 20), // Convert 5-star rating to /100 score
+    [broker.rating]
+  );
 
   const cardContent = (
     <div className="flex flex-col p-2 rounded-md bg-card/50 border border-border/40 hover:bg-primary/5 hover:border-primary/20 transition-all relative z-10 cursor-pointer">
@@ -72,4 +77,4 @@ export function BrokerCardClient({ broker, idx = 1, disableLink = false }: Broke
       )}
     </div>
   );
-}
+});

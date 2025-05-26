@@ -25,7 +25,7 @@ export function StakingCalculator() {
   const [tokenPrice, setTokenPrice] = useState(2000);
   const [priceAppreciation, setPriceAppreciation] = useState(10); // annual %
   const [validatorFee, setValidatorFee] = useState(10); // percentage
-  
+
   const [results, setResults] = useState<{
     totalRewards: number;
     totalValue: number;
@@ -64,43 +64,51 @@ export function StakingCalculator() {
     const netAPY = (stakingAPY * (100 - validatorFee)) / 100; // After validator fees
     const compoundingPeriods = compoundFrequencies[compoundFrequency as keyof typeof compoundFrequencies];
     const years = stakingPeriod / 12;
-    
+
     // Calculate compound staking rewards
     const finalTokens = initialTokens * Math.pow(1 + netAPY / 100 / compoundingPeriods, compoundingPeriods * years);
     const tokensEarned = finalTokens - initialTokens;
-    
+
     // Calculate price appreciation
     const finalTokenPrice = tokenPrice * Math.pow(1 + priceAppreciation / 100, years);
     const priceAppreciationGains = initialTokens * (finalTokenPrice - tokenPrice);
-    
+
     // Calculate total value
     const totalValue = finalTokens * finalTokenPrice;
     const totalRewards = tokensEarned * finalTokenPrice;
-    
+
     // Calculate effective APY (including price appreciation)
     const totalReturn = totalValue - stakingAmount;
     const effectiveAPY = (Math.pow(totalValue / stakingAmount, 1 / years) - 1) * 100;
-    
+
     // Monthly breakdown
-    const monthlyBreakdown = [];
+    const monthlyBreakdown: Array<{
+      month: number;
+      rewards: number;
+      totalTokens: number;
+      value: number;
+    }> = [];
     let currentTokens = initialTokens;
-    
+    let previousTokens = initialTokens;
+
     for (let month = 1; month <= stakingPeriod; month++) {
       const monthlyGrowthRate = netAPY / 100 / 12;
       currentTokens *= (1 + monthlyGrowthRate);
-      const monthRewards = currentTokens - initialTokens - (monthlyBreakdown.reduce((sum, m) => sum + m.rewards, 0) / tokenPrice);
+      const monthRewards: number = currentTokens - previousTokens;
       const currentPrice = tokenPrice * Math.pow(1 + priceAppreciation / 100, month / 12);
-      
+
       monthlyBreakdown.push({
         month,
         rewards: monthRewards * currentPrice,
         totalTokens: currentTokens,
         value: currentTokens * currentPrice,
       });
+
+      previousTokens = currentTokens;
     }
-    
+
     const monthlyRewards = totalRewards / stakingPeriod;
-    
+
     setResults({
       totalRewards,
       totalValue,
@@ -127,7 +135,7 @@ export function StakingCalculator() {
 
   const exportResults = () => {
     if (!results) return;
-    
+
     const crypto = cryptocurrencies[cryptocurrency as keyof typeof cryptocurrencies];
     const data = {
       stakingDetails: {
@@ -185,7 +193,7 @@ export function StakingCalculator() {
               step="100"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="cryptocurrency">Cryptocurrency</Label>
             <Select value={cryptocurrency} onValueChange={setCryptocurrency}>
@@ -216,7 +224,7 @@ export function StakingCalculator() {
               step="0.1"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="staking-period">Staking Period (Months)</Label>
             <Input
@@ -228,7 +236,7 @@ export function StakingCalculator() {
               max="60"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="compound-frequency">Compound Frequency</Label>
             <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
@@ -258,7 +266,7 @@ export function StakingCalculator() {
               step="0.01"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="price-appreciation">Annual Price Appreciation (%)</Label>
             <Input
@@ -271,7 +279,7 @@ export function StakingCalculator() {
               step="1"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="validator-fee">Validator Fee (%)</Label>
             <Input
@@ -294,7 +302,7 @@ export function StakingCalculator() {
         {results && (
           <div className="space-y-6">
             <Separator />
-            
+
             {/* Summary Results */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
@@ -303,21 +311,21 @@ export function StakingCalculator() {
                   ${results.totalRewards.toLocaleString()}
                 </div>
               </div>
-              
+
               <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
                 <div className="text-sm text-muted-foreground">Total Value</div>
                 <div className="text-xl font-bold text-green-600 dark:text-green-400">
                   ${results.totalValue.toLocaleString()}
                 </div>
               </div>
-              
+
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
                 <div className="text-sm text-muted-foreground">Effective APY</div>
                 <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
                   {results.effectiveAPY.toFixed(2)}%
                 </div>
               </div>
-              
+
               <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
                 <div className="text-sm text-muted-foreground">Monthly Rewards</div>
                 <div className="text-xl font-bold text-orange-600 dark:text-orange-400">
@@ -382,7 +390,7 @@ export function StakingCalculator() {
       </CardContent>
       <CardFooter className="text-xs text-muted-foreground border-t pt-4">
         <p>
-          Note: Staking rewards and APY rates can vary significantly based on network conditions, 
+          Note: Staking rewards and APY rates can vary significantly based on network conditions,
           validator performance, and market factors. This calculator provides estimates for educational purposes only.
         </p>
       </CardFooter>

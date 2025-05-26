@@ -12,6 +12,7 @@ import { SkipToContent } from "@/components/SkipToContent";
 
 import { Toaster } from "@/components/ui/sonner";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
+import { PerformanceMonitor, CriticalResourceLoader, PerformanceConfig } from "@/components/PerformanceMonitor";
 
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -130,7 +131,7 @@ export default function Layout({
       <head>
         {/* Mobile viewport optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        
+
         {/* Preload critical resources */}
         {/* Font preloading handled by Next.js */}
         <link
@@ -143,22 +144,27 @@ export default function Layout({
           href="https://ui-avatars.com"
           crossOrigin="anonymous"
         />
-        <link 
-          rel="preconnect" 
-          href="https://fonts.googleapis.com" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`${figtree.className} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem={true}
           disableTransitionOnChange
           storageKey="theme-preference"
         >
           <AuthProvider>
+            <PerformanceMonitor />
+            <CriticalResourceLoader
+              fonts={PerformanceConfig.criticalFonts}
+              images={PerformanceConfig.criticalImages}
+              scripts={PerformanceConfig.criticalScripts}
+            />
             <SkipToContent />
             <NextTopLoader showSpinner={false} />
             <Header />

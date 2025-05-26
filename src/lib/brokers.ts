@@ -1,5 +1,23 @@
 import { db } from "@/lib/database";
 
+// Performance cache for broker data
+const brokerCache = new Map<string, { data: any; timestamp: number; ttl: number }>();
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+// Cache utilities
+function getCachedData<T>(key: string): T | null {
+  const cached = brokerCache.get(key);
+  if (cached && Date.now() - cached.timestamp < cached.ttl) {
+    return cached.data;
+  }
+  brokerCache.delete(key);
+  return null;
+}
+
+function setCachedData<T>(key: string, data: T, ttl: number = CACHE_TTL): void {
+  brokerCache.set(key, { data, timestamp: Date.now(), ttl });
+}
+
 // This is a placeholder for the broker type. You might want to create a proper type file.
 export interface BrokerDetails {
   id: string;
@@ -103,6 +121,13 @@ export function getMockBroker(slug: string): BrokerDetails {
  */
 export async function getBrokerBySlug(slug: string): Promise<BrokerDetails | null> {
   try {
+    // Check cache first
+    const cacheKey = `broker_slug_${slug}`;
+    const cachedBroker = getCachedData<BrokerDetails>(cacheKey);
+    if (cachedBroker) {
+      return cachedBroker;
+    }
+
     // Try to get broker from database first
     const allBrokers = await db.brokers.getAll();
 
@@ -128,7 +153,7 @@ export async function getBrokerBySlug(slug: string): Promise<BrokerDetails | nul
 
     if (matchedBroker) {
       // Convert database broker to BrokerDetails format
-      return {
+      const brokerDetails = {
         id: matchedBroker.id,
         name: matchedBroker.name,
         slug: slug,
@@ -177,6 +202,10 @@ export async function getBrokerBySlug(slug: string): Promise<BrokerDetails | nul
         spread_from: "0.6 pips",
         year_founded: 2010
       } as BrokerDetails;
+
+      // Cache the result
+      setCachedData(cacheKey, brokerDetails);
+      return brokerDetails;
     }
 
     // If no broker found in database, fall back to mock data
@@ -196,7 +225,7 @@ export async function getBrokerBySlug(slug: string): Promise<BrokerDetails | nul
  * @param limit - Number of similar brokers to return (default: 3)
  * @returns Array of similar brokers or empty array if none found
  */
-export async function getSimilarBrokers(brokerId: string, limit = 3): Promise<BrokerDetails[]> {
+export async function getSimilarBrokers(_brokerId: string, _limit = 3): Promise<BrokerDetails[]> {
   try {
     // For now, return mock data
     return [
@@ -398,7 +427,7 @@ export async function getAllBrokers(page = 1, limit = 10) {
  * @param limit - Number of featured brokers to return (default: 5)
  * @returns Array of featured brokers or empty array if none found
  */
-export async function getFeaturedBrokers(limit = 5): Promise<BrokerDetails[]> {
+export async function getFeaturedBrokers(_limit = 5): Promise<BrokerDetails[]> {
   try {
     // For now, return mock data
     return [getMockBroker("example-broker")];

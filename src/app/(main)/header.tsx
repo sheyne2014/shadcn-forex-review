@@ -136,7 +136,7 @@ export function Header() {
       <div className="container mx-auto py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Logo />
+            <Logo showTagline={true} />
           </Link>
 
           <NavigationMenu>

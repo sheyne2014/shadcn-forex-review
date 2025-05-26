@@ -14,7 +14,6 @@ import {
   CheckCircle,
   XCircle,
   LineChart,
-  BarChart,
   CandlestickChart,
   Timer,
   Code,
@@ -25,7 +24,7 @@ import {
   generatePersonalizedRecommendation,
   type BrokerAnalysisResult
 } from "@/lib/broker-analysis";
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 
 interface BrokerAnalysisWidgetProps {
   broker: any;
@@ -37,7 +36,7 @@ interface BrokerAnalysisWidgetProps {
   };
 }
 
-export function BrokerAnalysisWidget({
+export const BrokerAnalysisWidget = memo(function BrokerAnalysisWidget({
   broker,
   userPreferences
 }: BrokerAnalysisWidgetProps) {
@@ -479,4 +478,4 @@ export function BrokerAnalysisWidget({
       </CardContent>
     </Card>
   );
-}
+});
