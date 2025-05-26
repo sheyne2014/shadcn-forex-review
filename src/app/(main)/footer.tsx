@@ -1,15 +1,23 @@
 "use client";
 
+/* eslint-disable import/named */
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import {
+  // eslint-disable-next-line import/named
   Github,
+  // eslint-disable-next-line import/named
   Twitter,
+  // eslint-disable-next-line import/named
   Linkedin,
+  // eslint-disable-next-line import/named
   Instagram,
+  // eslint-disable-next-line import/named
   Facebook,
+  // eslint-disable-next-line import/named
   Youtube,
+  // eslint-disable-next-line import/named
   Twitch,
 } from "lucide-react";
 
@@ -56,7 +64,6 @@ const socialIcons = {
 
 export function Footer() {
   const router = useRouter();
-  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
 
   const handleClick = (

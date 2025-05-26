@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Bot, X, Minimize2, Maximize2, MessagesSquare, Sparkles, ExternalLink, Plus, Search, TrendingUp, Calculator, Users, Shield } from "lucide-react";
+import { Send, X, Minimize2, Maximize2, ExternalLink, Plus, Search, TrendingUp, Calculator, Users, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -12,13 +12,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Avatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import ReactMarkdown from 'react-markdown';
-import { RokuAvatar, RokuLogo, RokuFAB } from "@/components/ui/roku-avatar";
+import { RokuAvatar, RokuFAB } from "@/components/ui/roku-avatar";
 
 // Define message types
 interface ChatMessage {
@@ -40,7 +38,7 @@ interface SuggestedQuery {
 // Enhanced suggested queries with professional icons
 const SUGGESTED_QUERIES: SuggestedQuery[] = [
   {
-    text: "What's the best broker for beginners?",
+    text: "What&rsquo;s the best broker for beginners?",
     icon: <Users className="h-4 w-4 text-blue-500" />
   },
   {
@@ -93,7 +91,6 @@ export function RokuAI() {
   const [thinkingDots, setThinkingDots] = useState(1);
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [viewMode, setViewMode] = useState<"chat" | "discover">("chat");
-  const theme = "dark"; // Hardcoded dark theme
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);

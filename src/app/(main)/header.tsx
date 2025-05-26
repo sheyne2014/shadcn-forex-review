@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { User } from "@supabase/supabase-js";
 
 import { LogOutIcon, LayoutDashboardIcon } from "lucide-react";
 
@@ -27,7 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 
-const AuthNav = ({ authUser }: { authUser: any }) => {
+const AuthNav = ({ authUser }: { authUser: User | undefined }) => {
   const router = useRouter();
   const supabase = createClient();
 

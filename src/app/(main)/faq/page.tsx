@@ -164,10 +164,10 @@ export default function FAQPage() {
       <div className="mt-12 pt-8 border-t text-center">
         <h3 className="text-xl font-semibold mb-4">Still have questions?</h3>
         <p className="text-muted-foreground mb-6">
-          If you couldn't find the answer you were looking for, feel free to contact our support team.
+          If you couldn&rsquo;t find the answer you were looking for, feel free to contact our support team.
         </p>
-        <Link 
-          href="/contact" 
+        <Link
+          href="/contact"
           className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground h-10 px-4 py-2 text-sm font-medium transition-colors hover:bg-primary/90"
         >
           Contact Support
@@ -175,4 +175,4 @@ export default function FAQPage() {
       </div>
     </div>
   );
-} 
+}
