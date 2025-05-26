@@ -21,7 +21,7 @@ interface PerformantImageProps extends Omit<ImageProps, 'onError' | 'alt'> {
 
 /**
  * PerformantImage - Ultra-optimized image component for Core Web Vitals
- *
+ * 
  * Features:
  * - Intersection Observer for lazy loading
  * - WebP/AVIF format optimization
@@ -134,7 +134,7 @@ export function PerformantImage({
 
   // Placeholder component
   const Placeholder = () => (
-    <div
+    <div 
       className={cn(
         "absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900",
         "animate-pulse flex items-center justify-center",
@@ -231,29 +231,29 @@ export function useOptimizedImage(src: string, options?: {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!src || typeof window === 'undefined') return;
+    if (!src) return;
 
     const img = new window.Image();
-
+    
     img.onload = () => {
       setIsLoaded(true);
       setError(null);
     };
-
+    
     img.onerror = () => {
       setError('Failed to load image');
       setIsLoaded(false);
     };
 
     // Add quality parameter if specified
-    const optimizedSrc = options?.quality
+    const optimizedSrc = options?.quality 
       ? `${src}?q=${options.quality}`
       : src;
 
     img.src = optimizedSrc;
 
     // Preload if requested
-    if (options?.preload && typeof document !== 'undefined') {
+    if (options?.preload) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';

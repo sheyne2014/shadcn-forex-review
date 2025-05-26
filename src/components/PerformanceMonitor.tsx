@@ -64,8 +64,6 @@ interface ResourcePreloaderProps {
 
 export function ResourcePreloader({ resources }: ResourcePreloaderProps) {
   useEffect(() => {
-    if (typeof document === 'undefined') return;
-
     resources.forEach(({ href, as, type, crossOrigin }) => {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -86,8 +84,6 @@ export function ResourcePreloader({ resources }: ResourcePreloaderProps) {
  */
 export function ConnectionOptimizer() {
   useEffect(() => {
-    if (typeof document === 'undefined') return;
-
     const connectionQuality = PerformanceOptimizer.getConnectionQuality();
 
     // Add connection quality class to body for CSS optimizations
@@ -163,14 +159,12 @@ export function PerformanceReporter() {
     };
 
     // Report after page is fully loaded
-    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
-      if (document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
+      setTimeout(reportMetrics, 1000);
+    } else {
+      window.addEventListener('load', () => {
         setTimeout(reportMetrics, 1000);
-      } else {
-        window.addEventListener('load', () => {
-          setTimeout(reportMetrics, 1000);
-        });
-      }
+      });
     }
   }, []);
 
