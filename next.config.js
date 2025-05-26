@@ -238,6 +238,7 @@ const nextConfig = {
         'assert': false,
         'os': false,
         'path': false,
+        'global': false,
       };
 
       // Provide global variables for server-side rendering
@@ -249,13 +250,7 @@ const nextConfig = {
           'typeof global': '"object"',
           'self': 'undefined',
           'window': 'undefined',
-        })
-      );
-
-      // Provide polyfills for missing globals
-      config.plugins.push(
-        new webpack.ProvidePlugin({
-          'global': 'global',
+          'global': 'globalThis',
         })
       );
     } else {
