@@ -210,7 +210,45 @@ const nextConfig = {
   },
 
   // Webpack optimizations for better performance
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer }) => {
+    // Fix for SSR issues with browser-only libraries
+    if (isServer) {
+      // Exclude problematic browser-only packages from server bundle
+      config.externals = config.externals || [];
+      config.externals.push({
+        'ws': 'ws',
+        'web-vitals': 'web-vitals',
+        'canvas': 'canvas',
+      });
+
+      // Provide fallbacks for browser globals
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'fs': false,
+        'net': false,
+        'tls': false,
+        'crypto': false,
+        'stream': false,
+        'url': false,
+        'zlib': false,
+        'http': false,
+        'https': false,
+        'assert': false,
+        'os': false,
+        'path': false,
+      };
+    }
+
+    // Define global variables to prevent 'self is not defined' errors
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new config.webpack.DefinePlugin({
+        'typeof window': JSON.stringify(isServer ? 'undefined' : 'object'),
+        'typeof self': JSON.stringify(isServer ? 'undefined' : 'object'),
+        'typeof global': JSON.stringify('object'),
+      })
+    );
+
     // Production optimizations
     if (!dev) {
       // Enhanced code splitting
