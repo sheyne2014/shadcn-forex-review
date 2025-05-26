@@ -392,12 +392,5 @@ export const PerformanceOptimizer = {
   },
 };
 
-// Global performance monitoring initialization
-if (typeof window !== 'undefined') {
-  // Initialize on DOM content loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPerformanceMonitoring);
-  } else {
-    initPerformanceMonitoring();
-  }
-}
+// Note: Performance monitoring should be initialized manually in components
+// to avoid SSR issues. Use initPerformanceMonitoring() in useEffect hooks.
