@@ -3,8 +3,6 @@
  * Enhanced for 2025 SEO requirements and user experience
  */
 
-import { onCLS, onFCP, onLCP, onTTFB, onINP } from 'web-vitals';
-
 // Performance thresholds based on Google's Core Web Vitals (2025 standards)
 const PERFORMANCE_THRESHOLDS = {
   LCP: { good: 2500, needsImprovement: 4000 }, // Largest Contentful Paint
@@ -19,20 +17,27 @@ const PERFORMANCE_THRESHOLDS = {
  * Initialize Core Web Vitals monitoring
  * Sends metrics to analytics for SEO performance tracking
  */
-export function initPerformanceMonitoring() {
+export async function initPerformanceMonitoring() {
   if (typeof window === 'undefined') return;
 
-  // Monitor Core Web Vitals (including new INP metric)
-  onCLS(sendToAnalytics);
-  onINP(sendToAnalytics);  // New 2025 metric (replaces FID)
-  onFCP(sendToAnalytics);
-  onLCP(sendToAnalytics);
-  onTTFB(sendToAnalytics);
+  try {
+    // Dynamically import web-vitals to avoid SSR issues
+    const { onCLS, onFCP, onLCP, onTTFB, onINP } = await import('web-vitals');
 
-  // Monitor custom performance metrics
-  monitorPageLoadTime();
-  monitorResourceLoading();
-  monitorNavigationTiming();
+    // Monitor Core Web Vitals (including new INP metric)
+    onCLS(sendToAnalytics);
+    onINP(sendToAnalytics);  // New 2025 metric (replaces FID)
+    onFCP(sendToAnalytics);
+    onLCP(sendToAnalytics);
+    onTTFB(sendToAnalytics);
+
+    // Monitor custom performance metrics
+    monitorPageLoadTime();
+    monitorResourceLoading();
+    monitorNavigationTiming();
+  } catch (error) {
+    console.warn('Failed to initialize performance monitoring:', error);
+  }
 }
 
 /**

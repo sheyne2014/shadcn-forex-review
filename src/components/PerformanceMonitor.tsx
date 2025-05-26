@@ -15,8 +15,10 @@ import { initPerformanceMonitoring, PerformanceOptimizer } from '@/lib/performan
  */
 export function PerformanceMonitor() {
   useEffect(() => {
-    // Initialize performance monitoring
-    initPerformanceMonitoring();
+    // Initialize performance monitoring (async)
+    initPerformanceMonitoring().catch(error => {
+      console.warn('Performance monitoring initialization failed:', error);
+    });
 
     // Preload critical resources based on connection quality
     const connectionQuality = PerformanceOptimizer.getConnectionQuality();
@@ -64,6 +66,8 @@ interface ResourcePreloaderProps {
 
 export function ResourcePreloader({ resources }: ResourcePreloaderProps) {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     resources.forEach(({ href, as, type, crossOrigin }) => {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -84,6 +88,8 @@ export function ResourcePreloader({ resources }: ResourcePreloaderProps) {
  */
 export function ConnectionOptimizer() {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const connectionQuality = PerformanceOptimizer.getConnectionQuality();
 
     // Add connection quality class to body for CSS optimizations
@@ -129,6 +135,8 @@ export function ConnectionOptimizer() {
  */
 export function PerformanceReporter() {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     // Report performance metrics after page load
     const reportMetrics = () => {
       if ('performance' in window) {
