@@ -13,13 +13,10 @@ const nextConfig = {
 
   // Performance optimizations for Core Web Vitals
   experimental: {
-    optimizeCss: true,
     scrollRestoration: true,
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
   },
-
-  // Server components external packages (Next.js 15 recommended approach)
-  serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
 
   // Turbopack configuration (stable in Next.js 15)
   turbopack: {
