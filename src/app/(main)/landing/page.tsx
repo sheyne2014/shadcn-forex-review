@@ -958,7 +958,7 @@ export default async function LandingPage() {
 
           <div className="mt-10 text-center">
             <Button asChild variant="outline" size="lg">
-              <Link href="/compare/oanda-vs-pepperstone">
+              <Link href="/tools/compare">
                 View Broker Comparisons
               </Link>
             </Button>
