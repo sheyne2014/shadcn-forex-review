@@ -1,12 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { siteConfig } from "@/config/site";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 import { ChevronRight } from "lucide-react";
-import { db } from "@/lib/database";
 
 export const metadata: Metadata = {
   title: "Forex Broker Reviews 2025 | Expert Analysis & Comparison",
@@ -90,17 +88,15 @@ export default function ReviewsPage() {
           {featuredReviews.map((review) => (
             <Card key={review.slug} className="flex flex-col hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <div className="w-12 h-12 relative flex-shrink-0 border rounded-md overflow-hidden">
-                  <Image
-                    src={review.logoUrl}
-                    alt={`${review.name} logo`}
-                    width={48}
-                    height={48}
-                    className="object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=random&color=fff&size=48&bold=true`;
+                <div className="flex-shrink-0">
+                  <BrokerLogo
+                    broker={{
+                      name: review.name,
+                      logo_url: review.logoUrl
                     }}
+                    size="lg"
+                    rounded
+                    withBorder
                   />
                 </div>
                 <div>
