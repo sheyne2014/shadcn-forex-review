@@ -21,6 +21,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
+import { VisitSiteButton, VisitSiteButtonPresets } from "@/components/analytics/VisitSiteButton";
 
 // Types for comparison table
 export interface FeatureItem {
@@ -253,17 +254,13 @@ export function BrokerComparisonTable({
 
                   <TableCell className="text-center sticky right-0 bg-background group-hover:bg-muted/30 z-10">
                     {broker.link ? (
-                      <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
-                        <a
-                          href={broker.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Visit Site
-                        </a>
-                      </Button>
+                      <VisitSiteButton
+                        brokerName={broker.name}
+                        brokerUrl={broker.link}
+                        {...VisitSiteButtonPresets.comparisonTable}
+                      />
                     ) : (
-                      <Button size="sm" className="bg-primary hover:bg-primary/90">
+                      <Button size="sm" className="bg-primary hover:bg-primary/90" disabled>
                         Visit Site
                       </Button>
                     )}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, User, LogOut, Check, Search, Percent, BarChart3, Globe, BookOpen, Award, DollarSign, Shield, Smartphone, Settings } from 'lucide-react';
@@ -103,7 +103,7 @@ const mainNavItems: NavItem[] = [
   },
   {
     label: 'Tools',
-    href: '/tools',
+    href: '/#essential-tools',
     children: [
       {
         heading: 'Trading Tools',
@@ -166,9 +166,22 @@ export function Header() {
   const { user, signOut } = useAuth();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Prevent hydration mismatch by only showing user-dependent content after hydration
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   // Check if a nav item is active
   const isActive = (href: string) => {
+    // Only check active state after hydration to prevent mismatches
+    if (!isHydrated) return false;
+
+    // Handle anchor links to homepage
+    if (href.startsWith('/#')) {
+      return pathname === '/';
+    }
     return pathname === href || pathname?.startsWith(`${href}/`);
   };
 
@@ -232,14 +245,31 @@ export function Header() {
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink asChild className={cn(
-                      navigationMenuTriggerStyle(),
-                      isActive(item.href) && "text-primary"
-                    )}>
-                      <Link href={item.href}>
+                    {item.href.startsWith('/#') ? (
+                      <NavigationMenuLink
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          isActive(item.href) && "text-primary",
+                          "cursor-pointer"
+                        )}
+                        onClick={() => {
+                          if (typeof window !== 'undefined') {
+                            window.location.href = item.href;
+                          }
+                        }}
+                      >
                         {item.label}
-                      </Link>
-                    </NavigationMenuLink>
+                      </NavigationMenuLink>
+                    ) : (
+                      <NavigationMenuLink asChild className={cn(
+                        navigationMenuTriggerStyle(),
+                        isActive(item.href) && "text-primary"
+                      )}>
+                        <Link href={item.href}>
+                          {item.label}
+                        </Link>
+                      </NavigationMenuLink>
+                    )}
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
@@ -247,47 +277,65 @@ export function Header() {
           </div>
 
           <div className="flex-1 flex justify-end items-center gap-3">
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/find-my-broker" className="flex items-center gap-1">
+            {/* Enhanced CTA Buttons with better visibility */}
+            <Button variant="outline" size="sm" asChild className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200">
+              <Link href="/find-my-broker" className="flex items-center gap-1 font-medium">
                 <Search className="h-4 w-4" />
                 Find My Broker
               </Link>
             </Button>
-            <Button variant="destructive" size="sm" asChild className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+            <Button
+              variant="destructive"
+              size="sm"
+              asChild
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-200 font-medium"
+            >
               <Link href="/verify" className="flex items-center gap-1">
                 <Check className="h-4 w-4" />
                 Scam Check
               </Link>
             </Button>
 
-            {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <User className="h-4 w-4 mr-2" />
-                    My Account
+            {isHydrated ? (
+              user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <User className="h-4 w-4 mr-2" />
+                      My Account
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard">Dashboard</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard/reviews">My Reviews</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => signOut()}>
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/auth/login">Sign In</Link>
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem asChild>
-                    <Link href="/dashboard">Dashboard</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/dashboard/reviews">My Reviews</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => signOut()}>
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  <Button size="sm" asChild>
+                    <Link href="/auth/signup">Sign Up</Link>
+                  </Button>
+                </div>
+              )
             ) : (
+              // Placeholder during hydration to prevent layout shift
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/auth/login">Sign In</Link>
+                <Button variant="outline" size="sm" disabled>
+                  Sign In
                 </Button>
-                <Button size="sm" asChild>
-                  <Link href="/auth/signup">Sign Up</Link>
+                <Button size="sm" disabled>
+                  Sign Up
                 </Button>
               </div>
             )}
@@ -353,17 +401,35 @@ export function Header() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "block",
-                    isActive(item.href) ? "text-primary font-medium" : "text-foreground"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                item.href.startsWith('/#') ? (
+                  <button
+                    key={item.href}
+                    className={cn(
+                      "block text-left w-full",
+                      isActive(item.href) ? "text-primary font-medium" : "text-foreground"
+                    )}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      if (typeof window !== 'undefined') {
+                        window.location.href = item.href;
+                      }
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "block",
+                      isActive(item.href) ? "text-primary font-medium" : "text-foreground"
+                    )}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -382,27 +448,35 @@ export function Header() {
                 </Link>
               </Button>
 
-              {user ? (
-                <>
-                  <Button variant="outline" asChild>
-                    <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
-                  </Button>
-                  <Button variant="ghost" className="flex items-center justify-center gap-2" onClick={() => {
-                    signOut();
-                    setMobileMenuOpen(false);
-                  }}>
-                    <LogOut className="h-4 w-4" />
-                    Sign Out
-                  </Button>
-                </>
+              {isHydrated ? (
+                user ? (
+                  <>
+                    <Button variant="outline" asChild>
+                      <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
+                    </Button>
+                    <Button variant="ghost" className="flex items-center justify-center gap-2" onClick={() => {
+                      signOut();
+                      setMobileMenuOpen(false);
+                    }}>
+                      <LogOut className="h-4 w-4" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button asChild>
+                      <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>Sign Up</Link>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
+                    </Button>
+                  </>
+                )
               ) : (
+                // Placeholder during hydration
                 <>
-                  <Button asChild>
-                    <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>Sign Up</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
-                  </Button>
+                  <Button disabled>Sign Up</Button>
+                  <Button variant="outline" disabled>Sign In</Button>
                 </>
               )}
             </div>

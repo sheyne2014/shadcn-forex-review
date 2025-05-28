@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Filter, Search } from "lucide-react";
+import { ChevronRight, Filter, Search, X, SlidersHorizontal } from "lucide-react";
 import { BrokerSearchCommand } from "@/components/brokers/BrokerSearchCommand";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getBrokers, getBrokerCategories, Broker } from "@/lib/supabase/broker-client";
+import { AdvancedBrokerFilters } from "@/components/brokers/AdvancedBrokerFilters";
 
 export const metadata: Metadata = {
   title: "Compare All Types of Brokers | BrokerAnalysis",

@@ -1,0 +1,60 @@
+{
+  "timestamp": "2025-05-27T11:12:55.125Z",
+  "totalBrokers": 130,
+  "updatedBrokers": [
+    "xtb",
+    "ic-markets",
+    "plus500",
+    "etoro-usa",
+    "pepperstone"
+  ],
+  "currentBatch": [
+    {
+      "slug": "oanda",
+      "exists": true,
+      "hasEnhanced": false,
+      "status": "🔄 Needs Update"
+    },
+    {
+      "slug": "interactive-brokers",
+      "exists": true,
+      "hasEnhanced": false,
+      "status": "🔄 Needs Update"
+    },
+    {
+      "slug": "fxpro",
+      "exists": true,
+      "hasEnhanced": false,
+      "status": "🔄 Needs Update"
+    },
+    {
+      "slug": "xm",
+      "exists": true,
+      "hasEnhanced": false,
+      "status": "🔄 Needs Update"
+    },
+    {
+      "slug": "avatrade",
+      "exists": true,
+      "hasEnhanced": false,
+      "status": "🔄 Needs Update"
+    }
+  ],
+  "availableAlternatives": [
+    "activtrades",
+    "admirals",
+    "alpha-trading",
+    "amarkets",
+    "amarkets-ecn",
+    "atfx",
+    "axi",
+    "binance",
+    "bitfinex",
+    "bitmax"
+  ],
+  "summary": {
+    "totalUpdated": 5,
+    "batchExists": 5,
+    "batchNeedsUpdate": 5
+  }
+}

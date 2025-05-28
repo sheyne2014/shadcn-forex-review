@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-05-27T10:58:38.865Z",
+  "results": [
+    {
+      "slug": "xtb",
+      "hasEnhancedTemplate": true,
+      "hasManualSchema": false,
+      "hasOptimizedMeta": true,
+      "hasBrokerData": true,
+      "titleLength": 0,
+      "schemaReady": true,
+      "seoOptimized": false,
+      "status": "Enhanced Template"
+    },
+    {
+      "slug": "ic-markets",
+      "hasEnhancedTemplate": true,
+      "hasManualSchema": false,
+      "hasOptimizedMeta": true,
+      "hasBrokerData": true,
+      "titleLength": 0,
+      "schemaReady": true,
+      "seoOptimized": false,
+      "status": "Enhanced Template"
+    },
+    {
+      "slug": "plus500",
+      "hasEnhancedTemplate": true,
+      "hasManualSchema": false,
+      "hasOptimizedMeta": true,
+      "hasBrokerData": true,
+      "titleLength": 0,
+      "schemaReady": true,
+      "seoOptimized": false,
+      "status": "Enhanced Template"
+    }
+  ],
+  "testUrls": [
+    {
+      "broker": "xtb",
+      "url": "http://localhost:3002/broker/xtb",
+      "testUrl": "https://search.google.com/test/rich-results?url=http%3A%2F%2Flocalhost%3A3002%2Fbroker%2Fxtb"
+    },
+    {
+      "broker": "ic-markets",
+      "url": "http://localhost:3002/broker/ic-markets",
+      "testUrl": "https://search.google.com/test/rich-results?url=http%3A%2F%2Flocalhost%3A3002%2Fbroker%2Fic-markets"
+    },
+    {
+      "broker": "plus500",
+      "url": "http://localhost:3002/broker/plus500",
+      "testUrl": "https://search.google.com/test/rich-results?url=http%3A%2F%2Flocalhost%3A3002%2Fbroker%2Fplus500"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "schemaReady": 3,
+    "seoOptimized": 0,
+    "enhancedTemplate": 3
+  }
+}

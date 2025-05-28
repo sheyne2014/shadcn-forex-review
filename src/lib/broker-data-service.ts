@@ -17,8 +17,9 @@ export interface BrokerData {
   categories: string[];
 }
 
-// Real broker data with detailed information
-export const BROKER_DATABASE = {
+// DEPRECATED: Static broker data - Use Supabase database instead
+// This is kept only for fallback purposes and should not be used in production
+export const BROKER_DATABASE_DEPRECATED = {
   "eToro": {
     id: "etoro",
     name: "eToro",
@@ -234,8 +235,9 @@ export const BROKER_DATABASE = {
   }
 };
 
-// Category to broker mapping using real broker data
-export const CATEGORY_BROKER_MAPPING = {
+// DEPRECATED: Category to broker mapping using static broker data
+// Use Supabase database relationships instead
+export const CATEGORY_BROKER_MAPPING_DEPRECATED = {
   // Asset types
   forex: ["eToro", "XM", "IC Markets", "Pepperstone", "BlackBull Markets", "OANDA", "Interactive Brokers"],
   crypto: ["Binance", "Coinbase", "Kraken", "BlackBull Markets", "Gemini", "eToro", "Plus500"],
@@ -277,9 +279,12 @@ export const CATEGORY_BROKER_MAPPING = {
 };
 
 /**
- * Get top 3 broker names for category preview
+ * DEPRECATED: Get top 3 broker names for category preview
+ * Use Supabase database queries instead
  */
 export function getTopBrokerNamesForCategory(categoryTitle: string): string[] {
+  console.warn('getTopBrokerNamesForCategory is deprecated. Use Supabase database queries instead.');
+
   // Extract category key from title
   const categoryKey = categoryTitle.toLowerCase()
     .replace('best ', '')
@@ -294,13 +299,13 @@ export function getTopBrokerNamesForCategory(categoryTitle: string): string[] {
     .trim();
 
   // Try direct mapping first
-  if (CATEGORY_BROKER_MAPPING[categoryKey as keyof typeof CATEGORY_BROKER_MAPPING]) {
-    const result = CATEGORY_BROKER_MAPPING[categoryKey as keyof typeof CATEGORY_BROKER_MAPPING].slice(0, 3);
+  if (CATEGORY_BROKER_MAPPING_DEPRECATED[categoryKey as keyof typeof CATEGORY_BROKER_MAPPING_DEPRECATED]) {
+    const result = CATEGORY_BROKER_MAPPING_DEPRECATED[categoryKey as keyof typeof CATEGORY_BROKER_MAPPING_DEPRECATED].slice(0, 3);
     return result;
   }
 
   // Try alternative mappings
-  const alternativeKeys: { [key: string]: keyof typeof CATEGORY_BROKER_MAPPING } = {
+  const alternativeKeys: { [key: string]: keyof typeof CATEGORY_BROKER_MAPPING_DEPRECATED } = {
     'mobile trading platforms': 'mobile-trading',
     'low-cost': 'low-cost',
     'day traders': 'day-trading',
@@ -315,59 +320,101 @@ export function getTopBrokerNamesForCategory(categoryTitle: string): string[] {
 
   for (const [altKey, mappedKey] of Object.entries(alternativeKeys)) {
     if (categoryKey.includes(altKey) || altKey.includes(categoryKey)) {
-      const result = CATEGORY_BROKER_MAPPING[mappedKey].slice(0, 3);
+      const result = CATEGORY_BROKER_MAPPING_DEPRECATED[mappedKey].slice(0, 3);
       return result;
     }
   }
 
   // Final fallback: return top forex brokers
-  return CATEGORY_BROKER_MAPPING.forex.slice(0, 3);
+  return CATEGORY_BROKER_MAPPING_DEPRECATED.forex.slice(0, 3);
 }
 
 /**
- * Get top 3 broker objects for category preview (with logos and full data)
+ * DEPRECATED: Get top 3 broker objects for category preview (with logos and full data)
+ * Use Supabase database queries instead
  */
 export function getTopBrokerObjectsForCategory(categoryTitle: string): BrokerData[] {
+  console.warn('getTopBrokerObjectsForCategory is deprecated. Use Supabase database queries instead.');
+
   const brokerNames = getTopBrokerNamesForCategory(categoryTitle);
 
   return brokerNames
-    .map(name => BROKER_DATABASE[name as keyof typeof BROKER_DATABASE])
+    .map(name => BROKER_DATABASE_DEPRECATED[name as keyof typeof BROKER_DATABASE_DEPRECATED])
     .filter(Boolean) // Remove any undefined brokers
     .slice(0, 3); // Ensure we only return 3 brokers
 }
 
 /**
- * Get all brokers for a specific category (for individual category pages)
+ * DEPRECATED: Get all brokers for a specific category (for individual category pages)
+ * Use Supabase database queries instead
  */
 export function getBrokersForCategory(categorySlug: string): BrokerData[] {
+  console.warn('getBrokersForCategory is deprecated. Use Supabase database queries instead.');
+
   // Convert category slug to title format for our function
   const categoryTitle = `Best ${categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1)} Brokers`;
   const brokerNames = getTopBrokerNamesForCategory(categoryTitle);
 
   return brokerNames
-    .map(name => BROKER_DATABASE[name as keyof typeof BROKER_DATABASE])
+    .map(name => BROKER_DATABASE_DEPRECATED[name as keyof typeof BROKER_DATABASE_DEPRECATED])
     .filter(Boolean); // Remove any undefined brokers
 }
 
 /**
  * Get all broker data for a category (for individual category pages)
+ * Uses Supabase database as primary source
  */
 export async function getCategoryBrokerData(categorySlug: string) {
   try {
-    // Try to get from database first
+    // Get brokers from database
     const dbBrokers = await db.brokers.getAll();
 
-    // If database has data, use it; otherwise use static data
     if (dbBrokers && dbBrokers.length > 0) {
-      // Filter database brokers by category if possible
-      // For now, return static data as it's more reliable
+      // Filter brokers by supported assets based on category
+      const filteredBrokers = dbBrokers.filter(broker => {
+        if (!broker.supported_assets) return false;
+
+        // Parse supported assets
+        let assets: string[] = [];
+        if (typeof broker.supported_assets === 'string') {
+          try {
+            assets = JSON.parse(broker.supported_assets);
+          } catch {
+            assets = broker.supported_assets.split(',').map(a => a.trim());
+          }
+        } else if (Array.isArray(broker.supported_assets)) {
+          assets = broker.supported_assets;
+        }
+
+        // Check if category matches any supported asset
+        return assets.some(asset =>
+          asset.toLowerCase().includes(categorySlug.toLowerCase()) ||
+          categorySlug.toLowerCase().includes(asset.toLowerCase())
+        );
+      });
+
+      return filteredBrokers.map(broker => ({
+        id: broker.id,
+        name: broker.name,
+        logo: broker.logo_url || '/images/brokers/default.png',
+        rating: broker.rating || 0,
+        minDeposit: broker.min_deposit ? `$${broker.min_deposit}` : 'N/A',
+        spread: broker.spreads_from || 'Variable',
+        platforms: broker.trading_platforms ? broker.trading_platforms.split(',').map(p => p.trim()) : [],
+        regulation: broker.regulations ? broker.regulations.split(',').map(r => r.trim()) : [],
+        pros: [], // These would need to be added to the database schema
+        cons: [], // These would need to be added to the database schema
+        url: `/broker/${broker.id}`,
+        categories: assets
+      }));
     }
 
-    // Use static broker data
+    // Fallback to deprecated static data only if database is empty
+    console.warn('Database is empty, falling back to deprecated static data');
     return getBrokersForCategory(categorySlug);
   } catch (error) {
     console.error('Error fetching category broker data:', error);
-    // Fallback to static data
+    // Fallback to deprecated static data
     return getBrokersForCategory(categorySlug);
   }
 }

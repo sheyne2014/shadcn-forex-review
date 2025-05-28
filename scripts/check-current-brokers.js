@@ -24,7 +24,7 @@ async function checkBrokers() {
 
     const { data: brokers, error } = await supabase
       .from('brokers')
-      .select('id, name, logo_url')
+      .select('id, name, logo_url, rating, min_deposit, country, regulations')
       .order('name');
 
     if (error) {
@@ -34,11 +34,39 @@ async function checkBrokers() {
 
     console.log(`\nFound ${brokers.length} brokers in database:\n`);
 
+    // Group brokers by name to find duplicates
+    const brokerGroups = {};
+    brokers.forEach(broker => {
+      const key = broker.name.toLowerCase().trim();
+      if (!brokerGroups[key]) {
+        brokerGroups[key] = [];
+      }
+      brokerGroups[key].push(broker);
+    });
+
+    // Find duplicates
+    const duplicates = Object.entries(brokerGroups).filter(([name, brokers]) => brokers.length > 1);
+
+    console.log('=== DUPLICATE ANALYSIS ===\n');
+    console.log(`Found ${duplicates.length} duplicate broker groups:\n`);
+
+    duplicates.forEach(([name, brokers]) => {
+      console.log(`--- DUPLICATE: ${name.toUpperCase()} ---`);
+      brokers.forEach((broker, index) => {
+        console.log(`  ${index + 1}. ID: ${broker.id}`);
+        console.log(`     Name: ${broker.name}`);
+        console.log(`     Logo: ${broker.logo_url || 'No logo'}`);
+        console.log(`     Rating: ${broker.rating || 'No rating'}`);
+        console.log(`     Min Deposit: ${broker.min_deposit || 'No min deposit'}`);
+        console.log(`     Country: ${broker.country || 'No country'}`);
+        console.log(`     Regulations: ${broker.regulations || 'No regulations'}`);
+        console.log('');
+      });
+    });
+
+    console.log('\n=== ALL BROKERS ===\n');
     brokers.forEach((broker, index) => {
-      console.log(`${index + 1}. ${broker.name}`);
-      console.log(`   ID: ${broker.id}`);
-      console.log(`   Logo: ${broker.logo_url || 'No logo'}`);
-      console.log('');
+      console.log(`${index + 1}. ${broker.name} (ID: ${broker.id})`);
     });
 
     // Check for specific brokers we want to update/remove

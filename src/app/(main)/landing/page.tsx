@@ -22,6 +22,7 @@ import { ClientSideIcon } from "@/components/ClientSideIcon";
 import { BrokerCardClient } from "@/components/BrokerCardClient";
 import { ScrollableComparisonSection } from "@/components/ScrollableComparisonSection";
 import { SEOEnhancer } from "@/components/SEOEnhancer";
+import { EnhancedCTASection } from "@/components/EnhancedCTASection";
 
 // Extended broker type that includes all the fields we need
 interface ExtendedBroker {
@@ -767,7 +768,7 @@ export default async function LandingPage() {
       </section>
 
       {/* Trading tools section - Enhanced with modern icons and hover effects */}
-      <section className="py-12 bg-muted/10 rounded-xl relative overflow-hidden">
+      <section id="essential-tools" className="py-12 bg-muted/10 rounded-xl relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
@@ -1206,6 +1207,9 @@ export default async function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Enhanced CTA Section with Trust Signals */}
+      <EnhancedCTASection />
     </div>
     </>
   );

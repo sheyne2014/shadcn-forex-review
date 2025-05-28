@@ -6,6 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import { AuthProvider } from "@/lib/providers/AuthProvider";
+import { GoogleAnalyticsProvider } from "@/components/analytics/GoogleAnalyticsProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipToContent } from "@/components/SkipToContent";
@@ -159,7 +160,8 @@ export default function Layout({
           disableTransitionOnChange
           storageKey="theme-preference"
         >
-          <AuthProvider>
+          <GoogleAnalyticsProvider>
+            <AuthProvider>
             <PerformanceErrorBoundary>
               <PerformanceMonitor />
               <CriticalResourceLoader
@@ -178,7 +180,8 @@ export default function Layout({
             <Toaster position="bottom-right" />
             <RokuAIWrapper />
             <SpeedInsights />
-          </AuthProvider>
+            </AuthProvider>
+          </GoogleAnalyticsProvider>
         </ThemeProvider>
       </body>
     </html>

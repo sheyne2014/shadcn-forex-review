@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "etoro",
+    "exists": false,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": false,
+    "needsUpdate": false,
+    "error": "ENOENT: no such file or directory, open 'C:\\Users\\LENOVO\\Desktop\\shadcn-forex-review\\src\\app\\broker\\etoro\\page.tsx'"
+  },
+  {
+    "slug": "plus500",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "oanda",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "interactive-brokers",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "pepperstone",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "fxpro",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "avatrade",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "xm",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "fxcm",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  },
+  {
+    "slug": "ig",
+    "exists": true,
+    "hasEnhancedTemplate": false,
+    "hasOptimizedMeta": false,
+    "hasSchema": true,
+    "needsUpdate": true
+  }
+]

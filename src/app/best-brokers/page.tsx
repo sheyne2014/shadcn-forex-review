@@ -5,6 +5,7 @@ import { Globe, BookOpen, DollarSign, LineChart, BarChart3, Shield, Award, MapPi
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getBrokers } from "@/lib/supabase/broker-client";
 import { getTopBrokerObjectsForCategory, type BrokerData } from "@/lib/broker-data-service";
 import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 
