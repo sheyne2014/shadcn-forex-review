@@ -21,6 +21,7 @@ import { BrokerComparisonCard } from "@/components/BrokerComparisonCard";
 import { ClientSideIcon } from "@/components/ClientSideIcon";
 import { BrokerCardClient } from "@/components/BrokerCardClient";
 import { ScrollableComparisonSection } from "@/components/ScrollableComparisonSection";
+import { SEOEnhancer } from "@/components/SEOEnhancer";
 
 // Extended broker type that includes all the fields we need
 interface ExtendedBroker {
@@ -44,7 +45,7 @@ interface ExtendedBroker {
 }
 
 export const metadata: Metadata = {
-  title: "Trading Broker Reviews & Analysis 2025 | Forex, Stocks, Crypto & More | May 2025 Update",
+  title: "Broker Reviews 2025 | Forex, Stocks, Crypto | BrokerAnalysis",
   description: "Find the perfect trading broker for stocks, forex, crypto, options, CFDs and ETFs. Compare features, read expert reviews, and discover personalized broker recommendations. Updated May 2025.",
 };
 
@@ -455,7 +456,11 @@ export default async function LandingPage() {
   }
 
   return (
-    <div className="space-y-16 py-12">
+    <>
+      {/* Enhanced SEO with Structured Data */}
+      <SEOEnhancer pageType="homepage" />
+
+      <div className="space-y-16 py-12">
       {/* Hero section - With trader using smartphone on dark background */}
       <section className="w-full bg-black py-16">
         <div className="container mx-auto px-4">
@@ -1202,5 +1207,6 @@ export default async function LandingPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

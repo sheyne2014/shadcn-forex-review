@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "BrokerAnalysis",
-  description: "Expert forex broker reviews, detailed comparisons, and trading guides for 2025. Updated May 2025 with the latest broker information and market analysis.",
+  description: "Expert forex broker reviews, detailed comparisons, and trading guides for 2025. Find the perfect trading broker for stocks, forex, crypto, options, CFDs and ETFs.",
   url: "https://broker-analysis.com",
   email: "info@brokeranalysis.com",
   phone: "+1 (234) 567-8900",
@@ -44,4 +44,4 @@ export const siteConfig = {
       href: "/blog"
     }
   ]
-}; 
+};

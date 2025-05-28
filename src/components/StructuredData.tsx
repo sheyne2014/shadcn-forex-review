@@ -3,7 +3,7 @@
 import { siteConfig } from "@/config/site";
 
 interface StructuredDataProps {
-  type: 'website' | 'article' | 'product' | 'faq' | 'organization' | 'brokerReview';
+  type: 'website' | 'article' | 'product' | 'faq' | 'organization' | 'brokerReview' | 'breadcrumb' | 'aggregateRating';
   data: any;
 }
 
@@ -25,7 +25,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         }
       };
       break;
-    
+
     case 'article':
       structuredData = {
         '@context': 'https://schema.org',
@@ -53,7 +53,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         }
       };
       break;
-    
+
     case 'brokerReview':
       structuredData = {
         '@context': 'https://schema.org',
@@ -62,25 +62,49 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'FinancialService',
           name: data.brokerName,
           description: data.description,
-          url: data.brokerUrl
+          url: data.brokerUrl,
+          logo: data.logo,
+          address: data.address ? {
+            '@type': 'PostalAddress',
+            addressCountry: data.address.country
+          } : undefined,
+          aggregateRating: data.aggregateRating ? {
+            '@type': 'AggregateRating',
+            ratingValue: data.aggregateRating.ratingValue,
+            bestRating: '5',
+            worstRating: '1',
+            ratingCount: data.aggregateRating.ratingCount
+          } : undefined,
+          offers: data.offers ? {
+            '@type': 'Offer',
+            name: 'Trading Account',
+            price: data.offers.minDeposit,
+            priceCurrency: 'USD',
+            description: `Minimum deposit: $${data.offers.minDeposit}`
+          } : undefined
         },
         reviewRating: {
           '@type': 'Rating',
           ratingValue: data.rating,
-          bestRating: '10',
+          bestRating: '5',
           worstRating: '1'
         },
         author: {
           '@type': 'Organization',
-          name: siteConfig.name
+          name: siteConfig.name,
+          url: siteConfig.url
         },
         publisher: {
           '@type': 'Organization',
-          name: siteConfig.name
-        }
+          name: siteConfig.name,
+          url: siteConfig.url
+        },
+        datePublished: data.datePublished || new Date().toISOString().split('T')[0],
+        dateModified: data.dateModified || new Date().toISOString().split('T')[0],
+        reviewBody: data.reviewBody || `Comprehensive review of ${data.brokerName} covering trading conditions, regulation, platforms, and user experience.`
       };
       break;
-    
+
     case 'faq':
       structuredData = {
         '@context': 'https://schema.org',
@@ -95,7 +119,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         }))
       };
       break;
-    
+
     case 'organization':
       structuredData = {
         '@context': 'https://schema.org',
@@ -106,7 +130,36 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         sameAs: data.socialLinks
       };
       break;
-    
+
+    case 'breadcrumb':
+      structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: data.items.map((item: any, index: number) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: item.url
+        }))
+      };
+      break;
+
+    case 'aggregateRating':
+      structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'AggregateRating',
+        itemReviewed: {
+          '@type': 'FinancialService',
+          name: data.itemName,
+          description: data.itemDescription
+        },
+        ratingValue: data.ratingValue,
+        bestRating: data.bestRating || '5',
+        worstRating: data.worstRating || '1',
+        ratingCount: data.ratingCount
+      };
+      break;
+
     default:
       return null;
   }

@@ -10,8 +10,8 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import { CallToAction } from '@/components/CallToAction';
 
 export const metadata: Metadata = {
-  title: 'About BrokerAnalysis | Who We Are',
-  description: 'Learn about BrokerAnalysis, our team, mission and how we help traders find the best brokers through our transparent and objective review methodology.',
+  title: 'About Us | BrokerAnalysis Forex Reviews 2025',
+  description: 'Learn about BrokerAnalysis, your trusted source for forex broker reviews. Meet our team and discover our mission to empower traders in 2025.',
 };
 
 export default function AboutPage() {
@@ -128,72 +128,72 @@ export default function AboutPage() {
         <h2 className="text-3xl font-bold mb-8 text-center">Meet Our Team</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Team Member 1 */}
-          <div className="text-center">
-            <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
+          <Card className="text-center p-6">
+            <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/10">
               <Image 
-                src="/images/team/member1.jpg" 
-                alt="Sarah Johnson - Founder & CEO"
+                src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="Sarah Johnson - Founder & CEO at BrokerAnalysis"
                 fill
                 className="object-cover"
               />
             </div>
             <h3 className="text-xl font-bold">Sarah Johnson</h3>
-            <p className="text-primary font-medium">Founder & CEO</p>
-            <p className="mt-2 text-muted-foreground">
-              Former investment banker with 15+ years of experience in financial markets.
+            <p className="text-primary font-medium mb-2">Founder & CEO</p>
+            <p className="text-sm text-muted-foreground">
+              Former investment banker with 15+ years of experience in financial markets. Sarah founded BrokerAnalysis to bring transparency to forex broker reviews and help traders make informed decisions.
             </p>
-          </div>
+          </Card>
           
           {/* Team Member 2 */}
-          <div className="text-center">
-            <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
+          <Card className="text-center p-6">
+            <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/10">
               <Image 
-                src="/images/team/member2.jpg" 
-                alt="David Chen - Head of Research"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                alt="David Chen - Head of Research at BrokerAnalysis"
                 fill
                 className="object-cover"
               />
             </div>
             <h3 className="text-xl font-bold">David Chen</h3>
-            <p className="text-primary font-medium">Head of Research</p>
-            <p className="mt-2 text-muted-foreground">
-              Previously a senior analyst at a major hedge fund with expertise in broker evaluation.
+            <p className="text-primary font-medium mb-2">Head of Research</p>
+            <p className="text-sm text-muted-foreground">
+              Previously a senior analyst at a major hedge fund with expertise in broker evaluation. David leads our research team and ensures all broker reviews meet our rigorous standards.
             </p>
-          </div>
+          </Card>
           
           {/* Team Member 3 */}
-          <div className="text-center">
-            <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
+          <Card className="text-center p-6">
+            <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/10">
               <Image 
-                src="/images/team/member3.jpg" 
-                alt="Maria Rodriguez - Content Director"
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1061&q=80" 
+                alt="Maria Rodriguez - Content Director at BrokerAnalysis"
                 fill
                 className="object-cover"
               />
             </div>
             <h3 className="text-xl font-bold">Maria Rodriguez</h3>
-            <p className="text-primary font-medium">Content Director</p>
-            <p className="mt-2 text-muted-foreground">
-              Financial journalist with a decade of experience covering online trading platforms.
+            <p className="text-primary font-medium mb-2">Content Director</p>
+            <p className="text-sm text-muted-foreground">
+              Financial journalist with a decade of experience covering online trading platforms. Maria oversees our content strategy and ensures all educational materials are accurate and accessible.
             </p>
-          </div>
+          </Card>
           
           {/* Team Member 4 */}
-          <div className="text-center">
-            <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
+          <Card className="text-center p-6">
+            <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/10">
               <Image 
-                src="/images/team/member4.jpg" 
-                alt="James Wilson - Technical Analyst"
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                alt="James Wilson - Technical Analyst at BrokerAnalysis"
                 fill
                 className="object-cover"
               />
             </div>
             <h3 className="text-xl font-bold">James Wilson</h3>
-            <p className="text-primary font-medium">Technical Analyst</p>
-            <p className="mt-2 text-muted-foreground">
-              Certified trading platform expert who personally tests every broker we review.
+            <p className="text-primary font-medium mb-2">Technical Analyst</p>
+            <p className="text-sm text-muted-foreground">
+              Certified trading platform expert who personally tests every broker we review. James evaluates trading platforms, tools, and execution quality for all our broker assessments.
             </p>
-          </div>
+          </Card>
         </div>
       </section>
 
