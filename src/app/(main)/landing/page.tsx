@@ -21,7 +21,7 @@ import { BrokerComparisonCard } from "@/components/BrokerComparisonCard";
 import { ClientSideIcon } from "@/components/ClientSideIcon";
 import { BrokerCardClient } from "@/components/BrokerCardClient";
 import { ScrollableComparisonSection } from "@/components/ScrollableComparisonSection";
-import { SEOEnhancer } from "@/components/SEOEnhancer";
+import { siteConfig } from "@/config/site";
 import { EnhancedCTASection } from "@/components/EnhancedCTASection";
 
 // Extended broker type that includes all the fields we need
@@ -456,10 +456,46 @@ export default async function LandingPage() {
     ];
   }
 
+  // Generate structured data for homepage
+  const websiteStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteConfig.url}/search?q={search_term_string}`,
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
+  const organizationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/logo.png`,
+    sameAs: [
+      siteConfig.social.twitter,
+      siteConfig.social.facebook,
+      siteConfig.social.linkedin,
+      siteConfig.social.instagram,
+      siteConfig.social.youtube
+    ]
+  };
+
   return (
     <>
-      {/* Enhanced SEO with Structured Data */}
-      <SEOEnhancer pageType="homepage" />
+      {/* Server-side Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
+      />
 
       <div className="space-y-16 py-12">
       {/* Hero section - With trader using smartphone on dark background */}

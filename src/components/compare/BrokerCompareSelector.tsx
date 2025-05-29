@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +28,7 @@ interface BrokerCompareSelectorProps {
   initialBroker2: string;
 }
 
-export function BrokerCompareSelector({
+function BrokerCompareSelectorInner({
   brokers,
   initialBroker1,
   initialBroker2,
@@ -280,5 +280,27 @@ export function BrokerCompareSelector({
         </div>
       )}
     </div>
+  );
+}
+
+// Loading fallback component
+function BrokerCompareSelectorFallback() {
+  return (
+    <div className="bg-background border rounded-lg p-6 shadow-sm">
+      <h2 className="text-xl font-semibold mb-4">Select Brokers to Compare</h2>
+      <div className="text-center py-8">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-muted-foreground">Loading comparison tool...</p>
+      </div>
+    </div>
+  );
+}
+
+// Main export with Suspense wrapper
+export function BrokerCompareSelector(props: BrokerCompareSelectorProps) {
+  return (
+    <Suspense fallback={<BrokerCompareSelectorFallback />}>
+      <BrokerCompareSelectorInner {...props} />
+    </Suspense>
   );
 }

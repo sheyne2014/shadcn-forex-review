@@ -5,16 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { 
-  Smartphone, 
-  Tablet, 
-  Monitor, 
-  CheckCircle, 
-  AlertTriangle, 
+import {
+  Smartphone,
+  Tablet,
+  Monitor,
+  CheckCircle,
+  AlertTriangle,
   XCircle,
   RefreshCw,
   Eye,
-  Touch,
+  Hand,
   Zap
 } from 'lucide-react';
 
@@ -101,7 +101,7 @@ export function MobileResponsivenessOptimizer() {
       // Check touch targets
       const buttons = document.querySelectorAll('button, a, input[type="button"], input[type="submit"]');
       let smallTouchTargets = 0;
-      
+
       buttons.forEach((button) => {
         const rect = button.getBoundingClientRect();
         if (rect.width < 44 || rect.height < 44) {
@@ -151,7 +151,7 @@ export function MobileResponsivenessOptimizer() {
             issues.push('Important content hidden on mobile');
             passed = false;
           }
-          
+
           // Check for mobile navigation
           const mobileNav = document.querySelector('[data-mobile-nav], .mobile-menu, .hamburger');
           if (!mobileNav) {
@@ -312,7 +312,7 @@ export function MobileResponsivenessOptimizer() {
         {/* Responsiveness Issues */}
         <div className="space-y-3">
           <h4 className="font-semibold flex items-center gap-2">
-            <Touch className="h-4 w-4" />
+            <Hand className="h-4 w-4" />
             Responsiveness Issues
           </h4>
           {issues.length === 0 && !isAnalyzing ? (

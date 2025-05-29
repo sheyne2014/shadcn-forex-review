@@ -8,6 +8,7 @@ import { ReviewsSection } from "@/components/broker-review/ReviewsSection";
 import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisWidget";
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
+import { EtoroTradingConditionsAnalysis } from "@/components/broker-review/EtoroTradingConditionsAnalysis";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -258,7 +259,11 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
         {/* Enhanced Mobile Navigation for sections */}
         <div className="lg:hidden mb-8 overflow-x-auto scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent sticky top-16 z-20 bg-background/95 backdrop-blur-sm pb-2 pt-2 -mx-4 px-4 shadow-sm border-b border-border/50">
           <div className="flex space-x-3 min-w-max">
-            <a href="#trading-conditions" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Trading Conditions</a>
+            <a href="#trading-conditions" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">
+              {(broker.id === "805f65c5-3911-448e-8800-0143bbbb2a0f" ||
+                broker.name?.toLowerCase().includes("etoro") ||
+                broker.slug?.toLowerCase().includes("etoro")) ? "Cost Analysis" : "Trading Conditions"}
+            </a>
             <a href="#platforms" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Platforms</a>
             <a href="#education" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Education</a>
             <a href="#reviews" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Reviews</a>
@@ -270,11 +275,17 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
         {/* Enhanced 4-column grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
           <div className="lg:col-span-3 space-y-12">
-            {/* Trading Conditions */}
+            {/* Trading Conditions - Enhanced for eToro */}
             <section id="trading-conditions" className="scroll-mt-20">
-              <div className="rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
-                <BrokerTradingConditions broker={broker} />
-              </div>
+              {broker.id === "805f65c5-3911-448e-8800-0143bbbb2a0f" ||
+               broker.name?.toLowerCase().includes("etoro") ||
+               broker.slug?.toLowerCase().includes("etoro") ? (
+                <EtoroTradingConditionsAnalysis broker={broker} />
+              ) : (
+                <div className="rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+                  <BrokerTradingConditions broker={broker} />
+                </div>
+              )}
             </section>
 
             {/* Trading Platforms */}

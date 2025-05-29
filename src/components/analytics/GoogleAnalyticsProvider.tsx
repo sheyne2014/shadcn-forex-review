@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { initGA, trackPageView, GA_MEASUREMENT_ID } from '@/lib/analytics/google-analytics';
@@ -9,7 +9,7 @@ interface GoogleAnalyticsProviderProps {
   children: React.ReactNode;
 }
 
-export function GoogleAnalyticsProvider({ children }: GoogleAnalyticsProviderProps) {
+function GoogleAnalyticsInner({ children }: GoogleAnalyticsProviderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -36,7 +36,7 @@ export function GoogleAnalyticsProvider({ children }: GoogleAnalyticsProviderPro
           initGA();
         }}
       />
-      
+
       {/* Initialize GA with enhanced configuration */}
       <Script
         id="google-analytics-init"
@@ -46,7 +46,7 @@ export function GoogleAnalyticsProvider({ children }: GoogleAnalyticsProviderPro
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            
+
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_title: document.title,
               page_location: window.location.href,
@@ -105,4 +105,18 @@ export function useGoogleAnalytics() {
       }
     }
   };
+}
+
+// Loading fallback component
+function GoogleAnalyticsFallback({ children }: GoogleAnalyticsProviderProps) {
+  return <>{children}</>;
+}
+
+// Main export with Suspense wrapper
+export function GoogleAnalyticsProvider({ children }: GoogleAnalyticsProviderProps) {
+  return (
+    <Suspense fallback={<GoogleAnalyticsFallback>{children}</GoogleAnalyticsFallback>}>
+      <GoogleAnalyticsInner>{children}</GoogleAnalyticsInner>
+    </Suspense>
+  );
 }

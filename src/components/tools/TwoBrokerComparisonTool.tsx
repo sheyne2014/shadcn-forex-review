@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +36,7 @@ interface TwoBrokerComparisonToolProps {
   brokers: Broker[];
 }
 
-export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProps) {
+function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -530,5 +530,33 @@ export function TwoBrokerComparisonTool({ brokers }: TwoBrokerComparisonToolProp
         </Card>
       )}
     </div>
+  );
+}
+
+// Loading fallback component
+function TwoBrokerComparisonToolFallback() {
+  return (
+    <div className="space-y-8">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Select Brokers to Compare</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-8">
+            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading comparison tool...</p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// Main export with Suspense wrapper
+export function TwoBrokerComparisonTool(props: TwoBrokerComparisonToolProps) {
+  return (
+    <Suspense fallback={<TwoBrokerComparisonToolFallback />}>
+      <TwoBrokerComparisonToolInner {...props} />
+    </Suspense>
   );
 }

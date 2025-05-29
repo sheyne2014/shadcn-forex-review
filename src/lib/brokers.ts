@@ -72,8 +72,93 @@ export interface BrokerFAQ {
   answer: string;
 }
 
-// Temporary mock function - remove when actual database implementation is complete
+// Enhanced mock function with eToro-specific data
 export function getMockBroker(slug: string): BrokerDetails {
+  // Check if this is eToro and return enhanced data
+  if (slug === "805f65c5-3911-448e-8800-0143bbbb2a0f" || slug.toLowerCase().includes("etoro")) {
+    return ({
+      id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+      name: "eToro",
+      slug: "etoro",
+      description: "eToro revolutionizes forex trading through its pioneering social trading platform, allowing traders to copy successful investors and build diversified portfolios. Founded in 2007, eToro has grown to serve over 30 million users worldwide, making it one of the largest social trading networks globally.",
+      logo_url: "/images/brokers/etoro.png",
+      website_url: "https://www.etoro.com",
+      min_deposit: 50,
+      max_leverage: "1:30",
+      regulations: "FCA, CySEC, ASIC",
+      trading_platforms: "eToro Platform, eToro Mobile App",
+      spreads_from: "1.0 pips",
+      account_types: ["Standard", "Professional", "Islamic"],
+      country: "Cyprus",
+      established: "2007",
+      overall_rating: 4.5,
+      pros: [
+        "Revolutionary social trading and copy trading features",
+        "User-friendly platform perfect for beginners",
+        "Extensive regulatory coverage (FCA, CySEC, ASIC)",
+        "Zero commission stock trading",
+        "Large community of 30+ million users",
+        "Comprehensive educational resources",
+        "Mobile-first platform design"
+      ],
+      cons: [
+        "Higher forex spreads compared to ECN brokers",
+        "Limited advanced charting tools for professional traders",
+        "Withdrawal fees apply",
+        "No MT4/MT5 platform support",
+        "CFD-focused rather than traditional forex",
+        "Limited scalping opportunities due to spread structure"
+      ],
+      summary: `eToro stands as a unique entity in the forex trading landscape, fundamentally different from traditional forex brokers. Rather than competing on spreads and leverage, eToro has carved out a dominant position in social trading, transforming how retail traders approach the markets.
+
+Founded in 2007 in Tel Aviv and now headquartered in Cyprus, eToro has grown from a startup to a fintech giant serving over 30 million users across 140+ countries. The platform's core innovation lies in its social trading network, where users can follow, interact with, and automatically copy the trades of successful investors.
+
+What sets eToro apart is its focus on democratizing trading through social features. The platform combines traditional trading with social networking elements, allowing users to see what others are trading, follow top performers, and even automatically replicate their strategies through the CopyTrader feature.
+
+However, it's crucial to understand that eToro is not a traditional forex broker. The platform primarily offers CFDs (Contracts for Difference) rather than spot forex, and its spread structure reflects its retail-focused approach rather than institutional-grade pricing.`,
+      reviews: [],
+      faqs: [
+        {
+          id: "1",
+          broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+          question: "What makes eToro different from other forex brokers?",
+          answer: "eToro is primarily a social trading platform rather than a traditional forex broker. Its main differentiator is the ability to copy other traders' strategies automatically, access to a large community of traders, and a focus on user-friendly interfaces for beginners."
+        },
+        {
+          id: "2",
+          broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+          question: "Are eToro's spreads competitive for forex trading?",
+          answer: "eToro's forex spreads start from 1.0 pips, which is higher than many ECN brokers. However, the platform's value lies in its social trading features rather than competitive spreads, making it more suitable for social traders than scalpers or high-frequency traders."
+        },
+        {
+          id: "3",
+          broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+          question: "Is eToro regulated and safe?",
+          answer: "Yes, eToro is regulated by multiple top-tier authorities including FCA (UK), CySEC (Cyprus), and ASIC (Australia). Client funds are segregated and the platform offers negative balance protection."
+        },
+        {
+          id: "4",
+          broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+          question: "Can I use MT4 or MT5 with eToro?",
+          answer: "No, eToro does not support MetaTrader platforms. The broker uses its proprietary eToro platform and mobile app, which are designed specifically for social trading features."
+        }
+      ],
+      featured: true,
+      published_date: "2023-01-01",
+      last_updated: "2024-01-15",
+      // Additional eToro-specific fields
+      unique_features: "Social Trading Network, CopyTrader, Popular Investor Program, CopyPortfolios, Social Feed",
+      instruments: "Forex, Stocks, ETFs, Cryptocurrencies, Commodities, Indices",
+      trading_tools: "Social Trading Feed, CopyTrader, Popular Investor Rankings, Risk Score, Portfolio Diversification Tools",
+      support_channels: "Email, Live Chat, Help Center, Community Forum",
+      support_hours: "24/7 via Help Center, Live Chat during business hours",
+      support_languages: "English, Spanish, German, French, Italian, Russian, Chinese, and 15+ more",
+      headquarters: "Limassol, Cyprus",
+      year_founded: "2007"
+    } as BrokerDetails);
+  }
+
+  // Default mock broker for other slugs
   return ({
     id: "1",
     name: "Example Broker",

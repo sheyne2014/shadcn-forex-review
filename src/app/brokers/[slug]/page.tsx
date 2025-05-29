@@ -1,6 +1,5 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getBrokerBySlug, getSimilarBrokers } from "@/lib/brokers";
+import { notFound } from "next/navigation";
 import { HeroBrokerSection } from "@/components/broker-review/HeroBrokerSection";
 import { BrokerOverviewSection } from "@/components/broker-review/BrokerOverviewSection";
 import { BrokerTradingConditions } from "@/components/broker-review/BrokerTradingConditions";
@@ -10,57 +9,38 @@ import { ReviewsSection } from "@/components/broker-review/ReviewsSection";
 import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisWidget";
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
+import { BrokerExecutiveSummary } from "@/components/broker-review/BrokerExecutiveSummary";
+import { SocialTradingSection } from "@/components/broker-review/SocialTradingSection";
+import { AccountTypesSection } from "@/components/broker-review/AccountTypesSection";
+import { CustomerSupportSection } from "@/components/broker-review/CustomerSupportSection";
+import { RegulationSection } from "@/components/broker-review/RegulationSection";
+import { ClientSideSidebar } from "@/components/broker-review/ClientSideSidebar";
 import { Separator } from "@/components/ui/separator";
 import { getHeadlineForBroker, getBrokerSeo } from "@/lib/seo-utils";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { BrokerReviewSEO } from "@/components/seo/BrokerReviewSEO";
+import { PerformanceMonitor } from "@/components/performance/PerformanceMonitor";
+import { TrustSignals } from "@/components/trust/TrustSignals";
+import { MobileResponsivenessOptimizer } from "@/components/optimization/MobileResponsivenessOptimizer";
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
-// Generate metadata for the broker review page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // Get the broker data using the slug from params
-  const { slug } = await params;
-  const broker = await getBrokerBySlug(slug);
-
-  if (!broker) {
-    return {
-      title: "Broker Not Found",
-      description: "The requested broker review could not be found."
-    };
-  }
-
-  const seoData = getBrokerSeo(broker);
-
-  return {
-    title: seoData.title,
-    description: seoData.description,
-    keywords: seoData.keywords,
-    openGraph: {
-      title: seoData.title,
-      description: seoData.description,
-      type: "article",
-      url: `https://yoursite.com/brokers/${slug}`,
-      images: [
-        {
-          url: broker.logo_url || "/images/default-broker-logo.png",
-          width: 1200,
-          height: 630,
-          alt: `${broker.name} Logo`
-        }
-      ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData.title,
-      description: seoData.description,
-      images: [broker.logo_url || "/images/default-broker-logo.png"]
-    }
-  };
-}
+const sections = [
+  "trading-conditions",
+  "social-trading",
+  "platforms",
+  "accounts",
+  "regulation",
+  "education",
+  "support",
+  "reviews",
+  "analysis",
+  "faq"
+];
 
 export default async function BrokerReviewPage({ params }: Props) {
-  // Get the broker data using the slug from params
   const { slug } = await params;
   const broker = await getBrokerBySlug(slug);
 
@@ -75,166 +55,159 @@ export default async function BrokerReviewPage({ params }: Props) {
   // Generate headline for the broker
   const headline = getHeadlineForBroker(broker);
 
-  // Define the type for the JSON-LD object
-  const jsonLd: {
-    "@context": string;
-    "@type": string;
-    itemReviewed: {
-      "@type": string;
-      name: string;
-      description: string;
-      url: string;
-      logo: string;
-    };
-    reviewRating: {
-      "@type": string;
-      ratingValue: string | number;
-      bestRating: string;
-      worstRating: string;
-    };
-    author: {
-      "@type": string;
-      name: string;
-    };
-    publisher: {
-      "@type": string;
-      name: string;
-      logo: {
-        "@type": string;
-        url: string;
-      };
-    };
-    headline: string;
-    datePublished: string;
-    dateModified: string;
-    mainEntity?: any; // Add optional mainEntity property
-  } = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "FinancialService",
-      "name": broker.name,
-      "description": broker.description || `${broker.name} forex broker review.`,
-      "url": broker.website_url || "",
-      "logo": broker.logo_url || "/images/default-broker-logo.png"
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": broker.overall_rating || "4.0",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "Your Site Name"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Your Site Name",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://yoursite.com/logo.png"
-      }
-    },
-    "headline": headline,
-    "datePublished": broker.published_date || new Date().toISOString().split('T')[0],
-    "dateModified": broker.last_updated || new Date().toISOString().split('T')[0]
+  // Prepare broker data for SEO component
+  const seoData = {
+    name: broker.name,
+    slug: broker.slug,
+    description: broker.description || `Comprehensive review of ${broker.name} forex broker`,
+    website_url: broker.website_url || '',
+    logo_url: broker.logo_url || '',
+    overall_rating: broker.overall_rating || 0,
+    published_date: broker.published_date || new Date().toISOString().split('T')[0],
+    last_updated: broker.last_updated || new Date().toISOString().split('T')[0],
+    faqs: broker.faqs,
+    address: broker.address,
+    aggregateRating: broker.aggregateRating,
+    offers: broker.offers
   };
 
-  // Add FAQ schema if available
-  if (broker.faqs && broker.faqs.length > 0) {
-    jsonLd.mainEntity = {
-      "@type": "FAQPage",
-      "mainEntity": broker.faqs.map((faq: any) => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    };
-  }
+  // Prepare eToro executive summary data
+  const etoroExecutiveSummaryData = {
+    text: `eToro uniquely positions itself in the forex market, not as a conventional broker, but as a leading social trading platform. Established in 2007 and headquartered in Cyprus, its core distinction lies in its vibrant community of over 30 million users and its innovative CopyTrader™ system, which allows individuals to mirror the trades of successful investors—a far cry from traditional forex offerings. Key strengths include this powerful social trading capability, an exceptionally user-friendly interface tailored for beginner to intermediate traders, and robust regulation under authorities like CySEC, FCA, and ASIC. However, eToro is not without limitations. Its spreads are notably wider than those of typical ECN brokers, potentially increasing trading costs. Furthermore, the platform offers limited advanced analytical tools, and its product suite is heavily concentrated on CFDs. Therefore, eToro is an excellent fit for newcomers and those prioritizing social interaction and ease of use. Conversely, seasoned traders demanding low spreads, sophisticated charting, and diverse non-CFD instruments may find it lacking.`,
+    overallVerdict: "Overall Verdict: eToro excels as a social trading pioneer.",
+    scores: [
+      { label: "Social Trading & Copy Trading", score: "9.5/10" },
+      { label: "User-Friendliness & Accessibility", score: "9.0/10" },
+      { label: "Regulation & Security", score: "8.0/10" },
+      { label: "Spreads & Trading Costs", score: "6.0/10" },
+      { label: "Advanced Tools & Platforms", score: "5.5/10" },
+    ],
+    overallScore: "7.6/10",
+  };
 
   return (
     <>
-      {/* JSON-LD structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd)
-        }}
+      {/* SEO Optimization */}
+      <BrokerReviewSEO broker={seoData} />
+
+      {/* Performance Monitoring */}
+      <PerformanceMonitor
+        reportTo="/api/performance-metrics"
+        debug={process.env.NODE_ENV === 'development'}
       />
 
-      <div className="container mx-auto px-4 py-6 sm:py-8">
-        {/* Hero Section with broker overview */}
-        <HeroBrokerSection broker={broker} />
+      <div className="min-h-screen" style={{ scrollBehavior: 'smooth' }}>
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          {/* Breadcrumbs */}
+          <Breadcrumb items={[
+            { label: "Home", href: "/" },
+            { label: "Brokers", href: "/brokers" },
+            { label: broker.name, href: `/brokers/${broker.slug}` }
+          ]} />
 
-        <div className="mt-8 sm:mt-12">
-          <BrokerOverviewSection broker={broker} headline={headline} />
-        </div>
+          {/* Hero Section */}
+          <HeroBrokerSection broker={broker} />
 
-        <Separator className="my-8 sm:my-12" />
-
-        {/* Mobile Navigation for sections */}
-        <div className="lg:hidden mb-8 overflow-x-auto">
-          <div className="flex space-x-4 pb-2 min-w-max">
-            <a href="#trading-conditions" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Trading Conditions</a>
-            <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
-            {broker.educational_resources && (
-              <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
-            )}
-            <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
-            <a href="#analysis" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Analysis</a>
-            <a href="#similar" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Similar Brokers</a>
-            <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
+          {/* Trust Signals & Security */}
+          <div className="mt-8">
+            <TrustSignals broker={{
+              name: broker.name,
+              regulators: broker.regulators,
+              isSecure: true,
+              trustScore: broker.overall_rating,
+              securityFeatures: broker.security_features,
+              isScamBroker: false
+            }} />
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-10 sm:space-y-12">
-            {/* Trading Conditions */}
-            <section id="trading-conditions">
-              <BrokerTradingConditions broker={broker} />
-            </section>
+          {/* Main Content Layout */}
+          <div className="mt-8 sm:mt-12">
+            <BrokerOverviewSection broker={broker} headline={headline} />
+          </div>
 
-            {/* Trading Platforms */}
-            <section id="platforms">
-              <PlatformsSection broker={broker} />
-            </section>
+          {/* Executive Summary */}
+          <div className="mt-8 sm:mt-12">
+            <BrokerExecutiveSummary summary={etoroExecutiveSummaryData} brokerName={broker.name} />
+          </div>
 
-            {/* Educational Resources */}
-            {broker.educational_resources && (
+          {/* Mobile Responsiveness Monitor (visible only in development) */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mt-8">
+              <MobileResponsivenessOptimizer />
+            </div>
+          )}
+
+          <Separator className="my-8 sm:my-12" />
+
+          {/* Mobile Navigation */}
+          <div className="lg:hidden mb-8 overflow-x-auto">
+            <div className="flex space-x-4 pb-2 min-w-max">
+              <a href="#trading-conditions" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Trading Conditions</a>
+              <a href="#social-trading" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Social Trading</a>
+              <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
+              <a href="#accounts" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Account Types</a>
+              <a href="#regulation" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Regulation</a>
+              <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
+              <a href="#support" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Support</a>
+              <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
+              <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
+            </div>
+          </div>
+
+          {/* Main Content Grid with Sidebar */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Sticky Sidebar */}
+            <ClientSideSidebar sections={sections} />
+
+            {/* Main Content */}
+            <div className="lg:col-span-3 space-y-12">
+              <section id="trading-conditions">
+                <BrokerTradingConditions broker={broker} />
+              </section>
+
+              <section id="social-trading">
+                <SocialTradingSection broker={broker} />
+              </section>
+
+              <section id="platforms">
+                <PlatformsSection broker={broker} />
+              </section>
+
+              <section id="accounts">
+                <AccountTypesSection broker={broker} />
+              </section>
+
+              <section id="regulation">
+                <RegulationSection broker={broker} />
+              </section>
+
               <section id="education">
                 <EducationSection broker={broker} />
               </section>
-            )}
 
-            {/* User Reviews */}
-            <section id="reviews">
-              <ReviewsSection broker={broker} />
-            </section>
+              <section id="support">
+                <CustomerSupportSection broker={broker} />
+              </section>
+
+              <section id="reviews">
+                <ReviewsSection broker={broker} />
+              </section>
+
+              <section id="analysis">
+                <BrokerAnalysisWidget broker={broker} />
+              </section>
+
+              <section id="similar">
+                <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
+              </section>
+            </div>
           </div>
 
-          <div className="space-y-8">
-            {/* Broker Analysis Widget */}
-            <section id="analysis">
-              <BrokerAnalysisWidget broker={broker} />
-            </section>
-
-            {/* Similar Brokers Recommendation */}
-            <section id="similar">
-              <SimilarBrokersSection brokers={similarBrokers} currentBroker={broker.name} />
-            </section>
-          </div>
+          {/* FAQ Section */}
+          <section id="faq" className="mt-12">
+            <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
+          </section>
         </div>
-
-        <Separator className="my-8 sm:my-12" />
-
-        {/* FAQ Section */}
-        <section id="faq" className="mt-8 sm:mt-12">
-          <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
-        </section>
       </div>
     </>
   );

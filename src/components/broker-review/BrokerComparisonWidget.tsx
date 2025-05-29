@@ -111,6 +111,10 @@ export function BrokerComparisonWidget({
 
   const allBrokers = [primaryBroker, ...comparisonBrokers].filter(Boolean);
 
+  if (!primaryBroker) {
+    return null;
+  }
+
   return (
     <Card className="w-full overflow-hidden">
       <CardHeader>

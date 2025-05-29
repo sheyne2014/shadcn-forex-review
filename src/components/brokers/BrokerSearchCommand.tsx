@@ -14,14 +14,21 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { Search } from "lucide-react";
+import { searchBrokers } from "@/lib/supabase/roku-client";
+import { getBrokers } from "@/lib/supabase/broker-client";
 
 type BrokerSearchResult = {
   id: string;
   name: string;
   country?: string;
   regulations?: string;
-  isWebResult?: boolean;
+  rating?: number;
+  description?: string;
+  features?: string;
+  pros?: string;
+  cons?: string;
   url?: string;
+  isWebResult?: boolean;
 };
 
 export function BrokerSearchCommand() {
@@ -45,7 +52,7 @@ export function BrokerSearchCommand() {
   }, []);
 
   useEffect(() => {
-    const searchBrokers = async () => {
+    const performSearch = async () => {
       if (query.length < 2) {
         setResults([]);
         setWebResults([]);
@@ -54,40 +61,41 @@ export function BrokerSearchCommand() {
 
       setIsLoading(true);
       try {
-        // In a real implementation this would call the API endpoint
-        // For now we'll simulate the results
+        // Search using the real API
+        const searchTerms = query.split(' ').filter(term => term.length > 1);
         
-        // Simulated delay to mimic API call
-        await new Promise(resolve => setTimeout(resolve, 300));
+        // First try the roku-client search which searches in name, description, features, pros, cons
+        const rokuResults = await searchBrokers(searchTerms);
         
-        // Sample broker data
-        const brokerData: BrokerSearchResult[] = [
-          { id: "1", name: "XYZ Trading", country: "UK", regulations: "FCA, ASIC" },
-          { id: "2", name: "Alpha Markets", country: "AU", regulations: "ASIC" },
-          { id: "3", name: "Global Prime", country: "CY", regulations: "CySEC" },
-          { id: "4", name: "Trade Pro", country: "US", regulations: "NFA, CFTC" }
-        ].filter(broker => 
-          broker.name.toLowerCase().includes(query.toLowerCase()) ||
-          broker.country?.toLowerCase().includes(query.toLowerCase()) ||
-          broker.regulations?.toLowerCase().includes(query.toLowerCase())
+        // Also search the main brokers table for additional results
+        const { data: brokerResults } = await getBrokers({
+          limit: 10,
+          sort_by: "rating",
+          sort_order: "desc"
+        });
+        
+        // Filter broker results by query
+        const filteredBrokers = brokerResults?.filter(broker => {
+          const searchText = `${broker.name} ${broker.country} ${broker.regulations} ${broker.description || ''}`.toLowerCase();
+          return searchTerms.some(term => searchText.includes(term.toLowerCase()));
+        }) || [];
+        
+        // Combine and deduplicate results
+        const combinedResults = [...rokuResults, ...filteredBrokers];
+        const uniqueResults = combinedResults.filter((broker, index, self) => 
+          index === self.findIndex(b => b.id === broker.id)
         );
         
-        setResults(brokerData);
+        setResults(uniqueResults.slice(0, 8)); // Limit to 8 results
         
-        // Simulated web results using the FireCrawl scraper
-        if (brokerData.length < 2) {
+        // If we have few results, suggest web search
+        if (uniqueResults.length < 3) {
           const webData = [
             { 
               id: "web-1", 
-              name: `${query.charAt(0).toUpperCase() + query.slice(1)} Broker`, 
+              name: `Search "${query}" on the web`, 
               isWebResult: true,
-              url: `https://example.com/${query}`
-            },
-            { 
-              id: "web-2", 
-              name: `Best ${query.charAt(0).toUpperCase() + query.slice(1)} Trading`, 
-              isWebResult: true,
-              url: `https://trading-example.com/${query}`
+              url: `https://www.google.com/search?q=${encodeURIComponent(query + ' broker review')}`
             }
           ];
           setWebResults(webData);
@@ -96,24 +104,25 @@ export function BrokerSearchCommand() {
         }
       } catch (error) {
         console.error("Error searching brokers:", error);
+        setResults([]);
+        setWebResults([]);
       } finally {
         setIsLoading(false);
       }
     };
 
-    const timer = setTimeout(searchBrokers, 300);
+    const timer = setTimeout(performSearch, 300);
     return () => clearTimeout(timer);
   }, [query]);
 
   const handleBrokerSelect = (broker: BrokerSearchResult) => {
     setOpen(false);
     if (broker.isWebResult && broker.url) {
-      // In a real app, this would potentially add the broker to the system
-      // For now, we'll just log the action
-      console.log("Selected web broker:", broker);
       window.open(broker.url, "_blank");
     } else {
-      router.push(`/broker/${broker.id}`);
+      // Check if broker has a URL slug or use ID
+      const brokerPath = broker.url ? `/brokers/${broker.url.replace(/^https?:\/\/[^\/]+\//, '')}` : `/broker/${broker.id}`;
+      router.push(brokerPath);
     }
   };
 
@@ -145,17 +154,30 @@ export function BrokerSearchCommand() {
             )}
           </CommandEmpty>
           {results.length > 0 && (
-            <CommandGroup heading="Database Brokers">
+            <CommandGroup heading="Brokers">
               {results.map((broker) => (
                 <CommandItem
                   key={broker.id}
                   onSelect={() => handleBrokerSelect(broker)}
+                  className="flex items-center justify-between p-3"
                 >
-                  <span>{broker.name}</span>
-                  {broker.country && (
-                    <span className="ml-2 text-xs text-muted-foreground">
-                      {broker.country} • {broker.regulations}
-                    </span>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{broker.name}</span>
+                    {broker.country && (
+                      <span className="text-xs text-muted-foreground">
+                        {broker.country} • {broker.regulations}
+                      </span>
+                    )}
+                    {broker.description && (
+                      <span className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                        {broker.description}
+                      </span>
+                    )}
+                  </div>
+                  {broker.rating && (
+                    <div className="text-xs font-medium text-yellow-600">
+                      ★ {broker.rating}
+                    </div>
                   )}
                 </CommandItem>
               ))}
@@ -184,4 +206,4 @@ export function BrokerSearchCommand() {
       </CommandDialog>
     </>
   );
-} 
+}

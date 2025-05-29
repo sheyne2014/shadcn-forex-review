@@ -98,40 +98,289 @@ export type Database = {
       }
       brokers: {
         Row: {
-          country: string | null
-          created_at: string | null
+          // Basic Information
           id: string
-          logo_url: string | null
-          min_deposit: number | null
           name: string
-          rating: number | null
-          regulations: string | null
-          supported_assets: string[] | null
+          slug: string | null
+          logo_url: string | null
+          website_url: string | null
+          description: string | null
+          short_description: string | null
+
+          // Basic Trading Information
+          min_deposit: number | null
+          min_deposit_usd: number | null
           trading_fee: number | null
+          max_leverage: number | null
+
+          // Detailed Spread Information
+          spreads_eur_usd: number | null
+          spreads_gbp_usd: number | null
+          spreads_usd_jpy: number | null
+          spreads_from: string | null
+          commission_per_lot: number | null
+
+          // Regulation & Safety
+          regulations: string | null
+          primary_regulator: string | null
+          secondary_regulators: string[] | null
+          license_number: string | null
+          segregated_accounts: boolean | null
+          insurance_coverage: number | null
+
+          // Platform Details
+          trading_platforms: string | null
+          platform_names: string[] | null
+          mobile_app_rating: number | null
+          demo_account_available: boolean | null
+          api_access: boolean | null
+          social_trading: boolean | null
+
+          // Account Information
+          account_currencies: string | null
+          account_types: Json | null
+          supported_assets: string[] | null
+
+          // Customer Service
+          support_languages: string[] | null
+          support_hours: string | null
+          live_chat_available: boolean | null
+          phone_support_available: boolean | null
+
+          // Educational Resources
+          educational_content_quality: number | null
+          webinars_available: boolean | null
+          trading_signals: boolean | null
+          market_research: boolean | null
+
+          // Ratings & Scores
+          rating: number | null
+          overall_rating: number | null
+          expert_score: number | null
+          user_experience_score: number | null
+          value_for_money_score: number | null
+
+          // Unique Features & Analysis
+          unique_selling_points: string[] | null
+          pros: string[] | null
+          cons: string[] | null
+
+          // Company Information
+          country: string | null
+          headquarters: string | null
+          year_founded: string | null
+          founded_year: number | null
+
+          // Content & SEO
+          meta_title: string | null
+          meta_description: string | null
+          featured_image_url: string | null
+
+          // Review & Analysis Meta
+          last_reviewed_date: string | null
+          review_methodology_version: number | null
+          is_featured: boolean | null
+          is_trusted: boolean | null
+          is_regulated: boolean | null
+
+          // Legacy fields
+          min_trade_size: string | null
+          regulation: string | null
+          badge: string | null
+
+          // Timestamps
+          created_at: string | null
+          updated_at: string | null
         }
         Insert: {
-          country?: string | null
-          created_at?: string | null
+          // Basic Information
           id?: string
-          logo_url?: string | null
-          min_deposit?: number | null
           name: string
-          rating?: number | null
-          regulations?: string | null
-          supported_assets?: string[] | null
+          slug?: string | null
+          logo_url?: string | null
+          website_url?: string | null
+          description?: string | null
+          short_description?: string | null
+
+          // Basic Trading Information
+          min_deposit?: number | null
+          min_deposit_usd?: number | null
           trading_fee?: number | null
+          max_leverage?: number | null
+
+          // Detailed Spread Information
+          spreads_eur_usd?: number | null
+          spreads_gbp_usd?: number | null
+          spreads_usd_jpy?: number | null
+          spreads_from?: string | null
+          commission_per_lot?: number | null
+
+          // Regulation & Safety
+          regulations?: string | null
+          primary_regulator?: string | null
+          secondary_regulators?: string[] | null
+          license_number?: string | null
+          segregated_accounts?: boolean | null
+          insurance_coverage?: number | null
+
+          // Platform Details
+          trading_platforms?: string | null
+          platform_names?: string[] | null
+          mobile_app_rating?: number | null
+          demo_account_available?: boolean | null
+          api_access?: boolean | null
+          social_trading?: boolean | null
+
+          // Account Information
+          account_currencies?: string | null
+          account_types?: Json | null
+          supported_assets?: string[] | null
+
+          // Customer Service
+          support_languages?: string[] | null
+          support_hours?: string | null
+          live_chat_available?: boolean | null
+          phone_support_available?: boolean | null
+
+          // Educational Resources
+          educational_content_quality?: number | null
+          webinars_available?: boolean | null
+          trading_signals?: boolean | null
+          market_research?: boolean | null
+
+          // Ratings & Scores
+          rating?: number | null
+          overall_rating?: number | null
+          expert_score?: number | null
+          user_experience_score?: number | null
+          value_for_money_score?: number | null
+
+          // Unique Features & Analysis
+          unique_selling_points?: string[] | null
+          pros?: string[] | null
+          cons?: string[] | null
+
+          // Company Information
+          country?: string | null
+          headquarters?: string | null
+          year_founded?: string | null
+          founded_year?: number | null
+
+          // Content & SEO
+          meta_title?: string | null
+          meta_description?: string | null
+          featured_image_url?: string | null
+
+          // Review & Analysis Meta
+          last_reviewed_date?: string | null
+          review_methodology_version?: number | null
+          is_featured?: boolean | null
+          is_trusted?: boolean | null
+          is_regulated?: boolean | null
+
+          // Legacy fields
+          min_trade_size?: string | null
+          regulation?: string | null
+          badge?: string | null
+
+          // Timestamps
+          created_at?: string | null
+          updated_at?: string | null
         }
         Update: {
-          country?: string | null
-          created_at?: string | null
+          // Basic Information
           id?: string
-          logo_url?: string | null
-          min_deposit?: number | null
           name?: string
-          rating?: number | null
-          regulations?: string | null
-          supported_assets?: string[] | null
+          slug?: string | null
+          logo_url?: string | null
+          website_url?: string | null
+          description?: string | null
+          short_description?: string | null
+
+          // Basic Trading Information
+          min_deposit?: number | null
+          min_deposit_usd?: number | null
           trading_fee?: number | null
+          max_leverage?: number | null
+
+          // Detailed Spread Information
+          spreads_eur_usd?: number | null
+          spreads_gbp_usd?: number | null
+          spreads_usd_jpy?: number | null
+          spreads_from?: string | null
+          commission_per_lot?: number | null
+
+          // Regulation & Safety
+          regulations?: string | null
+          primary_regulator?: string | null
+          secondary_regulators?: string[] | null
+          license_number?: string | null
+          segregated_accounts?: boolean | null
+          insurance_coverage?: number | null
+
+          // Platform Details
+          trading_platforms?: string | null
+          platform_names?: string[] | null
+          mobile_app_rating?: number | null
+          demo_account_available?: boolean | null
+          api_access?: boolean | null
+          social_trading?: boolean | null
+
+          // Account Information
+          account_currencies?: string | null
+          account_types?: Json | null
+          supported_assets?: string[] | null
+
+          // Customer Service
+          support_languages?: string[] | null
+          support_hours?: string | null
+          live_chat_available?: boolean | null
+          phone_support_available?: boolean | null
+
+          // Educational Resources
+          educational_content_quality?: number | null
+          webinars_available?: boolean | null
+          trading_signals?: boolean | null
+          market_research?: boolean | null
+
+          // Ratings & Scores
+          rating?: number | null
+          overall_rating?: number | null
+          expert_score?: number | null
+          user_experience_score?: number | null
+          value_for_money_score?: number | null
+
+          // Unique Features & Analysis
+          unique_selling_points?: string[] | null
+          pros?: string[] | null
+          cons?: string[] | null
+
+          // Company Information
+          country?: string | null
+          headquarters?: string | null
+          year_founded?: string | null
+          founded_year?: number | null
+
+          // Content & SEO
+          meta_title?: string | null
+          meta_description?: string | null
+          featured_image_url?: string | null
+
+          // Review & Analysis Meta
+          last_reviewed_date?: string | null
+          review_methodology_version?: number | null
+          is_featured?: boolean | null
+          is_trusted?: boolean | null
+          is_regulated?: boolean | null
+
+          // Legacy fields
+          min_trade_size?: string | null
+          regulation?: string | null
+          badge?: string | null
+
+          // Timestamps
+          created_at?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import NextTopLoader from "nextjs-toploader";
+import { ClientTopLoader } from "@/components/client/ClientTopLoader";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import { AuthProvider } from "@/lib/providers/AuthProvider";
@@ -171,7 +171,7 @@ export default function Layout({
               />
             </PerformanceErrorBoundary>
             <SkipToContent />
-            <NextTopLoader showSpinner={false} />
+            <ClientTopLoader showSpinner={false} />
             <Header />
             <main id="main-content" className="min-h-[calc(100vh-4rem)]">
               {children}

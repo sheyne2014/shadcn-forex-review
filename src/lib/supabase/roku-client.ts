@@ -11,19 +11,17 @@ export async function searchBlogPosts(searchTerms: string[]) {
   if (!searchTerms.length) return [];
 
   // Create a more comprehensive search query
-  const searchQuery = searchTerms.map(term => {
-    return `
-      title.ilike.%${term}%,
-      content.ilike.%${term}%,
-      excerpt.ilike.%${term}%,
-      tags.ilike.%${term}%
-    `;
-  }).join(",");
+  const searchConditions = searchTerms.flatMap(term => [
+    `title.ilike.%${term}%`,
+    `content.ilike.%${term}%`,
+    `excerpt.ilike.%${term}%`,
+    `tags.ilike.%${term}%`
+  ]);
 
   const { data, error } = await supabaseRokuClient
     .from('blog_posts')
     .select('id, url, title, content, excerpt, tags, published_at')
-    .or(searchQuery)
+    .or(searchConditions.join(','))
     .order('published_at', { ascending: false })
     .limit(5);
 
@@ -40,18 +38,16 @@ export async function searchPages(searchTerms: string[]) {
   if (!searchTerms.length) return [];
 
   // Create a more comprehensive search query
-  const searchQuery = searchTerms.map(term => {
-    return `
-      title.ilike.%${term}%,
-      content.ilike.%${term}%,
-      meta_description.ilike.%${term}%
-    `;
-  }).join(",");
+  const searchConditions = searchTerms.flatMap(term => [
+    `title.ilike.%${term}%`,
+    `content.ilike.%${term}%`,
+    `meta_description.ilike.%${term}%`
+  ]);
 
   const { data, error } = await supabaseRokuClient
     .from('pages')
     .select('id, url, title, content, meta_description, last_updated')
-    .or(searchQuery)
+    .or(searchConditions.join(','))
     .order('last_updated', { ascending: false })
     .limit(5);
 
@@ -67,30 +63,32 @@ export async function searchPages(searchTerms: string[]) {
 export async function searchBrokers(searchTerms: string[]) {
   if (!searchTerms.length) return [];
 
-  // Create a more comprehensive search query
-  const searchQuery = searchTerms.map(term => {
-    return `
-      name.ilike.%${term}%,
-      description.ilike.%${term}%,
-      features.ilike.%${term}%,
-      pros.ilike.%${term}%,
-      cons.ilike.%${term}%
-    `;
-  }).join(",");
+  try {
+    // Create a search query using only fields that exist in the brokers table
+    // Fix the query format - remove extra whitespace and newlines
+    const searchConditions = searchTerms.flatMap(term => [
+      `name.ilike.%${term}%`,
+      `country.ilike.%${term}%`,
+      `regulations.ilike.%${term}%`
+    ]);
 
-  const { data, error } = await supabaseRokuClient
-    .from('brokers')
-    .select('id, url, name, description, features, pros, cons, rating')
-    .or(searchQuery)
-    .order('rating', { ascending: false })
-    .limit(5);
+    const { data, error } = await supabaseRokuClient
+      .from('brokers')
+      .select('id, name, country, regulations, min_deposit, trading_fee, logo_url, rating, supported_assets, url')
+      .or(searchConditions.join(','))
+      .order('rating', { ascending: false })
+      .limit(5);
 
-  if (error) {
-    console.error("Error searching brokers:", error);
+    if (error) {
+      console.error("Error searching brokers:", error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error("Exception searching brokers:", error);
     return [];
   }
-
-  return data || [];
 }
 
 // Helper function to search for tools and resources
@@ -98,18 +96,16 @@ export async function searchTools(searchTerms: string[]) {
   if (!searchTerms.length) return [];
 
   // Create a search query for tools
-  const searchQuery = searchTerms.map(term => {
-    return `
-      name.ilike.%${term}%,
-      description.ilike.%${term}%,
-      category.ilike.%${term}%
-    `;
-  }).join(",");
+  const searchConditions = searchTerms.flatMap(term => [
+    `name.ilike.%${term}%`,
+    `description.ilike.%${term}%`,
+    `category.ilike.%${term}%`
+  ]);
 
   const { data, error } = await supabaseRokuClient
     .from('tools')
     .select('id, url, name, description, category')
-    .or(searchQuery)
+    .or(searchConditions.join(','))
     .limit(3);
 
   if (error) {
@@ -125,18 +121,16 @@ export async function searchFAQs(searchTerms: string[]) {
   if (!searchTerms.length) return [];
 
   // Create a search query for FAQs
-  const searchQuery = searchTerms.map(term => {
-    return `
-      question.ilike.%${term}%,
-      answer.ilike.%${term}%,
-      category.ilike.%${term}%
-    `;
-  }).join(",");
+  const searchConditions = searchTerms.flatMap(term => [
+    `question.ilike.%${term}%`,
+    `answer.ilike.%${term}%`,
+    `category.ilike.%${term}%`
+  ]);
 
   const { data, error } = await supabaseRokuClient
     .from('faqs')
     .select('id, question, answer, category')
-    .or(searchQuery)
+    .or(searchConditions.join(','))
     .limit(3);
 
   if (error) {
