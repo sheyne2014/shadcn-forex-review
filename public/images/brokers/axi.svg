@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .axi-text { font-family: Arial, sans-serif; font-weight: bold; fill: #0A4F9B; }
+  </style>
+  <rect width="200" height="80" fill="white"/>
+  <text x="50" y="50" class="axi-text" font-size="48">axi</text>
+  <path d="M50 55 L150 55" stroke="#0A4F9B" stroke-width="2"/>
+</svg> 

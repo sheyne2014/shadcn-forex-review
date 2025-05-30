@@ -312,29 +312,55 @@ export async function getBrokerBySlug(slug: string): Promise<BrokerDetails | nul
  */
 export async function getSimilarBrokers(_brokerId: string, _limit = 3): Promise<BrokerDetails[]> {
   try {
-    // For now, return mock data
+    // For now, return real broker data from the project
     return [
       {
-        id: "2",
-        name: "Similar Broker 1",
-        slug: "similar-broker-1",
-        logo_url: "/images/broker-logo.svg",
+        id: "b4000000-0000-0000-0000-000000000040",
+        name: "Pepperstone",
+        slug: "pepperstone",
+        logo_url: "/images/brokers/pepperstone.png",
         min_deposit: 200,
-        max_leverage: "1:400",
-        regulations: "ASIC",
-        overall_rating: 4.2,
-        spreads_from: "0.8 pips",
+        max_leverage: "1:500",
+        regulations: "FCA, ASIC, CySEC, DFSA, SCB",
+        overall_rating: 4.8,
+        spreads_from: "From 0.0 pips",
+        trading_platforms: "MT4, MT5, cTrader",
+        country: "Australia",
+        established: "2010",
+        website_url: "https://www.pepperstone.com",
+        feature: "Advanced Trading Tools"
       } as BrokerDetails,
       {
-        id: "3",
-        name: "Similar Broker 2",
-        slug: "similar-broker-2",
-        logo_url: "/images/broker-logo.svg",
-        min_deposit: 50,
+        id: "ba000000-0000-0000-0000-0000000000a0",
+        name: "XTB",
+        slug: "xtb",
+        logo_url: "/images/brokers/xtb.png",
+        min_deposit: 0,
         max_leverage: "1:500",
-        regulations: "FCA",
-        overall_rating: 4.0,
-        spreads_from: "1.0 pips",
+        regulations: "FCA, CySEC, KNF, IFSC",
+        overall_rating: 4.5,
+        spreads_from: "From 0.8 pips",
+        trading_platforms: "xStation 5, MT4",
+        country: "Poland",
+        established: "2002",
+        website_url: "https://www.xtb.com",
+        feature: "Award-Winning Platform"
+      } as BrokerDetails,
+      {
+        id: "b5000000-0000-0000-0000-000000000050",
+        name: "OANDA",
+        slug: "oanda",
+        logo_url: "/images/brokers/oanda.png",
+        min_deposit: 0,
+        max_leverage: "1:500",
+        regulations: "FCA, NFA, CFTC, IIROC",
+        overall_rating: 4.6,
+        spreads_from: "From 1.2 pips",
+        trading_platforms: "OANDA Trade, MT4",
+        country: "USA",
+        established: "1996",
+        website_url: "https://www.oanda.com",
+        feature: "Advanced Trading Tools"
       } as BrokerDetails
     ];
 
@@ -388,16 +414,10 @@ export async function getSimilarBrokers(_brokerId: string, _limit = 3): Promise<
             trading_platforms: {
               contains: currentBroker.trading_platforms
             }
-          } : {},
-
-          // Similar account types
-          currentBroker.account_types ? {
-            account_types: {
-              contains: currentBroker.account_types
-            }
           } : {}
         ]
       },
+      take: limit,
       select: {
         id: true,
         name: true,
@@ -408,14 +428,10 @@ export async function getSimilarBrokers(_brokerId: string, _limit = 3): Promise<
         regulations: true,
         overall_rating: true,
         spreads_from: true
-      },
-      take: limit,
-      orderBy: {
-        overall_rating: 'desc'
       }
     });
 
-    return similarBrokers;
+    return similarBrokers as BrokerDetails[];
     */
   } catch (error) {
     console.error("Error fetching similar brokers:", error);

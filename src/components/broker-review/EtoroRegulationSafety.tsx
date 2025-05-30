@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -239,69 +239,71 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
 
           {/* Regulatory Overview Tab */}
           <TabsContent value="regulatory-overview" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {regulatoryEntities.map((entity, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2 text-lg">
-                        <Building2 className="h-5 w-5 text-blue-600" />
-                        {entity.regulator}
-                      </CardTitle>
-                      <Badge 
-                        variant={entity.status === "Active" ? "default" : "secondary"}
-                        className="flex items-center gap-1"
-                      >
-                        <CheckCircle className="h-3 w-3" />
-                        {entity.status}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="font-medium text-muted-foreground">License:</span>
-                        <p className="font-mono">{entity.license}</p>
-                      </div>
-                      <div>
-                        <span className="font-medium text-muted-foreground">Entity:</span>
-                        <p>{entity.entity}</p>
-                      </div>
-                      <div>
-                        <span className="font-medium text-muted-foreground">Coverage:</span>
-                        <p>{entity.coverage}</p>
-                      </div>
-                      <div>
-                        <span className="font-medium text-muted-foreground">Protection:</span>
-                        <p className="text-green-600 font-medium">{entity.protection}</p>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <span className="font-medium text-muted-foreground text-sm">Services Offered:</span>
-                      <p className="text-sm mt-1">{entity.services}</p>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2 border-t">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2 h-2 rounded-full ${
-                          entity.riskLevel === "Low" ? "bg-green-500" :
-                          entity.riskLevel === "Medium" ? "bg-yellow-500" : "bg-red-500"
-                        }`} />
-                        <span className="text-xs text-muted-foreground">
-                          {entity.riskLevel} Risk
-                        </span>
-                      </div>
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={entity.verificationUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-3 w-3 mr-1" />
-                          Verify
-                        </a>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>FCA (UK)</CardTitle>
+                  <CardDescription>Financial Conduct Authority</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm">
+                    <li>License #: 583263</li>
+                    <li><a href="https://register.fca.org.uk/s/firm?id=001b000000MfGvUAAV" target="_blank" rel="noopener noreferrer" className="text-primary underline">Verify on FCA Register</a></li>
+                    <li>Services: CFDs, stocks, crypto (limited), social trading</li>
+                    <li>Client fund protection: <b>FSCS up to £85,000</b></li>
+                    <li>Compensation: Financial Services Compensation Scheme (FSCS)</li>
+                    <li>Recent actions: No major FCA penalties as of 2024</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>CySEC (EU)</CardTitle>
+                  <CardDescription>Cyprus Securities and Exchange Commission</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm">
+                    <li>License #: 109/10</li>
+                    <li><a href="https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/37660/" target="_blank" rel="noopener noreferrer" className="text-primary underline">Verify on CySEC Register</a></li>
+                    <li>Services: CFDs, stocks, crypto, social trading</li>
+                    <li>Client fund protection: <b>ICF up to €20,000</b></li>
+                    <li>Compensation: Investor Compensation Fund (ICF)</li>
+                    <li>Recent actions: No major CySEC penalties as of 2024</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>ASIC (Australia)</CardTitle>
+                  <CardDescription>Australian Securities & Investments Commission</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm">
+                    <li>License #: 491139</li>
+                    <li><a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/SearchRegisters.jspx" target="_blank" rel="noopener noreferrer" className="text-primary underline">Verify on ASIC Register</a></li>
+                    <li>Services: CFDs, stocks, social trading</li>
+                    <li>Client fund protection: No statutory compensation scheme</li>
+                    <li>Compensation: Private insurance for eligible clients</li>
+                    <li>Recent actions: No major ASIC penalties as of 2024</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>FINRA (USA)</CardTitle>
+                  <CardDescription>Financial Industry Regulatory Authority</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm">
+                    <li>eToro USA Securities Inc. (CRD #298361)</li>
+                    <li><a href="https://brokercheck.finra.org/firm/summary/298361" target="_blank" rel="noopener noreferrer" className="text-primary underline">Verify on FINRA BrokerCheck</a></li>
+                    <li>Services: US stocks, ETFs, options, crypto (via eToro USA LLC)</li>
+                    <li>Client fund protection: <b>SIPC up to $500,000</b> (securities only)</li>
+                    <li>Compensation: Securities Investor Protection Corporation (SIPC)</li>
+                    <li>Recent actions: No major FINRA penalties as of 2024</li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Regulatory Analysis */}
@@ -375,42 +377,18 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
           <TabsContent value="client-protection" className="space-y-6">
             <Card>
               <CardHeader>
-                <Context7Heading3>Client Fund Protection by Jurisdiction</Context7Heading3>
+                <Context7Heading3>Client Fund Protection & Segregation</Context7Heading3>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
-                  {clientProtectionDetails.map((protection, index) => (
-                    <div key={index} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-blue-600" />
-                          <h4 className="font-semibold">{protection.jurisdiction}</h4>
-                        </div>
-                        <Badge variant="outline" className="font-mono">
-                          {protection.coverage}
-                        </Badge>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <span className="font-medium text-muted-foreground">Scheme:</span>
-                          <p>{protection.scheme}</p>
-                        </div>
-                        <div>
-                          <span className="font-medium text-muted-foreground">Type:</span>
-                          <p>{protection.type}</p>
-                        </div>
-                        <div className="md:col-span-2">
-                          <span className="font-medium text-muted-foreground">Details:</span>
-                          <p>{protection.details}</p>
-                        </div>
-                        <div className="md:col-span-2">
-                          <span className="font-medium text-muted-foreground">Bank Partners:</span>
-                          <p className="text-green-600">{protection.bankPartners}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <div className="space-y-4">
+                  <Context7Content type="paragraph">
+                    eToro keeps all client funds in segregated accounts at top-tier banks, including J.P. Morgan, Deutsche Bank, and Coutts. This ensures client money is never mixed with company funds. In the UK, funds are protected by the FSCS up to £85,000 per person. In the EU, the ICF covers up to €20,000. In Australia, there is no statutory scheme, but eToro provides private insurance for eligible clients. In the US, SIPC covers up to $500,000 for securities. For high-balance clients, Lloyd's of London insurance covers up to $1 million (Platinum+ tiers, select regions).
+                  </Context7Content>
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <img src="https://www.etoro.com/images/insurance-infographic-en.png" alt="eToro client fund protection infographic" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
+                    <img src="https://www.etoro.com/images/regulation-map-en.png" alt="eToro global regulation map" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
+                  </div>
+                  <Context7Content type="caption">Infographics: eToro official insurance and regulation coverage (source: eToro.com)</Context7Content>
                 </div>
               </CardContent>
             </Card>
@@ -569,45 +547,48 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
         {/* Transparency & Reporting */}
         <Card>
           <CardHeader>
-            <Context7Heading3>Transparency & Reporting Standards</Context7Heading3>
+            <Context7Heading3>Transparency & Regulatory Reporting</Context7Heading3>
           </CardHeader>
           <CardContent className="space-y-6">
             <Context7Content>
-              eToro maintains high standards of transparency through regular regulatory reporting, 
-              public disclosure of execution statistics, and comprehensive customer communication.
+              eToro publishes annual reports, Pillar 3 disclosures, and best execution statistics for its EU and UK entities. These are available on the eToro website. Execution quality is monitored and reported as required by MiFID and FCA rules. Complaint handling procedures are published for each entity, and clients can escalate unresolved issues to the relevant ombudsman or regulator.
             </Context7Content>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto">
-                  <BarChart3 className="h-6 w-6 text-blue-600" />
-                </div>
-                <h4 className="font-semibold">Execution Quality</h4>
-                <p className="text-sm text-muted-foreground">
-                  Regular RTS 27/28 reporting on execution quality and best execution
-                </p>
-              </div>
-
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto">
-                  <FileText className="h-6 w-6 text-green-600" />
-                </div>
-                <h4 className="font-semibold">Annual Reports</h4>
-                <p className="text-sm text-muted-foreground">
-                  Comprehensive annual financial and regulatory compliance reporting
-                </p>
-              </div>
-
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto">
-                  <Users className="h-6 w-6 text-purple-600" />
-                </div>
-                <h4 className="font-semibold">Customer Support</h4>
-                <p className="text-sm text-muted-foreground">
-                  Structured complaint handling process with regulatory oversight
-                </p>
-              </div>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <img src="https://www.etoro.com/images/transparency-infographic-en.png" alt="eToro transparency and reporting infographic" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
             </div>
+            <Context7Content type="caption">Infographic: eToro transparency and reporting (source: eToro.com)</Context7Content>
+          </CardContent>
+        </Card>
+
+        {/* Customer Complaint Handling */}
+        <Card>
+          <CardHeader>
+            <Context7Heading3>Customer Complaint Handling</Context7Heading3>
+          </CardHeader>
+          <CardContent>
+            <Context7Content type="paragraph">
+              eToro provides a dedicated Help Center and customer service team. Complaints can be submitted via the website, email (pr@etoro.com), or phone (US: 1-888-271-8365). eToro aims to resolve complaints within 8 weeks (UK/EU) and provides escalation to the Financial Ombudsman (UK) or CySEC (EU) if unresolved. Complaint procedures are published for each region.
+            </Context7Content>
+          </CardContent>
+        </Card>
+
+        {/* Footnotes & Sources */}
+        <Card>
+          <CardHeader>
+            <Context7Heading3>References & Sources</Context7Heading3>
+          </CardHeader>
+          <CardContent>
+            <ul className="text-xs list-disc pl-6">
+              <li><a href="https://www.etoro.com/customer-service/regulation-license/" target="_blank" rel="noopener noreferrer">eToro Regulation & License</a></li>
+              <li><a href="https://register.fca.org.uk/s/firm?id=001b000000MfGvUAAV" target="_blank" rel="noopener noreferrer">FCA Register</a></li>
+              <li><a href="https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/37660/" target="_blank" rel="noopener noreferrer">CySEC Register</a></li>
+              <li><a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/SearchRegisters.jspx" target="_blank" rel="noopener noreferrer">ASIC Register</a></li>
+              <li><a href="https://brokercheck.finra.org/firm/summary/298361" target="_blank" rel="noopener noreferrer">FINRA BrokerCheck</a></li>
+              <li><a href="https://www.etoro.com/investing/insurance/" target="_blank" rel="noopener noreferrer">eToro Insurance</a></li>
+              <li><a href="https://www.etoro.com/customer-service/account-and-money-protection/" target="_blank" rel="noopener noreferrer">eToro Account & Money Protection</a></li>
+              <li><a href="https://www.etoro.com/news-and-analysis/press-releases/etoro-reports-continued-growth-with-fy22-results/" target="_blank" rel="noopener noreferrer">eToro Annual Report 2022</a></li>
+              <li><a href="https://help.etoro.com/s/article/how-can-i-submit-a-complaint?language=en_GB" target="_blank" rel="noopener noreferrer">eToro Complaints Process</a></li>
+            </ul>
           </CardContent>
         </Card>
       </div>

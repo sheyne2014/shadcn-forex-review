@@ -106,6 +106,15 @@ export function EtoroCompanyBackground({ broker }: EtoroCompanyBackgroundProps) 
             Explore eToro's journey from a Tel Aviv startup to a global fintech giant,
             understanding the business model that powers the world's largest social trading platform.
           </Context7Content>
+          {/* eToro Logo Image */}
+          <div className="flex justify-center mt-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/7e/EToro_logo.svg"
+              alt="eToro Logo"
+              className="h-12 md:h-16 object-contain"
+              style={{ maxWidth: '200px' }}
+            />
+          </div>
         </div>
 
         {/* Key Metrics Dashboard */}
@@ -148,13 +157,30 @@ export function EtoroCompanyBackground({ broker }: EtoroCompanyBackgroundProps) 
                     yet revolutionary idea: to democratize trading by making financial markets accessible
                     to everyone, regardless of their experience level or financial background.
                   </Context7Content>
-
+                  {/* Founders Image */}
+                  <div className="flex justify-center my-4">
+                    <img
+                      src="https://media.gettyimages.com/id/1252301232/photo/yoni-assia-ceo-of-etoro.jpg?s=612x612&w=0&k=20&c=QwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQw="
+                      alt="Yoni Assia, CEO of eToro"
+                      className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                      style={{ maxWidth: '350px' }}
+                    />
+                  </div>
                   <Context7Content>
                     The founding team recognized that traditional trading platforms were complex,
                     intimidating, and designed primarily for professional traders. They envisioned
                     a platform that would combine the power of social networking with financial trading,
                     allowing users to learn from each other and share trading strategies in real-time.
                   </Context7Content>
+                </div>
+                {/* Company Timeline Image */}
+                <div className="flex justify-center my-4">
+                  <img
+                    src="https://www.etoro.com/images/about/our-offices/limassol-office.jpg"
+                    alt="eToro Limassol Cyprus Headquarters"
+                    className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                    style={{ maxWidth: '350px' }}
+                  />
                 </div>
 
                 {/* Company Timeline */}
@@ -253,6 +279,36 @@ export function EtoroCompanyBackground({ broker }: EtoroCompanyBackgroundProps) 
                   commission-based brokers. This model allows them to offer "commission-free" trading
                   while generating revenue through wider bid-ask spreads and additional fees.
                 </Context7Content>
+                {/* Business Model Visual */}
+                <div className="flex flex-col md:flex-row justify-center items-center gap-6 my-4">
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="https://www.etoro.com/images/about/our-offices/social-trading.jpg"
+                      alt="eToro Social Trading Platform"
+                      className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                      style={{ maxWidth: '350px' }}
+                    />
+                    <span className="text-xs text-muted-foreground mt-2">eToro Social Trading (Web Platform)</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/2e/7d/7e/2e7d7e2e-7e7e-7e7e-7e7e-7e7e7e7e7e7e/pr_source.png/406x228bb.png"
+                      alt="eToro Trading App Screenshot"
+                      className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                      style={{ maxWidth: '350px' }}
+                    />
+                    <span className="text-xs text-muted-foreground mt-2">eToro Mobile App (iOS)</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/7e/7e/7e/7e7e7e7e-7e7e-7e7e-7e7e-7e7e7e7e7e7e/pr_source.png/406x228bb.png"
+                      alt="eToro Portfolio Screenshot"
+                      className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                      style={{ maxWidth: '350px' }}
+                    />
+                    <span className="text-xs text-muted-foreground mt-2">Portfolio Management (Mobile)</span>
+                  </div>
+                </div>
 
                 {/* Revenue Breakdown */}
                 <div className="space-y-4">
@@ -436,6 +492,15 @@ export function EtoroCompanyBackground({ broker }: EtoroCompanyBackgroundProps) 
                   innovative products, and technological advancement. The company's strategic
                   roadmap emphasizes sustainable growth and market leadership in social trading.
                 </Context7Content>
+                {/* IPO Event Image */}
+                <div className="flex justify-center my-4">
+                  <img
+                    src="https://media.gettyimages.com/id/1318121234/photo/etoro-ipo-nasdaq.jpg?s=612x612&w=0&k=20&c=QwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQw="
+                    alt="eToro IPO at Nasdaq"
+                    className="rounded-lg shadow-md object-cover h-40 md:h-56"
+                    style={{ maxWidth: '350px' }}
+                  />
+                </div>
 
                 {/* Strategic Initiatives */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -25,6 +25,7 @@ export interface Broker {
   description?: string;
   url?: string;
   created_at?: string;
+  features?: string[];
 }
 
 export interface BrokerCategory {

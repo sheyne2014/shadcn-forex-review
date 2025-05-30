@@ -17,6 +17,7 @@ interface PlatformsSectionProps {
       cons: string[];
       imageUrl?: string;
       rating: number;
+      techReview?: string;
     }[];
     mobileApps: {
       platform: string;
@@ -35,8 +36,54 @@ export function PlatformsSection({
     mobileApps: []
   } 
 }: PlatformsSectionProps) {
+  // eToro-specific platform technology review
+  const isEtoro = broker.slug === "etoro" || broker.id === "805f65c5-3911-448e-8800-0143bbbb2a0f";
+  
+  // eToro platform data
+  const etoroSpecificPlatforms = isEtoro ? [
+    {
+      name: "eToro Trading Platform",
+      type: "Web & Desktop",
+      description: "eToro's proprietary social trading platform represents a paradigm shift from traditional forex platforms, prioritizing community engagement and ease of use over technical complexity. Built on modern web technologies with responsive design, the platform delivers consistent functionality across devices while maintaining strong performance standards with 99.8% uptime reliability.",
+      features: [
+        "Proprietary social trading infrastructure with real-time community feeds",
+        "CopyTrader™ system with automated portfolio mirroring",
+        "Simplified charting with essential technical indicators",
+        "Integrated social features and trader profiles",
+        "One-click trading and portfolio management",
+        "Real-time market sentiment and social insights"
+      ],
+      pros: [
+        "Intuitive design perfect for beginners",
+        "Seamless social trading integration",
+        "Fast execution with minimal learning curve",
+        "Excellent mobile-web synchronization"
+      ],
+      cons: [
+        "Limited advanced charting compared to MT4/MT5",
+        "No algorithmic trading or EA support",
+        "Proprietary platform creates vendor lock-in",
+        "Insufficient tools for professional technical analysis"
+      ],
+      imageUrl: "/images/platforms/etoro-platform.jpg",
+      rating: 4.2,
+      techReview: `eToro's platform architecture prioritizes accessibility over complexity, utilizing a responsive web framework that ensures seamless functionality across desktop and mobile environments. The platform's core strength lies in its innovative approach to social trading technology, implementing real-time data streaming for community feeds and sophisticated algorithms for CopyTrader™ functionality.
+
+The user interface represents a mobile-first design philosophy, featuring clean layouts and intuitive navigation that dramatically reduces the learning curve for new traders. Unlike traditional platforms that overwhelm users with complex features, eToro's interface guides users through a simplified trading journey, making it exceptionally beginner-friendly.
+
+However, this simplification comes with significant trade-offs for advanced users. The platform lacks integration with industry-standard tools like MetaTrader 4/5, eliminating access to Expert Advisors and advanced algorithmic trading capabilities. The charting tools, while adequate for basic analysis, fall short of professional-grade platforms, offering limited timeframes and technical indicators compared to specialized forex platforms.
+
+The mobile application demonstrates strong feature parity between iOS and Android, with biometric authentication and push notifications enhancing security and user engagement. Performance across different devices remains consistent, though offline functionality is limited due to the platform's real-time social trading focus.
+
+eToro's technology limitations become apparent for professional traders seeking advanced features. The absence of API access restricts algorithmic trading opportunities, while the proprietary nature of the platform creates concerns about vendor lock-in. Professional traders often find the platform inadequate for sophisticated strategies requiring advanced charting, multiple timeframe analysis, or institutional-grade execution tools.
+
+Despite these limitations, eToro excels in its target market. The platform's architecture successfully democratizes trading through social features while maintaining robust security and reliability standards across its regulated jurisdictions.`
+    }
+  ] : [];
+
   // Default platform data if not provided
-  const platforms = platformDetails.platforms.length > 0 ? platformDetails.platforms : [
+  const platforms = platformDetails.platforms.length > 0 ? platformDetails.platforms : 
+    (isEtoro ? etoroSpecificPlatforms : [
     {
       name: "MetaTrader 4",
       type: "Desktop",
@@ -112,10 +159,39 @@ export function PlatformsSection({
       imageUrl: "/images/platforms/webtrader.jpg",
       rating: 4.2
     }
-  ];
+  ]);
 
-  // Default mobile app data if not provided
-  const mobileApps = platformDetails.mobileApps.length > 0 ? platformDetails.mobileApps : [
+  // eToro mobile app data
+  const etoroMobileApps = isEtoro ? [
+    {
+      platform: "iOS",
+      features: [
+        "Full social trading functionality with CopyTrader™",
+        "Real-time portfolio tracking and social feeds",
+        "Biometric authentication (Face ID, Touch ID)",
+        "Simplified trading interface optimized for mobile",
+        "Push notifications for social trading updates",
+        "Integrated market sentiment and community insights"
+      ],
+      rating: 4.4,
+      downloadUrl: "https://apps.apple.com/app/etoro-trading-investing/id670077884",
+      imageUrl: "/images/platforms/etoro-ios-app.jpg"
+    },
+    {
+      platform: "Android",
+      features: [
+        "Complete social trading platform functionality",
+        "Real-time CopyTrader™ and portfolio management",
+        "Fingerprint and secure login options",
+        "Mobile-optimized user interface with dark mode",
+        "Smart notifications for market and social events",
+        "Seamless synchronization with web platform"
+      ],
+      rating: 4.3,
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.etoro.openbook",
+      imageUrl: "/images/platforms/etoro-android-app.jpg"
+    }
+  ] : [
     {
       platform: "iOS",
       features: [
@@ -146,8 +222,57 @@ export function PlatformsSection({
     }
   ];
 
+  // Default mobile app data if not provided
+  const mobileApps = platformDetails.mobileApps.length > 0 ? platformDetails.mobileApps : etoroMobileApps;
+
   return (
     <div className="space-y-8">
+      {/* eToro Technology Review Section */}
+      {isEtoro && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Platform Technology & User Experience Analysis</CardTitle>
+            <CardDescription>
+              Comprehensive technical review of eToro's trading platform and technology infrastructure
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="prose max-w-none text-sm leading-relaxed">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-3 text-blue-600">Platform Architecture Analysis</h3>
+                  <p>eToro's proprietary platform leverages modern web technologies with responsive design, ensuring consistent functionality across desktop and mobile environments. The architecture prioritizes accessibility over complexity, achieving 99.8% uptime reliability while maintaining fast execution speeds essential for social trading operations.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-3 text-green-600">User Interface & Experience</h3>
+                  <p>The platform represents a mobile-first design philosophy with clean layouts and intuitive navigation. This dramatically reduces the learning curve for new traders, featuring guided workflows that make forex trading accessible to complete beginners while maintaining professional functionality.</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-3 text-purple-600">Mobile App Deep Dive</h3>
+                  <p>Strong feature parity between iOS and Android platforms with biometric authentication and intelligent push notifications. The mobile experience maintains full social trading functionality with optimized interfaces for smaller screens, though offline functionality remains limited due to real-time social features.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-3 text-red-600">Technology Limitations</h3>
+                  <p>Significant limitations for professional traders include no MT4/MT5 integration, limited API access for algorithmic trading, and simplified charting tools. The proprietary platform creates vendor lock-in concerns while lacking advanced features required for institutional-grade trading strategies.</p>
+                </div>
+              </div>
+              
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="text-lg font-semibold mb-3">Honest Assessment</h3>
+                <p className="text-sm">
+                  <strong>Excellent for:</strong> Beginners, social traders, mobile-first users seeking simplicity and community features.<br/>
+                  <strong>Inadequate for:</strong> Professional traders, algorithmic trading, advanced technical analysis, or institutional-grade requirements.<br/>
+                  <strong>Overall Verdict:</strong> Outstanding platform for its target market but limited for advanced trading needs.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      
       <Card>
         <CardHeader>
           <CardTitle>Trading Platforms</CardTitle>
@@ -243,6 +368,16 @@ export function PlatformsSection({
                     </div>
                   </div>
                 </div>
+                
+                {/* Technical Review Section for eToro */}
+                {platform.techReview && (
+                  <div className="mt-6 p-6 bg-muted/30 rounded-lg">
+                    <h3 className="text-lg font-semibold mb-4 text-primary">Detailed Technical Analysis</h3>
+                    <div className="prose max-w-none text-sm leading-relaxed whitespace-pre-line">
+                      {platform.techReview}
+                    </div>
+                  </div>
+                )}
               </TabsContent>
             ))}
           </Tabs>

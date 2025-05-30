@@ -35,115 +35,131 @@ function EnhancedBrokerCard({ broker, formatSupportedAssets }: {
 }) {
   const trustScore = broker.rating ? Math.round(broker.rating * 20) : 0;
   
+  // Create a safer placeholder URL to prevent missing image errors
+  const getImageUrl = () => {
+    if (!broker.logo_url) {
+      return `/images/brokers/placeholder.svg`;
+    }
+    
+    if (broker.logo_url.startsWith('http')) {
+      return broker.logo_url;
+    }
+    
+    // If it's a relative path but doesn't exist, use our placeholder
+    return `/images/brokers/placeholder.svg`;
+  };
+  
   return (
-    <Link href={`/brokers/${broker.id}`} className="group block">
-      <Card className="h-full transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-0 shadow-sm bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-900 dark:to-gray-800/50">
-        <CardHeader className="pb-4">
-          <div className="flex justify-between items-start mb-4">
-            <div className="relative">
-              <div className="h-16 w-40 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center rounded-lg overflow-hidden shadow-sm">
+    <Link href={`/brokers/${broker.id}`} className="block group">
+      <Card className="h-full overflow-hidden bg-white dark:bg-slate-900 border-0 shadow-sm hover:shadow-md transition-all duration-300 ring-1 ring-slate-200/80 dark:ring-slate-800/80 hover:ring-indigo-200 dark:hover:ring-indigo-900">
+        {broker.rating && broker.rating >= 4.5 && (
+          <div className="absolute top-3 right-3 z-10">
+            <Badge variant="default" className="bg-gradient-to-r from-amber-500 to-orange-500 border-0 shadow-sm py-1">
+              <Star className="h-3 w-3 mr-1 fill-white" />
+              Top Rated
+            </Badge>
+          </div>
+        )}
+        
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/30 via-white/0 to-white/10 dark:from-indigo-900/10 dark:via-slate-900/0 dark:to-slate-900/5"></div>
+          <div className="flex items-center justify-between p-6 relative">
+            <div className="flex flex-col gap-1">
+              <div className="h-14 flex items-center">
                 <img
-                  src={broker.logo_url || `https://placehold.co/150x60/e2e8f0/64748b?text=${encodeURIComponent(broker.name)}`}
+                  src={getImageUrl()}
                   alt={`${broker.name} logo`}
-                  className="max-h-full max-w-full object-contain"
+                  className="max-h-full object-contain"
+                  onError={(e) => {
+                    e.currentTarget.src = `/images/brokers/placeholder.svg`;
+                  }}
                 />
               </div>
-              {broker.rating && broker.rating >= 4.5 && (
-                <div className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-                  Top Rated
+              <div className="space-y-1 mt-3">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  {broker.name}
+                </h3>
+                <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
+                  <Globe className="h-3 w-3 mr-1" />
+                  {broker.country || 'Global'} 
+                  {broker.regulations && (
+                    <>
+                      <span className="mx-1.5 text-slate-300 dark:text-slate-600">•</span> 
+                      {broker.regulations}
+                    </>
+                  )}
                 </div>
-              )}
-            </div>
-            <div className="flex flex-col items-end gap-2">
-              <Badge 
-                variant={broker.rating && broker.rating >= 4.5 ? "default" : broker.rating && broker.rating >= 4 ? "secondary" : "outline"}
-                className="font-medium"
-              >
-                {broker.rating ? (
-                  <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 fill-current" />
-                    {broker.rating}
-                  </div>
-                ) : 'Not Rated'}
-              </Badge>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <Shield className="h-3 w-3" />
-                <span>{trustScore}% Trust</span>
               </div>
             </div>
+            
+            {broker.rating && (
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-slate-800 shadow-sm ring-1 ring-slate-100 dark:ring-slate-700">
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-bold text-slate-900 dark:text-slate-100">{broker.rating}</span>
+                  <div className="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`h-1.5 w-1.5 ${broker.rating && i < Math.round(broker.rating) ? 'fill-amber-500 text-amber-500' : 'fill-slate-200 text-slate-200 dark:fill-slate-700 dark:text-slate-700'}`} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
+        </div>
           
-          <CardTitle className="text-xl group-hover:text-primary transition-colors duration-200 font-bold">
-            {broker.name}
-          </CardTitle>
-          <CardDescription className="flex items-center gap-2">
-            <Globe className="h-4 w-4" />
-            {broker.country || 'Global'} • {broker.regulations || 'Unregulated'}
-          </CardDescription>
-        </CardHeader>
+        <div className="grid grid-cols-2 gap-px bg-slate-100 dark:bg-slate-800 border-t border-slate-100 dark:border-slate-800">
+          <div className="py-3 px-4 bg-white dark:bg-slate-900">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Min. Deposit</p>
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+              {broker.min_deposit ? `$${broker.min_deposit.toLocaleString()}` : 'N/A'}
+            </p>
+          </div>
+          <div className="py-3 px-4 bg-white dark:bg-slate-900">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Trading Fee</p>
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+              {broker.trading_fee ? `${broker.trading_fee}%` : 'Variable'}
+            </p>
+          </div>
+        </div>
         
-        <CardContent className="pb-4 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground flex items-center gap-1">
-                <TrendingUp className="h-3 w-3" />
-                Min. Deposit
-              </p>
-              <p className="font-bold text-lg">
-                {broker.min_deposit ? `$${broker.min_deposit.toLocaleString()}` : 'N/A'}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground flex items-center gap-1">
-                <Clock className="h-3 w-3" />
-                Trading Fee
-              </p>
-              <p className="font-bold text-lg">
-                {broker.trading_fee ? `${broker.trading_fee}%` : 'Variable'}
-              </p>
-            </div>
-          </div>
-          
+        <div className="p-4 border-t border-slate-100 dark:border-slate-800">
           <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">Trading Assets:</p>
-            <div className="flex flex-wrap gap-1">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Supported Assets</p>
+            <div className="flex flex-wrap gap-1.5">
               {formatSupportedAssets(broker.supported_assets).slice(0, 4).map((asset: string, index: number) => (
-                <Badge key={index} variant="outline" className="text-xs font-medium">
+                <Badge 
+                  key={index} 
+                  variant="secondary" 
+                  className="text-xs py-0.5 px-2 bg-slate-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border-0"
+                >
                   {asset}
                 </Badge>
               ))}
               {formatSupportedAssets(broker.supported_assets).length > 4 && (
-                <Badge variant="outline" className="text-xs">
-                  +{formatSupportedAssets(broker.supported_assets).length - 4} more
+                <Badge 
+                  variant="secondary" 
+                  className="text-xs py-0.5 px-2 bg-slate-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border-0"
+                >
+                  +{formatSupportedAssets(broker.supported_assets).length - 4}
                 </Badge>
               )}
             </div>
           </div>
           
-          {broker.features && (
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-muted-foreground">Key Features:</p>
-              <div className="flex flex-wrap gap-1">
-                {broker.features.slice(0, 2).map((feature: string, index: number) => (
-                  <Badge key={index} variant="secondary" className="text-xs">
-                    {feature}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-        </CardContent>
-        
-        <CardFooter className="pt-0">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="gap-2 w-full justify-between group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-200 font-medium"
-          >
-            View Details 
-            <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </CardFooter>
+          <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="w-full justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
+            >
+              <span className="font-medium">View Details</span>
+              <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+            </Button>
+          </div>
+        </div>
       </Card>
     </Link>
   );
@@ -152,38 +168,39 @@ function EnhancedBrokerCard({ broker, formatSupportedAssets }: {
 // Loading Skeleton Component
 function BrokerCardSkeleton() {
   return (
-    <Card className="h-full">
-      <CardHeader className="pb-4">
-        <div className="flex justify-between items-start mb-4">
-          <Skeleton className="h-16 w-40 rounded-lg" />
-          <Skeleton className="h-6 w-16 rounded-full" />
+    <Card className="h-full border-0 bg-white dark:bg-slate-900 shadow-sm ring-1 ring-slate-200/80 dark:ring-slate-800/80 overflow-hidden">
+      <div className="p-6 relative bg-gradient-to-b from-slate-50/50 via-white/0 to-white dark:from-slate-800/50 dark:via-slate-900/0 dark:to-slate-900">
+        <div className="flex flex-col gap-2">
+          <Skeleton className="h-10 w-32 mb-2 rounded-lg" />
+          <Skeleton className="h-6 w-36 mt-2" />
+          <Skeleton className="h-3 w-28" />
         </div>
-        <Skeleton className="h-6 w-3/4" />
-        <Skeleton className="h-4 w-1/2" />
-      </CardHeader>
-      <CardContent className="pb-4 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-20" />
-            <Skeleton className="h-6 w-16" />
-          </div>
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-20" />
-            <Skeleton className="h-6 w-16" />
-          </div>
+      </div>
+      
+      <div className="grid grid-cols-2 gap-px bg-slate-100 dark:bg-slate-800">
+        <div className="p-4 bg-white dark:bg-slate-900">
+          <Skeleton className="h-3 w-20 mb-2" />
+          <Skeleton className="h-4 w-16" />
         </div>
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-24" />
-          <div className="flex gap-1">
-            <Skeleton className="h-5 w-12" />
-            <Skeleton className="h-5 w-16" />
-            <Skeleton className="h-5 w-14" />
-          </div>
+        <div className="p-4 bg-white dark:bg-slate-900">
+          <Skeleton className="h-3 w-20 mb-2" />
+          <Skeleton className="h-4 w-16" />
         </div>
-      </CardContent>
-      <CardFooter>
-        <Skeleton className="h-8 w-full" />
-      </CardFooter>
+      </div>
+      
+      <div className="p-4">
+        <Skeleton className="h-3 w-24 mb-3" />
+        <div className="flex gap-1.5">
+          <Skeleton className="h-5 w-14 rounded-full" />
+          <Skeleton className="h-5 w-16 rounded-full" />
+          <Skeleton className="h-5 w-12 rounded-full" />
+          <Skeleton className="h-5 w-10 rounded-full" />
+        </div>
+        
+        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+          <Skeleton className="h-8 w-full rounded-md" />
+        </div>
+      </div>
     </Card>
   );
 }
@@ -202,7 +219,7 @@ function EnhancedBrokerGrid({
 }) {
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, index) => (
           <BrokerCardSkeleton key={index} />
         ))}
@@ -210,34 +227,46 @@ function EnhancedBrokerGrid({
     );
   }
 
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {brokers.length > 0 ? (
-        brokers.map((broker) => (
-          <EnhancedBrokerCard
-            key={broker.id}
-            broker={broker}
-            formatSupportedAssets={formatSupportedAssets}
-          />
-        ))
-      ) : (
-        <div className="col-span-full text-center py-16">
-          <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
-              <Search className="h-8 w-8 text-muted-foreground" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">
-              {categoryName ? `No ${categoryName} brokers found` : 'No brokers found'}
-            </h3>
-            <p className="text-muted-foreground">
-              {categoryName
-                ? `Try adjusting your filters or check back later for ${categoryName.toLowerCase()} brokers.`
-                : 'Try adjusting your filters or check back later for more brokers.'
-              }
-            </p>
+  // Ensure brokers is always an array even if data is missing
+  const brokersToDisplay = Array.isArray(brokers) ? brokers : [];
+
+  if (brokersToDisplay.length === 0) {
+    return (
+      <div className="col-span-full text-center py-16 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
+        <div className="max-w-md mx-auto p-6">
+          <div className="w-20 h-20 mx-auto mb-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-full flex items-center justify-center">
+            <Search className="h-10 w-10 text-indigo-500 dark:text-indigo-400" />
           </div>
+          <h3 className="text-2xl font-semibold mb-3 text-slate-900 dark:text-slate-100">
+            {categoryName ? `No ${categoryName} brokers found` : 'No brokers found'}
+          </h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-sm mx-auto">
+            {categoryName
+              ? `Try adjusting your filters or check back later for ${categoryName.toLowerCase()} brokers.`
+              : 'Try adjusting your filters or check back later for more brokers.'
+            }
+          </p>
+          <Button 
+            variant="outline" 
+            onClick={clearFilters}
+            className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/80"
+          >
+            <X className="h-4 w-4 mr-2" /> Clear all filters
+          </Button>
         </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {brokersToDisplay.map((broker) => (
+        <EnhancedBrokerCard
+          key={broker.id}
+          broker={broker}
+          formatSupportedAssets={formatSupportedAssets}
+        />
+      ))}
     </div>
   );
 }
@@ -274,7 +303,7 @@ export function BrokersPageClient() {
         });
         
         if (error) {
-          setError(error.message);
+          setError(error instanceof Error ? error.message : 'Unknown database error');
         } else {
           setBrokers(data || []);
         }
@@ -394,48 +423,77 @@ export function BrokersPageClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white">
-        <div className="container max-w-7xl mx-auto px-4 py-16">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-              Find Your Perfect
-              <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                Trading Broker
-              </span>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+      {/* Hero Section - Modern Design */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 to-blue-700 dark:from-indigo-900 dark:to-blue-950">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/3 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+        </div>
+        
+        <div className="container max-w-7xl mx-auto px-4 py-16 md:py-20 relative">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block mb-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-semibold text-indigo-100">
+              Comparing <span className="text-white">100+ Brokers</span> Across <span className="text-white">7 Asset Classes</span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+              Find Your Ideal Trading Broker
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-              Compare top-rated brokers across forex, crypto, stocks, and more. 
-              Make informed decisions with our comprehensive analysis.
+            <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+              Compare top-rated brokers across forex, crypto, stocks, and more to find the perfect match for your trading style.
             </p>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-xl mx-auto relative z-10">
               <BrokerSearchCommand />
+              
+              <div className="mt-8 flex flex-wrap justify-center gap-2">
+                <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/10 py-1.5">
+                  <Shield className="h-3 w-3 mr-1" />
+                  Regulated Brokers
+                </Badge>
+                <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/10 py-1.5">
+                  <Star className="h-3 w-3 mr-1" />
+                  Expert Reviews
+                </Badge>
+                <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/10 py-1.5">
+                  <TrendingUp className="h-3 w-3 mr-1" />
+                  Performance Metrics
+                </Badge>
+                <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/10 py-1.5">
+                  <Clock className="h-3 w-3 mr-1" />
+                  Updated Daily
+                </Badge>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container max-w-7xl mx-auto px-4 py-10">
+      {/* Main Content - Enhanced UI */}
+      <div className="container max-w-7xl mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
-            <TabsList className="grid grid-cols-4 lg:grid-cols-8 w-full lg:w-auto">
-              <TabsTrigger value="all" className="text-xs lg:text-sm">All</TabsTrigger>
-              <TabsTrigger value="forex" className="text-xs lg:text-sm">Forex</TabsTrigger>
-              <TabsTrigger value="crypto" className="text-xs lg:text-sm">Crypto</TabsTrigger>
-              <TabsTrigger value="stocks" className="text-xs lg:text-sm">Stocks</TabsTrigger>
-              <TabsTrigger value="commodities" className="text-xs lg:text-sm">Commodities</TabsTrigger>
-              <TabsTrigger value="etf" className="text-xs lg:text-sm">ETF</TabsTrigger>
-              <TabsTrigger value="cfd" className="text-xs lg:text-sm">CFD</TabsTrigger>
-              <TabsTrigger value="options" className="text-xs lg:text-sm">Options</TabsTrigger>
-            </TabsList>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+            <div className="bg-white dark:bg-slate-900 shadow-md rounded-xl p-1.5 w-full lg:w-auto overflow-hidden border border-slate-100 dark:border-slate-800">
+              <TabsList className="grid grid-cols-4 md:grid-cols-8 w-full lg:w-auto bg-slate-50/70 dark:bg-slate-800/50 rounded-lg p-0.5">
+                <TabsTrigger value="all" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">All</TabsTrigger>
+                <TabsTrigger value="forex" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">Forex</TabsTrigger>
+                <TabsTrigger value="crypto" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">Crypto</TabsTrigger>
+                <TabsTrigger value="stocks" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">Stocks</TabsTrigger>
+                <TabsTrigger value="commodities" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">Commodities</TabsTrigger>
+                <TabsTrigger value="etf" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">ETF</TabsTrigger>
+                <TabsTrigger value="cfd" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">CFD</TabsTrigger>
+                <TabsTrigger value="options" className="rounded-md text-xs md:text-sm font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm">Options</TabsTrigger>
+              </TabsList>
+            </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Select value={`${sortBy}-${sortOrder}`} onValueChange={handleSortChange}>
-                <SelectTrigger className="w-48">
-                  <ArrowUpDown className="h-4 w-4 mr-2" />
-                  <SelectValue />
+                <SelectTrigger className="w-40 md:w-48 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg shadow-sm">
+                  <div className="flex items-center">
+                    <ArrowUpDown className="h-3.5 w-3.5 mr-2 text-indigo-500" />
+                    <SelectValue />
+                  </div>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="rating-desc">Highest Rated</SelectItem>
@@ -451,27 +509,39 @@ export function BrokersPageClient() {
 
               <Button 
                 variant="outline" 
-                size="sm" 
-                className="gap-2"
+                size="icon"
+                className="h-10 w-10 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg shadow-sm"
                 onClick={() => setShowFilters(true)}
               >
-                <SlidersHorizontal className="h-4 w-4" />
-                Filters
+                <Filter className="h-4 w-4 text-indigo-500" />
+                <span className="sr-only">Filters</span>
                 {Object.values(filters).some(f => Array.isArray(f) ? f.length > 0 : f > 0) && (
-                  <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center text-xs">
-                    !
-                  </Badge>
+                  <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-indigo-500"></span>
                 )}
               </Button>
             </div>
           </div>
 
           {/* Results Summary */}
-          <div className="mb-6">
-            <p className="text-muted-foreground">
-              Showing {filteredBrokers.length} broker{filteredBrokers.length !== 1 ? 's' : ''}
-              {activeTab !== 'all' && ` in ${activeTab}`}
-            </p>
+          <div className="mb-6 flex items-center justify-between bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/70">
+            <div className="flex items-center">
+              <span className="h-2 w-2 rounded-full bg-green-400 mr-2"></span>
+              <p className="font-medium text-slate-900 dark:text-slate-100">
+                {filteredBrokers.length} broker{filteredBrokers.length !== 1 ? 's' : ''}
+                {activeTab !== 'all' && <span className="ml-1">in <span className="font-semibold text-indigo-600 dark:text-indigo-400">{activeTab}</span></span>}
+              </p>
+            </div>
+            
+            {Object.values(filters).some(f => Array.isArray(f) ? f.length > 0 : f > 0) && (
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={clearFilters}
+                className="h-8 gap-1 text-xs hover:bg-slate-100 dark:hover:bg-slate-800/70"
+              >
+                <X className="h-3 w-3" /> Clear filters
+              </Button>
+            )}
           </div>
 
           {/* Tab Contents */}

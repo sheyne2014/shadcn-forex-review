@@ -7,11 +7,12 @@
  * - Blur placeholders for better UX during loading
  * - Image quality control
  * - Fallback handling for broken images
+ * - Lazy loading with IntersectionObserver
  */
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image, { ImageProps } from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,8 @@ interface OptimizedImageProps extends Omit<ImageProps, 'onError' | 'alt'> {
   showPlaceholder?: boolean;
   aspectRatio?: "auto" | "square" | "video" | "portrait" | "wide" | number;
   fade?: boolean;
+  lazyLoadingBuffer?: number; // Distance in pixels before the image comes into view that loading begins
+  quality?: number; // Image quality
 }
 
 /**
@@ -34,7 +37,7 @@ interface OptimizedImageProps extends Omit<ImageProps, 'onError' | 'alt'> {
  */
 export function OptimizedImage({
   src,
-  fallbackSrc,
+  fallbackSrc = '/placeholder.svg', // Default fallback to a placeholder image
   alt,
   width,
   height,
@@ -42,14 +45,41 @@ export function OptimizedImage({
   containerClassName,
   showPlaceholder = true,
   aspectRatio,
-  fade,
+  fade = true,
+  lazyLoadingBuffer = 200, // Load images 200px before they come into view
+  quality = 85, // Higher quality by default
   ...props
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   // Determine the final source to use
-  const finalSrc = error && fallbackSrc ? fallbackSrc : src;
+  const finalSrc = error ? fallbackSrc : src;
+
+  // Set up intersection observer for advanced lazy loading
+  useEffect(() => {
+    if (!imageRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: `${lazyLoadingBuffer}px`,
+      }
+    );
+
+    observer.observe(imageRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [lazyLoadingBuffer]);
 
   // Handle image load completion
   const handleLoadingComplete = () => {
@@ -60,9 +90,9 @@ export function OptimizedImage({
   const handleError = () => {
     setError(true);
 
-    // If no fallback is provided, keep the loading state visible
-    if (!fallbackSrc) {
-      setIsLoading(true);
+    // If using the fallback already or no fallback is provided, keep the loading state visible
+    if (finalSrc === fallbackSrc) {
+      setIsLoading(false); // Stop showing loading state if fallback also fails
     }
   };
 
@@ -90,6 +120,7 @@ export function OptimizedImage({
 
   return (
     <div
+      ref={imageRef}
       className={cn(
         'relative overflow-hidden',
         containerClassName
@@ -99,26 +130,36 @@ export function OptimizedImage({
         ...getAspectRatioStyle()
       }}
     >
-      {/* Main image */}
-      <Image
-        src={finalSrc}
-        alt={alt}
-        width={typeof width === 'number' ? width : undefined}
-        height={typeof height === 'number' ? height : undefined}
-        className={cn(
-          fade !== false ? 'transition-opacity duration-300' : '',
-          isLoading && fade !== false ? 'opacity-0' : 'opacity-100',
-          className
-        )}
-        onLoadingComplete={handleLoadingComplete}
-        onError={handleError}
-        {...props}
-      />
+      {/* Only render the image when it should load (near viewport) */}
+      {shouldLoad && (
+        <Image
+          src={finalSrc}
+          alt={alt}
+          width={typeof width === 'number' ? width : undefined}
+          height={typeof height === 'number' ? height : undefined}
+          className={cn(
+            fade ? 'transition-opacity duration-300' : '',
+            isLoading && fade ? 'opacity-0' : 'opacity-100',
+            className
+          )}
+          onLoadingComplete={handleLoadingComplete}
+          onError={handleError}
+          quality={quality}
+          // Improved image formats support
+          {...(typeof width === 'number' && typeof height === 'number' 
+            ? { sizes: `(max-width: ${width}px) 100vw, ${width}px` } 
+            : {})}
+          {...props}
+        />
+      )}
 
-      {/* Loading placeholder */}
-      {isLoading && showPlaceholder && (
+      {/* Loading placeholder - shown during load or when waiting for intersection */}
+      {(isLoading || !shouldLoad) && showPlaceholder && (
         <div
-          className="absolute inset-0 bg-muted animate-pulse rounded-md"
+          className={cn(
+            "absolute inset-0 bg-muted rounded-md",
+            !shouldLoad ? "animate-pulse" : "animate-shimmer"
+          )}
           aria-hidden="true"
         ></div>
       )}

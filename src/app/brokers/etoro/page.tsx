@@ -10,7 +10,7 @@ import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisW
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
 import { BrokerPageNavigation, BrokerInternalLinks, BrokerBreadcrumbs } from "@/components/broker-review/BrokerPageNavigation";
-import { BrokerSchema, BreadcrumbSchema, generateBrokerMetadata } from "@/components/seo/BrokerReviewSEO";
+import { BrokerReviewSEO } from "@/components/seo/BrokerReviewSEO";
 import { Separator } from "@/components/ui/separator";
 import { Context7Provider } from "@/components/Context7Provider";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
@@ -20,6 +20,7 @@ import { EtoroExecutiveSummary } from "@/components/broker-review/EtoroExecutive
 import { EtoroTradingConditionsAnalysis } from "@/components/broker-review/EtoroTradingConditionsAnalysis";
 import { EtoroSocialFeatures } from "@/components/broker-review/EtoroSocialFeatures";
 import { EtoroCompanyBackground } from "@/components/broker-review/EtoroCompanyBackground";
+import { EtoroExpertVerdict } from "@/components/broker-review/EtoroExpertVerdict";
 
 interface Props {
   params: { slug: string };
@@ -149,11 +150,23 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
       logo_url: "/images/brokers/ic-markets.png",
       overall_rating: 4.9,
       min_deposit: 200,
-      max_leverage: "1:500",
+      max_leverage: "1:1000",
       regulations: "ASIC, CySEC, FSA",
-      key_feature: "Ultra-low spreads",
+      key_feature: "Ultra-low spreads from 0.0 pips",
       website_url: "https://www.icmarkets.com",
       spreads_from: "0.0 pips"
+    },
+    {
+      id: "xtb",
+      name: "XTB",
+      logo_url: "/images/brokers/xtb.png",
+      overall_rating: 4.7,
+      min_deposit: 250,
+      max_leverage: "1:500",
+      regulations: "FCA, KNF, CySEC",
+      key_feature: "Advanced trading platform",
+      website_url: "https://www.xtb.com",
+      spreads_from: "0.5 pips"
     },
     {
       id: "pepperstone",
@@ -163,33 +176,9 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
       min_deposit: 200,
       max_leverage: "1:500",
       regulations: "FCA, ASIC, CySEC",
-      key_feature: "Fast execution",
+      key_feature: "Fast execution speeds",
       website_url: "https://www.pepperstone.com",
       spreads_from: "0.0 pips"
-    },
-    {
-      id: "xm",
-      name: "XM",
-      logo_url: "/images/brokers/xm.png",
-      overall_rating: 4.6,
-      min_deposit: 5,
-      max_leverage: "1:888",
-      regulations: "FCA, CySEC, ASIC",
-      key_feature: "Low minimum deposit",
-      website_url: "https://www.xm.com",
-      spreads_from: "1.0 pips"
-    },
-    {
-      id: "plus500",
-      name: "Plus500",
-      logo_url: "/images/brokers/plus500.png",
-      overall_rating: 4.4,
-      min_deposit: 100,
-      max_leverage: "1:30",
-      regulations: "FCA, CySEC, ASIC",
-      key_feature: "CFD specialist",
-      website_url: "https://www.plus500.com",
-      spreads_from: "Variable"
     }
   ];
 
@@ -227,14 +216,7 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
     <Context7Provider config={context7Config}>
       <div className="min-h-screen bg-background">
         {/* Structured Data */}
-        <BrokerSchema broker={broker} />
-        <BreadcrumbSchema 
-          items={[
-            { name: "Home", url: "/" },
-            { name: "Brokers", url: "/brokers" },
-            { name: broker.name, url: `/brokers/${broker.slug}` }
-          ]} 
-        />
+        <BrokerReviewSEO broker={broker} />
 
         {/* Navigation */}
         <BrokerBreadcrumbs 
@@ -310,6 +292,13 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
             </section>
 
             <Separator />
+            
+            {/* Expert Verdict Section - eToro Specific */}
+            <section id="expert-verdict" className="scroll-mt-20">
+              <EtoroExpertVerdict broker={broker} />
+            </section>
+
+            <Separator />
 
             {/* FAQ Section */}
             <section id="faq" className="scroll-mt-20">
@@ -320,7 +309,7 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
 
             {/* Similar Brokers */}
             <section id="similar-brokers" className="scroll-mt-20">
-              <SimilarBrokersSection brokers={similarBrokers} />
+              <SimilarBrokersSection brokers={similarBrokers} currentBroker="etoro" />
             </section>
           </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from 'react';
-import { SEOAudit } from '../SEOAudit';
 import { StructuredData } from '../StructuredData';
 import { siteConfig } from '@/config/site';
 
@@ -93,15 +92,6 @@ export function BrokerReviewSEO({ broker }: BrokerReviewSEOProps) {
         }}
       />
 
-      {/* SEO Audit Component */}
-      <div className="mt-8">
-        <SEOAudit 
-          pageUrl={canonicalUrl}
-          pageTitle={`${broker.name} Review ${new Date().getFullYear()} - Full Broker Analysis`}
-          pageDescription={broker.description}
-          showFullAudit={true}
-        />
-      </div>
     </>
   );
 }

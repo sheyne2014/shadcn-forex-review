@@ -153,92 +153,100 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
   return (
     <div className="space-y-8" suppressHydrationWarning>
       {/* Broker Selection */}
-      <Card>
-        <CardHeader>
+      <Card className="border shadow-sm">
+        <CardHeader className="pb-3 border-b">
           <CardTitle className="text-xl">Select Brokers to Compare</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Broker 1 Selection */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-muted-foreground">
+              <label className="text-sm font-medium">
                 First Broker
               </label>
               <Select value={selectedBroker1} onValueChange={handleBroker1Change}>
-                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground !bg-opacity-100 backdrop-filter-none">
+                <SelectTrigger className="w-full dark:bg-gray-800 bg-white border-input hover:bg-accent hover:text-accent-foreground shadow-sm">
                   <SelectValue placeholder="Choose first broker..." />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-border shadow-lg !bg-opacity-100 backdrop-filter-none">
-                  {brokers
-                    .filter(broker => broker.id !== selectedBroker2)
-                    .map((broker) => (
-                      <SelectItem
-                        key={broker.id}
-                        value={broker.id}
-                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground !bg-opacity-100"
-                      >
-                        <div className="flex items-center gap-2">
-                          {broker.logo_url && (
-                            <div className="w-6 h-6 relative">
-                              <Image
-                                src={broker.logo_url}
-                                alt={broker.name}
-                                fill
-                                className="object-contain"
-                              />
-                            </div>
-                          )}
-                          <span>{broker.name}</span>
-                          {broker.rating && (
-                            <span className="text-xs text-muted-foreground ml-auto">
-                              ★ {broker.rating.toFixed(1)}
-                            </span>
-                          )}
-                        </div>
-                      </SelectItem>
-                    ))}
+                <SelectContent sideOffset={4} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-md p-0" style={{ backdropFilter: 'none', opacity: 1, backgroundColor: 'var(--background)' }}>
+                  <div className="max-h-80 overflow-y-auto bg-white dark:bg-gray-800 p-1">
+                    {brokers
+                      .filter(broker => broker.id !== selectedBroker2)
+                      .sort((a, b) => a.name.localeCompare(b.name))
+                      .map((broker) => (
+                        <SelectItem
+                          key={broker.id}
+                          value={broker.id}
+                          className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 my-1 rounded-md"
+                        >
+                          <div className="flex items-center gap-3 py-1">
+                            {broker.logo_url && (
+                              <div className="w-7 h-7 relative flex-shrink-0 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 bg-white">
+                                <Image
+                                  src={broker.logo_url}
+                                  alt={broker.name}
+                                  fill
+                                  className="object-contain p-0.5"
+                                />
+                              </div>
+                            )}
+                            <span className="font-medium truncate">{broker.name}</span>
+                            {broker.rating && (
+                              <span className="text-xs ml-auto bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded-full flex items-center">
+                                <Star className="h-3 w-3 text-amber-400 fill-amber-400 mr-0.5" />
+                                {broker.rating.toFixed(1)}
+                              </span>
+                            )}
+                          </div>
+                        </SelectItem>
+                      ))}
+                  </div>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Broker 2 Selection */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-muted-foreground">
+              <label className="text-sm font-medium">
                 Second Broker
               </label>
               <Select value={selectedBroker2} onValueChange={handleBroker2Change}>
-                <SelectTrigger className="w-full bg-background border-input hover:bg-accent hover:text-accent-foreground !bg-opacity-100 backdrop-filter-none">
+                <SelectTrigger className="w-full dark:bg-gray-800 bg-white border-input hover:bg-accent hover:text-accent-foreground shadow-sm">
                   <SelectValue placeholder="Choose second broker..." />
                 </SelectTrigger>
-                <SelectContent className="bg-background border-border shadow-lg !bg-opacity-100 backdrop-filter-none">
-                  {brokers
-                    .filter(broker => broker.id !== selectedBroker1)
-                    .map((broker) => (
-                      <SelectItem
-                        key={broker.id}
-                        value={broker.id}
-                        className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground !bg-opacity-100"
-                      >
-                        <div className="flex items-center gap-2">
-                          {broker.logo_url && (
-                            <div className="w-6 h-6 relative">
-                              <Image
-                                src={broker.logo_url}
-                                alt={broker.name}
-                                fill
-                                className="object-contain"
-                              />
-                            </div>
-                          )}
-                          <span>{broker.name}</span>
-                          {broker.rating && (
-                            <span className="text-xs text-muted-foreground ml-auto">
-                              ★ {broker.rating.toFixed(1)}
-                            </span>
-                          )}
-                        </div>
-                      </SelectItem>
-                    ))}
+                <SelectContent sideOffset={4} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-md p-0" style={{ backdropFilter: 'none', opacity: 1, backgroundColor: 'var(--background)' }}>
+                  <div className="max-h-80 overflow-y-auto bg-white dark:bg-gray-800 p-1">
+                    {brokers
+                      .filter(broker => broker.id !== selectedBroker1)
+                      .sort((a, b) => a.name.localeCompare(b.name))
+                      .map((broker) => (
+                        <SelectItem
+                          key={broker.id}
+                          value={broker.id}
+                          className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 my-1 rounded-md"
+                        >
+                          <div className="flex items-center gap-3 py-1">
+                            {broker.logo_url && (
+                              <div className="w-7 h-7 relative flex-shrink-0 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 bg-white">
+                                <Image
+                                  src={broker.logo_url}
+                                  alt={broker.name}
+                                  fill
+                                  className="object-contain p-0.5"
+                                />
+                              </div>
+                            )}
+                            <span className="font-medium truncate">{broker.name}</span>
+                            {broker.rating && (
+                              <span className="text-xs ml-auto bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded-full flex items-center">
+                                <Star className="h-3 w-3 text-amber-400 fill-amber-400 mr-0.5" />
+                                {broker.rating.toFixed(1)}
+                              </span>
+                            )}
+                          </div>
+                        </SelectItem>
+                      ))}
+                  </div>
                 </SelectContent>
               </Select>
             </div>
@@ -249,7 +257,7 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
             <div className="flex flex-col sm:flex-row gap-3 mt-6 pt-6 border-t">
               <Button
                 onClick={navigateToComparison}
-                className="flex-1"
+                className="flex-1 bg-primary hover:bg-primary/90"
                 size="lg"
               >
                 <ArrowRight className="w-4 h-4 mr-2" />
@@ -275,14 +283,12 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
 
       {/* Broker Preview Cards */}
       {broker1Data && broker2Data && (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Broker 1 Card */}
-          <Card className="hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="outline" className="w-8 h-8 rounded-full flex items-center justify-center">
-                  1
-                </Badge>
+          <Card className="border shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+            <CardHeader className="pb-3 border-b bg-muted/30">
+              <div className="flex items-center justify-between mb-3">
+                <Badge variant="secondary" className="px-3">Broker 1</Badge>
                 <div className="flex items-center space-x-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
@@ -301,7 +307,7 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
               </div>
 
               <div className="flex flex-col items-center space-y-3">
-                <div className="relative w-24 h-12 bg-background rounded-md flex items-center justify-center p-2 border overflow-hidden">
+                <div className="relative w-28 h-14 bg-background rounded-md flex items-center justify-center p-2 border overflow-hidden">
                   {broker1Data.logo_url ? (
                     <Image
                       src={broker1Data.logo_url}
@@ -321,43 +327,42 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-3">
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Min Deposit:</span>
+            <CardContent className="space-y-4 pt-4">
+              <div className="space-y-2.5">
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Min Deposit</span>
                   <span className="font-medium">
                     {broker1Data.min_deposit ? `$${broker1Data.min_deposit}` : 'N/A'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Country:</span>
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Country</span>
                   <span className="font-medium">{broker1Data.country || 'N/A'}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Regulation:</span>
-                  <span className="font-medium text-right">
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Regulation</span>
+                  <span className="font-medium text-right max-w-[180px] truncate" title={broker1Data.regulations || 'N/A'}>
                     {broker1Data.regulations || 'N/A'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Assets:</span>
-                  <span className="font-medium text-right">
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-muted-foreground text-sm">Assets</span>
+                  <span className="font-medium text-right max-w-[180px] truncate" title={formatSupportedAssets(broker1Data.supported_assets)}>
                     {formatSupportedAssets(broker1Data.supported_assets)}
                   </span>
                 </div>
               </div>
 
-              <div className="pt-3 space-y-2">
+              <div className="pt-2 space-y-2">
                 <Button asChild size="sm" className="w-full">
                   <Link href={`/broker/${broker1Data.slug}`}>
-                    <ExternalLink className="h-4 w-4 mr-2" />
                     View Full Review
                   </Link>
                 </Button>
                 {broker1Data.website_url && (
                   <Button asChild variant="outline" size="sm" className="w-full">
                     <Link href={broker1Data.website_url} target="_blank" rel="noopener noreferrer">
-                      Visit Website
+                      Visit Website <ExternalLink className="h-3 w-3 ml-1.5" />
                     </Link>
                   </Button>
                 )}
@@ -366,12 +371,10 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
           </Card>
 
           {/* Broker 2 Card */}
-          <Card className="hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between mb-4">
-                <Badge variant="outline" className="w-8 h-8 rounded-full flex items-center justify-center">
-                  2
-                </Badge>
+          <Card className="border shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+            <CardHeader className="pb-3 border-b bg-muted/30">
+              <div className="flex items-center justify-between mb-3">
+                <Badge variant="secondary" className="px-3">Broker 2</Badge>
                 <div className="flex items-center space-x-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
@@ -390,7 +393,7 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
               </div>
 
               <div className="flex flex-col items-center space-y-3">
-                <div className="relative w-24 h-12 bg-background rounded-md flex items-center justify-center p-2 border overflow-hidden">
+                <div className="relative w-28 h-14 bg-background rounded-md flex items-center justify-center p-2 border overflow-hidden">
                   {broker2Data.logo_url ? (
                     <Image
                       src={broker2Data.logo_url}
@@ -410,43 +413,42 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-3">
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Min Deposit:</span>
+            <CardContent className="space-y-4 pt-4">
+              <div className="space-y-2.5">
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Min Deposit</span>
                   <span className="font-medium">
                     {broker2Data.min_deposit ? `$${broker2Data.min_deposit}` : 'N/A'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Country:</span>
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Country</span>
                   <span className="font-medium">{broker2Data.country || 'N/A'}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Regulation:</span>
-                  <span className="font-medium text-right">
+                <div className="flex justify-between items-center py-1 border-b border-dashed border-border/50">
+                  <span className="text-muted-foreground text-sm">Regulation</span>
+                  <span className="font-medium text-right max-w-[180px] truncate" title={broker2Data.regulations || 'N/A'}>
                     {broker2Data.regulations || 'N/A'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Assets:</span>
-                  <span className="font-medium text-right">
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-muted-foreground text-sm">Assets</span>
+                  <span className="font-medium text-right max-w-[180px] truncate" title={formatSupportedAssets(broker2Data.supported_assets)}>
                     {formatSupportedAssets(broker2Data.supported_assets)}
                   </span>
                 </div>
               </div>
 
-              <div className="pt-3 space-y-2">
+              <div className="pt-2 space-y-2">
                 <Button asChild size="sm" className="w-full">
                   <Link href={`/broker/${broker2Data.slug}`}>
-                    <ExternalLink className="h-4 w-4 mr-2" />
                     View Full Review
                   </Link>
                 </Button>
                 {broker2Data.website_url && (
                   <Button asChild variant="outline" size="sm" className="w-full">
                     <Link href={broker2Data.website_url} target="_blank" rel="noopener noreferrer">
-                      Visit Website
+                      Visit Website <ExternalLink className="h-3 w-3 ml-1.5" />
                     </Link>
                   </Button>
                 )}
@@ -458,11 +460,11 @@ function TwoBrokerComparisonToolInner({ brokers }: TwoBrokerComparisonToolProps)
 
       {/* Quick Comparison Table */}
       {broker1Data && broker2Data && (
-        <Card>
-          <CardHeader>
+        <Card className="shadow-sm border">
+          <CardHeader className="pb-3 border-b">
             <CardTitle className="text-xl">Quick Comparison</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-4">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>

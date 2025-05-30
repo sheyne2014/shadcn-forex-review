@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .degiro-text { font-family: Arial, sans-serif; font-weight: bold; }
+  </style>
+  <rect width="200" height="80" fill="white"/>
+  <rect x="20" y="20" width="40" height="40" fill="#FF6600"/>
+  <text x="70" y="50" class="degiro-text" font-size="22" fill="#000000">DEGIRO</text>
+  <text x="70" y="65" class="degiro-text" font-size="10" fill="#666666">Online Broker</text>
+</svg> 

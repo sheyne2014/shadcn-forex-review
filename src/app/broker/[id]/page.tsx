@@ -8,16 +8,16 @@ import { ReviewsSection } from "@/components/broker-review/ReviewsSection";
 import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisWidget";
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
-import { EtoroTradingConditionsAnalysis } from "@/components/broker-review/EtoroTradingConditionsAnalysis";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, CheckCircle, AlertTriangle } from "lucide-react";
+import { Star } from "lucide-react";
 import { getBrokerBySlug, getSimilarBrokers } from "@/lib/brokers";
 import { getBrokerById } from "@/lib/supabase/broker-client";
 import { getHeadlineForBroker, getBrokerSeo } from "@/lib/seo-utils";
 import { siteConfig } from "@/config/site";
 import { getAllBrokerIds } from "@/lib/route-generation";
+
 
 interface BrokerPageProps {
   params: Promise<{
@@ -254,18 +254,17 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
           <BrokerOverviewSection broker={broker} headline={headline} />
         </div>
 
+        {/* eToro Executive Summary START */}
+
         <Separator className="my-8 sm:my-12" />
 
         {/* Enhanced Mobile Navigation for sections */}
         <div className="lg:hidden mb-8 overflow-x-auto scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent sticky top-16 z-20 bg-background/95 backdrop-blur-sm pb-2 pt-2 -mx-4 px-4 shadow-sm border-b border-border/50">
           <div className="flex space-x-3 min-w-max">
             <a href="#trading-conditions" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">
-              {(broker.id === "805f65c5-3911-448e-8800-0143bbbb2a0f" ||
-                broker.name?.toLowerCase().includes("etoro") ||
-                broker.slug?.toLowerCase().includes("etoro")) ? "Cost Analysis" : "Trading Conditions"}
+              Trading Conditions
             </a>
             <a href="#platforms" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Platforms</a>
-            <a href="#education" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Education</a>
             <a href="#reviews" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Reviews</a>
             <a href="#similar" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">Similar Brokers</a>
             <a href="#faq" className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-sm font-medium transition-colors flex items-center whitespace-nowrap">FAQ</a>
@@ -277,15 +276,9 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
           <div className="lg:col-span-3 space-y-12">
             {/* Trading Conditions - Enhanced for eToro */}
             <section id="trading-conditions" className="scroll-mt-20">
-              {broker.id === "805f65c5-3911-448e-8800-0143bbbb2a0f" ||
-               broker.name?.toLowerCase().includes("etoro") ||
-               broker.slug?.toLowerCase().includes("etoro") ? (
-                <EtoroTradingConditionsAnalysis broker={broker} />
-              ) : (
                 <div className="rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
                   <BrokerTradingConditions broker={broker} />
                 </div>
-              )}
             </section>
 
             {/* Trading Platforms */}
@@ -296,75 +289,6 @@ export default async function BrokerReviewPage(props: BrokerPageProps) {
             </section>
 
             {/* Enhanced Educational Resources Section */}
-            <section id="education" className="scroll-mt-20">
-              <Card className="overflow-hidden border-border/80 hover:shadow-lg transition-all duration-300">
-                <CardHeader className="bg-gradient-to-r from-muted/30 to-muted/10">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                    <div className="flex-1">
-                      <CardTitle className="flex items-center text-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                          <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                        </svg>
-                        Educational Resources
-                      </CardTitle>
-                      <CardDescription className="mt-2 text-base">
-                        Learning materials and resources offered by {broker.name}
-                      </CardDescription>
-                    </div>
-                    <div className="flex items-center bg-background/80 px-4 py-2 rounded-full border">
-                      <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
-                      <span className="ml-2 font-semibold">4.2/5</span>
-                      <Badge variant="outline" className="ml-3 bg-background">Education Rating</Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <p className="text-muted-foreground mb-6">
-                    {broker.name} offers a variety of educational resources designed to help traders at different skill levels improve their trading knowledge and skills. The resources include articles, videos, and comprehensive guides.
-                  </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-100 dark:border-green-900/30">
-                      <h3 className="text-lg font-semibold mb-3 flex items-center text-green-700 dark:text-green-400">
-                        <CheckCircle className="h-5 w-5 mr-2" /> Strengths
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          "Comprehensive learning materials for all trader levels",
-                          "Free access to basic educational content",
-                          "Interactive trading tutorials and guides",
-                          "Mobile-friendly educational platform"
-                        ].map((strength, index) => (
-                          <li key={index} className="flex items-start">
-                            <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                            <span>{strength}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="bg-amber-50 dark:bg-amber-950/20 p-4 rounded-lg border border-amber-100 dark:border-amber-900/30">
-                      <h3 className="text-lg font-semibold mb-3 flex items-center text-amber-700 dark:text-amber-400">
-                        <AlertTriangle className="h-5 w-5 mr-2" /> Considerations
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          "Advanced content may require premium account",
-                          "Limited one-on-one coaching options",
-                          "Some content may not be available in all languages"
-                        ].map((weakness, index) => (
-                          <li key={index} className="flex items-start">
-                            <AlertTriangle className="h-4 w-4 text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                            <span>{weakness}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
             {/* User Reviews */}
             <section id="reviews" className="scroll-mt-20">
               <div className="rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">

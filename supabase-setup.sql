@@ -87,3 +87,36 @@ END $$;
 -- Ensure the brokers table has the supported_assets column
 ALTER TABLE IF EXISTS brokers
 ADD COLUMN IF NOT EXISTS supported_assets TEXT[]; 
+-- Detailed fee structure
+CREATE TABLE broker_fees (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  broker_id UUID REFERENCES brokers(id),
+  fee_type VARCHAR(50), -- 'spread', 'commission', 'overnight', 'withdrawal'
+  instrument VARCHAR(20), -- 'EURUSD', 'GBPUSD', etc.
+  fee_value DECIMAL(10,4),
+  fee_description TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Platform features
+CREATE TABLE broker_platforms (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  broker_id UUID REFERENCES brokers(id),
+  platform_name VARCHAR(100),
+  platform_type VARCHAR(50), -- 'web', 'desktop', 'mobile'
+  features JSONB,
+  screenshots TEXT[], -- URLs to platform screenshots
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Regulatory information
+CREATE TABLE broker_regulations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  broker_id UUID REFERENCES brokers(id),
+  regulator_name VARCHAR(100),
+  license_number VARCHAR(50),
+  country VARCHAR(50),
+  status VARCHAR(20), -- 'active', 'suspended', 'revoked'
+  verification_date DATE,
+  created_at TIMESTAMP DEFAULT NOW()
+);

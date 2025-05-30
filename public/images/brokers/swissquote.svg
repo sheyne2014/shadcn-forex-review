@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .swiss-text { font-family: Arial, sans-serif; font-weight: bold; }
+  </style>
+  <rect width="200" height="80" fill="white"/>
+  <rect x="20" y="20" width="40" height="40" fill="#FF0000"/>
+  <path d="M30 40 L50 40 M40 30 L40 50" stroke="white" stroke-width="6"/>
+  <text x="70" y="45" class="swiss-text" font-size="18" fill="#000000">Swissquote</text>
+</svg> 

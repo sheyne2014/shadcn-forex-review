@@ -21,7 +21,6 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { BrokerReviewSEO } from "@/components/seo/BrokerReviewSEO";
 import { PerformanceMonitor } from "@/components/performance/PerformanceMonitor";
 import { TrustSignals } from "@/components/trust/TrustSignals";
-import { MobileResponsivenessOptimizer } from "@/components/optimization/MobileResponsivenessOptimizer";
 
 type Props = {
   params: { slug: string }
@@ -130,12 +129,6 @@ export default async function BrokerReviewPage({ params }: Props) {
             <BrokerExecutiveSummary summary={etoroExecutiveSummaryData} brokerName={broker.name} />
           </div>
 
-          {/* Mobile Responsiveness Monitor (visible only in development) */}
-          {process.env.NODE_ENV === 'development' && (
-            <div className="mt-8">
-              <MobileResponsivenessOptimizer />
-            </div>
-          )}
 
           <Separator className="my-8 sm:my-12" />
 
