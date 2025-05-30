@@ -22,6 +22,8 @@ export interface Broker {
   supported_assets?: string[];
   country?: string;
   rating?: number;
+  trust_score?: number;
+  top_rated?: boolean;
   description?: string;
   url?: string;
   created_at?: string;
