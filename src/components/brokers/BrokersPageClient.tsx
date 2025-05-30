@@ -26,6 +26,10 @@ import { Building2 } from "lucide-react";
 import { RefreshCw } from "lucide-react";
 import { SearchX } from "lucide-react";
 import { X } from "lucide-react";
+import { Search } from "lucide-react";
+
+// Add the Input component import
+import { Input } from "@/components/ui/input";
 
 interface FilterState {
   minDeposit: number[];
@@ -230,13 +234,17 @@ interface EnhancedBrokerGridProps {
   categoryName?: string;
   formatSupportedAssets: (assets: string | string[] | null | undefined) => string[];
   isLoading: boolean;
+  searchQuery: string;
+  clearAllSearch: () => void;
 }
 
 const EnhancedBrokerGrid = ({ 
   brokers, 
   categoryName, 
   formatSupportedAssets,
-  isLoading
+  isLoading,
+  searchQuery,
+  clearAllSearch
 }: EnhancedBrokerGridProps) => {
   // If loading, show skeleton cards
   if (isLoading) {
@@ -258,11 +266,15 @@ const EnhancedBrokerGrid = ({
         </div>
         <h3 className="text-lg font-semibold mb-2">No brokers found</h3>
         <p className="text-slate-500 dark:text-slate-400 max-w-md mb-4">
-          We couldn't find any brokers matching your criteria. Try adjusting your filters or search query.
+          {searchQuery ? (
+            <>We couldn't find any brokers matching <span className="font-medium text-slate-700 dark:text-slate-300">"{searchQuery}"</span>. Try a different search term or clear filters.</>
+          ) : (
+            <>We couldn't find any brokers matching your criteria. Try adjusting your filters.</>
+          )}
         </p>
-        <Button variant="outline" size="sm" className="gap-1.5" onClick={() => window.location.reload()}>
+        <Button variant="outline" size="sm" className="gap-1.5" onClick={clearAllSearch}>
           <RefreshCw className="h-3.5 w-3.5" />
-          Reset filters
+          Reset all filters
         </Button>
       </div>
     );
@@ -384,6 +396,7 @@ export function BrokersPageClient() {
   const [sortBy, setSortBy] = useState<SortOption>('rating');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [showFilters, setShowFilters] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterState>({
     minDeposit: [0],
     maxTradingFee: [100],
@@ -1895,6 +1908,22 @@ export function BrokersPageClient() {
   const filteredBrokers = useMemo(() => {
     let filtered = activeTab === 'all' ? brokers : getBrokersByCategory(activeTab);
 
+    // Apply search query if present
+    if (searchQuery.trim() !== '') {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(broker => {
+        const nameMatch = broker.name?.toLowerCase().includes(query);
+        const countryMatch = broker.country?.toLowerCase().includes(query);
+        const regulationsMatch = broker.regulations?.toLowerCase().includes(query);
+        const assetsMatch = broker.supported_assets ? 
+          formatSupportedAssets(broker.supported_assets).some((asset: string) => 
+            asset.toLowerCase().includes(query)
+          ) : false;
+          
+        return nameMatch || countryMatch || regulationsMatch || assetsMatch;
+      });
+    }
+
     // Apply filters
     filtered = filtered.filter(broker => {
       if (broker.min_deposit && broker.min_deposit < filters.minDeposit[0]) return false;
@@ -1915,7 +1944,7 @@ export function BrokersPageClient() {
     });
 
     return filtered;
-  }, [brokers, activeTab, filters]);
+  }, [brokers, activeTab, filters, searchQuery]);
 
   const handleFiltersChange = (newFilters: FilterState) => {
     setFilters(newFilters);
@@ -1933,6 +1962,12 @@ export function BrokersPageClient() {
       assetTypes: [],
       features: []
     });
+    setSearchQuery('');
+  };
+
+  const clearAllSearch = () => {
+    setSearchQuery('');
+    clearFilters();
   };
 
   const handleSortChange = (value: string) => {
@@ -1981,6 +2016,33 @@ export function BrokersPageClient() {
 
       {/* Main Content - Enhanced UI */}
       <div className="container max-w-7xl mx-auto px-4 py-8">
+        {/* Search bar */}
+        <div className="mb-6">
+          <div className="relative max-w-md mx-auto lg:mx-0">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-slate-500" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search by broker name, country, or assets..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="block w-full pl-10 border border-slate-200 dark:border-slate-700 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            {searchQuery.trim() !== '' && (
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <button 
+                  className="text-slate-400 hover:text-slate-500 focus:outline-none" 
+                  onClick={() => setSearchQuery('')}
+                  title="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-4">
             <div className="bg-white dark:bg-slate-900 shadow-sm rounded-lg p-1 w-full lg:w-auto overflow-hidden border border-slate-100 dark:border-slate-800">
@@ -2045,6 +2107,9 @@ export function BrokersPageClient() {
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-3">
             <p className="text-sm text-slate-500 dark:text-slate-400">
               Showing <span className="font-medium text-slate-700 dark:text-slate-300">{filteredBrokers.length}</span> brokers
+              {searchQuery.trim() !== '' && (
+                <> matching <span className="font-medium text-indigo-600 dark:text-indigo-400">"{searchQuery}"</span></>
+              )}
             </p>
             
             <div className="flex items-center gap-2">
@@ -2077,6 +2142,8 @@ export function BrokersPageClient() {
               brokers={filteredBrokers} 
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="forex">
@@ -2085,6 +2152,8 @@ export function BrokersPageClient() {
               categoryName="Forex"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="crypto">
@@ -2093,6 +2162,8 @@ export function BrokersPageClient() {
               categoryName="Crypto"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="stocks">
@@ -2101,6 +2172,8 @@ export function BrokersPageClient() {
               categoryName="Stocks"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="commodities">
@@ -2109,6 +2182,8 @@ export function BrokersPageClient() {
               categoryName="Commodities"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="etf">
@@ -2117,6 +2192,8 @@ export function BrokersPageClient() {
               categoryName="ETF"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="cfd">
@@ -2125,6 +2202,8 @@ export function BrokersPageClient() {
               categoryName="CFD"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
           <TabsContent value="options">
@@ -2133,6 +2212,8 @@ export function BrokersPageClient() {
               categoryName="Options"
               formatSupportedAssets={formatSupportedAssets}
               isLoading={isLoading}
+              searchQuery={searchQuery}
+              clearAllSearch={clearAllSearch}
             />
           </TabsContent>
 
