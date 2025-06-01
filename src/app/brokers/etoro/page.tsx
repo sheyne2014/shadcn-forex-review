@@ -14,6 +14,9 @@ import { BrokerReviewSEO } from "@/components/seo/BrokerReviewSEO";
 import { Separator } from "@/components/ui/separator";
 import { Context7Provider } from "@/components/Context7Provider";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
+import { ClientSideSidebar } from "@/components/broker-review/ClientSideSidebar";
+import { PerformanceMonitor } from "@/components/performance/PerformanceMonitor";
+import { TrustSignals } from "@/components/trust/TrustSignals";
 
 // eToro-specific components
 import { EtoroExecutiveSummary } from "@/components/broker-review/EtoroExecutiveSummary";
@@ -25,6 +28,20 @@ import { EtoroExpertVerdict } from "@/components/broker-review/EtoroExpertVerdic
 interface Props {
   params: { slug: string };
 }
+
+// Section definitions for sidebar navigation
+const sections = [
+  "executive-summary",
+  "company-background",
+  "social-features",
+  "trading-conditions",
+  "platforms",
+  "education",
+  "reviews",
+  "expert-verdict",
+  "faq",
+  "similar-brokers"
+];
 
 // Generate metadata for the eToro review page
 export async function generateMetadata({ params: _ }: Props): Promise<Metadata> {
@@ -85,12 +102,14 @@ function getEtoroBrokerData() {
     min_deposit: 50,
     max_leverage: "1:30 (EU), 1:400 (Non-EU)",
     regulations: "FCA (UK), CySEC (Cyprus), ASIC (Australia), FINRA (USA)",
+    regulators: ["FCA", "CySEC", "ASIC", "FINRA"],
     trading_platforms: "eToro Platform, eToro Mobile App",
     spreads_from: "From 1.0 pips",
     account_types: ["Retail", "Professional", "eToro Club"],
     country: "Cyprus",
     established: "2007",
     overall_rating: 4.5,
+    security_features: ["Two-Factor Authentication", "SSL Encryption", "Negative Balance Protection"],
     published_date: "2024-01-15",
     last_updated: new Date().toISOString(),
     summary: `eToro stands as the world's premier social trading platform, fundamentally different from traditional forex brokers. 
@@ -129,7 +148,33 @@ function getEtoroBrokerData() {
       "Professional account requirements are strict"
     ],
     educational_resources: true,
-    feature: "Social Trading & Copy Trading"
+    feature: "Social Trading & Copy Trading",
+    faqs: [
+      {
+        id: "1",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "What makes eToro different from other forex brokers?",
+        answer: "eToro is primarily a social trading platform rather than a traditional forex broker. Its main differentiator is the ability to copy other traders' strategies automatically, access to a large community of traders, and a focus on user-friendly interfaces for beginners."
+      },
+      {
+        id: "2",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "Are eToro's spreads competitive for forex trading?",
+        answer: "eToro's forex spreads start from 1.0 pips, which is higher than many ECN brokers. However, the platform's value lies in its social trading features rather than competitive spreads, making it more suitable for social traders than scalpers or high-frequency traders."
+      },
+      {
+        id: "3",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "Is eToro regulated and safe?",
+        answer: "Yes, eToro is regulated by multiple top-tier authorities including FCA (UK), CySEC (Cyprus), and ASIC (Australia). Client funds are segregated and the platform offers negative balance protection."
+      },
+      {
+        id: "4",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "Can I use MT4 or MT5 with eToro?",
+        answer: "No, eToro does not support MetaTrader platforms. The broker uses its proprietary eToro platform and mobile app, which are designed specifically for social trading features."
+      }
+    ]
   };
 }
 
@@ -214,20 +259,26 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
 
   return (
     <Context7Provider config={context7Config}>
-      <div className="min-h-screen bg-background">
-        {/* Structured Data */}
-        <BrokerReviewSEO broker={broker} />
+      {/* SEO Optimization */}
+      <BrokerReviewSEO broker={broker} />
 
-        {/* Navigation */}
-        <BrokerBreadcrumbs 
-          items={[
-            { name: "Home", href: "/" },
-            { name: "Brokers", href: "/brokers" },
-            { name: broker.name, href: `/brokers/${broker.slug}` }
-          ]} 
-        />
+      {/* Performance Monitoring */}
+      <PerformanceMonitor
+        reportTo="/api/performance-metrics"
+        debug={process.env.NODE_ENV === 'development'}
+      />
+      
+      <div className="min-h-screen bg-background" style={{ scrollBehavior: 'smooth' }}>
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          {/* Navigation */}
+          <BrokerBreadcrumbs 
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Brokers", href: "/brokers" },
+              { name: broker.name, href: `/brokers/${broker.slug}` }
+            ]} 
+          />
 
-        <div className="container mx-auto px-4 py-8">
           {/* Hero Section */}
           <HeroBrokerSection 
             broker={broker} 
@@ -238,80 +289,97 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
             }}
           />
 
+          {/* Trust Signals & Security */}
+          <div className="mt-8">
+            <TrustSignals broker={{
+              name: broker.name,
+              regulators: broker.regulators,
+              isSecure: true,
+              trustScore: broker.overall_rating,
+              securityFeatures: broker.security_features,
+              isScamBroker: false
+            }} />
+          </div>
+
+          <div className="mt-8 sm:mt-12">
+            <BrokerOverviewSection broker={broker} headline={headline} />
+          </div>
+
           <Separator className="my-8" />
 
-          {/* Page Navigation */}
-          <BrokerPageNavigation />
-
-          <div className="mt-8 space-y-12">
-            {/* Executive Summary - eToro Specific */}
-            <section id="executive-summary" className="scroll-mt-20">
-              <EtoroExecutiveSummary broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Company Background - eToro Specific */}
-            <section id="company-background" className="scroll-mt-20">
-              <EtoroCompanyBackground broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Social Trading Features - eToro Specific */}
-            <section id="social-features" className="scroll-mt-20">
-              <EtoroSocialFeatures broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Trading Conditions - eToro Specific */}
-            <section id="trading-conditions" className="scroll-mt-20">
-              <EtoroTradingConditionsAnalysis broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Platforms Section */}
-            <section id="platforms" className="scroll-mt-20">
-              <PlatformsSection broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Education Section */}
-            <section id="education" className="scroll-mt-20">
-              <EducationSection broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Reviews Section */}
-            <section id="reviews" className="scroll-mt-20">
-              <ReviewsSection broker={broker} />
-            </section>
-
-            <Separator />
-            
-            {/* Expert Verdict Section - eToro Specific */}
-            <section id="expert-verdict" className="scroll-mt-20">
-              <EtoroExpertVerdict broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* FAQ Section */}
-            <section id="faq" className="scroll-mt-20">
-              <DynamicFAQSection broker={broker} />
-            </section>
-
-            <Separator />
-
-            {/* Similar Brokers */}
-            <section id="similar-brokers" className="scroll-mt-20">
-              <SimilarBrokersSection brokers={similarBrokers} currentBroker="etoro" />
-            </section>
+          {/* Mobile Navigation */}
+          <div className="lg:hidden mb-8 overflow-x-auto">
+            <div className="flex space-x-4 pb-2 min-w-max">
+              <a href="#executive-summary" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Executive Summary</a>
+              <a href="#company-background" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Company Background</a>
+              <a href="#social-features" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Social Features</a>
+              <a href="#trading-conditions" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Trading Conditions</a>
+              <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
+              <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
+              <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
+              <a href="#expert-verdict" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Expert Verdict</a>
+              <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
+            </div>
           </div>
+
+          {/* Main Content Grid with Sidebar */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Sticky Sidebar */}
+            <ClientSideSidebar sections={sections} />
+
+            {/* Main Content */}
+            <div className="lg:col-span-3 space-y-12">
+              {/* Executive Summary - eToro Specific */}
+              <section id="executive-summary" className="scroll-mt-20">
+                <EtoroExecutiveSummary broker={broker} />
+              </section>
+
+              {/* Company Background - eToro Specific */}
+              <section id="company-background" className="scroll-mt-20">
+                <EtoroCompanyBackground broker={broker} />
+              </section>
+
+              {/* Social Trading Features - eToro Specific */}
+              <section id="social-features" className="scroll-mt-20">
+                <EtoroSocialFeatures broker={broker} />
+              </section>
+
+              {/* Trading Conditions - eToro Specific */}
+              <section id="trading-conditions" className="scroll-mt-20">
+                <EtoroTradingConditionsAnalysis broker={broker} />
+              </section>
+
+              {/* Platforms Section */}
+              <section id="platforms" className="scroll-mt-20">
+                <PlatformsSection broker={broker} />
+              </section>
+
+              {/* Education Section */}
+              <section id="education" className="scroll-mt-20">
+                <EducationSection broker={broker} />
+              </section>
+
+              {/* Reviews Section */}
+              <section id="reviews" className="scroll-mt-20">
+                <ReviewsSection broker={broker} />
+              </section>
+              
+              {/* Expert Verdict Section - eToro Specific */}
+              <section id="expert-verdict" className="scroll-mt-20">
+                <EtoroExpertVerdict broker={broker} />
+              </section>
+
+              {/* Similar Brokers */}
+              <section id="similar-brokers" className="scroll-mt-20">
+                <SimilarBrokersSection brokers={similarBrokers} currentBroker="etoro" />
+              </section>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <section id="faq" className="mt-12">
+            <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
+          </section>
 
           {/* Internal Links */}
           <div className="mt-12">
