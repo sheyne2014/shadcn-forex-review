@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -52,6 +53,7 @@ function EnhancedBrokerCard({ broker, formatSupportedAssets }: {
   formatSupportedAssets: (supportedAssets: string | string[] | null | undefined) => string[]
 }) {
   const trustScore = broker.rating ? Math.round(broker.rating * 20) : 0;
+  const [isMounted, setIsMounted] = useState(false);
   
   // Create a safer placeholder URL to prevent missing image errors
   const getImageUrl = () => {
@@ -66,6 +68,11 @@ function EnhancedBrokerCard({ broker, formatSupportedAssets }: {
     // If it's a relative path but doesn't exist, use our placeholder
     return `/images/brokers/placeholder.svg`;
   };
+  
+  // Set mounted state on client side
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   return (
     <Link href={`/brokers/${broker.id}`} className="block group">
@@ -84,14 +91,22 @@ function EnhancedBrokerCard({ broker, formatSupportedAssets }: {
           <div className="flex items-center justify-between p-6 relative">
             <div className="flex flex-col gap-1">
               <div className="h-14 flex items-center">
-                <img
-                  src={getImageUrl()}
-                  alt={`${broker.name} logo`}
-                  className="max-h-full object-contain"
-                  onError={(e) => {
-                    e.currentTarget.src = `/images/brokers/placeholder.svg`;
-                  }}
-                />
+                {isMounted ? (
+                  <img
+                    src={getImageUrl()}
+                    alt={`${broker.name} logo`}
+                    className="max-h-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.src = `/images/brokers/placeholder.svg`;
+                    }}
+                  />
+                ) : (
+                  <div className="w-14 h-14 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center">
+                    <span className="text-lg font-bold text-slate-400">
+                      {broker.name.substring(0, 2)}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="space-y-1 mt-3">
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -246,6 +261,12 @@ const EnhancedBrokerGrid = ({
   searchQuery,
   clearAllSearch
 }: EnhancedBrokerGridProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
   // If loading, show skeleton cards
   if (isLoading) {
     return (
@@ -301,15 +322,23 @@ const EnhancedBrokerGrid = ({
                 {/* Top row: Logo, Rating */}
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="relative h-10 w-10 rounded-lg overflow-hidden bg-white border border-slate-100 dark:border-slate-700 flex items-center justify-center">
-                      <img 
-                        src={logoUrl} 
-                        alt={`${broker.name} logo`} 
-                        className="max-h-8 max-w-8 object-contain"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/images/brokers/placeholder.svg";
-                        }}
-                      />
+                    <div className="flex-shrink-0 h-10 w-10 bg-white dark:bg-slate-800 rounded-md shadow-sm overflow-hidden border border-slate-100 dark:border-slate-700 flex items-center justify-center">
+                      {isMounted ? (
+                        <img 
+                          src={logoUrl}
+                          alt={`${broker.name} logo`}
+                          className="h-8 w-8 object-contain"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/images/brokers/placeholder.svg";
+                          }}
+                        />
+                      ) : (
+                        <div className="h-8 w-8 flex items-center justify-center">
+                          <span className="text-sm font-bold text-slate-400">
+                            {broker.name.substring(0, 2)}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     {broker.top_rated && (
                       <span className="text-[10px] font-medium px-1.5 py-0.5 bg-amber-50 text-amber-600 dark:bg-amber-950/50 dark:text-amber-400 rounded-full border border-amber-100 dark:border-amber-900/50 whitespace-nowrap">Top Rated</span>
@@ -328,57 +357,52 @@ const EnhancedBrokerGrid = ({
                 </div>
                 
                 {/* Broker name and location */}
-                <h3 className="text-sm font-semibold mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">{broker.name}</h3>
-                <div className="flex items-center text-[11px] text-slate-500 dark:text-slate-400 mb-3">
-                  <Globe className="h-3 w-3 mr-1 flex-shrink-0" />
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">{broker.name}</h3>
+                <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <Globe className="h-3 w-3" />
                   <span className="truncate">{broker.country && `${broker.country} • `}{broker.regulation || broker.regulations || "Regulation info not available"}</span>
                 </div>
                 
-                {/* Min deposit and trading fee */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="bg-slate-50 dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center mb-0.5">
-                      <CreditCard className="h-3 w-3 mr-1 flex-shrink-0" />
-                      Min. Deposit
+                {/* Broker details */}
+                <div className="grid grid-cols-2 gap-3 mt-4 text-sm">
+                  <div>
+                    <p className="text-slate-500 dark:text-slate-400">Min. Deposit</p>
+                    <p className="font-medium text-slate-900 dark:text-slate-100">
+                      {broker.min_deposit ? `$${broker.min_deposit}` : "N/A"}
                     </p>
-                    <p className="text-xs font-medium truncate">{broker.min_deposit ? `$${broker.min_deposit}` : "N/A"}</p>
                   </div>
-                  <div className="bg-slate-50 dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center mb-0.5">
-                      <Percent className="h-3 w-3 mr-1 flex-shrink-0" />
-                      Trading Fee
+                  <div>
+                    <p className="text-slate-500 dark:text-slate-400">Trading Fee</p>
+                    <p className="font-medium text-slate-900 dark:text-slate-100">
+                      {broker.trading_fee ? `${broker.trading_fee}%` : "Variable"}
                     </p>
-                    <p className="text-xs font-medium truncate">{broker.trading_fee ? `${broker.trading_fee}%` : "Variable"}</p>
                   </div>
                 </div>
                 
-                {/* Trading assets */}
-                <div>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 mb-1.5">Trading Assets:</p>
-                  <div className="flex flex-wrap gap-1">
-                    {displayedAssets.map((asset, index) => (
-                      <span 
-                        key={index} 
-                        className="text-[10px] font-medium px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200/50 dark:border-slate-700/50"
-                      >
+                {/* Asset badges */}
+                <div className="mt-4">
+                  <p className="text-slate-500 dark:text-slate-400 text-xs mb-1.5">Supported Assets</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {displayedAssets.map((asset, i) => (
+                      <Badge key={i} variant="outline" className="text-xs py-0.5">
                         {asset}
-                      </span>
+                      </Badge>
                     ))}
                     {extraAssetsCount > 0 && (
-                      <span className="text-[10px] font-medium px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200/50 dark:border-slate-700/50">
-                        +{extraAssetsCount}
-                      </span>
+                      <Badge variant="outline" className="text-xs py-0.5">
+                        +{extraAssetsCount} more
+                      </Badge>
                     )}
                   </div>
                 </div>
-              </div>
-              
-              {/* Button */}
-              <div className="p-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
-                <Button size="sm" className="w-full justify-between group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-950/30 dark:group-hover:text-indigo-400 transition-colors h-8" variant="outline">
-                  <span className="text-xs">View Details</span>
-                  <ChevronRight className="h-3 w-3 ml-2 group-hover:translate-x-0.5 transition-transform" />
-                </Button>
+                
+                {/* View details button */}
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">View Details</span>
+                    <ChevronRight className="h-4 w-4 text-slate-400 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                </div>
               </div>
             </div>
           </Link>
@@ -397,6 +421,7 @@ export function BrokersPageClient() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     minDeposit: [0],
     maxTradingFee: [100],
@@ -408,6 +433,11 @@ export function BrokersPageClient() {
     assetTypes: [],
     features: []
   });
+
+  // Set mounted state
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Fetch brokers data
   useEffect(() => {
@@ -421,7 +451,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-1',
               name: "IC Markets",
-              logo_url: "/images/brokers/ic-markets.png",
+              logo_url: "/images/brokers/ic-markets.svg",
               rating: 4.7,
               trust_score: 92,
               country: "Australia",
@@ -434,7 +464,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-2',
               name: "Pepperstone",
-              logo_url: "/images/brokers/pepperstone.png",
+              logo_url: "/images/brokers/pepperstone.svg",
               rating: 4.5,
               trust_score: 90,
               country: "UK",
@@ -447,7 +477,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-3',
               name: "XM",
-              logo_url: "/images/brokers/xm.png",
+              logo_url: "/images/brokers/xm.svg",
               rating: 4.3,
               trust_score: 85,
               country: "Cyprus",
@@ -460,7 +490,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-4',
               name: "OANDA",
-              logo_url: "/images/brokers/oanda.png",
+              logo_url: "/images/brokers/oanda.svg",
               rating: 4.4,
               trust_score: 88,
               country: "US",
@@ -486,7 +516,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-6',
               name: "Plus500",
-              logo_url: "/images/brokers/plus500.png",
+              logo_url: "/images/brokers/plus500.svg",
               rating: 4.2,
               trust_score: 83,
               country: "Israel",
@@ -499,11 +529,11 @@ export function BrokersPageClient() {
             {
               id: 'broker-7',
               name: "eToro",
-              logo_url: "/images/brokers/etoro.png",
+              logo_url: "/images/brokers/etoro.svg",
               rating: 4.1,
               trust_score: 82,
-              country: "Cyprus",
-              regulations: "FCA, CySEC, ASIC",
+              country: "Global, US",
+              regulations: "FCA, CySEC, ASIC, SEC, FINRA",
               min_deposit: 50,
               trading_fee: 1.0,
               top_rated: false,
@@ -512,7 +542,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-8',
               name: "Binance",
-              logo_url: "/images/brokers/binance.png",
+              logo_url: "/images/brokers/binance.svg",
               rating: 4.4,
               trust_score: 80,
               country: "Global",
@@ -551,7 +581,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-11',
               name: "Capital.com",
-              logo_url: "/images/brokers/capital-com.png",
+              logo_url: "/images/brokers/capital-com.svg",
               rating: 4.0,
               trust_score: 79,
               country: "UK",
@@ -616,7 +646,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-16',
               name: "Saxo Bank",
-              logo_url: "/images/brokers/saxo-bank.png",
+              logo_url: "/images/brokers/saxo-bank.svg",
               rating: 4.5,
               trust_score: 91,
               country: "Denmark",
@@ -707,7 +737,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-23',
               name: "Tradovate Futures",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/tradovate.png",
               rating: 4.2,
               trust_score: 84,
               country: "US",
@@ -720,7 +750,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-24',
               name: "HotForex ECN",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/hotforex.png",
               rating: 4.1,
               trust_score: 82,
               country: "Cyprus",
@@ -733,7 +763,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-25',
               name: "Forex.com",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/forex-com.png",
               rating: 4.3,
               trust_score: 86,
               country: "US",
@@ -746,7 +776,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-26',
               name: "HYCM",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/hycm.png",
               rating: 3.9,
               trust_score: 78,
               country: "UK",
@@ -759,7 +789,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-27',
               name: "Monex",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/monex.png",
               rating: 4.0,
               trust_score: 80,
               country: "Japan",
@@ -772,7 +802,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-28',
               name: "FXTM",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/fxtm.png",
               rating: 4.1,
               trust_score: 83,
               country: "Cyprus",
@@ -785,7 +815,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-29',
               name: "Huobi",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/huobi.png",
               rating: 4.0,
               trust_score: 79,
               country: "Seychelles",
@@ -798,7 +828,7 @@ export function BrokersPageClient() {
             {
               id: 'broker-30',
               name: "ATFX",
-              logo_url: "/images/brokers/placeholder.svg",
+              logo_url: "/images/brokers/atfx.png",
               rating: 3.9,
               trust_score: 77,
               country: "UK",
@@ -1081,19 +1111,7 @@ export function BrokersPageClient() {
               top_rated: false,
               supported_assets: ["Stocks", "Options", "ETFs"],
             },
-            {
-              id: 'broker-52',
-              name: "eToro USA",
-              logo_url: "/images/brokers/placeholder.svg",
-              rating: 4.0,
-              trust_score: 80,
-              country: "US",
-              regulations: "FinCEN, FINRA",
-              min_deposit: 50,
-              trading_fee: 0,
-              top_rated: false,
-              supported_assets: ["Stocks", "ETFs", "Crypto"],
-            },
+            
             {
               id: 'broker-53',
               name: "ICM Capital",
