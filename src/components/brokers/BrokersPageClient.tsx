@@ -20,6 +20,7 @@ type ExtendedBroker = Broker & {
 }
 
 export function BrokersPageClient() {
+  const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [brokers, setBrokers] = useState<ExtendedBroker[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,8 +36,14 @@ export function BrokersPageClient() {
     countries: [] as string[]
   });
 
+  // Handle client-side mounting to prevent hydration issues
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Fetch all brokers on component mount
   useEffect(() => {
+    if (!mounted) return;
     const fetchBrokers = async () => {
       try {
         setIsLoading(true);
@@ -74,7 +81,7 @@ export function BrokersPageClient() {
     };
 
     fetchBrokers();
-  }, [sortBy, sortOrder]);
+  }, [mounted, sortBy, sortOrder]);
 
   // Filter and search brokers
   const filteredBrokers = useMemo(() => {
@@ -114,6 +121,20 @@ export function BrokersPageClient() {
     if (filters.maxMinDeposit < 10000) count++;
     return count;
   };
+
+  // Prevent hydration issues by not rendering until mounted
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+        <div className="flex items-center justify-center py-16">
+          <div className="text-center">
+            <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-slate-600 dark:text-slate-400">Loading brokers...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
