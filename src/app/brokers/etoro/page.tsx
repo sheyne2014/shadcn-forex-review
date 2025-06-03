@@ -29,19 +29,38 @@ interface Props {
   params: { slug: string };
 }
 
-// Section definitions for sidebar navigation
+// Section definitions for sidebar navigation and table of contents
 const sections = [
-  "executive-summary",
-  "company-background",
-  "social-features",
-  "trading-conditions",
-  "platforms",
-  "education",
-  "reviews",
-  "expert-verdict",
-  "faq",
-  "similar-brokers"
+  { id: "executive-summary", title: "Executive Summary" },
+  { id: "company-background", title: "Company Background" },
+  { id: "social-features", title: "Social Trading Features" },
+  { id: "trading-conditions", title: "Trading Conditions" },
+  { id: "platforms", title: "Trading Platforms" },
+  { id: "education", title: "Educational Resources" },
+  { id: "reviews", title: "User Reviews" },
+  { id: "expert-verdict", title: "Expert Verdict" },
+  { id: "similar-brokers", title: "Similar Brokers" },
+  { id: "faq", title: "Frequently Asked Questions" }
 ];
+
+// Table of Contents Component
+const TableOfContents = ({ sections }: { sections: { id: string; title: string }[] }) => {
+  return (
+    <div className="bg-muted p-6 rounded-lg shadow-sm mb-8">
+      <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
+      <ul className="space-y-2">
+        {sections.map((section) => (
+          <li key={section.id} className="hover:text-primary transition-colors">
+            <a href={`#${section.id}`} className="flex items-center">
+              <span className="mr-2">•</span>
+              {section.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 // Generate metadata for the eToro review page
 export async function generateMetadata({ params: _ }: Props): Promise<Metadata> {
@@ -55,21 +74,23 @@ export async function generateMetadata({ params: _ }: Props): Promise<Metadata> 
   }
 
   return {
-    title: `${broker.name} Review 2024 - Social Trading Platform Analysis | BrokerAnalysis`,
-    description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis. Is eToro right for your trading needs?`,
+    title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis | BrokerAnalysis`,
+    description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements. Find out if eToro is right for your trading needs in 2025.`,
     keywords: [
-      "eToro review",
-      "eToro broker",
-      "social trading",
-      "copy trading",
-      "eToro fees",
-      "eToro regulation",
-      "forex broker review",
-      "trading platform review"
+      "eToro review 2025",
+      "eToro broker 2025",
+      "social trading 2025",
+      "copy trading platform",
+      "eToro fees 2025",
+      "eToro regulation 2025",
+      "forex broker review 2025",
+      "trading platform review 2025",
+      "eToro CopyTrader 2025",
+      "eToro Popular Investor program"
     ].join(", "),
     openGraph: {
-      title: `${broker.name} Review 2024 - Social Trading Platform Analysis`,
-      description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis. Is eToro right for your trading needs?`,
+      title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis`,
+      description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements. Find out if eToro is right for your trading needs in 2025.`,
       type: "article",
       url: `https://yoursite.com/brokers/etoro`,
       images: [
@@ -83,8 +104,8 @@ export async function generateMetadata({ params: _ }: Props): Promise<Metadata> 
     },
     twitter: {
       card: "summary_large_image",
-      title: `${broker.name} Review 2024 - Social Trading Platform Analysis`,
-      description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis.`,
+      title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis`,
+      description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements.`,
       images: [broker.logo_url || "/images/brokers/etoro.png"]
     }
   };
@@ -110,7 +131,7 @@ function getEtoroBrokerData() {
     established: "2007",
     overall_rating: 4.5,
     security_features: ["Two-Factor Authentication", "SSL Encryption", "Negative Balance Protection"],
-    published_date: "2024-01-15",
+    published_date: "2025-01-15",
     last_updated: new Date().toISOString(),
     summary: `eToro stands as the world's premier social trading platform, fundamentally different from traditional forex brokers. 
     Founded in 2007, this Cyprus-based fintech giant has revolutionized retail trading by combining social networking with financial markets.
@@ -147,7 +168,7 @@ function getEtoroBrokerData() {
       "Currency conversion fees on non-USD deposits",
       "Professional account requirements are strict"
     ],
-    educational_resources: true,
+    educational_resources: ["Video tutorials", "Trading guides", "Webinars", "Blog articles", "Market analysis"],
     feature: "Social Trading & Copy Trading",
     faqs: [
       {
@@ -173,6 +194,30 @@ function getEtoroBrokerData() {
         broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
         question: "Can I use MT4 or MT5 with eToro?",
         answer: "No, eToro does not support MetaTrader platforms. The broker uses its proprietary eToro platform and mobile app, which are designed specifically for social trading features."
+      },
+      {
+        id: "5",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "What are the minimum deposit requirements for eToro in 2025?",
+        answer: "For 2025, eToro maintains a minimum deposit of $50 for most countries. However, this amount may vary depending on your location. The minimum first-time deposit is higher in some regions, so it's advisable to check the specific requirements for your country."
+      },
+      {
+        id: "6",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "How has eToro's platform improved in 2025?",
+        answer: "In 2025, eToro has enhanced its platform with improved charting capabilities, more advanced risk management tools, and expanded its asset selection. The social trading features have been refined with better filtering options and more detailed performance metrics for potential copy trading targets."
+      },
+      {
+        id: "7",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "What new cryptocurrency features does eToro offer in 2025?",
+        answer: "In 2025, eToro has expanded its cryptocurrency offerings with enhanced staking services, improved DeFi integration, and a wider range of crypto assets. The platform now offers more advanced crypto portfolio analysis tools and educational resources specifically for crypto traders."
+      },
+      {
+        id: "8",
+        broker_id: "805f65c5-3911-448e-8800-0143bbbb2a0f",
+        question: "Has eToro's fee structure changed in 2025?",
+        answer: "Yes, eToro has updated its fee structure in 2025. While the platform continues to offer commission-free stock trading, there have been adjustments to overnight and inactivity fees. Additionally, eToro has introduced new premium account tiers with reduced spreads and additional services for higher-volume traders."
       }
     ]
   };
@@ -229,12 +274,12 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
 
   // Context7 configuration for SEO optimization
   const context7Config = {
-    title: `${broker.name} Review 2024 - Social Trading Platform Analysis`,
-    description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis. Is eToro right for your trading needs?`,
-    keywords: ["eToro", "social trading", "copy trading", "forex broker", "CFD trading", "investment platform"],
+    title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis`,
+    description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements. Find out if eToro is right for your trading needs in 2025.`,
+    keywords: ["eToro 2025", "social trading", "copy trading", "forex broker", "CFD trading", "investment platform", "cryptocurrency trading", "CopyTrader"],
     openGraph: {
-      title: `${broker.name} Review 2024 - Social Trading Platform Analysis`,
-      description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis.`,
+      title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis`,
+      description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements.`,
       siteName: "BrokerAnalysis",
       images: [
         {
@@ -248,14 +293,14 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
     },
     twitter: {
       cardType: "summary_large_image" as const,
-      title: `${broker.name} Review 2024 - Social Trading Platform Analysis`,
-      description: `Comprehensive ${broker.name} review covering social trading features, costs, regulation, and platform analysis.`,
+      title: `${broker.name} Review 2025 - Complete Social Trading Platform Analysis`,
+      description: `Updated ${broker.name} review for 2025: Discover the latest social trading features, pricing, regulation changes, and platform enhancements.`,
     },
     canonical: `https://yoursite.com/brokers/etoro`,
   };
 
   // Generate headline for the broker
-  const headline = "eToro is the world's leading social trading platform, fundamentally different from traditional forex brokers. With over 30 million users and revolutionary copy trading features, eToro democratizes access to financial markets through social networking and automated investing.";
+  const headline = "eToro continues to be the world's leading social trading platform in 2025, fundamentally different from traditional forex brokers. With over 30 million users and revolutionary copy trading features, eToro democratizes access to financial markets through social networking and automated investing.";
 
   return (
     <Context7Provider config={context7Config}>
@@ -272,11 +317,8 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
         <div className="container mx-auto px-4 py-6 sm:py-8">
           {/* Navigation */}
           <BrokerBreadcrumbs 
-            items={[
-              { name: "Home", href: "/" },
-              { name: "Brokers", href: "/brokers" },
-              { name: broker.name, href: `/brokers/${broker.slug}` }
-            ]} 
+            brokerName={broker.name}
+            brokerSlug={broker.slug}
           />
 
           {/* Hero Section */}
@@ -306,26 +348,29 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
           </div>
 
           <Separator className="my-8" />
+          
+          {/* Table of Contents - Visible on all screen sizes */}
+          <TableOfContents sections={sections} />
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - Scrollable */}
           <div className="lg:hidden mb-8 overflow-x-auto">
             <div className="flex space-x-4 pb-2 min-w-max">
-              <a href="#executive-summary" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Executive Summary</a>
-              <a href="#company-background" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Company Background</a>
-              <a href="#social-features" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Social Features</a>
-              <a href="#trading-conditions" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Trading Conditions</a>
-              <a href="#platforms" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Platforms</a>
-              <a href="#education" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Education</a>
-              <a href="#reviews" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Reviews</a>
-              <a href="#expert-verdict" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">Expert Verdict</a>
-              <a href="#faq" className="px-4 py-2 bg-muted rounded-md text-sm font-medium">FAQ</a>
+              {sections.map((section) => (
+                <a 
+                  key={section.id} 
+                  href={`#${section.id}`} 
+                  className="px-4 py-2 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 transition-colors"
+                >
+                  {section.title}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Main Content Grid with Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sticky Sidebar */}
-            <ClientSideSidebar sections={sections} />
+            <ClientSideSidebar sections={sections.map(s => s.id)} />
 
             {/* Main Content */}
             <div className="lg:col-span-3 space-y-12">
@@ -377,13 +422,16 @@ export default async function EtoroReviewPage({ params: _ }: Props) {
           </div>
 
           {/* FAQ Section */}
-          <section id="faq" className="mt-12">
+          <section id="faq" className="mt-12 scroll-mt-20">
             <DynamicFAQSection broker={broker} additionalFaqs={broker.faqs} />
           </section>
 
           {/* Internal Links */}
           <div className="mt-12">
-            <BrokerInternalLinks broker={broker} />
+            <BrokerInternalLinks 
+              currentBroker={broker.name}
+              brokerSlug={broker.slug}
+            />
           </div>
         </div>
 

@@ -388,7 +388,9 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
                     <img src="https://www.etoro.com/images/insurance-infographic-en.png" alt="eToro client fund protection infographic" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
                     <img src="https://www.etoro.com/images/regulation-map-en.png" alt="eToro global regulation map" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
                   </div>
-                  <Context7Content type="caption">Infographics: eToro official insurance and regulation coverage (source: eToro.com)</Context7Content>
+                  <Context7Content type="paragraph">
+                    <span className="text-sm text-muted-foreground">Infographics: eToro official insurance and regulation coverage (source: eToro.com)</span>
+                  </Context7Content>
                 </div>
               </CardContent>
             </Card>
@@ -556,7 +558,9 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
             <div className="flex flex-wrap gap-4 justify-center">
               <img src="https://www.etoro.com/images/transparency-infographic-en.png" alt="eToro transparency and reporting infographic" className="rounded-lg shadow-md max-w-xs w-full h-auto" />
             </div>
-            <Context7Content type="caption">Infographic: eToro transparency and reporting (source: eToro.com)</Context7Content>
+            <Context7Content type="paragraph">
+              <span className="text-sm text-muted-foreground">Infographic: eToro transparency and reporting (source: eToro.com)</span>
+            </Context7Content>
           </CardContent>
         </Card>
 
@@ -579,15 +583,16 @@ export function EtoroRegulationSafety({ broker }: EtoroRegulationSafetyProps) {
           </CardHeader>
           <CardContent>
             <ul className="text-xs list-disc pl-6">
-              <li><a href="https://www.etoro.com/customer-service/regulation-license/" target="_blank" rel="noopener noreferrer">eToro Regulation & License</a></li>
-              <li><a href="https://register.fca.org.uk/s/firm?id=001b000000MfGvUAAV" target="_blank" rel="noopener noreferrer">FCA Register</a></li>
-              <li><a href="https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/37660/" target="_blank" rel="noopener noreferrer">CySEC Register</a></li>
-              <li><a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/SearchRegisters.jspx" target="_blank" rel="noopener noreferrer">ASIC Register</a></li>
-              <li><a href="https://brokercheck.finra.org/firm/summary/298361" target="_blank" rel="noopener noreferrer">FINRA BrokerCheck</a></li>
-              <li><a href="https://www.etoro.com/investing/insurance/" target="_blank" rel="noopener noreferrer">eToro Insurance</a></li>
-              <li><a href="https://www.etoro.com/customer-service/account-and-money-protection/" target="_blank" rel="noopener noreferrer">eToro Account & Money Protection</a></li>
-              <li><a href="https://www.etoro.com/news-and-analysis/press-releases/etoro-reports-continued-growth-with-fy22-results/" target="_blank" rel="noopener noreferrer">eToro Annual Report 2022</a></li>
+              <li><a href="https://www.etoro.com/customer-service/regulation-license/" target="_blank" rel="noopener noreferrer">eToro Regulation & License (Updated 2025)</a></li>
+              <li><a href="https://register.fca.org.uk/s/firm?id=001b000000MfGvUAAV" target="_blank" rel="noopener noreferrer">FCA Register - eToro UK Ltd.</a></li>
+              <li><a href="https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/37660/" target="_blank" rel="noopener noreferrer">CySEC Register - eToro (Europe) Ltd.</a></li>
+              <li><a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/SearchRegisters.jspx" target="_blank" rel="noopener noreferrer">ASIC Register - eToro AUS Capital Ltd.</a></li>
+              <li><a href="https://brokercheck.finra.org/firm/summary/298361" target="_blank" rel="noopener noreferrer">FINRA BrokerCheck - eToro USA Securities Inc.</a></li>
+              <li><a href="https://www.etoro.com/investing/insurance/" target="_blank" rel="noopener noreferrer">eToro Insurance Protection (Updated 2025)</a></li>
+              <li><a href="https://www.etoro.com/customer-service/account-and-money-protection/" target="_blank" rel="noopener noreferrer">eToro Account & Money Protection (Updated 2025)</a></li>
+              <li><a href="https://www.etoro.com/news-and-analysis/press-releases/" target="_blank" rel="noopener noreferrer">eToro Annual Reports & Financial Statements</a></li>
               <li><a href="https://help.etoro.com/s/article/how-can-i-submit-a-complaint?language=en_GB" target="_blank" rel="noopener noreferrer">eToro Complaints Process</a></li>
+              <li><a href="https://www.etoro.com/trading/academy/" target="_blank" rel="noopener noreferrer">eToro Trading Academy</a></li>
             </ul>
           </CardContent>
         </Card>

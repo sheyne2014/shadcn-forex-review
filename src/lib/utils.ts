@@ -85,8 +85,14 @@ export function capitalize(str: string): string {
 
 /**
  * Format a date in a human-readable format (e.g., "Jan 15, 2023")
+ * @param dateInput - The date to format (Date object or string)
+ * @returns The formatted date string
  */
-export function formatDate(date: Date): string {
+export function formatDate(dateInput: Date | string): string {
+  if (!dateInput) return "";
+  
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',

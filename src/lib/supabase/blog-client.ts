@@ -16,14 +16,36 @@ export interface BlogPost {
   author_id?: string;
   image_url?: string;
   reading_time?: number;
-  tags?: string[];
+  tags?: string[] | string;
   category_id?: string;
+  featured?: boolean;
+  views?: number;
 }
 
 export interface BlogCategory {
   id: string;
   name: string;
   slug: string;
+}
+
+// Get all blog posts without any filtering
+export async function getAllBlogPosts() {
+  try {
+    const { data, error } = await supabaseBlogClient
+      .from('blog_posts')
+      .select('*')
+      .order('published_at', { ascending: false });
+
+    if (error) {
+      console.error("Error fetching all blog posts:", error);
+      return { data: [], error };
+    }
+
+    return { data, error: null };
+  } catch (error) {
+    console.error("Error getting all blog posts:", error);
+    return { data: [], error };
+  }
 }
 
 // Get all blog posts with optional filtering and sorting

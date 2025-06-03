@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { OptimizedImage } from './OptimizedImage';
 
 interface ClientImageProps {
@@ -11,6 +10,7 @@ interface ClientImageProps {
   width?: number;
   height?: number;
   aspectRatio?: "auto" | "square" | "video" | "portrait" | "wide" | number;
+  priority?: boolean;
 }
 
 export function ClientImage({ 
@@ -20,7 +20,8 @@ export function ClientImage({
   className,
   width = 800,
   height = 600,
-  aspectRatio = "auto"
+  aspectRatio = "auto",
+  priority = false
 }: ClientImageProps) {
   // Let the OptimizedImage component handle all the image loading logic
   return (
@@ -33,7 +34,7 @@ export function ClientImage({
       height={height}
       aspectRatio={aspectRatio}
       fade={true}
-      priority={false}
+      priority={priority}
     />
   );
 } 

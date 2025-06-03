@@ -246,7 +246,7 @@ export function SimilarBrokersSection({
                   className="w-full shadow-sm group-hover:shadow-md transition-all"
                   asChild
                 >
-                  <Link href={`/broker/${broker.id.toLowerCase()}`}>
+                  <Link href={`/brokers/${broker.id.toLowerCase()}`}>
                     <span className="flex items-center justify-center w-full">
                       View Full Review
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -257,10 +257,10 @@ export function SimilarBrokersSection({
                 <div className="flex gap-2">
                   {broker.website_url && (
                     <Button variant="outline" size="sm" className="flex-1" asChild>
-                      <Link href={broker.website_url} target="_blank" rel="noopener noreferrer">
+                      <a href={broker.website_url} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Visit Website
-                      </Link>
+                      </a>
                     </Button>
                   )}
 
@@ -270,7 +270,7 @@ export function SimilarBrokersSection({
                     className="flex-1"
                     asChild
                   >
-                    <Link href={`/compare?brokers=${currentBroker.toLowerCase()},${broker.id.toLowerCase()}`}>
+                    <Link href={`/tools/compare?brokers=${currentBroker.toLowerCase()},${broker.id.toLowerCase()}`}>
                       Compare
                     </Link>
                   </Button>

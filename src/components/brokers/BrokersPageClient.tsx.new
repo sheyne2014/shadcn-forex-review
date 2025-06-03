@@ -85,3 +85,4 @@ function BrokerCard({ name, rating }: { name: string; rating: number }) {
     </Card>
   );
 }
+

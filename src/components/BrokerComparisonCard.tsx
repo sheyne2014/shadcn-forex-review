@@ -24,6 +24,8 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
   // State for broker logo images
   const [broker1Img, setBroker1Img] = useState<string | null>(null);
   const [broker2Img, setBroker2Img] = useState<string | null>(null);
+  // State to track if component is mounted (client-side)
+  const [isMounted, setIsMounted] = useState(false);
   
   // Generate fallback logo if the broker doesn't have a standard domain
   const getFallbackLogo = (brokerName: string) => {
@@ -32,6 +34,9 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
   
   // Set logo URLs using useEffect to avoid hydration mismatch
   useEffect(() => {
+    // Set mounted state to true
+    setIsMounted(true);
+    
     // Generate logo URLs based on broker IDs using clearbit
     setBroker1Img(`https://logo.clearbit.com/${broker1.id.replace(/-/g, '')}.com`);
     setBroker2Img(`https://logo.clearbit.com/${broker2.id.replace(/-/g, '')}.com`);
@@ -46,8 +51,12 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
         <CardHeader className="pb-2">
           <Badge variant="secondary" className="mb-2 mx-auto">{category}</Badge>
           <div className="flex items-center justify-center gap-2 mb-2">
+            {/* First broker logo - Always render the placeholder initially */}
             <div className="relative w-10 h-10 overflow-hidden rounded-full bg-muted/20 border">
-              {broker1Img && (
+              <div className="w-full h-full flex items-center justify-center text-xs font-bold">
+                {broker1.name.charAt(0)}
+              </div>
+              {isMounted && broker1Img && (
                 <Image
                   src={broker1Img}
                   alt={broker1.name}
@@ -57,15 +66,14 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
                   onError={() => setBroker1Img(getFallbackLogo(broker1.name))}
                 />
               )}
-              {!broker1Img && (
-                <div className="w-full h-full flex items-center justify-center text-xs font-bold">
-                  {broker1.name.charAt(0)}
-                </div>
-              )}
             </div>
             <span className="text-muted-foreground font-bold">vs</span>
+            {/* Second broker logo - Always render the placeholder initially */}
             <div className="relative w-10 h-10 overflow-hidden rounded-full bg-muted/20 border">
-              {broker2Img && (
+              <div className="w-full h-full flex items-center justify-center text-xs font-bold">
+                {broker2.name.charAt(0)}
+              </div>
+              {isMounted && broker2Img && (
                 <Image
                   src={broker2Img}
                   alt={broker2.name}
@@ -74,11 +82,6 @@ export function BrokerComparisonCard({ broker1, broker2, category, views = "1K+"
                   className="object-contain p-1"
                   onError={() => setBroker2Img(getFallbackLogo(broker2.name))}
                 />
-              )}
-              {!broker2Img && (
-                <div className="w-full h-full flex items-center justify-center text-xs font-bold">
-                  {broker2.name.charAt(0)}
-                </div>
               )}
             </div>
           </div>

@@ -70,28 +70,28 @@ export function EducationSection({
       title: "Forex Trading Guide",
       type: "Article",
       description: "A comprehensive guide to forex trading basics, covering currency pairs, market analysis, and trading strategies.",
-      url: "#",
+      url: "https://www.etoro.com/trading/academy/forex-trading-guide",
       imageUrl: "/images/education/forex-guide.jpg"
     },
     {
       title: "Technical Analysis Fundamentals",
       type: "Video",
       description: "Learn the essential technical analysis tools and indicators to help you make informed trading decisions.",
-      url: "#",
+      url: "https://www.etoro.com/trading/academy/technical-analysis",
       imageUrl: "/images/education/technical-analysis.jpg"
     },
     {
       title: "Understanding Leverage and Margin",
       type: "Article",
       description: "Discover how leverage and margin work in trading and learn to manage your risk effectively.",
-      url: "#",
+      url: "https://www.etoro.com/trading/academy/leverage-margin-guide",
       imageUrl: "/images/education/leverage.jpg"
     },
     {
       title: "Trading Psychology Mastery",
       type: "eBook",
       description: "Develop the mindset of successful traders and learn to manage emotions in trading.",
-      url: "#",
+      url: "https://www.etoro.com/trading/academy/trading-psychology",
       imageUrl: "/images/education/psychology.jpg"
     }
   ];
@@ -271,10 +271,12 @@ export function EducationSection({
                       </div>
                       <h3 className="text-lg font-semibold mb-2">{material.title}</h3>
                       <p className="text-muted-foreground text-sm mb-4 flex-grow">{material.description}</p>
-                      <Button variant="outline" size="sm" className="self-start">
-                        {material.type === 'Article' && "Read Article"}
-                        {material.type === 'Video' && "Watch Video"}
-                        {material.type === 'eBook' && "Download eBook"}
+                      <Button variant="outline" size="sm" className="self-start" asChild>
+                        <a href={material.url || "#"} target="_blank" rel="noopener noreferrer">
+                          {material.type === 'Article' && "Read Article"}
+                          {material.type === 'Video' && "Watch Video"}
+                          {material.type === 'eBook' && "Download eBook"}
+                        </a>
                       </Button>
                     </div>
                   </div>
@@ -305,7 +307,11 @@ export function EducationSection({
                   </div>
                   <h3 className="font-semibold mb-1">{course.title}</h3>
                   <p className="text-sm text-muted-foreground mb-3">{course.description}</p>
-                  <Button variant="outline" size="sm" className="w-full">View Course</Button>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <a href="https://www.etoro.com/trading/academy/courses" target="_blank" rel="noopener noreferrer">
+                      View Course
+                    </a>
+                  </Button>
                 </div>
               ))}
             </CardContent>
@@ -329,7 +335,11 @@ export function EducationSection({
                     <div className="mt-1">{webinar.speaker}</div>
                   </div>
                   <p className="text-sm mb-3">{webinar.description}</p>
-                  <Button variant="outline" size="sm" className="w-full">Register</Button>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <a href="https://www.etoro.com/trading/webinars" target="_blank" rel="noopener noreferrer">
+                      Register
+                    </a>
+                  </Button>
                 </div>
               ))}
             </CardContent>

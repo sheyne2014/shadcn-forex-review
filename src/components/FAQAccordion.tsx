@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type FAQItem = {
+export interface FAQItem {
   question: string;
   answer: string;
-};
+}
 
 interface FAQAccordionProps {
   items: FAQItem[];
@@ -15,56 +20,30 @@ interface FAQAccordionProps {
 }
 
 export function FAQAccordion({ items, className }: FAQAccordionProps) {
-  const [mounted, setMounted] = useState(false);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  // Ensure we're mounted to prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  const toggleItem = (index: number) => {
-    if (!mounted) return;
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  // Don't render if no items
+  if (!items || items.length === 0) {
+    return null;
+  }
 
   return (
-    <div className={cn("space-y-2", className)}>
-      {items.map((item, index) => (
-        <div 
-          key={index}
-          className={cn(
-            "border rounded-lg overflow-hidden transition-all duration-200",
-            mounted && openIndex === index ? "shadow-md border-primary/30" : "hover:border-primary/20"
-          )}
-        >
-          <button
-            onClick={() => toggleItem(index)}
-            className="flex items-center justify-between w-full p-4 text-left focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 rounded-lg"
-            aria-expanded={mounted && openIndex === index}
-            disabled={!mounted}
-          >
-            <span className="font-medium text-lg">{item.question}</span>
-            <ChevronDown 
-              className={cn(
-                "h-5 w-5 text-primary transition-transform duration-300",
-                mounted && openIndex === index ? "transform rotate-180" : ""
-              )} 
-            />
-          </button>
-          
-          <div 
-            className={cn(
-              "overflow-hidden transition-all duration-300 ease-in-out",
-              mounted && openIndex === index ? "max-h-96" : "max-h-0"
-            )}
-          >
-            <div className="p-4 pt-0 text-muted-foreground">
-              {item.answer}
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className={cn("my-8 space-y-4", className)}>
+      <div className="flex items-center gap-2 mb-4">
+        <HelpCircle className="h-5 w-5 text-primary" />
+        <h3 className="text-xl font-semibold">Frequently Asked Questions</h3>
+      </div>
+      
+      <Accordion type="single" collapsible className="w-full">
+        {items.map((item, index) => (
+          <AccordionItem key={index} value={`item-${index}`}>
+            <AccordionTrigger className="text-left">
+              {item.question}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div dangerouslySetInnerHTML={{ __html: item.answer }} />
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 } 

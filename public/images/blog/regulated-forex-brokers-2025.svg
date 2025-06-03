@@ -1,0 +1,42 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with subtle gradient -->
+  <rect width="1200" height="630" fill="#f8fafc" />
+  <rect width="1200" height="630" fill="url(#bgGradient)" />
+  
+  <!-- Grid pattern -->
+  <path d="M0 40H1200M0 80H1200M0 120H1200M0 160H1200M0 200H1200M0 240H1200M0 280H1200M0 320H1200M0 360H1200M0 400H1200M0 440H1200M0 480H1200M0 520H1200M0 560H1200M0 600H1200M40 0V630M80 0V630M120 0V630M160 0V630M200 0V630M240 0V630M280 0V630M320 0V630M360 0V630M400 0V630M440 0V630M480 0V630M520 0V630M560 0V630M600 0V630M640 0V630M680 0V630M720 0V630M760 0V630M800 0V630M840 0V630M880 0V630M920 0V630M960 0V630M1000 0V630M1040 0V630M1080 0V630M1120 0V630M1160 0V630" stroke="#e2e8f0" stroke-width="0.5" />
+  
+  <!-- Main title background rectangle -->
+  <rect x="250" y="160" width="700" height="310" rx="16" fill="#2563eb" fill-opacity="0.1" stroke="#2563eb" stroke-width="2" />
+  
+  <!-- Security shield icon -->
+  <g transform="translate(400, 260)">
+    <!-- Shield outline -->
+    <path d="M0,0 L100,0 L100,120 L50,150 L0,120 Z" fill="#2563eb" />
+    <path d="M10,10 L90,10 L90,110 L50,135 L10,110 Z" fill="#f8fafc" />
+    
+    <!-- Checkmark inside shield -->
+    <path d="M30,70 L45,85 L70,45" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  
+  <!-- Regulatory badge -->
+  <circle cx="750" cy="260" r="70" fill="#0f172a" />
+  <circle cx="750" cy="260" r="60" fill="#f8fafc" stroke="#0f172a" stroke-width="2" />
+  <text x="750" y="245" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#0f172a">REGULATED</text>
+  <text x="750" y="275" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2563eb">BROKER</text>
+  
+  <!-- Title text -->
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#0f172a">REGULATED BROKERS GUIDE 2025</text>
+  <text x="600" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="normal" text-anchor="middle" fill="#64748b">Ensuring Safe and Compliant Trading</text>
+  
+  <!-- BrokerAnalysis branding -->
+  <text x="600" y="560" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#94a3b8">BROKERANALYSIS.COM</text>
+  
+  <!-- Gradients definition -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#f1f5f9" />
+    </linearGradient>
+  </defs>
+</svg> 

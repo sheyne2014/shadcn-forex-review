@@ -174,7 +174,7 @@ Despite these limitations, eToro excels in its target market. The platform's arc
         "Integrated market sentiment and community insights"
       ],
       rating: 4.4,
-      downloadUrl: "https://apps.apple.com/app/etoro-trading-investing/id670077884",
+      downloadUrl: "https://apps.apple.com/app/etoro-social-trading/id674984916",
       imageUrl: "/images/platforms/etoro-ios-app.jpg"
     },
     {
