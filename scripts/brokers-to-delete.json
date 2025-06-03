@@ -1,0 +1,127 @@
+[
+  {
+    "id": "98000000-0000-0000-0000-000000000580",
+    "name": "Huobi",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "e8000000-0000-0000-0000-000000001080",
+    "name": "Tradier",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "d5000000-0000-0000-0000-000000000950",
+    "name": "FXFlat Pro",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "b12d3738-be82-4253-adbd-040ea7015ac2",
+    "name": "dough",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "c6000000-0000-0000-0000-000000000860",
+    "name": "AMarkets ECN",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "b0000000-0000-0000-0000-000000000700",
+    "name": "AMarkets",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "0d71ab38-f232-48ec-bc07-7d6d57694e68",
+    "name": "Generic Futures",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "440de22f-aaab-459c-abed-8ca9ad61662e",
+    "name": "Generic Trade",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "be000000-0000-0000-0000-0000000000e0",
+    "name": "Crypto.com",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "e6000000-0000-0000-0000-000000001060",
+    "name": "SMC Global",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "e7000000-0000-0000-0000-000000001070",
+    "name": "SMC Global Pro",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "d6000000-0000-0000-0000-000000000960",
+    "name": "BitMEX",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "c3000000-0000-0000-0000-000000000830",
+    "name": "Dorman Trading",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "e6000000-0000-0000-0000-000000000360",
+    "name": "TradeStation",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "f6000000-0000-0000-0000-000000000460",
+    "name": "Zacks Trade",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "b3000000-0000-0000-0000-000000000730",
+    "name": "FBS",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "601ef530-1a18-4d9b-a795-5115ec29339d",
+    "name": "SogoTrade",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "6d18b0af-b3b9-4927-bc12-07625e14653c",
+    "name": "JustForex",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "d2000000-0000-0000-0000-000000000920",
+    "name": "FIBO Group",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "b2000000-0000-0000-0000-000000000720",
+    "name": "OCTA",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "f5000000-0000-0000-0000-000000000450",
+    "name": "QInvest",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "c2000000-0000-0000-0000-000000000820",
+    "name": "Lightspeed",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "e4000000-0000-0000-0000-000000001040",
+    "name": "Just2Trade",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "d8000000-0000-0000-0000-000000000980",
+    "name": "FXFlat",
+    "reason": "Low trust score"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000810",
+    "name": "FXDD",
+    "reason": "Low trust score"
+  }
+]

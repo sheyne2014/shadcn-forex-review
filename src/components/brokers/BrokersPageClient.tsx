@@ -27,18 +27,12 @@ export function BrokersPageClient() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [showFilters, setShowFilters] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Advanced filters state
-  const [filters, setFilters] = useState<BrokerFilters>({
-    minDeposit: [0],
-    maxTradingFee: [5],
-    minRating: [0],
-    regulations: [],
-    countries: [],
-    platforms: [],
-    accountTypes: [],
-    assetTypes: [],
-    features: []
+  const [filters, setFilters] = useState({
+    regulations: [] as string[],
+    assetTypes: [] as string[],
+    minRating: 0,
+    maxMinDeposit: 10000,
+    countries: [] as string[]
   });
 
   // Fetch all brokers on component mount
@@ -102,21 +96,22 @@ export function BrokersPageClient() {
   const clearAllFilters = () => {
     setSearchQuery("");
     setFilters({
-      minDeposit: [0],
-      maxTradingFee: [5],
-      minRating: [0],
       regulations: [],
-      countries: [],
-      platforms: [],
-      accountTypes: [],
       assetTypes: [],
-      features: []
+      minRating: 0,
+      maxMinDeposit: 10000,
+      countries: []
     });
   };
 
   const getActiveFiltersCount = () => {
     let count = 0;
     if (searchQuery.trim()) count++;
+    count += filters.regulations.length;
+    count += filters.assetTypes.length;
+    count += filters.countries.length;
+    if (filters.minRating > 0) count++;
+    if (filters.maxMinDeposit < 10000) count++;
     return count;
   };
 
@@ -129,13 +124,13 @@ export function BrokersPageClient() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               <span>Compare </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-yellow-300 dark:from-amber-300 dark:to-yellow-200 relative inline-block">
-                110+ Forex Brokers
+                110+ Trading Brokers
               </span>
               <span> in 2025</span>
             </h1>
             <p className="text-slate-100 dark:text-slate-200 mb-6 text-lg md:text-xl leading-relaxed">
-              Find the perfect trading partner with our comprehensive broker comparison tools.
-              Search, filter, and compare regulated brokers with real data and expert reviews.
+              Find the perfect trading partner for Forex, Stocks, Crypto, Options, CFDs, and ETFs.
+              Search, filter, and compare the world's top 110 regulated brokers with real data and expert reviews.
             </p>
 
             {/* Search Bar in Hero */}

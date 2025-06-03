@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import { BrokersPageClient } from "@/components/brokers/BrokersPageClient";
 
 export const metadata: Metadata = {
-  title: "All Forex Brokers 2025 | Compare 110+ Brokers | BrokerAnalysis",
-  description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types. Find the perfect broker with our comprehensive comparison tools and expert reviews.",
+  title: "All Trading Brokers 2025 | Compare 110+ Top Brokers | BrokerAnalysis",
+  description: "Compare 110+ top-rated trading brokers for Forex, Stocks, Crypto, Options, CFDs, and ETFs in 2025. Search and filter by regulation, spreads, platforms, and asset types. Find the perfect broker with our comprehensive comparison tools and expert reviews.",
   openGraph: {
-    title: "All Forex Brokers 2025 | Compare 110+ Brokers | BrokerAnalysis",
-    description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types. Find the perfect broker with our comprehensive comparison tools.",
+    title: "All Trading Brokers 2025 | Compare 110+ Top Brokers | BrokerAnalysis",
+    description: "Compare 110+ top-rated trading brokers for Forex, Stocks, Crypto, Options, CFDs, and ETFs in 2025. Search and filter by regulation, spreads, platforms, and asset types.",
     type: "website",
     url: "/brokers",
     images: [
@@ -14,14 +14,14 @@ export const metadata: Metadata = {
         url: "/images/og-brokers-listing.png",
         width: 1200,
         height: 630,
-        alt: "Compare 110+ Forex Brokers - BrokerAnalysis",
+        alt: "Compare 110+ Trading Brokers - BrokerAnalysis",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "All Forex Brokers 2025 | Compare 110+ Brokers",
-    description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types.",
+    title: "All Trading Brokers 2025 | Compare 110+ Top Brokers",
+    description: "Compare 110+ top-rated trading brokers for Forex, Stocks, Crypto, Options, CFDs, and ETFs in 2025.",
   },
   keywords: [
     "forex brokers 2025",
@@ -61,13 +61,13 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "All Forex Brokers 2025 - Compare 110+ Brokers",
-  "description": "Comprehensive listing of 110+ regulated forex brokers with detailed comparisons, reviews, and filtering options.",
+  "name": "All Trading Brokers 2025 - Compare 110+ Top Brokers",
+  "description": "Comprehensive listing of 110+ top-rated trading brokers for Forex, Stocks, Crypto, Options, CFDs, and ETFs with detailed comparisons, reviews, and filtering options.",
   "url": "https://brokeranalysis.com/brokers",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Forex Brokers Directory",
-    "description": "Complete directory of regulated forex and trading brokers",
+    "name": "Trading Brokers Directory",
+    "description": "Complete directory of top-rated trading brokers for all asset classes",
     "numberOfItems": "110+",
     "itemListElement": [
       {
