@@ -213,7 +213,7 @@ async function performWebSearch(query: string, restrictToSite: boolean = false, 
   }));
 }
 
-// Intelligent response generation function
+// Enhanced AI response generation with better context understanding
 function generateIntelligentResponse(
   message: string,
   relevantContent: PageContent[],
@@ -222,60 +222,112 @@ function generateIntelligentResponse(
 ): string {
   const messageLower = message.toLowerCase();
 
-  // Define response patterns for common queries
-  const responsePatterns = [
-    {
-      patterns: ["best broker", "top broker", "recommend broker", "which broker"],
-      response: "I'd be happy to help you find the best broker! Here are some great options based on your needs:"
+  // Enhanced intent recognition with more sophisticated patterns
+  const intents = {
+    greeting: {
+      patterns: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening", "what's up", "how are you"],
+      responses: [
+        "Hello! 👋 I'm Roku, your personal trading assistant. I'm here to help you find the perfect broker and answer any trading questions you have!",
+        "Hi there! 🌟 Welcome to BrokerAnalysis! I'm excited to help you navigate the world of trading. What can I assist you with today?",
+        "Hey! 😊 Great to see you here! I'm Roku, and I specialize in helping traders like you find the best brokers and trading solutions."
+      ]
     },
-    {
-      patterns: ["compare", "vs", "versus", "difference between"],
-      response: "Great question! Let me help you compare these options. Here's what I found:"
+    recommendation: {
+      patterns: ["best", "top", "recommend", "suggest", "which", "what", "good", "great", "excellent"],
+      responses: [
+        "Great question! 🎯 I'd love to help you find the perfect broker. Based on your needs, here are my top recommendations:",
+        "Excellent! 🏆 Finding the right broker is crucial for trading success. Let me share some top-rated options:",
+        "Perfect timing! 💡 I have some fantastic broker recommendations that might be exactly what you're looking for:"
+      ]
     },
-    {
-      patterns: ["beginner", "new to trading", "start trading", "first time"],
-      response: "Perfect! I love helping new traders get started. Here are the best resources for beginners:"
+    comparison: {
+      patterns: ["compare", "vs", "versus", "difference", "better", "between", "against"],
+      responses: [
+        "Smart approach! 🔍 Comparing brokers is essential for making the right choice. Here's a detailed comparison:",
+        "Excellent question! ⚖️ Let me break down the key differences to help you decide:",
+        "Great thinking! 📊 Comparing these options will help you make an informed decision:"
+      ]
     },
-    {
-      patterns: ["fees", "cost", "commission", "spread", "cheap"],
-      response: "Cost is definitely important when choosing a broker. Here are some low-cost options and fee information:"
+    beginner: {
+      patterns: ["beginner", "new", "start", "first time", "learning", "how to", "guide", "tutorial"],
+      responses: [
+        "Welcome to trading! 🚀 I'm excited to help you get started on the right foot. Here are beginner-friendly resources:",
+        "Perfect! 📚 Starting your trading journey is exciting! Let me guide you with some beginner-friendly options:",
+        "Wonderful! 🌱 Every expert was once a beginner. Here's everything you need to start trading safely:"
+      ]
     },
-    {
-      patterns: ["demo", "practice", "trial", "test"],
-      response: "Practice makes perfect! Here are brokers with excellent demo accounts:"
+    specific_broker: {
+      patterns: ["etoro", "xm", "oanda", "pepperstone", "ic markets", "interactive brokers", "plus500", "avatrade"],
+      responses: [
+        "Great choice to research this broker! 🔍 Here's what I know about them:",
+        "Excellent question! 📋 Let me share detailed information about this broker:",
+        "Smart research! 💼 Here's a comprehensive overview of this broker:"
+      ]
     },
-    {
-      patterns: ["mobile", "app", "smartphone", "tablet"],
-      response: "Mobile trading is essential these days! Here are the best mobile trading platforms:"
+    trading_type: {
+      patterns: ["forex", "crypto", "stocks", "options", "cfd", "etf", "commodities", "indices"],
+      responses: [
+        "Fantastic! 📈 This is a popular trading market. Here are the best brokers for this asset class:",
+        "Great choice! 💰 This market offers excellent opportunities. Here are top-rated brokers:",
+        "Excellent market selection! 🎯 Here are specialized brokers for this trading type:"
+      ]
     },
-    {
-      patterns: ["regulation", "regulated", "safe", "secure", "legitimate"],
-      response: "Safety first! Here are well-regulated and secure brokers:"
+    tools: {
+      patterns: ["calculator", "calculate", "pip", "profit", "loss", "converter", "quiz", "tool"],
+      responses: [
+        "Perfect! 🛠️ Trading tools are essential for success. Here are our most popular calculators and tools:",
+        "Great thinking! 📊 These tools will help you make better trading decisions:",
+        "Excellent! ⚡ Let me share some powerful tools to enhance your trading:"
+      ]
     },
-    {
-      patterns: ["forex", "fx", "currency", "foreign exchange"],
-      response: "Forex trading is exciting! Here are the top forex brokers and resources:"
+    regulation: {
+      patterns: ["regulated", "license", "safe", "secure", "trustworthy", "scam", "legitimate", "regulation"],
+      responses: [
+        "Excellent question! 🛡️ Safety and regulation are crucial in trading. Here's what you need to know:",
+        "Smart thinking! 🔒 Regulatory compliance is essential. Here are properly regulated brokers:",
+        "Great concern! ✅ Security should always be your priority. Here are trusted, regulated options:"
+      ]
     },
-    {
-      patterns: ["crypto", "bitcoin", "ethereum", "cryptocurrency"],
-      response: "Crypto trading is booming! Here are the best crypto brokers and information:"
+    fees: {
+      patterns: ["fee", "cost", "cheap", "expensive", "commission", "spread", "price", "affordable"],
+      responses: [
+        "Smart question! 💰 Trading costs can significantly impact your profits. Here's a breakdown:",
+        "Excellent point! 📊 Understanding fees is crucial for profitability. Here's what you need to know:",
+        "Great thinking! 💡 Cost-effective trading is important. Here are low-cost options:"
+      ]
     },
-    {
-      patterns: ["calculator", "calculate", "pip", "profit", "loss"],
-      response: "Let me help you with trading calculations! Here are our useful tools:"
+    help: {
+      patterns: ["help", "support", "problem", "issue", "question", "confused", "don't understand"],
+      responses: [
+        "I'm here to help! 🤝 What specific question can I answer for you?",
+        "Of course! 💪 I'm happy to assist. What would you like to know?",
+        "Absolutely! 🌟 I'm here to support your trading journey. How can I help?"
+      ]
     }
-  ];
+  };
 
-  // Find matching response pattern
-  let contextualResponse = "Here's what I found to help answer your question:";
-  for (const pattern of responsePatterns) {
-    if (pattern.patterns.some(p => messageLower.includes(p))) {
-      contextualResponse = pattern.response;
-      break;
+  // Detect primary intent with confidence scoring
+  let primaryIntent = 'general';
+  let maxConfidence = 0;
+
+  for (const [intent, data] of Object.entries(intents)) {
+    const matches = data.patterns.filter(pattern => messageLower.includes(pattern)).length;
+    const confidence = matches / data.patterns.length;
+    if (confidence > maxConfidence) {
+      maxConfidence = confidence;
+      primaryIntent = intent;
     }
   }
 
-  return contextualResponse;
+  // Select appropriate response based on intent
+  if (primaryIntent !== 'general' && intents[primaryIntent as keyof typeof intents]) {
+    const intentData = intents[primaryIntent as keyof typeof intents];
+    const responses = intentData.responses;
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+
+  // Default contextual response
+  return "I'd be happy to help you with that! Here's what I found:";
 }
 
 // Generate intelligent fallback response with relevant suggestions
@@ -581,9 +633,20 @@ export async function POST(request: Request) {
         linkSections += '\n';
       }
 
-      aiResponse = `Here are some resources that might help answer your question:
+      // Generate intelligent response with context
+      const contextualIntro = generateIntelligentResponse(message, relevantContent, webSearchResults, searchTerms);
+
+      aiResponse = `${contextualIntro}
+
 ${linkSections}
-Would you like more specific information about any of these topics? You can ask me to explain more about a particular item.`;
+
+💡 **Need more help?** Feel free to ask me to:
+• Explain any broker in detail
+• Compare specific features
+• Help you narrow down your choices
+• Provide personalized recommendations
+
+What else would you like to know?`;
     } else {
       // Enhanced fallback response with intelligent suggestions
       aiResponse = generateFallbackResponse(message, searchTerms);

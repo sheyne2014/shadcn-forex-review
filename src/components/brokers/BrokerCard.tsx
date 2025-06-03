@@ -192,7 +192,7 @@ export function BrokerCard({
 
       <CardFooter className="pt-2">
         <Button asChild className="w-full" variant="default" size="sm">
-          <Link href={`/broker/${broker.id}`}>
+          <Link href={`/brokers/${broker.slug || broker.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
             Read Review <ChevronRight className="ml-1 h-4 w-4" />
           </Link>
         </Button>

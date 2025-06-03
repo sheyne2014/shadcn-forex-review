@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import {
   EnhancedBrokerPageTemplate,
-  generateEnhancedBrokerMetadata,
   BrokerPageData,
   SimilarBroker
 } from "@/components/broker-review/EnhancedBrokerPageTemplate";
+import { generateBrokerMetadata } from "@/lib/broker-metadata";
 
 // Generate metadata for the broker review page
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     last_updated: "2025-01-01"
   };
 
-  return generateEnhancedBrokerMetadata(broker);
+  return generateBrokerMetadata(broker);
 }
 
 export default async function CapitalComReviewPage() {

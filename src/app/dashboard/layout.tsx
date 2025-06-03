@@ -15,6 +15,9 @@ import {
 
 import { AppSidebar } from "./sidebar";
 
+// Note: We can't export metadata here because this is a client component
+// Metadata should be exported from a server component
+
 export default function DashboardLayout({
   children,
 }: {

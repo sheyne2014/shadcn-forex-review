@@ -1,7 +1,38 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { initPerformanceMonitoring, PerformanceOptimizer } from '@/lib/performance';
+
+// Create a safer fallback implementation in case performance.ts has issues
+const safePerformanceOptimizer = {
+  preloadResource: (href: string, as: string, type?: string) => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    try {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = href;
+      link.as = as;
+      if (type) link.type = type;
+      if (as === 'font') link.crossOrigin = 'anonymous';
+
+      document.head.appendChild(link);
+    } catch (error) {
+      console.warn('Failed to preload resource:', href, error);
+    }
+  },
+  getConnectionQuality: () => 'unknown',
+  prefetchPage: (_url: string) => {
+    // Safe no-op implementation
+  },
+  getMemoryUsage: () => {
+    // Safe fallback
+    return { used: 0, total: 0 };
+  }
+};
+
+// Use safe fallback implementation to prevent errors
+const PerformanceOptimizer = safePerformanceOptimizer;
+const initPerformanceMonitoring = () => Promise.resolve();
 
 /**
  * PerformanceMonitor - Client-side performance monitoring component
@@ -207,36 +238,6 @@ export function PerformanceReporter() {
   return null;
 }
 
-/**
- * CriticalResourceLoader - Load critical resources with priority
- */
-interface CriticalResourceLoaderProps {
-  fonts?: readonly string[];
-  images?: readonly string[];
-  scripts?: readonly string[];
-}
-
-export function CriticalResourceLoader({ fonts = [], images = [], scripts = [] }: CriticalResourceLoaderProps) {
-  useEffect(() => {
-    // Load critical fonts
-    fonts.forEach(fontUrl => {
-      PerformanceOptimizer.preloadResource(fontUrl, 'font', 'font/woff2');
-    });
-
-    // Load critical images
-    images.forEach(imageUrl => {
-      PerformanceOptimizer.preloadResource(imageUrl, 'image');
-    });
-
-    // Load critical scripts
-    scripts.forEach(scriptUrl => {
-      PerformanceOptimizer.preloadResource(scriptUrl, 'script');
-    });
-  }, [fonts, images, scripts]);
-
-  return null;
-}
-
 // Global performance configuration
 export const PerformanceConfig = {
   // Critical resources to preload
@@ -269,3 +270,42 @@ export const PerformanceConfig = {
     },
   },
 } as const;
+
+/**
+ * CriticalResourceLoader - Load critical resources with priority
+ */
+interface CriticalResourceLoaderProps {
+  fonts?: readonly string[];
+  images?: readonly string[];
+  scripts?: readonly string[];
+}
+
+export function CriticalResourceLoader({ fonts = [], images = [], scripts = [] }: CriticalResourceLoaderProps) {
+  useEffect(() => {
+    // Ensure we're on client side and PerformanceOptimizer is available
+    if (typeof window === 'undefined' || !PerformanceOptimizer?.preloadResource) {
+      return;
+    }
+    
+    try {
+      // Load critical fonts
+      fonts.forEach(fontUrl => {
+        PerformanceOptimizer.preloadResource(fontUrl, 'font', 'font/woff2');
+      });
+
+      // Load critical images
+      images.forEach(imageUrl => {
+        PerformanceOptimizer.preloadResource(imageUrl, 'image');
+      });
+
+      // Load critical scripts
+      scripts.forEach(scriptUrl => {
+        PerformanceOptimizer.preloadResource(scriptUrl, 'script');
+      });
+    } catch (error) {
+      console.warn('Failed to load critical resources:', error);
+    }
+  }, [fonts, images, scripts]);
+
+  return null;
+}

@@ -7,17 +7,26 @@ import { MessagesSquare, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Dynamically import RokuAI with client-side rendering only and delayed loading
-const RokuAI = dynamic(() => import('./RokuAI').then(mod => ({ default: mod.RokuAI })), {
-  ssr: false,
-  loading: () => (
-    <div className="fixed bottom-20 right-4 w-80 sm:w-96 h-[500px] rounded-lg border shadow-lg bg-background p-4 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-        <p>Loading ROKU AI...</p>
+const RokuAI = dynamic(
+  () => 
+    import('./RokuAI')
+      .then(mod => ({ default: mod.RokuAI }))
+      .catch(err => {
+        console.error("Failed to load RokuAI component:", err);
+        return { default: () => null }; // Return empty component on error
+      }),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="fixed bottom-20 right-4 w-80 sm:w-96 h-[500px] rounded-lg border shadow-lg bg-background p-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p>Loading ROKU AI...</p>
+        </div>
       </div>
-    </div>
-  )
-});
+    )
+  }
+);
 
 export function RokuAIWrapper() {
   const [hasError, setHasError] = useState(false);

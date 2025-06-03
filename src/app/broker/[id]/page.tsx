@@ -14,9 +14,10 @@ import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react";
 import { getBrokerBySlug, getSimilarBrokers } from "@/lib/brokers";
 import { getBrokerById } from "@/lib/supabase/broker-client";
-import { getHeadlineForBroker, getBrokerSeo } from "@/lib/seo-utils";
+import { getHeadlineForBroker } from "@/lib/seo-utils";
 import { siteConfig } from "@/config/site";
 import { getAllBrokerIds } from "@/lib/route-generation";
+import { generateBrokerMetadata } from "@/lib/broker-metadata";
 
 
 interface BrokerPageProps {
@@ -75,33 +76,7 @@ export async function generateMetadata(props: BrokerPageProps): Promise<Metadata
     };
   }
 
-  const seoData = getBrokerSeo(broker);
-
-  return {
-    title: seoData.title,
-    description: seoData.description,
-    keywords: seoData.keywords,
-    openGraph: {
-      title: seoData.title,
-      description: seoData.description,
-      type: "article",
-      url: `${siteConfig.url}/broker/${id}`,
-      images: [
-        {
-          url: broker.logo_url || "/images/default-broker-logo.png",
-          width: 1200,
-          height: 630,
-          alt: `${broker.name} Logo`
-        }
-      ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData.title,
-      description: seoData.description,
-      images: [broker.logo_url || "/images/default-broker-logo.png"]
-    }
-  };
+  return generateBrokerMetadata(broker);
 }
 
 export default async function BrokerReviewPage(props: BrokerPageProps) {

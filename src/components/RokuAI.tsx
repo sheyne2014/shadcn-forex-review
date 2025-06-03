@@ -38,33 +38,45 @@ interface SuggestedQuery {
 // Enhanced suggested queries with professional icons
 const SUGGESTED_QUERIES: SuggestedQuery[] = [
   {
-    text: "What&rsquo;s the best broker for beginners?",
+    text: "What's the best broker for beginners?",
     icon: <Users className="h-4 w-4 text-blue-500" />
   },
   {
-    text: "Compare eToro vs XM",
+    text: "Compare eToro vs Interactive Brokers",
     icon: <TrendingUp className="h-4 w-4 text-green-500" />
   },
   {
-    text: "Show me low-cost brokers",
+    text: "Show me the lowest cost brokers",
     icon: <Calculator className="h-4 w-4 text-purple-500" />
   },
   {
-    text: "Are these brokers regulated?",
+    text: "Which brokers are properly regulated?",
     icon: <Shield className="h-4 w-4 text-orange-500" />
+  },
+  {
+    text: "Best crypto trading platforms",
+    icon: <TrendingUp className="h-4 w-4 text-yellow-500" />
+  },
+  {
+    text: "Help me find a forex broker",
+    icon: <Search className="h-4 w-4 text-indigo-500" />
   }
 ];
 
 // Enhanced discovery topics with categories
 const DISCOVERY_TOPICS = [
-  "Best forex brokers 2024",
-  "Crypto trading platforms",
-  "Mobile trading apps",
+  "Best forex brokers 2025",
+  "Top crypto trading platforms",
+  "Lowest spread brokers",
   "Demo account brokers",
   "High leverage brokers",
   "ECN vs STP brokers",
   "Islamic trading accounts",
-  "Copy trading platforms"
+  "Copy trading platforms",
+  "Best mobile trading apps",
+  "Regulated brokers by country",
+  "Stock trading platforms",
+  "Options trading brokers"
 ];
 
 export function RokuAI() {
@@ -74,13 +86,13 @@ export function RokuAI() {
   const [messages, setMessages] = useState<MessageWithTimestamp[]>([
     {
       role: "assistant",
-      content: "👋 **Welcome! I'm Roku, your intelligent trading assistant.**\n\nI'm here to help you navigate the world of forex and trading with confidence. Whether you're looking for the perfect broker, need trading guidance, or want to compare platforms, I've got you covered with expert insights and personalized recommendations.",
+      content: "Hello! 👋 I'm **Roku**, your personal trading assistant powered by advanced AI.\n\n🎯 **I specialize in helping you:**\n• Find the perfect broker for your trading style\n• Compare platforms and trading conditions\n• Understand fees, regulations, and safety\n• Discover trading tools and calculators\n• Get expert insights on forex, crypto, stocks & more\n\n💡 **I have comprehensive knowledge of 100+ brokers** and can provide real-time comparisons, detailed reviews, and personalized recommendations based on your specific needs.\n\n**Ready to find your ideal trading partner?** Ask me anything!",
       timestamp: new Date(),
       isMarkdown: true
     },
     {
       role: "system",
-      content: "**What can I help you with today?** Try asking me about brokers, trading strategies, or check out these popular questions:",
+      content: "**Popular questions to get you started:**",
       timestamp: new Date(),
       isMarkdown: true
     }
@@ -232,13 +244,13 @@ export function RokuAI() {
     setMessages([
       {
         role: "assistant",
-        content: "👋 **Welcome! I'm Roku, your intelligent trading assistant.**\n\nI'm here to help you navigate the world of forex and trading with confidence. Whether you're looking for the perfect broker, need trading guidance, or want to compare platforms, I've got you covered with expert insights and personalized recommendations.",
+        content: "Hello! 👋 I'm **Roku**, your personal trading assistant powered by advanced AI.\n\n🎯 **I specialize in helping you:**\n• Find the perfect broker for your trading style\n• Compare platforms and trading conditions\n• Understand fees, regulations, and safety\n• Discover trading tools and calculators\n• Get expert insights on forex, crypto, stocks & more\n\n💡 **I have comprehensive knowledge of 100+ brokers** and can provide real-time comparisons, detailed reviews, and personalized recommendations based on your specific needs.\n\n**Ready to find your ideal trading partner?** Ask me anything!",
         timestamp: new Date(),
         isMarkdown: true
       },
       {
         role: "system",
-        content: "**What can I help you with today?** Try asking me about brokers, trading strategies, or check out these popular questions:",
+        content: "**Popular questions to get you started:**",
         timestamp: new Date(),
         isMarkdown: true
       }

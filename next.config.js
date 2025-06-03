@@ -28,6 +28,8 @@ const nextConfig = {
     optimizeCss: true,
     gzipSize: true,
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
+    serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
+    serverActions: true,
   },
 
   // Server external packages (Next.js 15.3.2 updated location)

@@ -1,3 +1,5 @@
+'use client';
+
 import { Metadata } from "next";
 import { HeroBrokerSection } from "@/components/broker-review/HeroBrokerSection";
 import { BrokerOverviewSection } from "@/components/broker-review/BrokerOverviewSection";
@@ -8,7 +10,7 @@ import { BrokerAnalysisWidget } from "@/components/broker-review/BrokerAnalysisW
 import { DynamicFAQSection } from "@/components/broker-review/DynamicFAQSection";
 import { SimilarBrokersSection } from "@/components/broker-review/SimilarBrokersSection";
 import { BrokerPageNavigation, BrokerInternalLinks, BrokerBreadcrumbs } from "@/components/broker-review/BrokerPageNavigation";
-import { BrokerSchema, BreadcrumbSchema, generateBrokerMetadata, BrokerSEOData } from "@/components/seo/BrokerReviewSEO";
+import { BrokerSchema, BreadcrumbSchema, BrokerSEOData } from "@/components/seo/BrokerReviewSEO";
 import { Separator } from "@/components/ui/separator";
 
 export interface BrokerPageData extends BrokerSEOData {
@@ -167,13 +169,6 @@ export function EnhancedBrokerPageTemplate({
       </div>
     </>
   );
-}
-
-/**
- * Generate metadata for broker pages using the enhanced SEO component
- */
-export function generateEnhancedBrokerMetadata(broker: BrokerPageData): Metadata {
-  return generateBrokerMetadata(broker);
 }
 
 /**

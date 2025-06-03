@@ -2,25 +2,121 @@ import { Metadata } from "next";
 import { BrokersPageClient } from "@/components/brokers/BrokersPageClient";
 
 export const metadata: Metadata = {
-  title: "Compare All Types of Brokers 2025 | Comprehensive Broker Analysis",
-  description: "Compare the best brokers for forex, crypto, stocks, commodities, ETF, CFD, options and more in 2025. Find regulated brokers with competitive fees, advanced trading platforms, and excellent service tailored to your trading needs.",
+  title: "All Forex Brokers 2025 | Compare 110+ Brokers | BrokerAnalysis",
+  description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types. Find the perfect broker with our comprehensive comparison tools and expert reviews.",
   openGraph: {
-    title: "Compare All Types of Brokers 2025 | Comprehensive Broker Analysis",
-    description: "Find the best brokers for your trading style in 2025. Compare fees, platforms, regulation status and more across forex, crypto, stocks, commodities, ETF, CFD, options and more with our data-driven comparison tools.",
+    title: "All Forex Brokers 2025 | Compare 110+ Brokers | BrokerAnalysis",
+    description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types. Find the perfect broker with our comprehensive comparison tools.",
     type: "website",
     url: "/brokers",
+    images: [
+      {
+        url: "/images/og-brokers-listing.png",
+        width: 1200,
+        height: 630,
+        alt: "Compare 110+ Forex Brokers - BrokerAnalysis",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compare All Types of Brokers 2025 | Comprehensive Broker Analysis",
-    description: "Find the best brokers for your trading style in 2025. Compare fees, platforms, regulation status and more across forex, crypto, stocks, commodities, ETF, CFD, options and more.",
+    title: "All Forex Brokers 2025 | Compare 110+ Brokers",
+    description: "Compare 110+ regulated forex brokers in 2025. Search and filter by regulation, spreads, platforms, and asset types.",
   },
-  keywords: ["forex brokers 2025", "crypto brokers 2025", "stock brokers 2025", "CFD brokers 2025", "options brokers 2025", "broker comparison 2025", "regulated brokers 2025", "best trading platforms 2025", "low fee brokers 2025", "broker reviews 2025"],
+  keywords: [
+    "forex brokers 2025",
+    "broker comparison",
+    "regulated brokers",
+    "FCA brokers",
+    "ASIC brokers",
+    "CySEC brokers",
+    "trading platforms",
+    "MetaTrader brokers",
+    "low spread brokers",
+    "crypto brokers",
+    "stock brokers",
+    "CFD brokers",
+    "broker reviews",
+    "best forex brokers",
+    "trading fees comparison",
+    "minimum deposit brokers"
+  ],
   alternates: {
     canonical: "/brokers",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+// Structured data for broker listings
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "All Forex Brokers 2025 - Compare 110+ Brokers",
+  "description": "Comprehensive listing of 110+ regulated forex brokers with detailed comparisons, reviews, and filtering options.",
+  "url": "https://brokeranalysis.com/brokers",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Forex Brokers Directory",
+    "description": "Complete directory of regulated forex and trading brokers",
+    "numberOfItems": "110+",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Regulated Forex Brokers",
+        "description": "FCA, ASIC, CySEC regulated brokers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Low Spread Brokers",
+        "description": "Brokers offering competitive spreads"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Multi-Asset Brokers",
+        "description": "Brokers offering forex, stocks, crypto, and more"
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://brokeranalysis.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "All Brokers",
+        "item": "https://brokeranalysis.com/brokers"
+      }
+    ]
+  }
 };
 
 export default function BrokersPage() {
-  return <BrokersPageClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <BrokersPageClient />
+    </>
+  );
 }
