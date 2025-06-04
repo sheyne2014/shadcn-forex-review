@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Star, ExternalLink, Shield, Info, AlertTriangle, Calendar, Users } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { BrokerLogo } from "@/components/brokers/BrokerLogo";
 
 interface HeroBrokerSectionProps {
   broker: any;
@@ -53,19 +53,18 @@ export function HeroBrokerSection({ broker, legitimacyData }: HeroBrokerSectionP
           {/* Logo and basic info */}
           <div className="flex items-center gap-6">
             {/* Broker logo */}
-            <div className="relative h-20 w-20 md:h-24 md:w-24 bg-white rounded-lg border shadow-sm flex items-center justify-center p-2">
-              {broker.logo_url ? (
-                <Image
-                  src={broker.logo_url}
-                  alt={`${broker.name} logo`}
-                  fill
-                  className="object-contain p-1"
-                />
-              ) : (
-                <div className="text-2xl font-bold text-center">
-                  {broker.name?.split(' ').map((word: string) => word[0]).join('') || "FB"}
-                </div>
-              )}
+            <div className="h-20 w-20 md:h-24 md:w-24">
+              <BrokerLogo
+                broker={{
+                  name: broker.name || "Forex Broker",
+                  logo_url: broker.logo_url
+                }}
+                size="lg"
+                className="w-full h-full"
+                priority={true}
+                rounded={true}
+                withBorder={true}
+              />
             </div>
 
             {/* Broker name and basic info */}

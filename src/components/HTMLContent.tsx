@@ -39,7 +39,7 @@ export function HTMLContent({ content, className }: HTMLContentProps) {
         anchor.setAttribute('aria-label', `Link to ${heading.textContent}`);
         
         // Make the heading container relative for anchor positioning
-        heading.style.position = 'relative';
+        (heading as HTMLElement).style.position = 'relative';
         heading.appendChild(anchor);
       });
       

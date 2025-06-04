@@ -28,8 +28,6 @@ const nextConfig = {
     optimizeCss: true,
     gzipSize: true,
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
-    serverComponentsExternalPackages: ['ws', 'web-vitals', 'canvas'],
-    serverActions: true,
   },
 
   // Server external packages (Next.js 15.3.2 updated location)
@@ -98,6 +96,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'altcoinsbox.com',
       }
     ],
   },
@@ -181,7 +183,12 @@ const nextConfig = {
         destination: '/best-brokers/swing-trading',
         permanent: true,
       },
-      // Legacy broker page redirects
+      // Legacy broker page redirects - redirect old /brokers/[slug] to /broker/[slug]
+      {
+        source: '/brokers/:slug',
+        destination: '/broker/:slug',
+        permanent: true,
+      },
       {
         source: '/broker/:slug*',
         has: [
