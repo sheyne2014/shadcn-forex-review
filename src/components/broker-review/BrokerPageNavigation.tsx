@@ -228,7 +228,7 @@ export function BrokerInternalLinks({
             ).join(' ');
 
             return (
-              <Link key={slug} href={`/brokers/${slug}`}>
+              <Link key={slug} href={`/broker/${slug}`}>
                 <div className="flex items-center justify-between p-3 rounded-md hover:bg-muted/50 transition-colors group">
                   <div>
                     <div className="font-medium group-hover:text-primary transition-colors">
@@ -282,7 +282,7 @@ export function BrokerBreadcrumbs({
         Brokers
       </Link>
       <span>/</span>
-      <Link href={`/brokers/${brokerSlug}`} className="text-foreground font-medium">
+      <Link href={`/broker/${brokerSlug}`} className="text-foreground font-medium">
         {brokerName} Review
       </Link>
     </nav>

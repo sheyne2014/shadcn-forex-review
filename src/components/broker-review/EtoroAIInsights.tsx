@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,25 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
   const [activeInsight, setActiveInsight] = useState("market-analysis");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [insights, setInsights] = useState<any>(null);
+
+  // Broker name to slug mapping for clickable links
+  const brokerSlugs = {
+    'Interactive Brokers': 'interactive-brokers',
+    'TD Ameritrade': 'td-ameritrade',
+    'ZuluTrade': 'zulutrade',
+    'NAGA': 'naga',
+    'Ayondo': 'ayondo'
+  };
+
+  // Helper function to make broker names clickable
+  const makeBrokerNamesClickable = (text: string) => {
+    let result = text;
+    Object.entries(brokerSlugs).forEach(([name, slug]) => {
+      const regex = new RegExp(`\\b${name}\\b`, 'g');
+      result = result.replace(regex, `<a href="/broker/${slug}" class="text-primary hover:underline font-medium">${name}</a>`);
+    });
+    return result;
+  };
 
   useEffect(() => {
     // Track AI insights view
@@ -227,9 +247,10 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
                       <div className="text-lg font-semibold text-purple-700 dark:text-purple-400">
                         AI-Powered {config.title}
                       </div>
-                      <p className="text-sm text-purple-600 dark:text-purple-300">
-                        {config.prompt}
-                      </p>
+                      <p
+                        className="text-sm text-purple-600 dark:text-purple-300"
+                        dangerouslySetInnerHTML={{ __html: makeBrokerNamesClickable(config.prompt) }}
+                      />
                       <div className="flex items-center justify-center gap-2 text-xs text-purple-500">
                         <Brain className="h-4 w-4" />
                         <span>Advanced AI analysis powered by market intelligence</span>

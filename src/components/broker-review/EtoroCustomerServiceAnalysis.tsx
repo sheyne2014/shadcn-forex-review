@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -623,14 +624,24 @@ export function EtoroCustomerServiceAnalysis({ broker }: EtoroCustomerServiceAna
               and the lack of phone support limits accessibility for urgent issues.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button variant="outline" size="lg">
-                <MessageCircle className="h-4 w-4 mr-2" />
+              <a
+                href="https://www.etoro.com/customer-service/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 gap-2"
+              >
+                <MessageCircle className="h-4 w-4" />
                 Contact Support
-              </Button>
-              <Button variant="outline" size="lg">
-                <Globe className="h-4 w-4 mr-2" />
+              </a>
+              <a
+                href="https://www.etoro.com/help/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 gap-2"
+              >
+                <Globe className="h-4 w-4" />
                 Visit Help Center
-              </Button>
+              </a>
             </div>
           </div>
         </CardContent>

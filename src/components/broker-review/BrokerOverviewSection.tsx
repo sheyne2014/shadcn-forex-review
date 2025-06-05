@@ -202,8 +202,10 @@ export function BrokerOverviewSection({
                     <h4 className="text-base font-medium mb-2">Demo Account</h4>
                     <p>A free demo account is available to practice trading with virtual funds in a risk-free environment.</p>
 
-                    <Button variant="outline" className="mt-3">
-                      Open Demo Account
+                    <Button variant="outline" className="mt-3" asChild>
+                      <a href={broker.website_url || "#"} target="_blank" rel="noopener noreferrer">
+                        Open Demo Account
+                      </a>
                     </Button>
                   </div>
                 )}

@@ -340,17 +340,23 @@ export function EtoroExecutiveSummary({ broker }: EtoroExecutiveSummaryProps) {
           </Alert>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild className="flex-1">
-              <Link href={broker.website_url || "https://www.etoro.com"} target="_blank" rel="noopener noreferrer">
-                <Globe className="h-4 w-4 mr-2" />
-                Visit eToro
-                <ExternalLink className="h-4 w-4 ml-2" />
-              </Link>
-            </Button>
-            <Button variant="outline" className="flex-1">
-              <TrendingUp className="h-4 w-4 mr-2" />
+            <a
+              href={broker.website_url || "https://www.etoro.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex-1 gap-2"
+            >
+              <Globe className="h-4 w-4" />
+              Visit eToro
+              <ExternalLink className="h-4 w-4" />
+            </a>
+            <Link
+              href="/tools/compare"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex-1 gap-2"
+            >
+              <TrendingUp className="h-4 w-4" />
               Compare Alternatives
-            </Button>
+            </Link>
           </div>
         </CardContent>
       </Card>
