@@ -20,7 +20,7 @@ import {
   BarChart3,
   Zap
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroAccountTypesProps {
@@ -188,12 +188,12 @@ export function EtoroAccountTypes({ broker }: EtoroAccountTypesProps) {
           <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-full">
             <Users className="h-8 w-8 text-purple-600" />
           </div>
-          <Context7Heading3>Account Types & Trading Conditions</Context7Heading3>
+          <h3 className="text-3xl font-bold">Account Types & Trading Conditions</h3>
         </div>
-        <Context7Content>
-          Comprehensive comparison of eToro's account types, regional requirements, 
+        <p className="text-lg text-muted-foreground">
+          Comprehensive comparison of eToro's account types, regional requirements,
           and leverage conditions across different jurisdictions.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Regional Requirements Selector */}
@@ -335,10 +335,10 @@ export function EtoroAccountTypes({ broker }: EtoroAccountTypesProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
-            To qualify for a Professional account with higher leverage, traders must meet at least 
+          <p className="text-muted-foreground">
+            To qualify for a Professional account with higher leverage, traders must meet at least
             two of the following criteria and undergo quarterly assessments.
-          </Context7Content>
+          </p>
           
           <div className="mt-6 space-y-4">
             {professionalCriteria.map((criteria, index) => (
@@ -428,9 +428,9 @@ export function EtoroAccountTypes({ broker }: EtoroAccountTypesProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Context7Content>
+          <p className="text-muted-foreground">
             Understanding eToro's margin requirements is crucial for risk management and avoiding forced position closures.
-          </Context7Content>
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">

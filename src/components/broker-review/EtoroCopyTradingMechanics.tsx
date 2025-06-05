@@ -24,7 +24,7 @@ import {
   Info,
   Activity
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroCopyTradingMechanicsProps {
@@ -133,12 +133,14 @@ export function EtoroCopyTradingMechanics({ broker }: EtoroCopyTradingMechanicsP
           <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
             <Copy className="h-8 w-8 text-blue-600" />
           </div>
-          <Context7Heading3>Copy Trading Mechanics & Algorithm</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Copy Trading Mechanics & Algorithm
+          </h3>
         </div>
-        <Context7Content>
-          Deep dive into how eToro's copy trading algorithm works, including execution mechanics, 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Deep dive into how eToro's copy trading algorithm works, including execution mechanics,
           risk management tools, and performance tracking capabilities.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Interactive Copy Calculator */}
@@ -283,10 +285,10 @@ export function EtoroCopyTradingMechanics({ broker }: EtoroCopyTradingMechanicsP
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
-            eToro provides comprehensive risk management tools to help protect your capital 
+          <p className="text-muted-foreground">
+            eToro provides comprehensive risk management tools to help protect your capital
             when copy trading, allowing you to set multiple safety parameters.
-          </Context7Content>
+          </p>
           
           <div className="mt-6 space-y-4">
             {riskManagementTools.map((tool, index) => (

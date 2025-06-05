@@ -4,7 +4,7 @@ import { Prism } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -31,37 +31,11 @@ export function isMDXContent(content: string): boolean {
 }
 
 /**
- * Extract frontmatter from MDX content
- */
-function extractFrontmatter(content: string) {
-  const frontmatterMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
-  if (frontmatterMatch && frontmatterMatch[1]) {
-    const frontmatterRaw = frontmatterMatch[1];
-    
-    // Parse frontmatter into key-value pairs
-    const frontmatter: Record<string, any> = {};
-    const lines = frontmatterRaw.split('\n');
-    
-    for (const line of lines) {
-      const match = line.match(/^(\w+):\s*(.*)$/);
-      if (match) {
-        const [, key, value] = match;
-        frontmatter[key] = value;
-      }
-    }
-    
-    return frontmatter;
-  }
-  
-  return {};
-}
-
-/**
  * Convert MDX-like content to HTML
  */
-function convertToHTML(content: string): string {
+export function convertToHTML(content: string): string {
   if (!content) return '';
-  
+
   let htmlContent = content;
   
   // Remove frontmatter if present
@@ -70,7 +44,7 @@ function convertToHTML(content: string): string {
   // Process KeyTakeaways component
   htmlContent = htmlContent.replace(
     /<KeyTakeaways\s+points=\{([\s\S]*?)\}\s*\/>/g,
-    (match, pointsStr) => {
+    (_, pointsStr) => {
       try {
         // Try to extract points without parsing JSON
         const points: string[] = [];
@@ -111,7 +85,7 @@ function convertToHTML(content: string): string {
   // Process FAQAccordion component
   htmlContent = htmlContent.replace(
     /<FAQAccordion\s+items=\{([\s\S]*?)\}\s*\/>/g,
-    (match, itemsStr) => {
+    () => {
       try {
         return `
           <div class="my-8 space-y-4" id="faq">
@@ -131,7 +105,7 @@ function convertToHTML(content: string): string {
   // Enhance Table of Contents formatting
   htmlContent = htmlContent.replace(
     /## Table of Contents\s*([\s\S]*?)(?=##)/g,
-    (match, tocContent) => {
+    (_, tocContent) => {
       return `
         <div class="my-8 p-4 bg-muted/10 rounded-lg">
           <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
@@ -153,8 +127,8 @@ function convertToHTML(content: string): string {
   
   // Process regular headings without explicit IDs
   htmlContent = htmlContent.replace(
-    /## ([^{#]*?)(?=\n|$)/g, 
-    (match, title) => {
+    /## ([^{#]*?)(?=\n|$)/g,
+    (_, title) => {
       const id = title.trim()
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')

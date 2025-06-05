@@ -1,51 +1,45 @@
 /** @type {import('next').NextConfig} */
 
-// Bundle analyzer setup
-import bundleAnalyzer from '@next/bundle-analyzer';
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
-
 const nextConfig = {
-  // Skip ESLint errors during production build (temporary fix for Vercel deployment)
+  // Re-enable checks after fixing issues
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 
-  // Skip TypeScript type-checking errors during production build (temporary fix for Vercel deployment)
+  // Re-enable TypeScript checks after fixing issues
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 
-  // Enhanced React configuration for better performance
+  // Enhanced React configuration for better performance and stability
   reactStrictMode: true,
-
-  // Performance optimizations for Core Web Vitals
-  experimental: {
-    scrollRestoration: true,
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
-    optimizeCss: true,
-    gzipSize: true,
-    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
-  },
-
-  // Server external packages (Next.js 15.3.2 updated location)
-  serverExternalPackages: ['ws', 'web-vitals', 'canvas'],
-
-  // Turbopack configuration (stable in Next.js 15)
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
 
   // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // Performance optimizations (swcMinify is enabled by default in Next.js 15)
+
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: [
+      'lucide-react',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-alert-dialog',
+      '@radix-ui/react-avatar',
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-label',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-select',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slider',
+      '@radix-ui/react-switch',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-tooltip',
+    ],
   },
 
   // Enhanced image optimization for SEO and performance
@@ -233,13 +227,38 @@ const nextConfig = {
     ];
   },
 
-  // Minimal webpack configuration to avoid conflicts
-  webpack: (config) => {
+  // Enhanced webpack configuration for better module resolution
+  webpack: (config, { isServer }) => {
     // SVG optimization
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    // Improved module resolution for React 19 and Next.js 15 compatibility
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': './src',
+    };
+
+    // Better handling of ES modules
+    config.resolve.extensionAlias = {
+      '.js': ['.js', '.ts', '.tsx'],
+      '.jsx': ['.jsx', '.tsx'],
+    };
+
+    // Optimize module resolution
+    config.resolve.symlinks = false;
+
+    // Better handling of client/server boundaries
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+      };
+    }
 
     return config;
   },
@@ -257,4 +276,4 @@ const nextConfig = {
   generateEtags: true,
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default nextConfig;

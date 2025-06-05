@@ -21,7 +21,7 @@ import {
   Zap,
   Eye
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroPopularInvestorProgramProps {
@@ -198,12 +198,12 @@ export function EtoroPopularInvestorProgram({ broker }: EtoroPopularInvestorProg
           <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-full">
             <Crown className="h-8 w-8 text-purple-600" />
           </div>
-          <Context7Heading3>Popular Investor Program Analysis</Context7Heading3>
+          <h3 className="text-3xl font-bold">Popular Investor Program Analysis</h3>
         </div>
-        <Context7Content>
-          Comprehensive analysis of eToro's Popular Investor program, including requirements, 
+        <p className="text-lg text-muted-foreground">
+          Comprehensive analysis of eToro's Popular Investor program, including requirements,
           commission structure, quality control measures, and long-term sustainability data.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Program Tiers Overview */}
@@ -320,10 +320,10 @@ export function EtoroPopularInvestorProgram({ broker }: EtoroPopularInvestorProg
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
-            eToro implements multiple quality control measures to ensure Popular Investors 
+          <p className="text-muted-foreground">
+            eToro implements multiple quality control measures to ensure Popular Investors
             maintain high standards and protect copier interests.
-          </Context7Content>
+          </p>
           
           <div className="mt-6 space-y-4">
             {qualityControlMeasures.map((measure, index) => (
@@ -388,10 +388,10 @@ export function EtoroPopularInvestorProgram({ broker }: EtoroPopularInvestorProg
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Context7Content>
-            Analysis of Popular Investor program sustainability over time, showing retention 
+          <p className="text-muted-foreground">
+            Analysis of Popular Investor program sustainability over time, showing retention
             and profitability rates for a cohort of 1,000 initial participants.
-          </Context7Content>
+          </p>
 
           <div className="space-y-4">
             {Object.entries(sustainabilityAnalysis).map(([year, data]) => (

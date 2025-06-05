@@ -20,7 +20,7 @@ import {
   Clock,
   PieChart
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroCostCalculatorProps {
@@ -129,12 +129,14 @@ export function EtoroCostCalculator({ broker }: EtoroCostCalculatorProps) {
           <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-full">
             <Calculator className="h-8 w-8 text-green-600" />
           </div>
-          <Context7Heading3>Interactive Trading Cost Calculator</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            Interactive Trading Cost Calculator
+          </h3>
         </div>
-        <Context7Content>
-          Calculate and compare your real trading costs with eToro versus competitors 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Calculate and compare your real trading costs with eToro versus competitors
           based on your trading style and frequency.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Trading Profile Selector */}

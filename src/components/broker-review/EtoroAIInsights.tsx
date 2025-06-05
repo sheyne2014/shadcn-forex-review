@@ -25,7 +25,7 @@ import {
   LineChart,
   PieChart
 } from "lucide-react";
-import { Context7Content } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 import { AnalyticsDashboard } from "@/components/analytics/AnalyticsDashboard";
 
@@ -160,10 +160,10 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
             AI-Powered Market Insights
           </h2>
         </div>
-        <Context7Content>
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
           Advanced AI analysis providing deep insights into eToro's market position,
           competitive landscape, and future prospects in the social trading industry.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Market Overview Dashboard */}
@@ -252,9 +252,9 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Context7Content>
+          <p className="text-muted-foreground">
             Comprehensive comparison of eToro against key competitors across critical performance metrics.
-          </Context7Content>
+          </p>
 
           <div className="space-y-4">
             {competitiveAnalysis.map((metric, index) => (
@@ -373,11 +373,11 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
               <Brain className="h-4 w-4 text-purple-600" />
               AI-Generated Insight
             </h4>
-            <Context7Content>
+            <p className="text-muted-foreground">
               eToro's strategic focus on social trading has created a sustainable competitive moat,
               but the company must balance innovation with cost competitiveness to maintain its
               market leadership as traditional brokers adopt social features.
-            </Context7Content>
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -391,9 +391,9 @@ export function EtoroAIInsights({ broker }: EtoroAIInsightsProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
+          <p className="text-muted-foreground">
             Get instant AI-powered answers about eToro's features, performance, and suitability for your trading needs.
-          </Context7Content>
+          </p>
           <div className="mt-4">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
               <div className="text-center space-y-4">

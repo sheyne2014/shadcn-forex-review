@@ -29,7 +29,7 @@ import {
   Lightbulb
 } from "lucide-react";
 import Link from "next/link";
-import { Context7Content, Context7Heading2 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 import Image from "next/image";
 
@@ -82,16 +82,16 @@ export function EtoroExpertVerdict({ broker }: EtoroExpertVerdictProps) {
         <CardContent className="space-y-6">
           {/* Expert Introduction */}
           <div className="text-lg leading-relaxed">
-            <Context7Content type="paragraph">
-              After thorough testing and analysis of eToro's platform, we've compiled our expert verdict on this pioneering social trading broker. 
-              Our assessment covers all critical aspects of the trading experience, from platform technology to customer service, 
+            <p className="text-muted-foreground">
+              After thorough testing and analysis of eToro's platform, we've compiled our expert verdict on this pioneering social trading broker.
+              Our assessment covers all critical aspects of the trading experience, from platform technology to customer service,
               providing you with a clear picture of eToro's strengths and limitations to help you make an informed decision.
-            </Context7Content>
+            </p>
           </div>
 
           {/* Score Breakdown Section */}
           <div>
-            <Context7Heading2>Overall Score Breakdown</Context7Heading2>
+            <h2 className="text-2xl font-bold mb-4">Overall Score Breakdown</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
               {/* Platform Technology */}
               <div className="space-y-2">

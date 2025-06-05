@@ -24,7 +24,7 @@ import {
   Info
 } from "lucide-react";
 import Link from "next/link";
-import { Context7Content, Context7Heading2 } from "@/components/Context7Provider";
+
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroExecutiveSummaryProps {
@@ -69,51 +69,76 @@ export function EtoroExecutiveSummary({ broker }: EtoroExecutiveSummaryProps) {
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Hook Opening with Context7 Enhancement */}
-          <div className="text-lg leading-relaxed">
-            <Context7Content type="paragraph">
-              eToro isn't just another forex broker—it's the world's largest social trading network that has fundamentally
-              transformed how retail traders approach the markets. Founded in 2007 in Tel Aviv, this Cyprus-regulated
-              fintech pioneer has redefined trading by merging social networking with financial markets, creating an
-              ecosystem where beginners can learn from experienced traders through revolutionary copy trading technology.
-            </Context7Content>
-            <Context7Content type="paragraph">
-              With over 30 million users across 140+ countries, eToro has pioneered social trading, allowing traders to
-              copy successful investors automatically while building diversified portfolios across multiple asset classes.
+          <div className="text-lg leading-relaxed space-y-4">
+            <p>
+              <strong>eToro isn't your traditional forex broker—it's a social trading revolution.</strong> While most brokers focus on spreads and leverage, eToro has fundamentally reimagined trading by creating the world's largest social trading network with over 30 million users. This Cyprus-regulated fintech pioneer transforms novice traders into informed investors through revolutionary copy trading technology that democratizes access to successful trading strategies.
+            </p>
+            <p>
+              Founded in 2007, eToro has evolved from a simple trading platform into a comprehensive social trading ecosystem where beginners can automatically replicate the strategies of top-performing traders. Unlike traditional forex brokers that leave you to navigate markets alone, eToro provides a community-driven approach where every trade becomes a learning opportunity and every successful trader becomes a potential mentor.
               However, this social trading focus comes with trade-offs: higher spreads than traditional ECN brokers and
               a CFD-based model that may not suit professional forex traders seeking institutional-grade execution.
-            </Context7Content>
+            </p>
           </div>
 
-          {/* Key Differentiators */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="flex items-center gap-2 mb-2">
-                <Copy className="h-5 w-5 text-green-600" />
-                <span className="font-semibold text-green-700 dark:text-green-400">Social Trading Pioneer</span>
-              </div>
-              <p className="text-sm text-green-600 dark:text-green-300">
-                Revolutionary CopyTrader feature with 30M+ user community
-              </p>
-            </div>
+          {/* Key Differentiators with Enhanced Magic UI */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-4">What Sets eToro Apart from Traditional Forex Brokers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Card className="border-green-200 dark:border-green-800 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
+                      <Copy className="h-6 w-6 text-green-600" />
+                    </div>
+                    <h3 className="font-semibold">Copy Trading Pioneer</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Automatically replicate strategies of top traders with full transparency and risk management
+                  </p>
+                </CardContent>
+              </Card>
 
-            <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-              <div className="flex items-center gap-2 mb-2">
-                <Users className="h-5 w-5 text-blue-600" />
-                <span className="font-semibold text-blue-700 dark:text-blue-400">Beginner-Friendly</span>
-              </div>
-              <p className="text-sm text-blue-600 dark:text-blue-300">
-                Intuitive platform designed for new traders
-              </p>
-            </div>
+              <Card className="border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+                      <Users className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold">Social Network</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    30M+ user community with feeds, discussions, and collaborative learning
+                  </p>
+                </CardContent>
+              </Card>
 
-            <div className="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-              <div className="flex items-center gap-2 mb-2">
-                <Shield className="h-5 w-5 text-purple-600" />
-                <span className="font-semibold text-purple-700 dark:text-purple-400">Multi-Regulated</span>
-              </div>
-              <p className="text-sm text-purple-600 dark:text-purple-300">
-                FCA, CySEC, ASIC regulatory coverage
-              </p>
+              <Card className="border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
+                      <Target className="h-6 w-6 text-purple-600" />
+                    </div>
+                    <h3 className="font-semibold">Beginner-Focused</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Simplified interface designed for retail traders, not institutional professionals
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-orange-200 dark:border-orange-800 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
+                      <BarChart3 className="h-6 w-6 text-orange-600" />
+                    </div>
+                    <h3 className="font-semibold">Multi-Asset Hub</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Stocks, crypto, commodities, forex, and ETFs in one unified platform
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </CardContent>
@@ -300,10 +325,19 @@ export function EtoroExecutiveSummary({ broker }: EtoroExecutiveSummaryProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-lg leading-relaxed">
-            <strong>eToro earns a solid 4.5/5 rating</strong> for its revolutionary approach to social trading and exceptional user experience.
-            While not suitable for professional traders seeking tight spreads, eToro excels as a social trading platform that democratizes
-            access to financial markets through innovative copy trading features.
+            <strong>eToro earns a solid 4.5/5 rating</strong> as a social trading platform, not a traditional forex broker.
+            Our scoring reflects its unique position: <strong>9.5/10 for social trading innovation</strong>, <strong>9.0/10 for user experience</strong>,
+            <strong>8.5/10 for regulatory coverage</strong>, but only <strong>6.5/10 for trading costs</strong> due to higher spreads.
+            eToro excels at democratizing trading through copy trading but isn't suitable for professional traders seeking institutional-grade execution.
           </p>
+
+          <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-950/20">
+            <Info className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Bottom Line:</strong> Choose eToro if you're a beginner seeking social learning and copy trading.
+              Avoid if you need tight spreads, MetaTrader, or professional trading tools.
+            </AlertDescription>
+          </Alert>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild className="flex-1">

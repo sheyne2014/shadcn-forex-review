@@ -22,7 +22,7 @@ import {
   Target,
   Info
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroSocialFeaturesProps {
@@ -157,12 +157,14 @@ export function EtoroSocialFeatures({ broker }: EtoroSocialFeaturesProps) {
           <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-full">
             <Users className="h-8 w-8 text-green-600" />
           </div>
-          <Context7Heading3>Social Features & Community Analysis</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            Social Features & Community Analysis
+          </h3>
         </div>
-        <Context7Content>
-          Comprehensive analysis of eToro's social trading features, community interaction quality, 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Comprehensive analysis of eToro's social trading features, community interaction quality,
           and the value proposition of social elements in trading.
-        </Context7Content>
+        </p>
       </div>
 
       <Card className="border-2 border-green-200 dark:border-green-800">

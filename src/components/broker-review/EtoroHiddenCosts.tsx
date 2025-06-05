@@ -21,7 +21,7 @@ import {
   Eye,
   Target
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroHiddenCostsProps {
@@ -120,12 +120,14 @@ export function EtoroHiddenCosts({ broker }: EtoroHiddenCostsProps) {
           <div className="p-3 bg-red-100 dark:bg-red-900/20 rounded-full">
             <Eye className="h-8 w-8 text-red-600" />
           </div>
-          <Context7Heading3>Hidden Costs & Fee Analysis</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+            Hidden Costs & Fee Analysis
+          </h3>
         </div>
-        <Context7Content>
-          Comprehensive breakdown of eToro's hidden costs and fees that impact your trading profitability 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Comprehensive breakdown of eToro's hidden costs and fees that impact your trading profitability
           beyond the advertised spreads.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Interactive Cost Calculator */}
@@ -277,10 +279,10 @@ export function EtoroHiddenCosts({ broker }: EtoroHiddenCostsProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
-            Overnight financing costs for leveraged positions held beyond market close. 
+          <p className="text-muted-foreground">
+            Overnight financing costs for leveraged positions held beyond market close.
             These costs can significantly impact profitability for swing traders and position holders.
-          </Context7Content>
+          </p>
           
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse">

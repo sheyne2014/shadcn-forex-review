@@ -15,7 +15,7 @@ import {
   Target,
   AlertTriangle
 } from "lucide-react";
-import { Context7Content, Context7Heading2 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { trackEvent } from "@/lib/analytics/google-analytics";
 import { EtoroSpreadAnalysis } from "./EtoroSpreadAnalysis";
@@ -23,13 +23,14 @@ import { EtoroHiddenCosts } from "./EtoroHiddenCosts";
 import { EtoroAccountTypes } from "./EtoroAccountTypes";
 import { EtoroExecutionModel } from "./EtoroExecutionModel";
 import { EtoroCostCalculator } from "./EtoroCostCalculator";
+import { EtoroComprehensiveCostAnalysis } from "./EtoroComprehensiveCostAnalysis";
 
 interface EtoroTradingConditionsAnalysisProps {
   broker: any;
 }
 
 export function EtoroTradingConditionsAnalysis({ broker }: EtoroTradingConditionsAnalysisProps) {
-  const [activeTab, setActiveTab] = useState("spreads");
+  const [activeTab, setActiveTab] = useState("comprehensive");
 
   useEffect(() => {
     trackEvent({
@@ -94,12 +95,14 @@ export function EtoroTradingConditionsAnalysis({ broker }: EtoroTradingCondition
             <div className="p-3 bg-gradient-to-br from-blue-500/10 to-green-500/10 rounded-full">
               <BarChart3 className="h-8 w-8 text-blue-600" />
             </div>
-            <Context7Heading2>Trading Conditions & Cost Analysis</Context7Heading2>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              Trading Conditions & Cost Analysis
+            </h2>
           </div>
-          <Context7Content>
-            Comprehensive analysis of eToro's trading conditions, costs, and execution model 
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            Comprehensive analysis of eToro's trading conditions, costs, and execution model
             with detailed comparisons and real-world examples.
-          </Context7Content>
+          </p>
         </div>
 
         {/* Analysis Overview Dashboard */}
@@ -172,7 +175,11 @@ export function EtoroTradingConditionsAnalysis({ broker }: EtoroTradingCondition
 
         {/* Detailed Analysis Tabs */}
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
+            <TabsTrigger value="comprehensive" className="flex items-center gap-2">
+              <DollarSign className="h-4 w-4" />
+              <span className="hidden sm:inline">Comprehensive</span>
+            </TabsTrigger>
             <TabsTrigger value="spreads" className="flex items-center gap-2">
               <BarChart3 className="h-4 w-4" />
               <span className="hidden sm:inline">Spreads</span>
@@ -194,6 +201,10 @@ export function EtoroTradingConditionsAnalysis({ broker }: EtoroTradingCondition
               <span className="hidden sm:inline">Calculator</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="comprehensive" className="mt-8">
+            <EtoroComprehensiveCostAnalysis broker={broker} />
+          </TabsContent>
 
           <TabsContent value="spreads" className="mt-8">
             <EtoroSpreadAnalysis broker={broker} />
@@ -225,11 +236,11 @@ export function EtoroTradingConditionsAnalysis({ broker }: EtoroTradingCondition
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <Context7Content>
-              eToro's trading conditions reflect its positioning as a social trading platform rather than 
-              a traditional low-cost broker. While costs are higher, the unique social features may justify 
+            <p className="text-muted-foreground">
+              eToro's trading conditions reflect its positioning as a social trading platform rather than
+              a traditional low-cost broker. While costs are higher, the unique social features may justify
               the premium for certain trader types.
-            </Context7Content>
+            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">

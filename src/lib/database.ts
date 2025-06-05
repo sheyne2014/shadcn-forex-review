@@ -1,10 +1,11 @@
 import { createClient } from '@/lib/supabase/client';
-import { 
+import {
   Broker, BrokerInsert, BrokerUpdate,
-  Category, CategoryInsert, 
+  Category, CategoryInsert,
   Review, ReviewInsert,
   BlogPost, BlogPostInsert
 } from './database-types';
+import { withCache, cacheKeys, cacheTTL } from './cache';
 
 /**
  * Database service for interacting with Supabase
@@ -16,14 +17,33 @@ export const db = {
   brokers: {
     // Get all brokers
     getAll: async (): Promise<Broker[]> => {
-      const client = createClient();
-      const { data, error } = await client
-        .from('brokers')
-        .select('*')
-        .order('rating', { ascending: false });
-      
-      if (error) throw error;
-      return data || [];
+      return withCache(
+        cacheKeys.brokers.all(),
+        async () => {
+          try {
+            const client = createClient();
+            const { data, error } = await Promise.race([
+              client
+                .from('brokers')
+                .select('*')
+                .order('rating', { ascending: false }),
+              new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Database query timeout')), 10000)
+              )
+            ]) as any;
+
+            if (error) {
+              console.warn('Database error in getAll brokers:', error);
+              return [];
+            }
+            return data || [];
+          } catch (error) {
+            console.warn('Failed to fetch brokers:', error);
+            return [];
+          }
+        },
+        cacheTTL.medium
+      );
     },
 
     // Get broker by ID
@@ -41,26 +61,52 @@ export const db = {
 
     // Get brokers by category
     getByCategory: async (categoryId: string): Promise<Broker[]> => {
-      const client = createClient();
-      // First get broker IDs from the junction table
-      const { data: brokerJunction, error: junctionError } = await client
-        .from('broker_categories')
-        .select('broker_id')
-        .eq('category_id', categoryId);
-      
-      if (junctionError) throw junctionError;
-      if (!brokerJunction || brokerJunction.length === 0) return [];
-      
-      // Then get the actual broker data
-      const brokerIds = brokerJunction.map((item: { broker_id: string }) => item.broker_id);
-      const { data, error } = await client
-        .from('brokers')
-        .select('*')
-        .in('id', brokerIds)
-        .order('rating', { ascending: false });
-      
-      if (error) throw error;
-      return data || [];
+      try {
+        const client = createClient();
+
+        // First get broker IDs from the junction table with timeout
+        const junctionPromise = client
+          .from('broker_categories')
+          .select('broker_id')
+          .eq('category_id', categoryId);
+
+        const { data: brokerJunction, error: junctionError } = await Promise.race([
+          junctionPromise,
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Junction query timeout')), 8000)
+          )
+        ]) as any;
+
+        if (junctionError) {
+          console.warn('Junction table error:', junctionError);
+          return [];
+        }
+        if (!brokerJunction || brokerJunction.length === 0) return [];
+
+        // Then get the actual broker data with timeout
+        const brokerIds = brokerJunction.map((item: { broker_id: string }) => item.broker_id);
+        const brokersPromise = client
+          .from('brokers')
+          .select('*')
+          .in('id', brokerIds)
+          .order('rating', { ascending: false });
+
+        const { data, error } = await Promise.race([
+          brokersPromise,
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Brokers query timeout')), 8000)
+          )
+        ]) as any;
+
+        if (error) {
+          console.warn('Brokers query error:', error);
+          return [];
+        }
+        return data || [];
+      } catch (error) {
+        console.warn('Failed to fetch brokers by category:', error);
+        return [];
+      }
     },
 
     // Create a new broker
@@ -142,14 +188,33 @@ export const db = {
   categories: {
     // Get all categories
     getAll: async (): Promise<Category[]> => {
-      const client = createClient();
-      const { data, error } = await client
-        .from('categories')
-        .select('*')
-        .order('name');
-      
-      if (error) throw error;
-      return data || [];
+      return withCache(
+        cacheKeys.categories.all(),
+        async () => {
+          try {
+            const client = createClient();
+            const { data, error } = await Promise.race([
+              client
+                .from('categories')
+                .select('*')
+                .order('name'),
+              new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Categories query timeout')), 8000)
+              )
+            ]) as any;
+
+            if (error) {
+              console.warn('Categories query error:', error);
+              return [];
+            }
+            return data || [];
+          } catch (error) {
+            console.warn('Failed to fetch categories:', error);
+            return [];
+          }
+        },
+        cacheTTL.long
+      );
     },
 
     // Get category by ID

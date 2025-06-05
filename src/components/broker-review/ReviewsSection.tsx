@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { Star, ThumbsUp, MessageSquare, AlertTriangle, Shield, Flag, HelpCircle, Filter } from "lucide-react";
 import { toast } from "sonner";
 
 interface ReviewsSectionProps {
-  broker: any;
+  broker?: any;
+  brokerId?: string;
+  brokerName?: string;
   reviews?: {
     id: string;
     user_name?: string;
@@ -29,10 +32,38 @@ interface ReviewsSectionProps {
 
 export function ReviewsSection({
   broker,
+  brokerId,
+  brokerName,
   reviews: initialReviews = []
 }: ReviewsSectionProps) {
+  // Early return with loading state if no data
+  if (!broker && !brokerId && !brokerName) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">Loading reviews...</p>
+      </div>
+    );
+  }
+
+  // Handle both broker object and separate props with safe defaults
+  const brokerData = {
+    id: broker?.id || brokerId || '',
+    name: broker?.name || brokerName || 'Unknown Broker',
+    rating: broker?.rating || 4.5,
+    review_count: broker?.review_count || 0
+  };
+
+  // Early return if still no valid broker data
+  if (!brokerData.id) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">Unable to load reviews. Missing broker information.</p>
+      </div>
+    );
+  }
+
   const [filter, setFilter] = useState("all");
-  const [reviews, setReviews] = useState(initialReviews);
+  const [reviews, setReviews] = useState(initialReviews || []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     rating: 0,
@@ -43,26 +74,40 @@ export function ReviewsSection({
     user_email: ''
   });
 
-  // Fetch reviews on component mount
-  useEffect(() => {
-    fetchReviews();
-  }, [broker.id]);
+  const fetchReviews = useCallback(async () => {
+    if (!brokerData?.id) {
+      console.error('Cannot fetch reviews: missing broker ID');
+      return;
+    }
 
-  const fetchReviews = async () => {
     try {
-      const response = await fetch(`/api/reviews?broker_id=${broker.id}`);
+      const response = await fetch(`/api/reviews?broker_id=${brokerData.id}`);
       const data = await response.json();
 
       if (data.success) {
-        setReviews(data.reviews);
+        setReviews(data.reviews || []);
+      } else {
+        console.error('Failed to fetch reviews:', data.error);
       }
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
-  };
+  }, [brokerData?.id]);
+
+  // Fetch reviews on component mount
+  useEffect(() => {
+    if (brokerData?.id) {
+      fetchReviews();
+    }
+  }, [brokerData?.id, fetchReviews]);
 
   const handleSubmitReview = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!brokerData?.id) {
+      toast.error("Unable to submit review: missing broker information");
+      return;
+    }
 
     if (formData.rating === 0) {
       toast.error("Please select a rating");
@@ -78,7 +123,7 @@ export function ReviewsSection({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          broker_id: broker.id,
+          broker_id: brokerData.id,
           ...formData
         }),
       });
@@ -111,9 +156,8 @@ export function ReviewsSection({
 
   // Calculate average rating if reviews are provided
   const calculateAverageRating = () => {
-    if (reviews.length === 0) return broker.rating || 4.5;
-
-    const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
+    if (reviews.length === 0) return brokerData.rating;
+    const sum = reviews.reduce((acc, review) => acc + (review?.rating || 0), 0);
     return (sum / reviews.length).toFixed(1);
   };
 
@@ -202,7 +246,7 @@ export function ReviewsSection({
       <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
       <h3 className="text-xl font-semibold mb-2">No reviews yet</h3>
       <p className="text-muted-foreground max-w-md mx-auto mb-6">
-        Be the first to share your experience with {broker.name}.
+        Be the first to share your experience with {brokerData.name}.
       </p>
       <Button>
         Write a Review
@@ -233,7 +277,7 @@ export function ReviewsSection({
               </div>
             </div>
             <CardDescription>
-              Trader experiences with {broker.name}
+              Trader experiences with {brokerData.name}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -311,7 +355,7 @@ export function ReviewsSection({
           <CardHeader>
             <CardTitle>Write a Review</CardTitle>
             <CardDescription>
-              Share your experience with {broker.name} to help other traders
+              Share your experience with {brokerData.name} to help other traders
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -362,7 +406,7 @@ export function ReviewsSection({
                   id="review"
                   value={formData.comment}
                   onChange={(e) => setFormData(prev => ({ ...prev, comment: e.target.value }))}
-                  placeholder={`What was your experience trading with ${broker.name}?`}
+                  placeholder={`What was your experience trading with ${brokerData.name}?`}
                   className="min-h-[120px]"
                 />
               </div>
@@ -409,7 +453,7 @@ export function ReviewsSection({
                 {averageRating} <Star className="h-8 w-8 ml-1 fill-amber-500 text-amber-500" />
               </div>
               <p className="text-muted-foreground text-sm">
-                Based on {reviews.length || broker.review_count || 0} reviews
+                Based on {reviews.length || brokerData.review_count} reviews
               </p>
             </div>
 
@@ -463,7 +507,7 @@ export function ReviewsSection({
               <div>
                 <h3 className="font-medium mb-1">Review Verification</h3>
                 <p className="text-sm text-muted-foreground">
-                  We verify users who have provided proof of trading with {broker.name} for higher reliability.
+                  We verify users who have provided proof of trading with {brokerData.name} for higher reliability.
                 </p>
               </div>
             </div>
@@ -530,19 +574,3 @@ export function ReviewsSection({
   );
 }
 
-// Badge component (simplified version for this context)
-function Badge({ variant = "default", className = "", children, ...props }: any) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold
-      ${variant === "default" ? "bg-primary text-primary-foreground" :
-        variant === "secondary" ? "bg-secondary text-secondary-foreground" :
-        variant === "destructive" ? "bg-destructive text-destructive-foreground" :
-        "bg-transparent border-muted-foreground/30 text-foreground"}
-      ${className}`}
-      {...props}
-    >
-      {children}
-    </span>
-  );
-}

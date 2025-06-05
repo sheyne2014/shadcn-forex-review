@@ -147,6 +147,12 @@ export class Context7Tool {
       return baseHeading;
     }
 
+    // Ensure baseHeading is a string
+    if (typeof baseHeading !== 'string') {
+      console.warn('generateHeading received non-string input:', typeof baseHeading);
+      return String(baseHeading || '');
+    }
+
     // Inject relevant keywords if not already present
     const keywords = this.config.keywords.slice(0, 3);
     let enhancedHeading = baseHeading;
@@ -166,6 +172,12 @@ export class Context7Tool {
   public generateParagraph(baseParagraph: string): string {
     if (!this.config) {
       return baseParagraph;
+    }
+
+    // Ensure baseParagraph is a string
+    if (typeof baseParagraph !== 'string') {
+      console.warn('generateParagraph received non-string input:', typeof baseParagraph);
+      return String(baseParagraph || '');
     }
 
     // Enhance with primary keyword if not present

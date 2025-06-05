@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { getAllBlogPosts, BlogPost } from "@/lib/supabase/blog-client";
 import { ClientImage } from "@/components/ClientImage";
 import { formatDate } from "@/lib/utils";

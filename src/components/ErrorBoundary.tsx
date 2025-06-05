@@ -29,7 +29,17 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
+
+    // Enhanced error logging for module instantiation issues
+    if (error.message?.includes('instantiateModule') || error.stack?.includes('instantiateModule')) {
+      console.error('Module instantiation error detected:', {
+        error: error.message,
+        stack: error.stack,
+        componentStack: errorInfo.componentStack,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
     // Call optional error handler
     if (this.props.onError) {
       this.props.onError(error, errorInfo);

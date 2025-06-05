@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -25,6 +26,7 @@ import { ScrollableComparisonSection } from "@/components/ScrollableComparisonSe
 import { siteConfig } from "@/config/site";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { AnimatedGroup } from "@/components/ui/animated-group";
+import { DatabaseErrorBoundary } from "@/components/DatabaseErrorBoundary";
 
 // Animation variants
 const transitionVariants = {
@@ -544,18 +546,7 @@ export default function LandingPage() {
   };
 
   return (
-    <>
-      {/* Server-side Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
-      />
-
-      <div className="space-y-16 py-12">
+    <div className="space-y-16 py-12">
         {/* Hero section - With modern gradient background */}
         <section className="w-full py-16 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_10%,#4F46E5_0%,transparent_50%)]"></div>
@@ -744,13 +735,14 @@ export default function LandingPage() {
         {/* Broker Categories Section - With improved UI */}
         <section className="py-12 bg-accent/5">
           <div className="container mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainerVariant}
-              className="max-w-5xl mx-auto"
-            >
+            <DatabaseErrorBoundary showDetails={true}>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={staggerContainerVariant}
+                className="max-w-5xl mx-auto"
+              >
               <motion.div variants={fadeInUpVariant} className="text-center mb-10">
                 <h2 className="text-3xl font-bold mb-4">Brokers By Category</h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -840,6 +832,7 @@ export default function LandingPage() {
                 </Button>
               </motion.div>
             </motion.div>
+            </DatabaseErrorBoundary>
           </div>
         </section>
 
@@ -1249,12 +1242,11 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </section>
-      </div>
-      
-      {/* Add ScrollToTopButton for better navigation */}
-      <div className="scroll-to-top-container">
-        <ScrollToTopButton />
-      </div>
-    </>
+
+        {/* Add ScrollToTopButton for better navigation */}
+        <div className="scroll-to-top-container">
+          <ScrollToTopButton />
+        </div>
+    </div>
   );
 }

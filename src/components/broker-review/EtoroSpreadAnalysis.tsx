@@ -20,7 +20,7 @@ import {
   ArrowUpDown,
   Timer
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroSpreadAnalysisProps {
@@ -142,12 +142,14 @@ export function EtoroSpreadAnalysis({ broker }: EtoroSpreadAnalysisProps) {
           <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
             <BarChart3 className="h-8 w-8 text-blue-600" />
           </div>
-          <Context7Heading3>Spread Analysis & Cost Comparison</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Spread Analysis & Cost Comparison
+          </h3>
         </div>
-        <Context7Content>
-          Comprehensive analysis of eToro's spreads compared to major competitors, 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Comprehensive analysis of eToro's spreads compared to major competitors,
           with real trading cost examples and market condition impacts.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Spread Comparison Table */}
@@ -212,9 +214,9 @@ export function EtoroSpreadAnalysis({ broker }: EtoroSpreadAnalysisProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Context7Content>
+          <p className="text-muted-foreground">
             Understanding the real cost impact of eToro's spreads with practical trading examples.
-          </Context7Content>
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">

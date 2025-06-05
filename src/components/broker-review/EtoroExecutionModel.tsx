@@ -19,7 +19,7 @@ import {
   Timer,
   Gauge
 } from "lucide-react";
-import { Context7Content, Context7Heading3 } from "@/components/Context7Provider";
+// Removed Context7 imports due to compatibility issues
 import { trackEvent } from "@/lib/analytics/google-analytics";
 
 interface EtoroExecutionModelProps {
@@ -185,12 +185,14 @@ export function EtoroExecutionModel({ broker }: EtoroExecutionModelProps) {
           <div className="p-3 bg-orange-100 dark:bg-orange-900/20 rounded-full">
             <Zap className="h-8 w-8 text-orange-600" />
           </div>
-          <Context7Heading3>Execution Model & Order Processing</Context7Heading3>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            Execution Model & Order Processing
+          </h3>
         </div>
-        <Context7Content>
-          Detailed analysis of eToro's execution model, order processing speed, 
+        <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          Detailed analysis of eToro's execution model, order processing speed,
           slippage rates, and comparison with traditional ECN/STP brokers.
-        </Context7Content>
+        </p>
       </div>
 
       {/* Execution Statistics Dashboard */}
@@ -377,10 +379,10 @@ export function EtoroExecutionModel({ broker }: EtoroExecutionModelProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Context7Content>
-            Analysis of how eToro's execution quality changes during high-impact news events 
+          <p className="text-muted-foreground">
+            Analysis of how eToro's execution quality changes during high-impact news events
             and periods of market volatility.
-          </Context7Content>
+          </p>
           
           <div className="mt-6 space-y-4">
             {newsEventAnalysis.map((event, index) => (

@@ -15,6 +15,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { RokuAIWrapper } from "@/components/RokuAIWrapper";
 import { PerformanceMonitor, CriticalResourceLoader, PerformanceConfig } from "@/components/PerformanceMonitor";
 import { PerformanceErrorBoundary } from "@/components/ErrorBoundary";
+import { PerformanceDebugger } from "@/components/PerformanceDebugger";
 
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -179,6 +180,7 @@ export default function Layout({
             <Footer />
             <Toaster position="bottom-right" />
             <RokuAIWrapper />
+            <PerformanceDebugger />
             <SpeedInsights />
             </AuthProvider>
           </GoogleAnalyticsProvider>
