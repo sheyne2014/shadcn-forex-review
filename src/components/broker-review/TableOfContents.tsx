@@ -68,39 +68,39 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
   return (
     <div className={cn("w-full", className)}>
       <Card className="shadow-lg border-2">
-        <CardHeader className="pb-3">
+        <CardHeader className="pb-3 px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
-              <CardTitle className="text-lg">Table of Contents</CardTitle>
+              <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              <CardTitle className="text-base sm:text-lg">Table of Contents</CardTitle>
             </div>
 
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Clock className="h-4 w-4" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+            <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
             <span>Est. reading time: {totalReadTime} min</span>
           </div>
         </CardHeader>
 
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 px-4 sm:px-6">
           <nav className="space-y-1">
             {items.map((item) => (
                 <Button
                   key={item.id}
                   variant="ghost"
                   className={cn(
-                    "w-full justify-start text-left h-auto py-2 px-3 transition-all duration-200",
-                    item.level === 1 && "font-semibold",
-                    item.level === 2 && "pl-6 text-sm",
-                    item.level === 3 && "pl-9 text-xs",
+                    "w-full justify-start text-left h-auto py-2 px-3 transition-all duration-200 min-h-[44px] touch-manipulation",
+                    item.level === 1 && "font-semibold text-sm sm:text-base",
+                    item.level === 2 && "pl-4 sm:pl-6 text-xs sm:text-sm",
+                    item.level === 3 && "pl-6 sm:pl-9 text-xs",
                     activeSection === item.id && "bg-primary/10 text-primary border-l-2 border-primary"
                   )}
                   onClick={() => scrollToSection(item.id)}
                 >
                   <div className="flex items-center justify-between w-full">
-                    <span className="truncate">{item.title}</span>
+                    <span className="truncate pr-2">{item.title}</span>
                     {item.estimatedTime && (
-                      <Badge variant="secondary" className="ml-2 text-xs">
+                      <Badge variant="secondary" className="ml-2 text-xs flex-shrink-0">
                         {item.estimatedTime}m
                       </Badge>
                     )}
